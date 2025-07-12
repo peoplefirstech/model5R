@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, Shield, Cookie, FileText, Mail, Phone, MapPin, Linkedin, Twitter, Facebook, UserCheck } from 'lucide-react';
+import { Heart, Shield, Cookie, FileText, Mail, Phone, MapPin, Linkedin, UserCheck } from 'lucide-react';
 
 interface FooterProps {
   language: 'fr' | 'en';
@@ -78,11 +78,11 @@ export default function Footer({ language }: FooterProps) {
               <a href="#" className="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
                 <Linkedin className="w-5 h-5 text-purple-300" />
               </a>
-              <a href="#" className="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
-                <Twitter className="w-5 h-5 text-purple-300" />
+              <a href={`mailto:${t.email}`} className="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                <Mail className="w-5 h-5 text-purple-300" />
               </a>
-              <a href="#" className="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
-                <Facebook className="w-5 h-5 text-purple-300" />
+              <a href={`tel:${t.phone}`} className="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                <Phone className="w-5 h-5 text-purple-300" />
               </a>
             </div>
           </div>
