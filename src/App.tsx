@@ -321,8 +321,8 @@ function App() {
                     : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
                 }`}
               >
-                <MessageCircle className="w-4 h-4 mr-2" />
-                {language === 'fr' ? 'Essayer le Coach IA' : 'Try AI Coach'}
+                <Mail className="w-4 h-4 mr-2" />
+                {language === 'fr' ? 'Demander un expert' : 'Request an expert'}
               </button>
             </div>
           </div>
