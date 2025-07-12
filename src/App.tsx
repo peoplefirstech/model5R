@@ -356,14 +356,14 @@ function App() {
             
             {/* CTA principal optimisé */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-              <a
-                href="mailto:contact@peoplefirst-technologies.com?subject=Demande de démo - Coach Virtuel IA 5R®"
+              <button
+                onClick={() => setCurrentPage('chat')}
                 className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-pft-blue to-purple-600 text-white rounded-2xl hover:from-pft-blue/90 hover:to-purple-700 transition-all duration-300 text-lg font-semibold shadow-2xl hover:shadow-blue-500/25 transform hover:scale-105"
               >
-                <Mail className="w-6 h-6 mr-3" />
-                {language === 'fr' ? 'Demander une démo' : 'Request a demo'}
+                <MessageCircle className="w-6 h-6 mr-3" />
+                {language === 'fr' ? 'Essayez le Coach IA' : 'Try the AI Coach'}
                 <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
-              </a>
+              </button>
             </div>
 
             {/* Preuves sociales */}
