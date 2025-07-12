@@ -7,6 +7,13 @@ interface FooterProps {
 }
 
 export default function Footer({ language }: FooterProps) {
+  const [isDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return document.documentElement.classList.contains('dark');
+    }
+    return false;
+  });
+
   const content = {
     fr: {
       tagline: "Transformons ensemble votre potentiel en performance",
@@ -43,7 +50,7 @@ export default function Footer({ language }: FooterProps) {
   const t = content[language];
 
   return (
-    <footer className="bg-slate-900 text-white">
+    <footer className="bg-slate-900 dark:bg-gray-950 text-white">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -66,7 +73,7 @@ export default function Footer({ language }: FooterProps) {
               {t.tagline}
             </p>
             
-            <p className="text-gray-300 leading-relaxed">
+            <p className="text-gray-300 dark:text-gray-400 leading-relaxed">
               {t.description}
             </p>
             
@@ -111,7 +118,7 @@ export default function Footer({ language }: FooterProps) {
             <h4 className="text-lg font-semibold text-white">{t.followUs}</h4>
             
             <div className="space-y-4">
-              <p className="text-gray-300 text-sm">
+              <p className="text-gray-300 dark:text-gray-400 text-sm">
                 {language === 'fr' 
                   ? "Restez informé de nos dernières innovations."
                   : "Stay informed about our latest innovations."
@@ -122,7 +129,7 @@ export default function Footer({ language }: FooterProps) {
                 <input
                   type="email"
                   placeholder={language === 'fr' ? "Votre email" : "Your email"}
-                  className="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-l-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="flex-1 px-3 py-2 bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-l-lg text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
                 />
                 <button className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-r-lg hover:from-purple-600 hover:to-pink-600 transition-colors">
                   <Mail className="w-4 h-4" />
@@ -134,7 +141,7 @@ export default function Footer({ language }: FooterProps) {
       </div>
       
       {/* Legal Links & Copyright */}
-      <div className="border-t border-white/10">
+      <div className="border-t border-white/10 dark:border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             
@@ -166,7 +173,7 @@ export default function Footer({ language }: FooterProps) {
             </div>
             
             {/* Copyright */}
-            <div className="flex items-center text-gray-400 text-sm">
+            <div className="flex items-center text-gray-400 dark:text-gray-500 text-sm">
               <span>© 2024 People First Technologies. {t.rights}</span>
               <span className="mx-2">•</span>
               <span className="flex items-center">

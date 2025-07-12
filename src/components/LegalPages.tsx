@@ -399,13 +399,13 @@ export default function LegalPages({ page, language, onBack }: LegalPagesProps) 
   const IconComponent = pageContent.icon;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="bg-white shadow-sm">
+      <div className="bg-white dark:bg-gray-800 shadow-sm">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <button
             onClick={onBack}
-            className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors mb-4"
+            className="inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors mb-4"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             {language === 'fr' ? 'Retour' : 'Back'}
@@ -415,20 +415,20 @@ export default function LegalPages({ page, language, onBack }: LegalPagesProps) 
             <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
               <IconComponent className="w-6 h-6 text-white" />
             </div>
-            <h1 className="text-3xl font-bold text-gray-900">{pageContent.title}</h1>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{pageContent.title}</h1>
           </div>
         </div>
       </div>
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-white rounded-lg shadow-sm p-8">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8">
           <div className="prose prose-lg max-w-none">
             {pageContent.sections.map((section, index) => (
               <div key={index} className="mb-8">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">{section.title}</h2>
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">{section.title}</h2>
                 <div 
-                  className="text-gray-700 leading-relaxed"
+                  className="text-gray-700 dark:text-gray-300 leading-relaxed"
                   dangerouslySetInnerHTML={{ __html: section.content }}
                 />
               </div>
@@ -436,8 +436,8 @@ export default function LegalPages({ page, language, onBack }: LegalPagesProps) 
           </div>
           
           {/* Last updated */}
-          <div className="mt-12 pt-8 border-t border-gray-200">
-            <p className="text-sm text-gray-500">
+          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               {language === 'fr' 
                 ? 'Dernière mise à jour : 15 janvier 2024'
                 : 'Last updated: January 15, 2024'

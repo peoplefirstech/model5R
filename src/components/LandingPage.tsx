@@ -28,7 +28,23 @@ import PreFooter from './PreFooter';
 
 export default function LandingPage() {
   const [language, setLanguage] = useState<'fr' | 'en'>('fr');
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('darkMode') === 'true' || 
+             (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('darkMode', 'true');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('darkMode', 'false');
+    }
+  }, [isDark]);
 
   const content = {
     fr: {
@@ -254,9 +270,9 @@ export default function LandingPage() {
   const t = content[language];
 
   return (
-    <div className={`min-h-screen ${isDark ? 'dark' : ''}`}>
+    <div className="min-h-screen">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/50">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
@@ -264,21 +280,21 @@ export default function LandingPage() {
                 <UserCheck className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h1 className="text-lg font-bold text-gray-900">People First Technologies</h1>
-                <p className="text-xs text-gray-600">Coach Virtuel IA</p>
+                <h1 className="text-lg font-bold text-gray-900 dark:text-white">People First Technologies</h1>
+                <p className="text-xs text-gray-600 dark:text-gray-400">Coach Virtuel IA</p>
               </div>
             </div>
             
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#solutions" className="text-gray-700 hover:text-purple-600 transition-colors">{t.nav.solutions}</a>
-              <a href="#about" className="text-gray-700 hover:text-purple-600 transition-colors">{t.nav.about}</a>
-              <a href="#contact" className="text-gray-700 hover:text-purple-600 transition-colors">{t.nav.contact}</a>
+              <a href="#solutions" className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">{t.nav.solutions}</a>
+              <a href="#about" className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">{t.nav.about}</a>
+              <a href="#contact" className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">{t.nav.contact}</a>
             </div>
             
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
-                className="flex items-center space-x-1 text-gray-600 hover:text-purple-600 transition-colors"
+                className="flex items-center space-x-1 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
               >
                 <Globe className="w-4 h-4" />
                 <span className="text-sm font-medium">{language.toUpperCase()}</span>
@@ -286,7 +302,7 @@ export default function LandingPage() {
               
               <button
                 onClick={() => setIsDark(!isDark)}
-                className="p-2 text-gray-600 hover:text-purple-600 transition-colors"
+                className="p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
               >
                 {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
               </button>
@@ -304,27 +320,27 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-20 pb-16 bg-gradient-to-br from-purple-50 via-white to-pink-50 overflow-hidden">
+      <section className="relative pt-20 pb-16 bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-300/20 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-300/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-300/20 dark:bg-purple-500/30 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-300/20 dark:bg-pink-500/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 animate-fadeIn">
               <div className="space-y-4">
-                <div className="inline-flex items-center space-x-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">
+                <div className="inline-flex items-center space-x-2 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 px-4 py-2 rounded-full text-sm font-medium">
                   <Sparkles className="w-4 h-4" />
                   <span>Modèle 5R® de Cécile Dejoux</span>
                 </div>
                 
-                <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
+                <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
                   {t.hero.title}
                   <span className="gradient-text">{t.hero.titleHighlight}</span>
                 </h1>
                 
-                <p className="text-xl text-gray-600 leading-relaxed">
+                <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
                   {t.hero.subtitle}
                 </p>
               </div>
@@ -338,13 +354,13 @@ export default function LandingPage() {
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
                 
-                <button className="group bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold text-lg hover:border-purple-300 hover:text-purple-600 transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-105">
+                <button className="group bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-4 rounded-xl font-semibold text-lg hover:border-purple-300 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-105">
                   <Play className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
                   <span>{t.hero.watchVideo}</span>
                 </button>
               </div>
               
-              <div className="flex items-center space-x-6 text-sm text-gray-600">
+              <div className="flex items-center space-x-6 text-sm text-gray-600 dark:text-gray-400">
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-4 h-4 text-green-500" />
                   <span>Gratuit pendant 14 jours</span>
@@ -357,7 +373,7 @@ export default function LandingPage() {
             </div>
             
             <div className="relative animate-slideUp">
-              <div className="relative bg-white rounded-2xl shadow-2xl p-8 border border-gray-100">
+              <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 border border-gray-100 dark:border-gray-700">
                 <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full opacity-20 animate-pulse-slow"></div>
                 <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full opacity-20 animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
                 
@@ -367,21 +383,21 @@ export default function LandingPage() {
                       <UserCheck className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900">Coach Virtuel IA</h3>
-                      <p className="text-sm text-gray-600">Basé sur le modèle 5R®</p>
+                      <h3 className="font-semibold text-gray-900 dark:text-white">Coach Virtuel IA</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Basé sur le modèle 5R®</p>
                     </div>
                     <div className="ml-auto flex items-center space-x-1">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-xs text-gray-500">En ligne</span>
+                      <span className="text-xs text-gray-500 dark:text-gray-400">En ligne</span>
                     </div>
                   </div>
                   
                   <div className="space-y-4">
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <p className="text-sm text-gray-700">
+                    <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                      <p className="text-sm text-gray-700 dark:text-gray-300">
                         Bonjour ! Je suis votre Coach Virtuel IA. Posez-moi vos questions sur le management, l'engagement d'équipe et la transformation. Recevez des conseils personnalisés basés sur le modèle 5R®.
                       </p>
-                      <span className="text-xs text-gray-500 mt-2 block">23:51</span>
+                      <span className="text-xs text-gray-500 dark:text-gray-400 mt-2 block">23:51</span>
                     </div>
                     
                     <div className="flex justify-end">
@@ -391,8 +407,8 @@ export default function LandingPage() {
                       </div>
                     </div>
                     
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <p className="text-sm text-gray-700">
+                    <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                      <p className="text-sm text-gray-700 dark:text-gray-300">
                         Pour <strong>Règles</strong>, organisez un atelier collaboratif où l'équipe co-construit...
                       </p>
                     </div>
@@ -403,7 +419,7 @@ export default function LandingPage() {
                       <input
                         type="text"
                         placeholder="Tapez votre message..."
-                        className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        className="flex-1 px-3 py-2 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
                         disabled
                       />
                       <button className="p-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg">
@@ -419,13 +435,13 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section id="solutions" className="py-20 bg-white">
+      <section id="solutions" className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-fadeIn">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               {t.features.title}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               {t.features.subtitle}
             </p>
           </div>
@@ -438,8 +454,8 @@ export default function LandingPage() {
                   <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                     <IconComponent className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">{feature.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">{feature.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{feature.description}</p>
                 </div>
               );
             })}
@@ -448,16 +464,16 @@ export default function LandingPage() {
       </section>
 
       {/* 5R Model Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-purple-50">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-purple-50 dark:from-gray-800 dark:to-purple-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-fadeIn">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               {t.model5r.title}
             </h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
               {t.model5r.subtitle}
             </p>
-            <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
               {t.model5r.description}
             </p>
           </div>
@@ -465,12 +481,12 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
             {t.model5r.pillars.map((pillar, index) => (
               <div key={index} className="group animate-slideUp hover-scale" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 h-full border border-gray-100">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 h-full border border-gray-100 dark:border-gray-700">
                   <div className={`w-12 h-12 bg-gradient-to-br ${pillar.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                     <span className="text-white font-bold text-lg">{pillar.title[0]}</span>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{pillar.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{pillar.description}</p>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">{pillar.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{pillar.description}</p>
                 </div>
               </div>
             ))}
@@ -479,13 +495,13 @@ export default function LandingPage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-fadeIn">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               {t.testimonials.title}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               {t.testimonials.subtitle}
             </p>
           </div>
@@ -493,14 +509,14 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {t.testimonials.items.map((testimonial, index) => (
               <div key={index} className="group animate-slideUp hover-lift" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 h-full">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 h-full">
                   <div className="flex items-center space-x-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                     ))}
                   </div>
                   
-                  <p className="text-gray-700 mb-6 leading-relaxed italic">
+                  <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed italic">
                     "{testimonial.content}"
                   </p>
                   
@@ -511,8 +527,8 @@ export default function LandingPage() {
                       className="w-12 h-12 rounded-full object-cover"
                     />
                     <div>
-                      <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                      <p className="text-sm text-gray-600">{testimonial.role}</p>
+                      <h4 className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{testimonial.role}</p>
                     </div>
                   </div>
                 </div>

@@ -15,6 +15,22 @@ interface ChatInterfaceProps {
 }
 
 export default function ChatInterface({ language }: ChatInterfaceProps) {
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('darkMode') === 'true' || 
+             (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDark]);
+
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -157,24 +173,24 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50">
+    <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-6 py-4">
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
               <UserCheck className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-gray-900">Coach Virtuel IA</h2>
-              <p className="text-sm text-gray-500">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Coach Virtuel IA</h2>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
                 {language === 'fr' ? 'Basé sur le modèle 5R®' : 'Based on Cécile Dejoux\'s 5R® model'}
               </p>
             </div>
           </div>
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            <span className="text-sm text-gray-600">{t.online}</span>
+            <span className="text-sm text-gray-600 dark:text-gray-400">{t.online}</span>
           </div>
         </div>
       </div>
@@ -203,7 +219,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 <div className={`px-4 py-3 rounded-2xl ${
                   message.sender === 'user'
                     ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
-                    : 'bg-white border border-gray-200 text-gray-900 shadow-sm'
+                    : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white shadow-sm'
                 }`}>
                   {message.isAudio ? (
                     <div className="flex items-center space-x-3">
@@ -242,7 +258,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 </div>
                 
                 <div className="flex items-center space-x-2 mt-1 px-2">
-                  <span className="text-xs text-gray-500">{formatTime(message.timestamp)}</span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">{formatTime(message.timestamp)}</span>
                   {message.sender === 'user' && (
                     <CheckCircle className="w-3 h-3 text-blue-500" />
                   )}
@@ -258,14 +274,14 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
                 <UserCheck className="w-4 h-4 text-white" />
               </div>
-              <div className="bg-white border border-gray-200 rounded-2xl px-4 py-3 shadow-sm">
+              <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl px-4 py-3 shadow-sm">
                 <div className="flex items-center space-x-2">
                   <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                   </div>
-                  <span className="text-sm text-gray-500">{t.typing}</span>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">{t.typing}</span>
                 </div>
               </div>
             </div>
@@ -276,14 +292,14 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
       </div>
 
       {/* Quick Questions */}
-      <div className="px-6 py-4 bg-white border-t border-gray-100">
-        <h3 className="text-sm font-medium text-gray-700 mb-3">{t.quickQuestions}</h3>
+      <div className="px-6 py-4 bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700">
+        <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">{t.quickQuestions}</h3>
         <div className="flex flex-wrap gap-2">
           {t.quickButtons.map((button, index) => (
             <button
               key={index}
               onClick={() => handleQuickQuestion(button.text)}
-              className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm rounded-full transition-colors duration-200 hover:scale-105"
+              className="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 text-sm rounded-full transition-colors duration-200 hover:scale-105"
             >
               {button.text}
             </button>
@@ -292,7 +308,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
       </div>
 
       {/* Input Area */}
-      <div className="bg-white border-t border-gray-200 px-6 py-4">
+      <div className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-6 py-4">
         <div className="flex items-end space-x-4">
           <div className="flex-1 relative">
             <textarea
@@ -301,7 +317,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               onChange={handleInputChange}
               onKeyDown={handleKeyPress}
               placeholder={t.placeholder}
-              className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-gray-900 placeholder-gray-500 bg-white"
+              className="w-full px-4 py-3 pr-12 border border-gray-300 dark:border-gray-600 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700"
               style={{ minHeight: '48px', maxHeight: '120px' }}
               rows={1}
             />
@@ -310,7 +326,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               className={`absolute right-3 top-1/2 transform -translate-y-1/2 p-2 rounded-full transition-colors ${
                 isSpeaking 
                   ? 'bg-red-100 text-red-600 hover:bg-red-200' 
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  : 'bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-500'
               }`}
             >
               {isSpeaking ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
@@ -322,7 +338,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
             className={`p-3 rounded-full transition-all duration-200 ${
               isRecording
                 ? 'bg-red-500 text-white hover:bg-red-600 animate-pulse'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                : 'bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-500'
             }`}
           >
             {isRecording ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
