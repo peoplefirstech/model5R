@@ -314,7 +314,7 @@ function App() {
               
               {/* Contact Expert Button */}
               <button
-                onClick={() => setCurrentPage('chat')}
+                onClick={() => window.location.href = 'mailto:contact@peoplefirst-technologies.com?subject=Demande d\'expert - Coach Virtuel IA 5R®'}
                 className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group ${
                   isDarkMode
                     ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
