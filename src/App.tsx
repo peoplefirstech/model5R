@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { Menu, X, Globe, ChevronDown, Star, Users, Target, TrendingUp, CheckCircle, ArrowRight, Mail, Phone, MapPin, User, Building, MessageSquare, Clock, Zap, Shield, Award } from 'lucide-react';
-import Footer from './components/Footer';
+import React, { useState, useEffect } from 'react';
+import { MessageCircle, Users, RotateCcw, Shield, Heart, Award, Send, Mail, ExternalLink, ArrowRight, AlertTriangle, CheckCircle, XCircle, Home, Sparkles, Brain, Target, Zap, Star, Globe, ChevronRight, Play, BookOpen, TrendingUp } from 'lucide-react';
 
 interface Message {
   id: number;
@@ -10,910 +9,1339 @@ interface Message {
 }
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home');
-  const [language, setLanguage] = useState('fr');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 1,
-      text: "Bonjour ! Je suis votre assistant IA. Comment puis-je vous aider aujourd'hui ?",
-      isBot: true,
-      timestamp: new Date()
-    }
-  ]);
-  const [inputMessage, setInputMessage] = useState('');
+  const [currentPage, setCurrentPage] = useState<'presentation' | 'chat' | 'contact'>('presentation');
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [language, setLanguage] = useState<'fr' | 'en'>('fr');
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [inputText, setInputText] = useState('');
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    company: '',
+    role: '',
+    teamSize: '',
+    challenge: '',
+    message: '',
+    urgency: 'medium'
+  });
 
-  const toggleLanguage = () => {
-    setLanguage(language === 'fr' ? 'en' : 'fr');
+  // Debug: Log current page
+  console.log('Current page:', currentPage);
+
+  const pillars = [
+    {
+      id: 'roles',
+      title: language === 'fr' ? 'Rôles' : 'Roles',
+      subtitle: language === 'fr' ? 'Roles' : 'Rôles',
+      icon: Users,
+      gradient: 'from-blue-500 to-cyan-400',
+      description: language === 'fr' 
+        ? 'Clarifier les rôles et responsabilités de chacun dans l\'équipe'
+        : 'Clarify roles and responsibilities of each team member'
+    },
+    {
+      id: 'routines',
+      title: language === 'fr' ? 'Routines' : 'Routines',
+      subtitle: language === 'fr' ? 'Routines' : 'Routines',
+      icon: RotateCcw,
+      gradient: 'from-purple-500 to-pink-400',
+      description: language === 'fr'
+        ? 'Instaurer des routines collectives et individuelles positives'
+        : 'Establish positive collective and individual routines'
+    },
+    {
+      id: 'rules',
+      title: language === 'fr' ? 'Règles' : 'Rules',
+      subtitle: language === 'fr' ? 'Rules' : 'Règles',
+      icon: Shield,
+      gradient: 'from-green-500 to-emerald-400',
+      description: language === 'fr'
+        ? 'Co-construire des règles de fonctionnement partagées'
+        : 'Co-build shared operating rules'
+    },
+    {
+      id: 'respect',
+      title: language === 'fr' ? 'Respect' : 'Respect',
+      subtitle: language === 'fr' ? 'Respect' : 'Respect',
+      icon: Heart,
+      gradient: 'from-red-500 to-pink-400',
+      description: language === 'fr'
+        ? 'Favoriser le respect et la bienveillance mutuelle'
+        : 'Foster mutual respect and kindness'
+    },
+    {
+      id: 'recognition',
+      title: language === 'fr' ? 'Reconnaissance' : 'Recognition',
+      subtitle: language === 'fr' ? 'Recognition' : 'Reconnaissance',
+      icon: Award,
+      gradient: 'from-yellow-500 to-orange-400',
+      description: language === 'fr'
+        ? 'Valoriser la reconnaissance et célébrer les réussites'
+        : 'Value recognition and celebrate successes'
+    }
+  ];
+
+  const useCases = [
+    {
+      title: language === 'fr' ? "Management d'équipe" : "Team Management",
+      description: language === 'fr' ? "Améliorer l'engagement et la cohésion" : "Improve engagement and cohesion",
+      icon: Users,
+      gradient: 'from-blue-500 to-purple-600',
+      examples: language === 'fr' 
+        ? ["Clarifier les rôles après réorganisation", "Rituels d'équipe motivants", "Renforcer la reconnaissance"]
+        : ["Clarify roles after reorganization", "Motivating team rituals", "Strengthen recognition"]
+    },
+    {
+      title: language === 'fr' ? "Transformation digitale" : "Digital Transformation",
+      description: language === 'fr' ? "Accompagner le changement avec 5R®" : "Support change with 5R®",
+      icon: Zap,
+      gradient: 'from-purple-500 to-pink-500',
+      examples: language === 'fr'
+        ? ["Adapter les routines aux outils", "Redéfinir les règles", "Maintenir l'engagement"]
+        : ["Adapt routines to tools", "Redefine rules", "Maintain engagement"]
+    },
+    {
+      title: language === 'fr' ? "Onboarding" : "Onboarding",
+      description: language === 'fr' ? "Intégrer efficacement les nouveaux" : "Effectively integrate newcomers",
+      icon: Target,
+      gradient: 'from-green-500 to-blue-500',
+      examples: language === 'fr'
+        ? ["Présenter rôles et missions", "Transmettre la culture", "Environnement accueillant"]
+        : ["Present roles and missions", "Transmit culture", "Welcoming environment"]
+    },
+    {
+      title: language === 'fr' ? "Gestion de crise" : "Crisis Management",
+      description: language === 'fr' ? "Maintenir la cohésion en difficulté" : "Maintain cohesion in difficulty",
+      icon: Shield,
+      gradient: 'from-red-500 to-orange-500',
+      examples: language === 'fr'
+        ? ["Clarifier les priorités", "Adapter les processus", "Renforcer le soutien"]
+        : ["Clarify priorities", "Adapt processes", "Strengthen support"]
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: "Marie Dubois",
+      role: language === 'fr' ? "DRH, Fortune 500" : "HR Director, Fortune 500",
+      content: language === 'fr' 
+        ? "Le modèle 5R® a transformé notre approche managériale. +40% d'engagement en 6 mois."
+        : "The 5R® model transformed our managerial approach. +40% engagement in 6 months.",
+      company: "Air France"
+    },
+    {
+      name: "Thomas Martin",
+      role: language === 'fr' ? "Directeur Transformation" : "Transformation Director",
+      content: language === 'fr'
+        ? "Un cadre scientifique qui fonctionne vraiment. Nos équipes sont plus alignées que jamais."
+        : "A scientific framework that really works. Our teams are more aligned than ever.",
+      company: "Michelin"
+    },
+    {
+      name: "Sophie Laurent",
+      role: language === 'fr' ? "CEO Startup" : "Startup CEO",
+      content: language === 'fr'
+        ? "Simple, efficace, mesurable. Le 5R® nous a aidés à structurer notre croissance."
+        : "Simple, effective, measurable. 5R® helped us structure our growth.",
+      company: "TechCorp"
+    }
+  ];
+
+  const chatResponses: Record<string, string> = {
+    default: language === 'fr' 
+      ? "Bonjour ! Je suis votre Coach Virtuel IA by People First Technologies, basé sur le modèle 5R® de la Professeure Cécile Dejoux. Je peux vous aider à améliorer l'engagement de votre équipe grâce aux 5 piliers : Rôles, Routines, Règles, Respect et Reconnaissance. Quelle dimension souhaitez-vous explorer ?"
+      : "Hello! I'm your Virtual AI Coach by People First Technologies, based on Professor Cécile Dejoux's 5R® model. I can help you improve your team's engagement through the 5 pillars: Roles, Routines, Rules, Respect and Recognition. Which dimension would you like to explore?",
+    roles: language === 'fr'
+      ? "Pour clarifier les **Rôles** dans votre équipe, commencez par organiser une session de mapping des responsabilités. Chaque membre doit pouvoir exprimer sa compréhension de son rôle et celui des autres. Créez ensuite des fiches de poste évolutives et planifiez des points de clarification trimestriels."
+      : "To clarify **Roles** in your team, start by organizing a responsibility mapping session. Each member should be able to express their understanding of their role and that of others. Then create evolving job descriptions and plan quarterly clarification points.",
+    routines: language === 'fr'
+      ? "Les **Routines** positives sont essentielles à l'engagement. Je recommande d'instaurer des rituels comme un stand-up hebdomadaire, des moments de célébration mensuelle, et des pauses café informelles. L'important est la régularité et l'adhésion de tous."
+      : "Positive **Routines** are essential to engagement. I recommend establishing rituals like weekly stand-ups, monthly celebration moments, and informal coffee breaks. The important thing is regularity and everyone's buy-in.",
+    rules: language === 'fr'
+      ? "Pour les **Règles**, organisez un atelier collaboratif où l'équipe co-construit sa charte de fonctionnement. Définissez ensemble les modes de communication, les processus de décision, et les règles de résolution de conflits. L'appropriation collective est clé."
+      : "For **Rules**, organize a collaborative workshop where the team co-builds its operating charter. Define together communication methods, decision-making processes, and conflict resolution rules. Collective ownership is key.",
+    respect: language === 'fr'
+      ? "Le **Respect** se cultive par des actions concrètes : sessions de formation à l'écoute active, mise en place d'une politique de feedback bienveillant, et création d'espaces d'expression sécurisés. Le leadership doit montrer l'exemple."
+      : "**Respect** is cultivated through concrete actions: active listening training sessions, implementing a benevolent feedback policy, and creating safe expression spaces. Leadership must set the example.",
+    recognition: language === 'fr'
+      ? "La **Reconnaissance** peut prendre de nombreuses formes : feedback positif en temps réel, système de peer-to-peer recognition, célébration des jalons, ou encore valorisation des efforts d'apprentissage. L'important est la sincérité et la régularité."
+      : "**Recognition** can take many forms: real-time positive feedback, peer-to-peer recognition systems, milestone celebrations, or valuing learning efforts. The important thing is sincerity and regularity.",
+    engagement: language === 'fr'
+      ? "L'engagement se construit en agissant simultanément sur les 5R®. Commencez par un diagnostic de l'existant sur chaque pilier, puis priorisez 2-3 actions concrètes par trimestre. L'important est la cohérence et la persévérance."
+      : "Engagement is built by acting simultaneously on the 5R®. Start with a diagnosis of the existing situation on each pillar, then prioritize 2-3 concrete actions per quarter. The important thing is consistency and perseverance.",
+    transformation: language === 'fr'
+      ? "En période de transformation, le modèle 5R® offre un cadre stabilisant. Clarifiez les nouveaux rôles, adaptez les routines, redéfinissez les règles ensemble, maintenez le respect malgré l'incertitude, et reconnaissez les efforts d'adaptation."
+      : "During transformation periods, the 5R® model offers a stabilizing framework. Clarify new roles, adapt routines, redefine rules together, maintain respect despite uncertainty, and recognize adaptation efforts."
   };
 
-  const sendMessage = () => {
-    if (inputMessage.trim()) {
-      const newMessage: Message = {
-        id: messages.length + 1,
-        text: inputMessage,
-        isBot: false,
+  // Charger le thème depuis localStorage au démarrage
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      setIsDarkMode(true);
+    }
+  }, []);
+
+  // Sauvegarder le thème dans localStorage
+  useEffect(() => {
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+  }, [isDarkMode]);
+
+  // Initialiser les messages avec le message par défaut
+  useEffect(() => {
+    setMessages([
+      {
+        id: 1,
+        text: chatResponses.default,
+        isBot: true,
+        timestamp: new Date()
+      }
+    ]);
+  }, [language]);
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  const handleSendMessage = () => {
+    if (!inputText.trim()) return;
+
+    const userMessage: Message = {
+      id: messages.length + 1,
+      text: inputText,
+      isBot: false,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+
+    const lowerInput = inputText.toLowerCase();
+    let response = language === 'fr' 
+      ? "Merci pour votre question ! Le modèle 5R® peut vous aider à résoudre ce défi. Pourriez-vous me préciser quel pilier vous intéresse le plus ? Ou contactez notre équipe pour un accompagnement personnalisé : contact@peoplefirst-technologies.com"
+      : "Thank you for your question! The 5R® model can help you solve this challenge. Could you specify which pillar interests you most? Or contact our team for personalized support: contact@peoplefirst-technologies.com";
+
+    if (lowerInput.includes('rôle') || lowerInput.includes('role')) {
+      response = chatResponses.roles;
+    } else if (lowerInput.includes('routine')) {
+      response = chatResponses.routines;
+    } else if (lowerInput.includes('règle') || lowerInput.includes('rule')) {
+      response = chatResponses.rules;
+    } else if (lowerInput.includes('respect')) {
+      response = chatResponses.respect;
+    } else if (lowerInput.includes('reconnaissance') || lowerInput.includes('recognition')) {
+      response = chatResponses.recognition;
+    } else if (lowerInput.includes('engagement')) {
+      response = chatResponses.engagement;
+    } else if (lowerInput.includes('transformation')) {
+      response = chatResponses.transformation;
+    }
+
+    setTimeout(() => {
+      const contactText = language === 'fr' 
+        ? "\n\nPour un accompagnement personnalisé, n'hésitez pas à contacter notre équipe : contact@peoplefirst-technologies.com"
+        : "\n\nFor personalized support, don't hesitate to contact our team: contact@peoplefirst-technologies.com";
+      
+      const botMessage: Message = {
+        id: messages.length + 2,
+        text: response + contactText,
+        isBot: true,
         timestamp: new Date()
       };
-      
-      setMessages([...messages, newMessage]);
-      setInputMessage('');
-      
-      // Simulate bot response
-      setTimeout(() => {
-        const botResponse: Message = {
-          id: messages.length + 2,
-          text: "Merci pour votre message. Notre équipe d'experts va analyser votre demande et vous proposer une solution personnalisée.",
-          isBot: true,
-          timestamp: new Date()
-        };
-        setMessages(prev => [...prev, botResponse]);
-      }, 1000);
-    }
+      setMessages(prev => [...prev, botMessage]);
+    }, 1000);
+
+    setInputText('');
+  };
+
+  const themeClasses = {
+    bg: isDarkMode ? 'bg-black' : 'bg-white',
+    text: isDarkMode ? 'text-white' : 'text-gray-900',
+    textSecondary: isDarkMode ? 'text-gray-300' : 'text-gray-600',
+    textMuted: isDarkMode ? 'text-gray-400' : 'text-gray-500',
+    border: isDarkMode ? 'border-white/10' : 'border-gray-200',
+    cardBg: isDarkMode ? 'bg-white/5' : 'bg-gray-50',
+    headerBg: isDarkMode ? 'bg-black/80' : 'bg-white/80',
+    inputBg: isDarkMode ? 'bg-white/10' : 'bg-gray-100',
+    inputBorder: isDarkMode ? 'border-white/20' : 'border-gray-300',
+    hoverBg: isDarkMode ? 'hover:bg-white/10' : 'hover:bg-gray-100',
+    glassBg: isDarkMode ? 'bg-white/5 backdrop-blur-sm' : 'bg-white/80 backdrop-blur-sm',
+    gradientBg: isDarkMode ? 'from-purple-900/20 via-black to-blue-900/20' : 'from-blue-50 via-white to-purple-50'
   };
 
   const PresentationPage = () => (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <Zap className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                People First Technologies
-              </span>
+    <div className={`min-h-screen transition-colors duration-300 ${themeClasses.bg} ${themeClasses.text}`}>
+      {/* Header avec navigation */}
+      <header className={`relative z-50 ${isDarkMode ? 'bg-black/95' : 'bg-white/95'} backdrop-blur-xl border-b sticky top-0 ${isDarkMode ? 'border-white/5' : 'border-gray-100'} shadow-sm`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <img 
+                src="https://res.cloudinary.com/doo9fgw4x/image/upload/v1752331776/PFT_zizh77.png" 
+                alt="People First Technologies" 
+                className="h-10 w-auto"
+              />
             </div>
             
-            <nav className="hidden md:flex items-center space-x-8">
-              <button onClick={() => setCurrentPage('home')} className="text-gray-700 hover:text-blue-600 transition-colors">
-                {language === 'fr' ? 'Accueil' : 'Home'}
-              </button>
-              <button onClick={() => setCurrentPage('presentation')} className="text-blue-600 font-medium">
-                {language === 'fr' ? 'Présentation' : 'Presentation'}
-              </button>
-              <button onClick={() => setCurrentPage('chat')} className="text-gray-700 hover:text-blue-600 transition-colors">
-                {language === 'fr' ? 'Chat IA' : 'AI Chat'}
-              </button>
-              <button onClick={() => setCurrentPage('contact')} className="text-gray-700 hover:text-blue-600 transition-colors">
-                Contact
-              </button>
-            </nav>
-
             <div className="flex items-center space-x-4">
+              {/* Language Switch */}
               <button
-                onClick={toggleLanguage}
-                className="flex items-center space-x-1 text-gray-600 hover:text-gray-900 transition-colors"
+                onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
+                className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+                  isDarkMode
+                    ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
+                    : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
+                }`}
               >
-                <Globe className="w-4 h-4" />
-                <span className="text-sm font-medium">{language.toUpperCase()}</span>
-                <ChevronDown className="w-3 h-3" />
+                <Globe className="w-4 h-4 mr-2" />
+                {language === 'fr' ? 'FR' : 'EN'}
+              </button>
+
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                className={`p-2.5 rounded-lg transition-all duration-200 ${
+                  isDarkMode 
+                    ? 'text-gray-400 hover:text-white hover:bg-gray-800' 
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                }`}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  {isDarkMode ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                  )}
+                </svg>
               </button>
               
+              {/* Contact Expert Button */}
               <button
                 onClick={() => setCurrentPage('contact')}
-                className="inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50"
+                className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group ${
+                  isDarkMode
+                    ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
+                    : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
+                }`}
               >
-                <Mail className="w-4 h-4 mr-2 transition-transform group-hover:scale-110" />
-                Demander un expert
-              </button>
-
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
-              >
-                {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                <Mail className="w-4 h-4 mr-2" />
+                {language === 'fr' ? 'Demander un expert' : 'Ask an Expert'}
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white border-b border-gray-200">
-          <div className="px-4 py-2 space-y-1">
-            <button onClick={() => { setCurrentPage('home'); setIsMenuOpen(false); }} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">
-              {language === 'fr' ? 'Accueil' : 'Home'}
-            </button>
-            <button onClick={() => { setCurrentPage('presentation'); setIsMenuOpen(false); }} className="block w-full text-left px-3 py-2 text-blue-600 bg-blue-50 rounded-lg">
-              {language === 'fr' ? 'Présentation' : 'Presentation'}
-            </button>
-            <button onClick={() => { setCurrentPage('chat'); setIsMenuOpen(false); }} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">
-              {language === 'fr' ? 'Chat IA' : 'AI Chat'}
-            </button>
-            <button onClick={() => { setCurrentPage('contact'); setIsMenuOpen(false); }} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">
-              Contact
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-8">
-            <Star className="w-4 h-4 mr-2" />
-            {language === 'fr' ? 'Solutions IA Innovantes' : 'Innovative AI Solutions'}
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-            {language === 'fr' ? (
-              <>
-                L'IA au service de
-                <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  votre entreprise
-                </span>
-              </>
-            ) : (
-              <>
-                AI at the service of
-                <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  your business
-                </span>
-              </>
-            )}
-          </h1>
-          
-          <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-            {language === 'fr' 
-              ? 'Transformez votre organisation avec nos solutions d\'intelligence artificielle sur mesure. Automatisation, analyse prédictive et optimisation des processus.'
-              : 'Transform your organization with our custom artificial intelligence solutions. Automation, predictive analysis and process optimization.'
-            }
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button 
-              onClick={() => setCurrentPage('contact')}
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              {language === 'fr' ? 'Commencer maintenant' : 'Get Started Now'}
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </button>
+      <div className="relative">
+        {/* Background gradient */}
+        <div className={`absolute inset-0 bg-gradient-to-br ${themeClasses.gradientBg}`}></div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Hero Section optimisé */}
+          <section className="py-20 text-center animate-fadeIn">
+            <div className={`inline-flex items-center px-4 py-2 ${themeClasses.glassBg} rounded-full text-sm ${themeClasses.textSecondary} mb-8 ${themeClasses.border} border`}>
+              <Sparkles className="w-4 h-4 mr-2 text-purple-500" />
+              {language === 'fr' ? 'Powered by • Modèle 5R® Scientifique' : 'Powered by • Scientific 5R® Model'}
+            </div>
             
-            <button 
-              onClick={() => setCurrentPage('chat')}
-              className="inline-flex items-center px-8 py-4 border-2 border-gray-300 text-gray-700 font-semibold rounded-xl hover:border-gray-400 hover:bg-gray-50 transition-all duration-200"
-            >
-              <MessageSquare className="w-5 h-5 mr-2" />
-              {language === 'fr' ? 'Essayer le Chat IA' : 'Try AI Chat'}
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              {language === 'fr' ? 'Nos Solutions' : 'Our Solutions'}
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h1 className="text-5xl md:text-7xl font-bold mb-8">
+              <span className="gradient-text">{language === 'fr' ? 'Coach Virtuel IA' : 'Virtual AI Coach'}</span>
+              <br />
+              <span className={themeClasses.text}>5R®</span>
+            </h1>
+            
+            <p className={`text-xl ${themeClasses.textSecondary} max-w-3xl mx-auto mb-12 leading-relaxed`}>
               {language === 'fr' 
-                ? 'Des technologies de pointe pour révolutionner votre façon de travailler'
-                : 'Cutting-edge technologies to revolutionize the way you work'
+                ? 'Transformez votre management par l\'engagement humain avec des conseils personnalisés basés sur le modèle scientifique 5R® de la Professeure Cécile Dejoux.'
+                : 'Transform your management through human engagement with personalized advice based on Professor Cécile Dejoux\'s scientific 5R® model.'
+              }
+            </p>
+            
+            {/* CTA principal optimisé */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+              <button
+                onClick={() => setCurrentPage('chat')}
+                className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-pft-blue to-purple-600 text-white rounded-2xl hover:from-pft-blue/90 hover:to-purple-700 transition-all duration-300 text-lg font-semibold shadow-2xl hover:shadow-blue-500/25 transform hover:scale-105"
+              >
+                <MessageCircle className="w-6 h-6 mr-3" />
+                {language === 'fr' ? 'Essayez le Coach IA' : 'Try AI Coach'}
+                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button
+                onClick={() => setCurrentPage('contact')}
+                className="group inline-flex items-center px-8 py-4 bg-white text-pft-blue border-2 border-pft-blue rounded-2xl hover:bg-pft-blue hover:text-white transition-all duration-300 text-lg font-semibold shadow-lg transform hover:scale-105"
+              >
+                <Mail className="w-6 h-6 mr-3" />
+                {language === 'fr' ? 'Parler à un expert' : 'Talk to an expert'}
+                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+
+            {/* Preuves sociales */}
+            <div className={`flex flex-wrap items-center justify-center gap-8 text-sm ${themeClasses.textMuted}`}>
+              <span className={`flex items-center ${themeClasses.glassBg} px-4 py-2 rounded-full ${themeClasses.border} border`}>
+                <TrendingUp className="w-4 h-4 mr-2 text-green-500" />
+                {language === 'fr' ? '500 000+ personnes formées' : '500,000+ people trained'}
+              </span>
+              <span className={`flex items-center ${themeClasses.glassBg} px-4 py-2 rounded-full ${themeClasses.border} border`}>
+                <Users className="w-4 h-4 mr-2 text-blue-500" />
+                {language === 'fr' ? 'Fortune 500 partenaires' : 'Fortune 500 partners'}
+              </span>
+              <span className={`flex items-center ${themeClasses.glassBg} px-4 py-2 rounded-full ${themeClasses.border} border`}>
+                <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                {language === 'fr' ? 'Recherche validée' : 'Validated research'}
+              </span>
+            </div>
+          </section>
+
+          {/* Section Modèle 5R® */}
+          <section id="modele" className="py-20 animate-slideUp">
+            <div className="text-center mb-16">
+              <h2 className={`text-4xl font-bold ${themeClasses.text} mb-6`}>
+                {language === 'fr' ? 'Le Modèle 5R® de Cécile Dejoux' : 'Cécile Dejoux\'s 5R® Model'}
+              </h2>
+              <p className={`text-xl ${themeClasses.textSecondary} max-w-3xl mx-auto`}>
+                {language === 'fr' 
+                  ? 'Cinq piliers scientifiquement validés pour transformer l\'engagement et la performance de vos équipes'
+                  : 'Five scientifically validated pillars to transform your teams\' engagement and performance'
+                }
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+              {pillars.map((pillar, index) => {
+                const Icon = pillar.icon;
+                return (
+                  <div 
+                    key={pillar.id} 
+                    className={`group ${themeClasses.glassBg} rounded-2xl p-8 ${themeClasses.border} border hover:border-opacity-40 transition-all duration-300 hover-lift animate-fadeIn cursor-pointer`}
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                    onClick={() => {
+                      setCurrentPage('chat');
+                      setTimeout(() => {
+                        const question = language === 'fr' 
+                          ? `Comment améliorer les ${pillar.title.toLowerCase()} dans mon équipe ?`
+                          : `How to improve ${pillar.title.toLowerCase()} in my team?`;
+                        setInputText(question);
+                      }, 500);
+                    }}
+                  >
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${pillar.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className={`text-2xl font-semibold ${themeClasses.text} mb-3`}>{pillar.title}</h3>
+                    <p className={`${themeClasses.textMuted} leading-relaxed mb-4`}>{pillar.description}</p>
+                    <div className="flex items-center text-purple-500 font-medium">
+                      {language === 'fr' ? 'Explorer ce pilier' : 'Explore this pillar'}
+                      <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Caution Scientifique condensée */}
+            <div className={`bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm rounded-3xl p-8 ${themeClasses.border} border`}>
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <h3 className={`text-2xl font-bold mb-4 ${themeClasses.text} flex items-center`}>
+                    <Star className="w-6 h-6 mr-3 text-yellow-500" />
+                    {language === 'fr' ? 'Caution Scientifique' : 'Scientific Endorsement'}
+                  </h3>
+                  <p className={`${themeClasses.textSecondary} mb-4 leading-relaxed`}>
+                    {language === 'fr'
+                      ? 'Modèle développé par la Professeure Cécile Dejoux (CNAM, ESCP), expert reconnu en management et transformation digitale.'
+                      : 'Model developed by Professor Cécile Dejoux (CNAM, ESCP), recognized expert in management and digital transformation.'
+                    }
+                  </p>
+                  <a 
+                    href="https://www.ceciledejoux.com/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-purple-500 hover:text-purple-400 transition-colors font-medium"
+                  >
+                    {language === 'fr' ? 'Découvrir son profil' : 'Discover her profile'} 
+                    <ExternalLink className="w-4 h-4 ml-2" />
+                  </a>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-purple-500 mb-2">500K+</div>
+                    <div className={`text-sm ${themeClasses.textMuted}`}>
+                      {language === 'fr' ? 'Personnes formées' : 'People trained'}
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-blue-500 mb-2">100+</div>
+                    <div className={`text-sm ${themeClasses.textMuted}`}>
+                      {language === 'fr' ? 'Entreprises' : 'Companies'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Section Cas d'Usage */}
+          <section id="cas-usage" className="py-20">
+            <div className="text-center mb-16">
+              <h2 className={`text-4xl font-bold ${themeClasses.text} mb-6`}>
+                {language === 'fr' ? 'Cas d\'Usage du Coach Virtuel IA' : 'Virtual AI Coach Use Cases'}
+              </h2>
+              <p className={`text-xl ${themeClasses.textSecondary} max-w-3xl mx-auto`}>
+                {language === 'fr'
+                  ? 'Découvrez comment le modèle 5R® peut transformer votre management dans différents contextes'
+                  : 'Discover how the 5R® model can transform your management in different contexts'
+                }
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              {useCases.map((useCase, index) => {
+                const Icon = useCase.icon;
+                return (
+                  <div 
+                    key={index} 
+                    className={`${themeClasses.glassBg} rounded-2xl p-8 ${themeClasses.border} border hover:border-opacity-40 transition-all duration-300 hover-lift animate-fadeIn`}
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <div className="flex items-center mb-6">
+                      <div className={`w-12 h-12 bg-gradient-to-r ${useCase.gradient} rounded-xl flex items-center justify-center mr-4`}>
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className={`text-xl font-semibold ${themeClasses.text}`}>{useCase.title}</h3>
+                        <p className={themeClasses.textMuted}>{useCase.description}</p>
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <h4 className={`font-medium ${themeClasses.text}`}>
+                        {language === 'fr' ? 'Exemples d\'application :' : 'Application examples:'}
+                      </h4>
+                      <ul className="space-y-2">
+                        {useCase.examples.map((example, exIndex) => (
+                          <li key={exIndex} className={`${themeClasses.textSecondary} flex items-start`}>
+                            <CheckCircle className="w-4 h-4 mr-3 mt-1 text-green-500 flex-shrink-0" />
+                            {example}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* Section Témoignages */}
+          <section id="temoignages" className="py-20">
+            <div className="text-center mb-16">
+              <h2 className={`text-4xl font-bold ${themeClasses.text} mb-6`}>
+                {language === 'fr' ? 'Témoignages Clients' : 'Client Testimonials'}
+              </h2>
+              <p className={`text-xl ${themeClasses.textSecondary} max-w-3xl mx-auto`}>
+                {language === 'fr'
+                  ? 'Découvrez comment nos clients transforment leur management avec le modèle 5R®'
+                  : 'Discover how our clients transform their management with the 5R® model'
+                }
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {testimonials.map((testimonial, index) => (
+                <div 
+                  key={index} 
+                  className={`${themeClasses.glassBg} rounded-2xl p-8 ${themeClasses.border} border hover:border-opacity-40 transition-all duration-300 hover-lift animate-fadeIn`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="mb-6">
+                    <div className="flex text-yellow-400 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-5 h-5 fill-current" />
+                      ))}
+                    </div>
+                    <p className={`${themeClasses.text} leading-relaxed italic`}>
+                      "{testimonial.content}"
+                    </p>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4">
+                      <span className="text-white font-semibold">
+                        {testimonial.name.split(' ').map(n => n[0]).join('')}
+                      </span>
+                    </div>
+                    <div>
+                      <div className={`font-semibold ${themeClasses.text}`}>{testimonial.name}</div>
+                      <div className={`text-sm ${themeClasses.textMuted}`}>{testimonial.role}</div>
+                      <div className="text-sm text-purple-500 font-medium">{testimonial.company}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Section Disclaimer */}
+          <section id="disclaimer" className="py-20">
+            <div className="text-center mb-16">
+              <h2 className={`text-4xl font-bold ${themeClasses.text} mb-6`}>
+                {language === 'fr' ? 'Disclaimer et Limites' : 'Disclaimer and Limitations'}
+              </h2>
+              <p className={`text-xl ${themeClasses.textSecondary} max-w-3xl mx-auto`}>
+                {language === 'fr'
+                  ? 'Pour une utilisation optimale, il est important de comprendre le cadre et les limites de cet assistant IA'
+                  : 'For optimal use, it is important to understand the framework and limitations of this AI assistant'
+                }
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className={`${themeClasses.glassBg} rounded-2xl p-8 ${themeClasses.border} border hover:border-opacity-40 transition-all duration-300`}>
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center mr-4">
+                    <AlertTriangle className="w-6 h-6 text-yellow-500" />
+                  </div>
+                  <h3 className={`text-xl font-semibold ${themeClasses.text}`}>
+                    {language === 'fr' ? 'Assistant, pas remplaçant' : 'Assistant, not replacement'}
+                  </h3>
+                </div>
+                <p className={`${themeClasses.textSecondary} leading-relaxed`}>
+                  {language === 'fr'
+                    ? 'Le Coach Virtuel IA complète mais ne remplace pas l\'accompagnement humain d\'un expert'
+                    : 'The Virtual AI Coach complements but does not replace human expert guidance'
+                  }
+                </p>
+              </div>
+
+              <div className={`${themeClasses.glassBg} rounded-2xl p-8 ${themeClasses.border} border hover:border-opacity-40 transition-all duration-300`}>
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center mr-4">
+                    <AlertTriangle className="w-6 h-6 text-orange-500" />
+                  </div>
+                  <h3 className={`text-xl font-semibold ${themeClasses.text}`}>
+                    {language === 'fr' ? 'Conseils génériques' : 'Generic advice'}
+                  </h3>
+                </div>
+                <p className={`${themeClasses.textSecondary} leading-relaxed`}>
+                  {language === 'fr'
+                    ? 'Les recommandations sont générales et peuvent nécessiter une adaptation à votre contexte spécifique'
+                    : 'Recommendations are general and may require adaptation to your specific context'
+                  }
+                </p>
+              </div>
+
+              <div className={`${themeClasses.glassBg} rounded-2xl p-8 ${themeClasses.border} border hover:border-opacity-40 transition-all duration-300`}>
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center mr-4">
+                    <XCircle className="w-6 h-6 text-red-500" />
+                  </div>
+                  <h3 className={`text-xl font-semibold ${themeClasses.text}`}>
+                    {language === 'fr' ? 'Pas de diagnostic personnalisé' : 'No personalized diagnosis'}
+                  </h3>
+                </div>
+                <p className={`${themeClasses.textSecondary} leading-relaxed`}>
+                  {language === 'fr'
+                    ? 'Pour un diagnostic approfondi et un plan d\'action sur-mesure, contactez nos experts'
+                    : 'For in-depth diagnosis and customized action plan, contact our experts'
+                  }
+                </p>
+              </div>
+            </div>
+
+            {/* Important notice */}
+            <div className={`bg-orange-50 ${isDarkMode ? 'bg-orange-900/20' : ''} rounded-2xl p-8 ${themeClasses.border} border border-orange-200 ${isDarkMode ? 'border-orange-800' : ''}`}>
+              <div className="flex items-start">
+                <div className="w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                  <AlertTriangle className="w-5 h-5 text-orange-500" />
+                </div>
+                <div>
+                  <h3 className={`text-xl font-semibold mb-4 ${themeClasses.text}`}>
+                    {language === 'fr' ? 'Important à retenir' : 'Important to remember'}
+                  </h3>
+                  <p className={`${themeClasses.textSecondary} leading-relaxed mb-4`}>
+                    {language === 'fr'
+                      ? 'Ce Coach Virtuel IA est un outil d\'aide à la décision basé sur le modèle 5R®. Il fournit des conseils génériques et des bonnes pratiques, mais ne remplace pas l\'expertise humaine d\'un consultant spécialisé.'
+                      : 'This Virtual AI Coach is a decision support tool based on the 5R® model. It provides generic advice and best practices, but does not replace the human expertise of a specialized consultant.'
+                    }
+                  </p>
+                  <p className={`${themeClasses.textSecondary} leading-relaxed`}>
+                    {language === 'fr'
+                      ? 'Pour un diagnostic approfondi, un plan d\'action personnalisé ou une formation complète, nous recommandons fortement de faire appel à nos experts People First Technologies.'
+                      : 'For in-depth diagnosis, personalized action plan or comprehensive training, we strongly recommend contacting our People First Technologies experts.'
+                    }
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* CTA Final optimisé */}
+          <section className="py-20">
+            <div className={`bg-gradient-to-r from-pft-blue/20 to-purple-600/20 backdrop-blur-sm rounded-3xl p-12 text-center ${themeClasses.border} border`}>
+              <h2 className={`text-3xl font-bold mb-6 ${themeClasses.text}`}>
+                {language === 'fr' ? 'Prêt à transformer votre management ?' : 'Ready to transform your management?'}
+              </h2>
+              <p className={`${themeClasses.textSecondary} mb-8 max-w-2xl mx-auto text-lg leading-relaxed`}>
+                {language === 'fr'
+                  ? 'Commencez dès maintenant avec notre Coach Virtuel IA ou bénéficiez d\'un accompagnement personnalisé.'
+                  : 'Start now with our Virtual AI Coach or benefit from personalized support.'
+                }
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button 
+                  onClick={() => setCurrentPage('contact')}
+                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-pft-blue to-purple-600 text-white rounded-xl hover:from-pft-blue/90 hover:to-purple-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-blue-500/25 transform hover:scale-105"
+                >
+                  <Mail className="w-5 h-5 mr-3" />
+                  {language === 'fr' ? 'Demander une démo' : 'Request a demo'}
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      {/* Footer simplifié */}
+      <footer className={`${themeClasses.glassBg} backdrop-blur-xl ${themeClasses.border} border-t`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center">
+            <p className={`${themeClasses.textMuted}`}>
+              {language === 'fr'
+                ? '© 2025 People First Technologies. Coach Virtuel IA basé sur le modèle 5R® de la Professeure Cécile Dejoux.'
+                : '© 2025 People First Technologies. Virtual AI Coach based on Professor Cécile Dejoux\'s 5R® model.'
               }
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="group p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl hover:from-blue-100 hover:to-blue-200 transition-all duration-300 transform hover:-translate-y-2">
-              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Zap className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {language === 'fr' ? 'Automatisation Intelligente' : 'Smart Automation'}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {language === 'fr' 
-                  ? 'Automatisez vos processus métier avec des algorithmes d\'IA avancés pour gagner en efficacité et réduire les erreurs.'
-                  : 'Automate your business processes with advanced AI algorithms to gain efficiency and reduce errors.'
-                }
-              </p>
-            </div>
-            
-            <div className="group p-8 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl hover:from-purple-100 hover:to-purple-200 transition-all duration-300 transform hover:-translate-y-2">
-              <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <TrendingUp className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {language === 'fr' ? 'Analyse Prédictive' : 'Predictive Analytics'}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {language === 'fr' 
-                  ? 'Anticipez les tendances et prenez des décisions éclairées grâce à nos modèles prédictifs sophistiqués.'
-                  : 'Anticipate trends and make informed decisions with our sophisticated predictive models.'
-                }
-              </p>
-            </div>
-            
-            <div className="group p-8 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl hover:from-green-100 hover:to-green-200 transition-all duration-300 transform hover:-translate-y-2">
-              <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Target className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {language === 'fr' ? 'Optimisation Continue' : 'Continuous Optimization'}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {language === 'fr' 
-                  ? 'Optimisez en permanence vos opérations avec des systèmes d\'apprentissage adaptatifs.'
-                  : 'Continuously optimize your operations with adaptive learning systems.'
-                }
-              </p>
-            </div>
-          </div>
         </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div className="text-white">
-              <div className="text-4xl font-bold mb-2">500+</div>
-              <div className="text-blue-100">
-                {language === 'fr' ? 'Projets Réalisés' : 'Projects Completed'}
-              </div>
-            </div>
-            <div className="text-white">
-              <div className="text-4xl font-bold mb-2">98%</div>
-              <div className="text-blue-100">
-                {language === 'fr' ? 'Satisfaction Client' : 'Client Satisfaction'}
-              </div>
-            </div>
-            <div className="text-white">
-              <div className="text-4xl font-bold mb-2">50+</div>
-              <div className="text-blue-100">
-                {language === 'fr' ? 'Experts IA' : 'AI Experts'}
-              </div>
-            </div>
-            <div className="text-white">
-              <div className="text-4xl font-bold mb-2">24/7</div>
-              <div className="text-blue-100">
-                {language === 'fr' ? 'Support Technique' : 'Technical Support'}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            {language === 'fr' ? 'Prêt à transformer votre entreprise ?' : 'Ready to transform your business?'}
-          </h2>
-          <p className="text-xl text-gray-600 mb-10">
-            {language === 'fr' 
-              ? 'Contactez nos experts pour une consultation gratuite et découvrez comment l\'IA peut révolutionner votre activité.'
-              : 'Contact our experts for a free consultation and discover how AI can revolutionize your business.'
-            }
-          </p>
-          <button 
-            onClick={() => setCurrentPage('contact')}
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
-          >
-            <Mail className="w-5 h-5 mr-2" />
-            {language === 'fr' ? 'Demander une consultation' : 'Request a consultation'}
-          </button>
-        </div>
-      </section>
-
-      <Footer language={language} />
+      </footer>
     </div>
   );
 
   const ChatPage = () => (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+    <div className={`min-h-screen transition-colors duration-300 ${themeClasses.bg} ${themeClasses.text}`}>
+      {/* Header avec breadcrumb */}
+      <header className={`${isDarkMode ? 'bg-black/95' : 'bg-white/95'} backdrop-blur-xl border-b sticky top-0 z-50 ${isDarkMode ? 'border-white/5' : 'border-gray-100'} shadow-sm`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <Zap className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                People First Technologies
-              </span>
+              <img 
+                src="https://res.cloudinary.com/doo9fgw4x/image/upload/v1752331776/PFT_zizh77.png" 
+                alt="People First Technologies" 
+                className="h-10 w-auto cursor-pointer"
+                onClick={() => setCurrentPage('presentation')}
+              />
             </div>
             
-            <nav className="hidden md:flex items-center space-x-8">
-              <button onClick={() => setCurrentPage('home')} className="text-gray-700 hover:text-blue-600 transition-colors">
-                {language === 'fr' ? 'Accueil' : 'Home'}
-              </button>
-              <button onClick={() => setCurrentPage('presentation')} className="text-gray-700 hover:text-blue-600 transition-colors">
-                {language === 'fr' ? 'Présentation' : 'Presentation'}
-              </button>
-              <button onClick={() => setCurrentPage('chat')} className="text-blue-600 font-medium">
-                {language === 'fr' ? 'Chat IA' : 'AI Chat'}
-              </button>
-              <button onClick={() => setCurrentPage('contact')} className="text-gray-700 hover:text-blue-600 transition-colors">
-                Contact
-              </button>
-            </nav>
-
             <div className="flex items-center space-x-4">
+              {/* Language Switch */}
               <button
-                onClick={toggleLanguage}
-                className="flex items-center space-x-1 text-gray-600 hover:text-gray-900 transition-colors"
+                onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
+                className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+                  isDarkMode
+                    ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
+                    : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
+                }`}
               >
-                <Globe className="w-4 h-4" />
-                <span className="text-sm font-medium">{language.toUpperCase()}</span>
-                <ChevronDown className="w-3 h-3" />
+                <Globe className="w-4 h-4 mr-2" />
+                {language === 'fr' ? 'FR' : 'EN'}
+              </button>
+
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                className={`p-2.5 rounded-lg transition-all duration-200 ${
+                  isDarkMode 
+                    ? 'text-gray-400 hover:text-white hover:bg-gray-800' 
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                }`}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  {isDarkMode ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                  )}
+                </svg>
               </button>
               
+              {/* Contact Expert Button */}
               <button
                 onClick={() => setCurrentPage('contact')}
-                className="inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50"
+                className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group ${
+                  isDarkMode
+                    ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
+                    : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
+                }`}
               >
-                <Mail className="w-4 h-4 mr-2 transition-transform group-hover:scale-110" />
-                Demander un expert
-              </button>
-
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
-              >
-                {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                <Mail className="w-4 h-4 mr-2" />
+                {language === 'fr' ? 'Demander un expert' : 'Ask an Expert'}
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Chat Interface */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          {/* Chat Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white">
-            <h1 className="text-2xl font-bold mb-2">
-              {language === 'fr' ? 'Assistant IA People First' : 'People First AI Assistant'}
-            </h1>
-            <p className="text-blue-100">
-              {language === 'fr' 
-                ? 'Posez vos questions sur nos solutions IA'
-                : 'Ask questions about our AI solutions'
-              }
-            </p>
-          </div>
+        <div className="text-center mb-8 animate-fadeIn">
+          <h1 className={`text-4xl font-bold ${themeClasses.text} mb-4`}>
+            {language === 'fr' 
+              ? <>Échangez avec votre <span className="gradient-text">Coach Virtuel IA</span></>
+              : <>Chat with your <span className="gradient-text">Virtual AI Coach</span></>
+            }
+          </h1>
+          <p className={`text-lg ${themeClasses.textSecondary} max-w-2xl mx-auto`}>
+            {language === 'fr'
+              ? 'Posez vos questions sur le management, l\'engagement d\'équipe et la transformation. Recevez des conseils personnalisés basés sur le modèle 5R®.'
+              : 'Ask your questions about management, team engagement and transformation. Receive personalized advice based on the 5R® model.'
+            }
+          </p>
+        </div>
 
-          {/* Messages */}
-          <div className="h-96 overflow-y-auto p-6 space-y-4">
+        {/* Chat Interface améliorée */}
+        <div className={`${themeClasses.glassBg} backdrop-blur-xl rounded-3xl ${themeClasses.border} border h-[600px] flex flex-col animate-slideUp`}>
+          <div className={`p-6 ${themeClasses.border} border-b`}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-pft-blue to-purple-600 rounded-2xl flex items-center justify-center">
+                  <Brain className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h2 className={`font-semibold ${themeClasses.text} text-lg`}>Coach Virtuel IA</h2>
+                  <p className={`text-sm ${themeClasses.textMuted}`}>
+                    {language === 'fr' ? 'Basé sur le modèle 5R® de Cécile Dejoux' : 'Based on Cécile Dejoux\'s 5R® model'}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className={`text-sm ${themeClasses.textMuted}`}>
+                  {language === 'fr' ? 'En ligne' : 'Online'}
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
             {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
-              >
-                <div
-                  className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
-                    message.isBot
-                      ? 'bg-gray-100 text-gray-800'
-                      : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
-                  }`}
-                >
-                  <p className="text-sm">{message.text}</p>
-                  <p className={`text-xs mt-1 ${message.isBot ? 'text-gray-500' : 'text-blue-100'}`}>
-                    {message.timestamp.toLocaleTimeString()}
+              <div key={message.id} className={`flex ${message.isBot ? 'justify-start' : 'justify-end'} animate-fadeIn`}>
+                <div className={`max-w-[80%] p-4 rounded-2xl ${
+                  message.isBot 
+                    ? `${themeClasses.glassBg} ${themeClasses.text} ${themeClasses.border} border` 
+                    : 'bg-gradient-to-r from-pft-blue to-purple-600 text-white'
+                }`}>
+                  <p className="whitespace-pre-wrap leading-relaxed">{message.text}</p>
+                  <p className={`text-xs mt-3 ${message.isBot ? themeClasses.textMuted : 'text-blue-100'}`}>
+                    {message.timestamp.toLocaleTimeString('fr-FR', { 
+                      hour: '2-digit', 
+                      minute: '2-digit' 
+                    })}
                   </p>
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Input */}
-          <div className="border-t border-gray-200 p-6">
-            <div className="flex space-x-4">
+          
+          <div className={`p-6 ${themeClasses.border} border-t`}>
+            <div className="flex space-x-3">
               <input
                 type="text"
-                value={inputMessage}
-                onChange={(e) => setInputMessage(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-                placeholder={language === 'fr' ? 'Tapez votre message...' : 'Type your message...'}
-                className="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                placeholder={language === 'fr' 
+                  ? "Posez votre question sur le management, l'engagement d'équipe..."
+                  : "Ask your question about management, team engagement..."
+                }
+                className={`flex-1 px-4 py-3 ${themeClasses.inputBg} ${themeClasses.inputBorder} border rounded-xl focus:outline-none focus:ring-2 focus:ring-pft-blue focus:border-transparent ${themeClasses.text} placeholder-gray-400 backdrop-blur-sm`}
               />
               <button
-                onClick={sendMessage}
-                className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200"
+                onClick={handleSendMessage}
+                className="px-6 py-3 bg-gradient-to-r from-pft-blue to-purple-600 text-white rounded-xl hover:from-pft-blue/90 hover:to-purple-700 transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-blue-500/25"
               >
-                {language === 'fr' ? 'Envoyer' : 'Send'}
+                <Send className="w-5 h-5" />
               </button>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <Footer language={language} />
-    </div>
-  );
-
-  const ContactPage = () => (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <Zap className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                People First Technologies
-              </span>
-            </div>
-            
-            <nav className="hidden md:flex items-center space-x-8">
-              <button onClick={() => setCurrentPage('home')} className="text-gray-700 hover:text-blue-600 transition-colors">
-                {language === 'fr' ? 'Accueil' : 'Home'}
-              </button>
-              <button onClick={() => setCurrentPage('presentation')} className="text-gray-700 hover:text-blue-600 transition-colors">
-                {language === 'fr' ? 'Présentation' : 'Presentation'}
-              </button>
-              <button onClick={() => setCurrentPage('chat')} className="text-gray-700 hover:text-blue-600 transition-colors">
-                {language === 'fr' ? 'Chat IA' : 'AI Chat'}
-              </button>
-              <button onClick={() => setCurrentPage('contact')} className="text-blue-600 font-medium">
-                Contact
-              </button>
-            </nav>
-
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={toggleLanguage}
-                className="flex items-center space-x-1 text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                <Globe className="w-4 h-4" />
-                <span className="text-sm font-medium">{language.toUpperCase()}</span>
-                <ChevronDown className="w-3 h-3" />
-              </button>
-              
-              <button
-                onClick={() => setCurrentPage('contact')}
-                className="inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50"
-              >
-                <Mail className="w-4 h-4 mr-2 transition-transform group-hover:scale-110" />
-                Demander un expert
-              </button>
-
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
-              >
-                {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Contact Form */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            {language === 'fr' ? 'Contactez nos experts' : 'Contact our experts'}
-          </h1>
-          <p className="text-xl text-gray-600">
-            {language === 'fr' 
-              ? 'Prêt à transformer votre entreprise avec l\'IA ? Parlons-en !'
-              : 'Ready to transform your business with AI? Let\'s talk!'
-            }
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div className="bg-white rounded-2xl shadow-xl p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              {language === 'fr' ? 'Demande de consultation' : 'Consultation Request'}
-            </h2>
-            
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {language === 'fr' ? 'Prénom' : 'First Name'}
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder={language === 'fr' ? 'Votre prénom' : 'Your first name'}
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {language === 'fr' ? 'Nom' : 'Last Name'}
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder={language === 'fr' ? 'Votre nom' : 'Your last name'}
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {language === 'fr' ? 'Email professionnel' : 'Professional Email'}
-                </label>
-                <input
-                  type="email"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder={language === 'fr' ? 'votre.email@entreprise.com' : 'your.email@company.com'}
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {language === 'fr' ? 'Entreprise' : 'Company'}
-                </label>
-                <input
-                  type="text"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder={language === 'fr' ? 'Nom de votre entreprise' : 'Your company name'}
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {language === 'fr' ? 'Téléphone' : 'Phone'}
-                </label>
-                <input
-                  type="tel"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder={language === 'fr' ? '+33 1 23 45 67 89' : '+1 (555) 123-4567'}
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {language === 'fr' ? 'Décrivez votre projet' : 'Describe your project'}
-                </label>
-                <textarea
-                  rows={4}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder={language === 'fr' 
-                    ? 'Parlez-nous de vos besoins en IA, vos objectifs et vos défis actuels...'
-                    : 'Tell us about your AI needs, objectives and current challenges...'
-                  }
-                ></textarea>
-              </div>
-              
-              <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-4 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105"
-              >
-                {language === 'fr' ? 'Envoyer ma demande' : 'Send my request'}
-              </button>
-            </form>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
-              <h3 className="text-2xl font-bold mb-6">
-                {language === 'fr' ? 'Informations de contact' : 'Contact Information'}
-              </h3>
-              
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Mail className="w-5 h-5 text-blue-200" />
-                  <span>contact@peoplefirst-tech.com</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Phone className="w-5 h-5 text-blue-200" />
-                  <span>+33 1 23 45 67 89</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <MapPin className="w-5 h-5 text-blue-200" />
-                  <span>
-                    {language === 'fr' 
-                      ? '123 Avenue des Champs-Élysées, 75008 Paris'
-                      : '123 Champs-Élysées Avenue, 75008 Paris'
-                    }
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Clock className="w-5 h-5 text-blue-200" />
-                  <span>
-                    {language === 'fr' 
-                      ? 'Lun-Ven: 9h-18h'
-                      : 'Mon-Fri: 9am-6pm'
-                    }
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {language === 'fr' ? 'Pourquoi nous choisir ?' : 'Why choose us?'}
-              </h3>
-              
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
-                  <span className="text-gray-600">
-                    {language === 'fr' 
-                      ? 'Expertise reconnue en IA et machine learning'
-                      : 'Recognized expertise in AI and machine learning'
-                    }
-                  </span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
-                  <span className="text-gray-600">
-                    {language === 'fr' 
-                      ? 'Solutions sur mesure adaptées à vos besoins'
-                      : 'Custom solutions adapted to your needs'
-                    }
-                  </span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
-                  <span className="text-gray-600">
-                    {language === 'fr' 
-                      ? 'Support technique 24/7'
-                      : '24/7 technical support'
-                    }
-                  </span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
-                  <span className="text-gray-600">
-                    {language === 'fr' 
-                      ? 'ROI mesurable et garantie de résultats'
-                      : 'Measurable ROI and guaranteed results'
-                    }
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <Footer language={language} />
-    </div>
-  );
-
-  const HomePage = () => (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <Zap className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                People First Technologies
-              </span>
-            </div>
-            
-            <nav className="hidden md:flex items-center space-x-8">
-              <button onClick={() => setCurrentPage('home')} className="text-blue-600 font-medium">
-                {language === 'fr' ? 'Accueil' : 'Home'}
-              </button>
-              <button onClick={() => setCurrentPage('presentation')} className="text-gray-700 hover:text-blue-600 transition-colors">
-                {language === 'fr' ? 'Présentation' : 'Presentation'}
-              </button>
-              <button onClick={() => setCurrentPage('chat')} className="text-gray-700 hover:text-blue-600 transition-colors">
-                {language === 'fr' ? 'Chat IA' : 'AI Chat'}
-              </button>
-              <button onClick={() => setCurrentPage('contact')} className="text-gray-700 hover:text-blue-600 transition-colors">
-                Contact
-              </button>
-            </nav>
-
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={toggleLanguage}
-                className="flex items-center space-x-1 text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                <Globe className="w-4 h-4" />
-                <span className="text-sm font-medium">{language.toUpperCase()}</span>
-                <ChevronDown className="w-3 h-3" />
-              </button>
-              
-              <button
-                onClick={() => setCurrentPage('contact')}
-                className="inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50"
-              >
-                <Mail className="w-4 h-4 mr-2 transition-transform group-hover:scale-110" />
-                Demander un expert
-              </button>
-
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
-              >
-                {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white border-b border-gray-200">
-          <div className="px-4 py-2 space-y-1">
-            <button onClick={() => { setCurrentPage('home'); setIsMenuOpen(false); }} className="block w-full text-left px-3 py-2 text-blue-600 bg-blue-50 rounded-lg">
-              {language === 'fr' ? 'Accueil' : 'Home'}
-            </button>
-            <button onClick={() => { setCurrentPage('presentation'); setIsMenuOpen(false); }} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">
-              {language === 'fr' ? 'Présentation' : 'Presentation'}
-            </button>
-            <button onClick={() => { setCurrentPage('chat'); setIsMenuOpen(false); }} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">
-              {language === 'fr' ? 'Chat IA' : 'AI Chat'}
-            </button>
-            <button onClick={() => { setCurrentPage('contact'); setIsMenuOpen(false); }} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">
-              Contact
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-8">
-            <Star className="w-4 h-4 mr-2" />
-            {language === 'fr' ? 'Solutions IA Innovantes' : 'Innovative AI Solutions'}
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-            {language === 'fr' ? (
-              <>
-                Révolutionnez votre
-                <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  entreprise avec l'IA
-                </span>
-              </>
-            ) : (
-              <>
-                Revolutionize your
-                <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  business with AI
-                </span>
-              </>
-            )}
-          </h1>
-          
-          <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-            {language === 'fr' 
-              ? 'Transformez votre organisation avec nos solutions d\'intelligence artificielle sur mesure. Automatisation, analyse prédictive et optimisation des processus.'
-              : 'Transform your organization with our custom artificial intelligence solutions. Automation, predictive analysis and process optimization.'
-            }
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button 
-              onClick={() => setCurrentPage('contact')}
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              {language === 'fr' ? 'Commencer maintenant' : 'Get Started Now'}
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </button>
-            
-            <button 
-              onClick={() => setCurrentPage('presentation')}
-              className="inline-flex items-center px-8 py-4 border-2 border-gray-300 text-gray-700 font-semibold rounded-xl hover:border-gray-400 hover:bg-gray-50 transition-all duration-200"
-            >
-              <Users className="w-5 h-5 mr-2" />
-              {language === 'fr' ? 'En savoir plus' : 'Learn More'}
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              {language === 'fr' ? 'Pourquoi choisir People First ?' : 'Why choose People First?'}
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {language === 'fr' 
-                ? 'Nous mettons l\'humain au centre de la technologie pour créer des solutions IA qui transforment vraiment votre business'
-                : 'We put humans at the center of technology to create AI solutions that truly transform your business'
+            <p className={`text-xs ${themeClasses.textMuted} mt-3 text-center`}>
+              {language === 'fr'
+                ? 'Coach Virtuel IA by People First Technologies • Pour un accompagnement personnalisé : contact@peoplefirst-technologies.com'
+                : 'Virtual AI Coach by People First Technologies • For personalized support: contact@peoplefirst-technologies.com'
               }
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="group p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl hover:from-blue-100 hover:to-blue-200 transition-all duration-300 transform hover:-translate-y-2">
-              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Users className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {language === 'fr' ? 'Approche Humaine' : 'Human Approach'}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {language === 'fr' 
-                  ? 'Nous concevons des solutions IA qui augmentent les capacités humaines plutôt que de les remplacer.'
-                  : 'We design AI solutions that augment human capabilities rather than replace them.'
-                }
-              </p>
-            </div>
-            
-            <div className="group p-8 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl hover:from-purple-100 hover:to-purple-200 transition-all duration-300 transform hover:-translate-y-2">
-              <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Shield className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {language === 'fr' ? 'Sécurité Garantie' : 'Guaranteed Security'}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {language === 'fr' 
-                  ? 'Vos données sont protégées par les plus hauts standards de sécurité et de confidentialité.'
-                  : 'Your data is protected by the highest security and confidentiality standards.'
-                }
-              </p>
-            </div>
-            
-            <div className="group p-8 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl hover:from-green-100 hover:to-green-200 transition-all duration-300 transform hover:-translate-y-2">
-              <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Award className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {language === 'fr' ? 'Excellence Reconnue' : 'Recognized Excellence'}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {language === 'fr' 
-                  ? 'Notre expertise est reconnue par les leaders de l\'industrie et nos clients nous font confiance.'
-                  : 'Our expertise is recognized by industry leaders and our clients trust us.'
-                }
-              </p>
-            </div>
+        </div>
+
+        {/* Quick Actions améliorées */}
+        <div className="mt-8 animate-slideUp">
+          <h3 className={`text-lg font-semibold ${themeClasses.text} mb-4 text-center`}>
+            {language === 'fr' ? 'Questions rapides' : 'Quick questions'}
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {pillars.slice(0, 3).map((pillar, index) => {
+              const Icon = pillar.icon;
+              return (
+                <button
+                  key={pillar.id}
+                  onClick={() => {
+                    const question = language === 'fr' 
+                      ? `Comment améliorer les ${pillar.title.toLowerCase()} dans mon équipe ?`
+                      : `How to improve ${pillar.title.toLowerCase()} in my team?`;
+                    setInputText(question);
+                    handleSendMessage();
+                  }}
+                  className={`p-4 ${themeClasses.glassBg} backdrop-blur-sm rounded-2xl ${themeClasses.border} border hover:border-opacity-40 ${themeClasses.hoverBg} transition-all duration-300 text-left group`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="flex items-center space-x-3">
+                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-r ${pillar.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h4 className={`font-medium ${themeClasses.text}`}>
+                        {language === 'fr' ? `Améliorer les ${pillar.title}` : `Improve ${pillar.title}`}
+                      </h4>
+                      <p className={`text-sm ${themeClasses.textMuted}`}>
+                        {language === 'fr' ? 'Question rapide' : 'Quick question'}
+                      </p>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            {language === 'fr' ? 'Prêt à commencer votre transformation ?' : 'Ready to start your transformation?'}
-          </h2>
-          <p className="text-xl text-blue-100 mb-10">
-            {language === 'fr' 
-              ? 'Rejoignez les centaines d\'entreprises qui ont déjà transformé leur activité avec nos solutions IA.'
-              : 'Join the hundreds of companies that have already transformed their business with our AI solutions.'
-            }
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button 
-              onClick={() => setCurrentPage('contact')}
-              className="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl hover:bg-gray-50 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              <Mail className="w-5 h-5 mr-2" />
-              {language === 'fr' ? 'Demander un expert' : 'Request an expert'}
-            </button>
-            
-            <button 
-              onClick={() => setCurrentPage('chat')}
-              className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-blue-600 transition-all duration-200"
-            >
-              <MessageSquare className="w-5 h-5 mr-2" />
-              {language === 'fr' ? 'Essayer le Chat IA' : 'Try AI Chat'}
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <Footer language={language} />
+      </div>
     </div>
   );
 
-  return currentPage === 'presentation' ? <PresentationPage /> : currentPage === 'chat' ? <ChatPage /> : currentPage === 'contact' ? <ContactPage /> : <HomePage />;
+  const ContactPage = () => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+      const { name, value } = e.target;
+      setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+      const subject = language === 'fr' 
+        ? `Demande d'accompagnement - ${formData.firstName} ${formData.lastName}`
+        : `Support Request - ${formData.firstName} ${formData.lastName}`;
+      
+      const body = language === 'fr' 
+        ? `Bonjour,
+
+Je souhaite être accompagné(e) par un expert People First Technologies.
+
+Informations de contact :
+- Nom : ${formData.lastName}
+- Prénom : ${formData.firstName}
+- Email : ${formData.email}
+- Entreprise : ${formData.company}
+- Poste : ${formData.role}
+- Taille d'équipe : ${formData.teamSize}
+
+Défi principal : ${formData.challenge}
+Urgence : ${formData.urgency}
+
+Message :
+${formData.message}
+
+Cordialement,
+${formData.firstName} ${formData.lastName}`
+        : `Hello,
+
+I would like to be supported by a People First Technologies expert.
+
+Contact information:
+- Last name: ${formData.lastName}
+- First name: ${formData.firstName}
+- Email: ${formData.email}
+- Company: ${formData.company}
+- Position: ${formData.role}
+- Team size: ${formData.teamSize}
+
+Main challenge: ${formData.challenge}
+Urgency: ${formData.urgency}
+
+Message:
+${formData.message}
+
+Best regards,
+${formData.firstName} ${formData.lastName}`;
+
+      const mailtoLink = `mailto:contact@peoplefirst-technologies.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoLink;
+    };
+
+    return (
+      <div className={`min-h-screen transition-colors duration-300 ${themeClasses.bg} ${themeClasses.text}`}>
+        {/* Header avec navigation */}
+        <header className={`relative z-50 ${isDarkMode ? 'bg-black/95' : 'bg-white/95'} backdrop-blur-xl border-b sticky top-0 ${isDarkMode ? 'border-white/5' : 'border-gray-100'} shadow-sm`}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <img 
+                  src="https://res.cloudinary.com/doo9fgw4x/image/upload/v1752331776/PFT_zizh77.png" 
+                  alt="People First Technologies" 
+                  className="h-10 w-auto cursor-pointer"
+                  onClick={() => setCurrentPage('presentation')}
+                />
+              </div>
+              
+              <div className="flex items-center space-x-4">
+                {/* Language Switch */}
+                <button
+                  onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
+                  className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+                    isDarkMode
+                      ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
+                      : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+                >
+                  <Globe className="w-4 h-4 mr-2" />
+                  {language === 'fr' ? 'FR' : 'EN'}
+                </button>
+
+                {/* Theme Toggle */}
+                <button
+                  onClick={toggleTheme}
+                  className={`p-2.5 rounded-lg transition-all duration-200 ${
+                    isDarkMode 
+                      ? 'text-gray-400 hover:text-white hover:bg-gray-800' 
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                  }`}
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                    {isDarkMode ? (
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    ) : (
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    )}
+                  </svg>
+                </button>
+                
+                {/* Chat Button */}
+                <button
+                  onClick={() => setCurrentPage('chat')}
+                  className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group ${
+                    isDarkMode
+                      ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
+                      : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  {language === 'fr' ? 'Demander un expert' : 'Ask an Expert'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div className="relative">
+          {/* Background gradient */}
+          <div className={`absolute inset-0 bg-gradient-to-br ${themeClasses.gradientBg}`}></div>
+          
+          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            {/* Hero Section */}
+            <div className="text-center mb-16 animate-fadeIn">
+              <div className={`inline-flex items-center px-4 py-2 ${themeClasses.glassBg} rounded-full text-sm ${themeClasses.textSecondary} mb-8 ${themeClasses.border} border`}>
+                <Mail className="w-4 h-4 mr-2 text-purple-500" />
+                {language === 'fr' ? 'Contact Expert • Réponse sous 24h' : 'Expert Contact • Response within 24h'}
+              </div>
+              
+              <h1 className="text-5xl md:text-6xl font-bold mb-8">
+                <span className="gradient-text">
+                  {language === 'fr' ? 'Parlons de votre' : 'Let\'s talk about your'}
+                </span>
+                <br />
+                <span className={themeClasses.text}>
+                  {language === 'fr' ? 'transformation' : 'transformation'}
+                </span>
+              </h1>
+              
+              <p className={`text-xl ${themeClasses.textSecondary} max-w-3xl mx-auto mb-12 leading-relaxed`}>
+                {language === 'fr' 
+                  ? 'Nos experts People First Technologies vous accompagnent pour transformer votre management avec le modèle 5R®. Diagnostic personnalisé, formation sur-mesure et accompagnement terrain.'
+                  : 'Our People First Technologies experts support you in transforming your management with the 5R® model. Personalized diagnosis, tailor-made training and field support.'
+                }
+              </p>
+            </div>
+
+            {/* Contact Form */}
+            <div className={`${themeClasses.glassBg} backdrop-blur-xl rounded-3xl ${themeClasses.border} border p-8 md:p-12 animate-slideUp`}>
+              <form onSubmit={handleSubmit} className="space-y-8">
+                {/* Personal Information */}
+                <div>
+                  <h3 className={`text-2xl font-semibold ${themeClasses.text} mb-6 flex items-center`}>
+                    <Users className="w-6 h-6 mr-3 text-purple-500" />
+                    {language === 'fr' ? 'Informations personnelles' : 'Personal information'}
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Prénom *' : 'First name *'}
+                      </label>
+                      <input
+                        type="text"
+                        name="firstName"
+                        required
+                        value={formData.firstName}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 ${themeClasses.inputBg} ${themeClasses.inputBorder} border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${themeClasses.text} placeholder-gray-400 backdrop-blur-sm transition-all duration-200`}
+                        placeholder={language === 'fr' ? 'Votre prénom' : 'Your first name'}
+                      />
+                    </div>
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Nom *' : 'Last name *'}
+                      </label>
+                      <input
+                        type="text"
+                        name="lastName"
+                        required
+                        value={formData.lastName}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 ${themeClasses.inputBg} ${themeClasses.inputBorder} border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${themeClasses.text} placeholder-gray-400 backdrop-blur-sm transition-all duration-200`}
+                        placeholder={language === 'fr' ? 'Votre nom' : 'Your last name'}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Professional Information */}
+                <div>
+                  <h3 className={`text-2xl font-semibold ${themeClasses.text} mb-6 flex items-center`}>
+                    <Target className="w-6 h-6 mr-3 text-blue-500" />
+                    {language === 'fr' ? 'Informations professionnelles' : 'Professional information'}
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Email professionnel *' : 'Professional email *'}
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 ${themeClasses.inputBg} ${themeClasses.inputBorder} border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${themeClasses.text} placeholder-gray-400 backdrop-blur-sm transition-all duration-200`}
+                        placeholder={language === 'fr' ? 'votre.email@entreprise.com' : 'your.email@company.com'}
+                      />
+                    </div>
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Entreprise *' : 'Company *'}
+                      </label>
+                      <input
+                        type="text"
+                        name="company"
+                        required
+                        value={formData.company}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 ${themeClasses.inputBg} ${themeClasses.inputBorder} border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${themeClasses.text} placeholder-gray-400 backdrop-blur-sm transition-all duration-200`}
+                        placeholder={language === 'fr' ? 'Nom de votre entreprise' : 'Your company name'}
+                      />
+                    </div>
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Poste / Fonction *' : 'Position / Role *'}
+                      </label>
+                      <input
+                        type="text"
+                        name="role"
+                        required
+                        value={formData.role}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 ${themeClasses.inputBg} ${themeClasses.inputBorder} border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${themeClasses.text} placeholder-gray-400 backdrop-blur-sm transition-all duration-200`}
+                        placeholder={language === 'fr' ? 'Manager, DRH, CEO...' : 'Manager, HR Director, CEO...'}
+                      />
+                    </div>
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Taille de l\'équipe' : 'Team size'}
+                      </label>
+                      <select
+                        name="teamSize"
+                        value={formData.teamSize}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 ${themeClasses.inputBg} ${themeClasses.inputBorder} border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${themeClasses.text} backdrop-blur-sm transition-all duration-200`}
+                      >
+                        <option value="">{language === 'fr' ? 'Sélectionner...' : 'Select...'}</option>
+                        <option value="1-5">{language === 'fr' ? '1-5 personnes' : '1-5 people'}</option>
+                        <option value="6-15">{language === 'fr' ? '6-15 personnes' : '6-15 people'}</option>
+                        <option value="16-50">{language === 'fr' ? '16-50 personnes' : '16-50 people'}</option>
+                        <option value="51-200">{language === 'fr' ? '51-200 personnes' : '51-200 people'}</option>
+                        <option value="200+">{language === 'fr' ? '200+ personnes' : '200+ people'}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Challenge & Needs */}
+                <div>
+                  <h3 className={`text-2xl font-semibold ${themeClasses.text} mb-6 flex items-center`}>
+                    <Brain className="w-6 h-6 mr-3 text-green-500" />
+                    {language === 'fr' ? 'Votre défi managérial' : 'Your management challenge'}
+                  </h3>
+                  <div className="space-y-6">
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Principal défi à relever *' : 'Main challenge to address *'}
+                      </label>
+                      <select
+                        name="challenge"
+                        required
+                        value={formData.challenge}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 ${themeClasses.inputBg} ${themeClasses.inputBorder} border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${themeClasses.text} backdrop-blur-sm transition-all duration-200`}
+                      >
+                        <option value="">{language === 'fr' ? 'Sélectionner votre défi principal...' : 'Select your main challenge...'}</option>
+                        <option value="engagement">{language === 'fr' ? 'Améliorer l\'engagement des équipes' : 'Improve team engagement'}</option>
+                        <option value="roles">{language === 'fr' ? 'Clarifier les rôles et responsabilités' : 'Clarify roles and responsibilities'}</option>
+                        <option value="communication">{language === 'fr' ? 'Améliorer la communication' : 'Improve communication'}</option>
+                        <option value="transformation">{language === 'fr' ? 'Accompagner une transformation' : 'Support a transformation'}</option>
+                        <option value="performance">{language === 'fr' ? 'Améliorer la performance collective' : 'Improve collective performance'}</option>
+                        <option value="culture">{language === 'fr' ? 'Développer la culture d\'entreprise' : 'Develop company culture'}</option>
+                        <option value="onboarding">{language === 'fr' ? 'Optimiser l\'intégration des nouveaux' : 'Optimize newcomer integration'}</option>
+                        <option value="other">{language === 'fr' ? 'Autre défi' : 'Other challenge'}</option>
+                      </select>
+                    </div>
+                    
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Urgence du besoin' : 'Urgency level'}
+                      </label>
+                      <div className="grid grid-cols-3 gap-4">
+                        {[
+                          { value: 'low', label: language === 'fr' ? 'Pas urgent' : 'Not urgent', color: 'green' },
+                          { value: 'medium', label: language === 'fr' ? 'Modéré' : 'Moderate', color: 'yellow' },
+                          { value: 'high', label: language === 'fr' ? 'Urgent' : 'Urgent', color: 'red' }
+                        ].map((urgency) => (
+                          <label key={urgency.value} className={`relative flex items-center p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
+                            formData.urgency === urgency.value 
+                              ? `border-${urgency.color}-500 bg-${urgency.color}-50 ${isDarkMode ? `bg-${urgency.color}-900/20` : ''}` 
+                              : `${themeClasses.border} ${themeClasses.hoverBg}`
+                          }`}>
+                            <input
+                              type="radio"
+                              name="urgency"
+                              value={urgency.value}
+                              checked={formData.urgency === urgency.value}
+                              onChange={handleInputChange}
+                              className="sr-only"
+                            />
+                            <div className={`w-4 h-4 rounded-full border-2 mr-3 ${
+                              formData.urgency === urgency.value 
+                                ? `border-${urgency.color}-500 bg-${urgency.color}-500` 
+                                : themeClasses.border
+                            }`}>
+                              {formData.urgency === urgency.value && (
+                                <div className="w-2 h-2 bg-white rounded-full m-0.5"></div>
+                              )}
+                            </div>
+                            <span className={themeClasses.text}>{urgency.label}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Décrivez votre situation et vos attentes' : 'Describe your situation and expectations'}
+                      </label>
+                      <textarea
+                        name="message"
+                        rows={6}
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 ${themeClasses.inputBg} ${themeClasses.inputBorder} border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${themeClasses.text} placeholder-gray-400 backdrop-blur-sm transition-all duration-200 resize-none`}
+                        placeholder={language === 'fr' 
+                          ? 'Parlez-nous de votre contexte, vos défis actuels et ce que vous aimeriez accomplir avec notre accompagnement...'
+                          : 'Tell us about your context, current challenges and what you would like to accomplish with our support...'
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <div className="text-center pt-8">
+                  <button
+                    type="submit"
+                    className="group inline-flex items-center px-12 py-4 bg-gradient-to-r from-pft-blue to-purple-600 text-white rounded-2xl hover:from-pft-blue/90 hover:to-purple-700 transition-all duration-300 text-lg font-semibold shadow-2xl hover:shadow-blue-500/25 transform hover:scale-105"
+                  >
+                    <Send className="w-6 h-6 mr-3" />
+                    {language === 'fr' ? 'Envoyer ma demande' : 'Send my request'}
+                    <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                  <p className={`text-sm ${themeClasses.textMuted} mt-4`}>
+                    {language === 'fr' 
+                      ? 'Nous vous répondrons sous 24h pour planifier un échange personnalisé'
+                      : 'We will respond within 24h to schedule a personalized discussion'
+                    }
+                  </p>
+                </div>
+              </form>
+            </div>
+
+            {/* Trust Indicators */}
+            <div className="mt-16 grid md:grid-cols-3 gap-8 animate-fadeIn">
+              <div className={`text-center p-6 ${themeClasses.glassBg} rounded-2xl ${themeClasses.border} border`}>
+                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8 text-white" />
+                </div>
+                <h3 className={`text-lg font-semibold ${themeClasses.text} mb-2`}>
+                  {language === 'fr' ? 'Réponse garantie' : 'Guaranteed response'}
+                </h3>
+                <p className={themeClasses.textSecondary}>
+                  {language === 'fr' ? 'Sous 24h maximum' : 'Within 24h maximum'}
+                </p>
+              </div>
+              
+              <div className={`text-center p-6 ${themeClasses.glassBg} rounded-2xl ${themeClasses.border} border`}>
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Award className="w-8 h-8 text-white" />
+                </div>
+                <h3 className={`text-lg font-semibold ${themeClasses.text} mb-2`}>
+                  {language === 'fr' ? 'Expertise reconnue' : 'Recognized expertise'}
+                </h3>
+                <p className={themeClasses.textSecondary}>
+                  {language === 'fr' ? '500K+ personnes formées' : '500K+ people trained'}
+                </p>
+              </div>
+              
+              <div className={`text-center p-6 ${themeClasses.glassBg} rounded-2xl ${themeClasses.border} border`}>
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-8 h-8 text-white" />
+                </div>
+                <h3 className={`text-lg font-semibold ${themeClasses.text} mb-2`}>
+                  {language === 'fr' ? 'Confidentialité' : 'Confidentiality'}
+                </h3>
+                <p className={themeClasses.textSecondary}>
+                  {language === 'fr' ? 'Données sécurisées' : 'Secure data'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <footer className={`${themeClasses.glassBg} backdrop-blur-xl ${themeClasses.border} border-t`}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="text-center">
+              <p className={`${themeClasses.textMuted}`}>
+                {language === 'fr'
+                  ? '© 2025 People First Technologies. Coach Virtuel IA basé sur le modèle 5R® de la Professeure Cécile Dejoux.'
+                  : '© 2025 People First Technologies. Virtual AI Coach based on Professor Cécile Dejoux\'s 5R® model.'
+                }
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    );
+  };
+
+  return currentPage === 'presentation' ? <PresentationPage /> : currentPage === 'chat' ? <ChatPage /> : <ContactPage />;
 }
 
 export default App;
