@@ -327,7 +327,7 @@ function App() {
           <section className="py-20 text-center animate-fadeIn">
             <div className={`inline-flex items-center px-4 py-2 ${themeClasses.glassBg} rounded-full text-sm ${themeClasses.textSecondary} mb-8 ${themeClasses.border} border`}>
               <Sparkles className="w-4 h-4 mr-2 text-purple-500" />
-              {language === 'fr' ? 'Powered by AI • Modèle 5R® Scientifique' : 'Powered by AI • Scientific 5R® Model'}
+              {language === 'fr' ? 'Powered by • Modèle 5R® Scientifique' : 'Powered by • Scientific 5R® Model'}
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold mb-8">
