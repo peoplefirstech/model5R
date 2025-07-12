@@ -345,18 +345,18 @@ export default function LandingPage() {
                   className="group bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-4 rounded-xl font-semibold text-lg hover:border-purple-300 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-105"
                 >
                   <MessageCircle className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                  <span>Nous contacter</span>
+                  <span>{language === 'fr' ? 'Nous contacter' : 'Contact us'}</span>
                 </a>
               </div>
               
               <div className="flex items-center space-x-6 text-sm text-gray-600 dark:text-gray-400">
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span>Gratuit pendant 14 jours</span>
+                  <span>{language === 'fr' ? 'Gratuit pendant 14 jours' : 'Free for 14 days'}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span>Aucune carte requise</span>
+                  <span>{language === 'fr' ? 'Aucune carte requise' : 'No card required'}</span>
                 </div>
               </div>
             </div>
