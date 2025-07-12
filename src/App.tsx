@@ -619,20 +619,11 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <button
-                onClick={() => setCurrentPage('presentation')}
-                className={`p-2.5 rounded-lg transition-all duration-200 ${
-                  isDarkMode 
-                    ? 'text-gray-400 hover:text-white hover:bg-gray-800' 
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-                }`}
-              >
-                <Home className="w-5 h-5" />
-              </button>
               <img 
                 src="https://res.cloudinary.com/doo9fgw4x/image/upload/v1752331776/PFT_zizh77.png" 
                 alt="People First Technologies" 
-                className="h-6 w-auto"
+                className="h-8 w-auto cursor-pointer"
+                onClick={() => setCurrentPage('presentation')}
               />
             </div>
             
