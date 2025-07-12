@@ -9,11 +9,22 @@ interface Message {
 }
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'presentation' | 'chat'>('presentation');
+  const [currentPage, setCurrentPage] = useState<'presentation' | 'chat' | 'contact'>('presentation');
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [language, setLanguage] = useState<'fr' | 'en'>('fr');
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    company: '',
+    role: '',
+    teamSize: '',
+    challenge: '',
+    message: '',
+    urgency: 'medium'
+  });
 
   const pillars = [
     {
@@ -303,7 +314,7 @@ function App() {
               
               {/* Contact Expert Button */}
               <button
-                onClick={() => setCurrentPage('chat')}
+                onClick={() => setCurrentPage('contact')}
                 className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group ${
                   isDarkMode
                     ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
@@ -351,6 +362,14 @@ function App() {
               >
                 <MessageCircle className="w-6 h-6 mr-3" />
                 {language === 'fr' ? 'Essayez le Coach IA' : 'Try AI Coach'}
+                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button
+                onClick={() => setCurrentPage('contact')}
+                className="group inline-flex items-center px-8 py-4 bg-white text-pft-blue border-2 border-pft-blue rounded-2xl hover:bg-pft-blue hover:text-white transition-all duration-300 text-lg font-semibold shadow-lg transform hover:scale-105"
+              >
+                <Mail className="w-6 h-6 mr-3" />
+                {language === 'fr' ? 'Parler à un expert' : 'Talk to an expert'}
                 <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -666,13 +685,13 @@ function App() {
                 }
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
-                  href="mailto:contact@peoplefirst-technologies.com?subject=Demande de démo - Coach Virtuel IA 5R®"
+                <button 
+                  onClick={() => setCurrentPage('contact')}
                   className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-pft-blue to-purple-600 text-white rounded-xl hover:from-pft-blue/90 hover:to-purple-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-blue-500/25 transform hover:scale-105"
                 >
                   <Mail className="w-5 h-5 mr-3" />
                   {language === 'fr' ? 'Demander une démo' : 'Request a demo'}
-                </a>
+                </button>
               </div>
             </div>
           </section>
@@ -744,15 +763,15 @@ function App() {
               
               {/* Contact Expert Button */}
               <button
-                onClick={() => setCurrentPage('chat')}
+                onClick={() => setCurrentPage('contact')}
                 className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group ${
                   isDarkMode
                     ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
                     : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
                 }`}
               >
-                <MessageCircle className="w-4 h-4 mr-2" />
-                {language === 'fr' ? 'Essayer le Coach IA' : 'Try AI Coach'}
+                <Mail className="w-4 h-4 mr-2" />
+                {language === 'fr' ? 'Demander un expert' : 'Ask an Expert'}
               </button>
             </div>
           </div>
@@ -891,7 +910,435 @@ function App() {
     </div>
   );
 
-  return currentPage === 'presentation' ? <PresentationPage /> : <ChatPage />;
+  const ContactPage = () => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+      const { name, value } = e.target;
+      setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+      const subject = language === 'fr' 
+        ? `Demande d'accompagnement - ${formData.firstName} ${formData.lastName}`
+        : `Support Request - ${formData.firstName} ${formData.lastName}`;
+      
+      const body = language === 'fr' 
+        ? `Bonjour,
+
+Je souhaite être accompagné(e) par un expert People First Technologies.
+
+Informations de contact :
+- Nom : ${formData.lastName}
+- Prénom : ${formData.firstName}
+- Email : ${formData.email}
+- Entreprise : ${formData.company}
+- Poste : ${formData.role}
+- Taille d'équipe : ${formData.teamSize}
+
+Défi principal : ${formData.challenge}
+Urgence : ${formData.urgency}
+
+Message :
+${formData.message}
+
+Cordialement,
+${formData.firstName} ${formData.lastName}`
+        : `Hello,
+
+I would like to be supported by a People First Technologies expert.
+
+Contact information:
+- Last name: ${formData.lastName}
+- First name: ${formData.firstName}
+- Email: ${formData.email}
+- Company: ${formData.company}
+- Position: ${formData.role}
+- Team size: ${formData.teamSize}
+
+Main challenge: ${formData.challenge}
+Urgency: ${formData.urgency}
+
+Message:
+${formData.message}
+
+Best regards,
+${formData.firstName} ${formData.lastName}`;
+
+      const mailtoLink = `mailto:contact@peoplefirst-technologies.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoLink;
+    };
+
+    return (
+      <div className={`min-h-screen transition-colors duration-300 ${themeClasses.bg} ${themeClasses.text}`}>
+        {/* Header avec navigation */}
+        <header className={`relative z-50 ${isDarkMode ? 'bg-black/95' : 'bg-white/95'} backdrop-blur-xl border-b sticky top-0 ${isDarkMode ? 'border-white/5' : 'border-gray-100'} shadow-sm`}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <img 
+                  src="https://res.cloudinary.com/doo9fgw4x/image/upload/v1752331776/PFT_zizh77.png" 
+                  alt="People First Technologies" 
+                  className="h-10 w-auto cursor-pointer"
+                  onClick={() => setCurrentPage('presentation')}
+                />
+              </div>
+              
+              <div className="flex items-center space-x-4">
+                {/* Language Switch */}
+                <button
+                  onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
+                  className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+                    isDarkMode
+                      ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
+                      : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+                >
+                  <Globe className="w-4 h-4 mr-2" />
+                  {language === 'fr' ? 'FR' : 'EN'}
+                </button>
+
+                {/* Theme Toggle */}
+                <button
+                  onClick={toggleTheme}
+                  className={`p-2.5 rounded-lg transition-all duration-200 ${
+                    isDarkMode 
+                      ? 'text-gray-400 hover:text-white hover:bg-gray-800' 
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                  }`}
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                    {isDarkMode ? (
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    ) : (
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    )}
+                  </svg>
+                </button>
+                
+                {/* Chat Button */}
+                <button
+                  onClick={() => setCurrentPage('chat')}
+                  className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group ${
+                    isDarkMode
+                      ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
+                      : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  {language === 'fr' ? 'Essayer le Coach IA' : 'Try AI Coach'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div className="relative">
+          {/* Background gradient */}
+          <div className={`absolute inset-0 bg-gradient-to-br ${themeClasses.gradientBg}`}></div>
+          
+          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            {/* Hero Section */}
+            <div className="text-center mb-16 animate-fadeIn">
+              <div className={`inline-flex items-center px-4 py-2 ${themeClasses.glassBg} rounded-full text-sm ${themeClasses.textSecondary} mb-8 ${themeClasses.border} border`}>
+                <Mail className="w-4 h-4 mr-2 text-purple-500" />
+                {language === 'fr' ? 'Contact Expert • Réponse sous 24h' : 'Expert Contact • Response within 24h'}
+              </div>
+              
+              <h1 className="text-5xl md:text-6xl font-bold mb-8">
+                <span className="gradient-text">
+                  {language === 'fr' ? 'Parlons de votre' : 'Let\'s talk about your'}
+                </span>
+                <br />
+                <span className={themeClasses.text}>
+                  {language === 'fr' ? 'transformation' : 'transformation'}
+                </span>
+              </h1>
+              
+              <p className={`text-xl ${themeClasses.textSecondary} max-w-3xl mx-auto mb-12 leading-relaxed`}>
+                {language === 'fr' 
+                  ? 'Nos experts People First Technologies vous accompagnent pour transformer votre management avec le modèle 5R®. Diagnostic personnalisé, formation sur-mesure et accompagnement terrain.'
+                  : 'Our People First Technologies experts support you in transforming your management with the 5R® model. Personalized diagnosis, tailor-made training and field support.'
+                }
+              </p>
+            </div>
+
+            {/* Contact Form */}
+            <div className={`${themeClasses.glassBg} backdrop-blur-xl rounded-3xl ${themeClasses.border} border p-8 md:p-12 animate-slideUp`}>
+              <form onSubmit={handleSubmit} className="space-y-8">
+                {/* Personal Information */}
+                <div>
+                  <h3 className={`text-2xl font-semibold ${themeClasses.text} mb-6 flex items-center`}>
+                    <Users className="w-6 h-6 mr-3 text-purple-500" />
+                    {language === 'fr' ? 'Informations personnelles' : 'Personal information'}
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Prénom *' : 'First name *'}
+                      </label>
+                      <input
+                        type="text"
+                        name="firstName"
+                        required
+                        value={formData.firstName}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 ${themeClasses.inputBg} ${themeClasses.inputBorder} border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${themeClasses.text} placeholder-gray-400 backdrop-blur-sm transition-all duration-200`}
+                        placeholder={language === 'fr' ? 'Votre prénom' : 'Your first name'}
+                      />
+                    </div>
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Nom *' : 'Last name *'}
+                      </label>
+                      <input
+                        type="text"
+                        name="lastName"
+                        required
+                        value={formData.lastName}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 ${themeClasses.inputBg} ${themeClasses.inputBorder} border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${themeClasses.text} placeholder-gray-400 backdrop-blur-sm transition-all duration-200`}
+                        placeholder={language === 'fr' ? 'Votre nom' : 'Your last name'}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Professional Information */}
+                <div>
+                  <h3 className={`text-2xl font-semibold ${themeClasses.text} mb-6 flex items-center`}>
+                    <Target className="w-6 h-6 mr-3 text-blue-500" />
+                    {language === 'fr' ? 'Informations professionnelles' : 'Professional information'}
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Email professionnel *' : 'Professional email *'}
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 ${themeClasses.inputBg} ${themeClasses.inputBorder} border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${themeClasses.text} placeholder-gray-400 backdrop-blur-sm transition-all duration-200`}
+                        placeholder={language === 'fr' ? 'votre.email@entreprise.com' : 'your.email@company.com'}
+                      />
+                    </div>
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Entreprise *' : 'Company *'}
+                      </label>
+                      <input
+                        type="text"
+                        name="company"
+                        required
+                        value={formData.company}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 ${themeClasses.inputBg} ${themeClasses.inputBorder} border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${themeClasses.text} placeholder-gray-400 backdrop-blur-sm transition-all duration-200`}
+                        placeholder={language === 'fr' ? 'Nom de votre entreprise' : 'Your company name'}
+                      />
+                    </div>
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Poste / Fonction *' : 'Position / Role *'}
+                      </label>
+                      <input
+                        type="text"
+                        name="role"
+                        required
+                        value={formData.role}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 ${themeClasses.inputBg} ${themeClasses.inputBorder} border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${themeClasses.text} placeholder-gray-400 backdrop-blur-sm transition-all duration-200`}
+                        placeholder={language === 'fr' ? 'Manager, DRH, CEO...' : 'Manager, HR Director, CEO...'}
+                      />
+                    </div>
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Taille de l\'équipe' : 'Team size'}
+                      </label>
+                      <select
+                        name="teamSize"
+                        value={formData.teamSize}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 ${themeClasses.inputBg} ${themeClasses.inputBorder} border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${themeClasses.text} backdrop-blur-sm transition-all duration-200`}
+                      >
+                        <option value="">{language === 'fr' ? 'Sélectionner...' : 'Select...'}</option>
+                        <option value="1-5">{language === 'fr' ? '1-5 personnes' : '1-5 people'}</option>
+                        <option value="6-15">{language === 'fr' ? '6-15 personnes' : '6-15 people'}</option>
+                        <option value="16-50">{language === 'fr' ? '16-50 personnes' : '16-50 people'}</option>
+                        <option value="51-200">{language === 'fr' ? '51-200 personnes' : '51-200 people'}</option>
+                        <option value="200+">{language === 'fr' ? '200+ personnes' : '200+ people'}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Challenge & Needs */}
+                <div>
+                  <h3 className={`text-2xl font-semibold ${themeClasses.text} mb-6 flex items-center`}>
+                    <Brain className="w-6 h-6 mr-3 text-green-500" />
+                    {language === 'fr' ? 'Votre défi managérial' : 'Your management challenge'}
+                  </h3>
+                  <div className="space-y-6">
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Principal défi à relever *' : 'Main challenge to address *'}
+                      </label>
+                      <select
+                        name="challenge"
+                        required
+                        value={formData.challenge}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 ${themeClasses.inputBg} ${themeClasses.inputBorder} border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${themeClasses.text} backdrop-blur-sm transition-all duration-200`}
+                      >
+                        <option value="">{language === 'fr' ? 'Sélectionner votre défi principal...' : 'Select your main challenge...'}</option>
+                        <option value="engagement">{language === 'fr' ? 'Améliorer l\'engagement des équipes' : 'Improve team engagement'}</option>
+                        <option value="roles">{language === 'fr' ? 'Clarifier les rôles et responsabilités' : 'Clarify roles and responsibilities'}</option>
+                        <option value="communication">{language === 'fr' ? 'Améliorer la communication' : 'Improve communication'}</option>
+                        <option value="transformation">{language === 'fr' ? 'Accompagner une transformation' : 'Support a transformation'}</option>
+                        <option value="performance">{language === 'fr' ? 'Améliorer la performance collective' : 'Improve collective performance'}</option>
+                        <option value="culture">{language === 'fr' ? 'Développer la culture d\'entreprise' : 'Develop company culture'}</option>
+                        <option value="onboarding">{language === 'fr' ? 'Optimiser l\'intégration des nouveaux' : 'Optimize newcomer integration'}</option>
+                        <option value="other">{language === 'fr' ? 'Autre défi' : 'Other challenge'}</option>
+                      </select>
+                    </div>
+                    
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Urgence du besoin' : 'Urgency level'}
+                      </label>
+                      <div className="grid grid-cols-3 gap-4">
+                        {[
+                          { value: 'low', label: language === 'fr' ? 'Pas urgent' : 'Not urgent', color: 'green' },
+                          { value: 'medium', label: language === 'fr' ? 'Modéré' : 'Moderate', color: 'yellow' },
+                          { value: 'high', label: language === 'fr' ? 'Urgent' : 'Urgent', color: 'red' }
+                        ].map((urgency) => (
+                          <label key={urgency.value} className={`relative flex items-center p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
+                            formData.urgency === urgency.value 
+                              ? `border-${urgency.color}-500 bg-${urgency.color}-50 ${isDarkMode ? `bg-${urgency.color}-900/20` : ''}` 
+                              : `${themeClasses.border} ${themeClasses.hoverBg}`
+                          }`}>
+                            <input
+                              type="radio"
+                              name="urgency"
+                              value={urgency.value}
+                              checked={formData.urgency === urgency.value}
+                              onChange={handleInputChange}
+                              className="sr-only"
+                            />
+                            <div className={`w-4 h-4 rounded-full border-2 mr-3 ${
+                              formData.urgency === urgency.value 
+                                ? `border-${urgency.color}-500 bg-${urgency.color}-500` 
+                                : themeClasses.border
+                            }`}>
+                              {formData.urgency === urgency.value && (
+                                <div className="w-2 h-2 bg-white rounded-full m-0.5"></div>
+                              )}
+                            </div>
+                            <span className={themeClasses.text}>{urgency.label}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className={`block text-sm font-medium ${themeClasses.text} mb-2`}>
+                        {language === 'fr' ? 'Décrivez votre situation et vos attentes' : 'Describe your situation and expectations'}
+                      </label>
+                      <textarea
+                        name="message"
+                        rows={6}
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 ${themeClasses.inputBg} ${themeClasses.inputBorder} border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${themeClasses.text} placeholder-gray-400 backdrop-blur-sm transition-all duration-200 resize-none`}
+                        placeholder={language === 'fr' 
+                          ? 'Parlez-nous de votre contexte, vos défis actuels et ce que vous aimeriez accomplir avec notre accompagnement...'
+                          : 'Tell us about your context, current challenges and what you would like to accomplish with our support...'
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <div className="text-center pt-8">
+                  <button
+                    type="submit"
+                    className="group inline-flex items-center px-12 py-4 bg-gradient-to-r from-pft-blue to-purple-600 text-white rounded-2xl hover:from-pft-blue/90 hover:to-purple-700 transition-all duration-300 text-lg font-semibold shadow-2xl hover:shadow-blue-500/25 transform hover:scale-105"
+                  >
+                    <Send className="w-6 h-6 mr-3" />
+                    {language === 'fr' ? 'Envoyer ma demande' : 'Send my request'}
+                    <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                  <p className={`text-sm ${themeClasses.textMuted} mt-4`}>
+                    {language === 'fr' 
+                      ? 'Nous vous répondrons sous 24h pour planifier un échange personnalisé'
+                      : 'We will respond within 24h to schedule a personalized discussion'
+                    }
+                  </p>
+                </div>
+              </form>
+            </div>
+
+            {/* Trust Indicators */}
+            <div className="mt-16 grid md:grid-cols-3 gap-8 animate-fadeIn">
+              <div className={`text-center p-6 ${themeClasses.glassBg} rounded-2xl ${themeClasses.border} border`}>
+                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8 text-white" />
+                </div>
+                <h3 className={`text-lg font-semibold ${themeClasses.text} mb-2`}>
+                  {language === 'fr' ? 'Réponse garantie' : 'Guaranteed response'}
+                </h3>
+                <p className={themeClasses.textSecondary}>
+                  {language === 'fr' ? 'Sous 24h maximum' : 'Within 24h maximum'}
+                </p>
+              </div>
+              
+              <div className={`text-center p-6 ${themeClasses.glassBg} rounded-2xl ${themeClasses.border} border`}>
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Award className="w-8 h-8 text-white" />
+                </div>
+                <h3 className={`text-lg font-semibold ${themeClasses.text} mb-2`}>
+                  {language === 'fr' ? 'Expertise reconnue' : 'Recognized expertise'}
+                </h3>
+                <p className={themeClasses.textSecondary}>
+                  {language === 'fr' ? '500K+ personnes formées' : '500K+ people trained'}
+                </p>
+              </div>
+              
+              <div className={`text-center p-6 ${themeClasses.glassBg} rounded-2xl ${themeClasses.border} border`}>
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-8 h-8 text-white" />
+                </div>
+                <h3 className={`text-lg font-semibold ${themeClasses.text} mb-2`}>
+                  {language === 'fr' ? 'Confidentialité' : 'Confidentiality'}
+                </h3>
+                <p className={themeClasses.textSecondary}>
+                  {language === 'fr' ? 'Données sécurisées' : 'Secure data'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <footer className={`${themeClasses.glassBg} backdrop-blur-xl ${themeClasses.border} border-t`}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="text-center">
+              <p className={`${themeClasses.textMuted}`}>
+                {language === 'fr'
+                  ? '© 2025 People First Technologies. Coach Virtuel IA basé sur le modèle 5R® de la Professeure Cécile Dejoux.'
+                  : '© 2025 People First Technologies. Virtual AI Coach based on Professor Cécile Dejoux\'s 5R® model.'
+                }
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    );
+  };
+
+  return currentPage === 'presentation' ? <PresentationPage /> : currentPage === 'chat' ? <ChatPage /> : <ContactPage />;
 }
 
 export default App;
