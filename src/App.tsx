@@ -314,15 +314,15 @@ function App() {
               
               {/* Contact Expert Button */}
               <button
-                onClick={() => window.location.href = 'mailto:contact@peoplefirst-technologies.com?subject=Demande d\'expert - Coach Virtuel IA 5R®'}
-                className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-300 group transform hover:scale-105 hover:shadow-lg ${
+                onClick={() => setCurrentPage('chat')}
+                className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group ${
                   isDarkMode
-                    ? 'border-gray-700 text-gray-300 hover:border-purple-500 hover:text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600'
-                    : 'border-gray-200 text-gray-700 hover:border-purple-500 hover:text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600'
+                    ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
+                    : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
                 }`}
               >
-                <Mail className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
-                {language === 'fr' ? 'Demander un expert' : 'Request an expert'}
+                <Mail className="w-4 h-4 mr-2" />
+                {language === 'fr' ? 'Demander un expert' : 'Ask an Expert'}
               </button>
             </div>
           </div>
@@ -673,13 +673,13 @@ function App() {
               {/* Contact Expert Button */}
               <button
                 onClick={() => setCurrentPage('chat')}
-                className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-300 group transform hover:scale-105 hover:shadow-lg ${
+                className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group ${
                   isDarkMode
-                    ? 'border-gray-700 text-gray-300 hover:border-purple-500 hover:text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600'
-                    : 'border-gray-200 text-gray-700 hover:border-purple-500 hover:text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600'
+                    ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
+                    : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
                 }`}
               >
-                <Mail className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
+                <MessageCircle className="w-4 h-4 mr-2" />
                 {language === 'fr' ? 'Essayer le Coach IA' : 'Try AI Coach'}
               </button>
             </div>
