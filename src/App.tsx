@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { MessageCircle, Users, RotateCcw, Shield, Heart, Award, Send, Mail, ExternalLink, ArrowRight, AlertTriangle, CheckCircle, XCircle, Home, Sparkles, Brain, Target, Zap, Star, Globe, ChevronRight, Play, BookOpen, TrendingUp } from 'lucide-react';
-
-interface Message {
-  id: number;
-  text: string;
-  isBot: boolean;
-  timestamp: Date;
-}
+import React, { useState } from 'react';
+import { MessageCircle } from 'lucide-react';
+import PresentationPage from './PresentationPage';
+import ChatPage from './ChatPage';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<'presentation' | 'chat'>('presentation');
@@ -21,8 +16,6 @@ function App() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex justify-between items-center">
             <div className="flex space-x-4">
-              {/* ... autres boutons éventuels ... */}
-
               <button
                 onClick={toggleTheme}
                 className={`p-2.5 rounded-lg transition-all duration-200 ${
@@ -56,8 +49,7 @@ function App() {
         </div>
       </header>
 
-      {/* ... [rest of the code remains the same] ... */}
-
+      {/* Affichage de la page en fonction du state */}
       {currentPage === 'presentation' ? <PresentationPage /> : <ChatPage />}
     </div>
   );
