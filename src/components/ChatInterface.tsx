@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Mic, MicOff, Volume2, VolumeX, User, Bot, Clock, CheckCircle } from 'lucide-react';
+import { Send, Mic, MicOff, Volume2, VolumeX, User, Bot, Clock, CheckCircle, UserCheck } from 'lucide-react';
 
 interface Message {
   id: string;
@@ -163,7 +163,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-              <Bot className="w-6 h-6 text-white" />
+              <UserCheck className="w-6 h-6 text-white" />
             </div>
             <div>
               <h2 className="text-lg font-semibold text-gray-900">Coach Virtuel IA</h2>
@@ -195,7 +195,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 {message.sender === 'user' ? (
                   <User className="w-4 h-4 text-white" />
                 ) : (
-                  <Bot className="w-4 h-4 text-white" />
+                  <UserCheck className="w-4 h-4 text-white" />
                 )}
               </div>
               
@@ -256,7 +256,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
           <div className="flex justify-start">
             <div className="flex items-start space-x-3 max-w-3xl">
               <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                <Bot className="w-4 h-4 text-white" />
+                <UserCheck className="w-4 h-4 text-white" />
               </div>
               <div className="bg-white border border-gray-200 rounded-2xl px-4 py-3 shadow-sm">
                 <div className="flex items-center space-x-2">
