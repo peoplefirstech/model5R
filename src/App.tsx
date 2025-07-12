@@ -26,6 +26,9 @@ function App() {
     urgency: 'medium'
   });
 
+  // Debug: Log current page
+  console.log('Current page:', currentPage);
+
   const pillars = [
     {
       id: 'roles',
