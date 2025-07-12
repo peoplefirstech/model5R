@@ -6,7 +6,8 @@ interface Message {
   text: string;
   isBot: boolean;
   timestamp: Date;
-}
+import { Menu, X, Globe, ChevronDown, Star, Users, Target, TrendingUp, CheckCircle, ArrowRight, Mail, Phone, MapPin, User, Building, MessageSquare, Clock, Zap, Shield, Award } from 'lucide-react';
+import Footer from './components/Footer';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<'presentation' | 'chat' | 'contact'>('presentation');
@@ -677,43 +678,7 @@ function App() {
 
           {/* CTA Final optimisé */}
           <section className="py-20">
-            <div className={`bg-gradient-to-r from-pft-blue/20 to-purple-600/20 backdrop-blur-sm rounded-3xl p-12 text-center ${themeClasses.border} border`}>
-              <h2 className={`text-3xl font-bold mb-6 ${themeClasses.text}`}>
-                {language === 'fr' ? 'Prêt à transformer votre management ?' : 'Ready to transform your management?'}
-              </h2>
-              <p className={`${themeClasses.textSecondary} mb-8 max-w-2xl mx-auto text-lg leading-relaxed`}>
-                {language === 'fr'
-                  ? 'Commencez dès maintenant avec notre Coach Virtuel IA ou bénéficiez d\'un accompagnement personnalisé.'
-                  : 'Start now with our Virtual AI Coach or benefit from personalized support.'
-                }
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button 
-                  onClick={() => setCurrentPage('contact')}
-                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-pft-blue to-purple-600 text-white rounded-xl hover:from-pft-blue/90 hover:to-purple-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-blue-500/25 transform hover:scale-105"
-                >
-                  <Mail className="w-5 h-5 mr-3" />
-                  {language === 'fr' ? 'Demander une démo' : 'Request a demo'}
-                </button>
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
-
-      {/* Footer simplifié */}
-      <footer className={`${themeClasses.glassBg} backdrop-blur-xl ${themeClasses.border} border-t`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center">
-            <p className={`${themeClasses.textMuted}`}>
-              {language === 'fr'
-                ? '© 2025 People First Technologies. Coach Virtuel IA basé sur le modèle 5R® de la Professeure Cécile Dejoux.'
-                : '© 2025 People First Technologies. Virtual AI Coach based on Professor Cécile Dejoux\'s 5R® model.'
-              }
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer language={language} />
     </div>
   );
 
