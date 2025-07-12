@@ -27,8 +27,6 @@ export default function Footer({ language }: FooterProps) {
       privacy: "Politique de confidentialité",
       cookies: "Politique des cookies",
       rights: "Tous droits réservés",
-      madeWith: "Fait avec",
-      by: "par People First Technologies"
     },
     en: {
       tagline: "Transform your potential into performance together",
@@ -42,8 +40,6 @@ export default function Footer({ language }: FooterProps) {
       privacy: "Privacy policy",
       cookies: "Cookie policy",
       rights: "All rights reserved",
-      madeWith: "Made with",
-      by: "by People First Technologies"
     }
   };
 
@@ -143,13 +139,13 @@ export default function Footer({ language }: FooterProps) {
       {/* Legal Links & Copyright */}
       <div className="border-t border-white/10 dark:border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
             
             {/* Legal Links */}
-            <div className="flex flex-wrap justify-center md:justify-start items-center space-x-6 text-sm">
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm">
               <Link 
                 to="/mentions-legales"
-                className="flex items-center text-gray-300 hover:text-purple-300 transition-colors"
+                className="flex items-center text-gray-300 hover:text-purple-300 transition-colors whitespace-nowrap"
               >
                 <FileText className="w-4 h-4 mr-2" />
                 {t.legal}
@@ -157,7 +153,7 @@ export default function Footer({ language }: FooterProps) {
               
               <Link 
                 to="/politique-confidentialite"
-                className="flex items-center text-gray-300 hover:text-purple-300 transition-colors"
+                className="flex items-center text-gray-300 hover:text-purple-300 transition-colors whitespace-nowrap"
               >
                 <Shield className="w-4 h-4 mr-2" />
                 {t.privacy}
@@ -165,7 +161,7 @@ export default function Footer({ language }: FooterProps) {
               
               <Link 
                 to="/politique-cookies"
-                className="flex items-center text-gray-300 hover:text-purple-300 transition-colors"
+                className="flex items-center text-gray-300 hover:text-purple-300 transition-colors whitespace-nowrap"
               >
                 <Cookie className="w-4 h-4 mr-2" />
                 {t.cookies}
@@ -173,14 +169,10 @@ export default function Footer({ language }: FooterProps) {
             </div>
             
             {/* Copyright */}
-            <div className="flex items-center text-gray-400 dark:text-gray-500 text-sm">
-              <span>© 2024 People First Technologies. {t.rights}</span>
-              <span className="mx-2">•</span>
-              <span className="flex items-center">
-                {t.madeWith}
-                <Heart className="w-4 h-4 mx-1 text-red-400" />
-                {t.by}
-              </span>
+            <div className="text-center lg:text-right">
+              <p className="text-gray-400 dark:text-gray-500 text-sm">
+                © 2024 People First Technologies. {t.rights}
+              </p>
             </div>
           </div>
         </div>
