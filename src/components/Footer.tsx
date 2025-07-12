@@ -1,12 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Heart, Shield, Cookie, FileText, Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
 
 interface FooterProps {
   language: 'fr' | 'en';
-  onNavigate: (page: string) => void;
 }
 
-export default function Footer({ language, onNavigate }: FooterProps) {
+export default function Footer({ language }: FooterProps) {
   const content = {
     fr: {
       tagline: "Transformons ensemble votre potentiel en performance",
@@ -140,29 +140,29 @@ export default function Footer({ language, onNavigate }: FooterProps) {
             
             {/* Legal Links */}
             <div className="flex flex-wrap justify-center md:justify-start items-center space-x-6 text-sm">
-              <button 
-                onClick={() => onNavigate('/mentions-legales')}
+              <Link 
+                to="/mentions-legales"
                 className="flex items-center text-gray-300 hover:text-purple-300 transition-colors"
               >
                 <FileText className="w-4 h-4 mr-2" />
                 {t.legal}
-              </button>
+              </Link>
               
-              <button 
-                onClick={() => onNavigate('/politique-confidentialite')}
+              <Link 
+                to="/politique-confidentialite"
                 className="flex items-center text-gray-300 hover:text-purple-300 transition-colors"
               >
                 <Shield className="w-4 h-4 mr-2" />
                 {t.privacy}
-              </button>
+              </Link>
               
-              <button 
-                onClick={() => onNavigate('/politique-cookies')}
+              <Link 
+                to="/politique-cookies"
                 className="flex items-center text-gray-300 hover:text-purple-300 transition-colors"
               >
                 <Cookie className="w-4 h-4 mr-2" />
                 {t.cookies}
-              </button>
+              </Link>
             </div>
             
             {/* Copyright */}
