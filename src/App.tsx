@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { MessageCircle, Users, RotateCcw, Shield, Heart, Award, Send, Mail, ExternalLink, ArrowRight, AlertTriangle, CheckCircle, XCircle, Home, Sparkles, Brain, Target, Zap, Star, Globe, ChevronRight, Play, BookOpen, TrendingUp } from 'lucide-react';
-import { ThemeToggle } from './components/ThemeToggle';
 
 interface Message {
   id: number;
