@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Mic, MicOff, Volume2, VolumeX, User, Bot, Clock, CheckCircle, UserCheck } from 'lucide-react';
+import { Send, Mic, MicOff, Volume2, VolumeX, User, Bot, Clock, CheckCircle, UserCheck, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface Message {
   id: string;
@@ -63,7 +64,8 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
         { text: "Améliorer la Reconnaissance", category: "Reconnaissance" }
       ],
       typing: "Coach IA écrit...",
-      online: "En ligne"
+      online: "En ligne",
+      back: "Retour"
     },
     en: {
       placeholder: "Ask your questions about management, team engagement and transformation...",
@@ -78,7 +80,8 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
         { text: "Improve Recognition", category: "Recognition" }
       ],
       typing: "AI Coach is typing...",
-      online: "Online"
+      online: "Online",
+      back: "Back"
     }
   };
 
@@ -173,129 +176,110 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-              <UserCheck className="w-6 h-6 text-white" />
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Link
+                to="/"
+                className="p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </Link>
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                <UserCheck className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Coach Virtuel IA</h2>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  {language === 'fr' ? 'Basé sur le modèle 5R®' : 'Based on the 5R® model'}
+                </p>
+              </div>
             </div>
-            <div>
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Coach Virtuel IA</h2>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                {language === 'fr' ? 'Basé sur le modèle 5R®' : 'Based on Cécile Dejoux\'s 5R® model'}
-              </p>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <span className="text-sm text-gray-600 dark:text-gray-400">{t.online}</span>
             </div>
-          </div>
-          <div className="flex items-center space-x-2">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            <span className="text-sm text-gray-600 dark:text-gray-400">{t.online}</span>
           </div>
         </div>
       </div>
 
-      {/* Messages Container */}
-      <div className="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-4xl mx-auto px-6 py-4 space-y-6 custom-scrollbar">
-        {messages.map((message) => (
-          <div
-            key={message.id}
-            className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-          >
-            <div className={`flex items-start space-x-3 max-w-3xl ${message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                message.sender === 'user' 
-                  ? 'bg-gradient-to-br from-blue-500 to-purple-500' 
-                  : 'bg-gradient-to-br from-purple-500 to-pink-500'
-              }`}>
-                {message.sender === 'user' ? (
-                  <User className="w-4 h-4 text-white" />
-                ) : (
-                  <UserCheck className="w-4 h-4 text-white" />
-                )}
-              </div>
-              
-              <div className={`flex flex-col ${message.sender === 'user' ? 'items-end' : 'items-start'}`}>
-                <div className={`px-4 py-3 rounded-2xl ${
-                  message.sender === 'user'
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
-                    : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white shadow-sm'
-                }`}>
-                  {message.isAudio ? (
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                        <Mic className="w-4 h-4" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-2">
-                          <div className="flex space-x-1">
-                            {[...Array(20)].map((_, i) => (
-                              <div
-                                key={i}
-                                className="w-1 bg-current rounded-full animate-pulse"
-                                style={{
-                                  height: Math.random() * 20 + 10 + 'px',
-                                  animationDelay: i * 0.1 + 's'
-                                }}
-                              />
-                            ))}
-                          </div>
-                          <span className="text-sm opacity-75">{message.duration}</span>
-                        </div>
-                      </div>
-                      <button className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
-                        <Volume2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                  ) : (
-                    <div 
-                      className="text-sm leading-relaxed"
-                      dangerouslySetInnerHTML={{ 
-                        __html: message.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
-                      }}
-                    />
-                  )}
-                </div>
-                
-                <div className="flex items-center space-x-2 mt-1 px-2">
-                  <span className="text-xs text-gray-500 dark:text-gray-400">{formatTime(message.timestamp)}</span>
-                  {message.sender === 'user' && (
-                    <CheckCircle className="w-3 h-3 text-blue-500" />
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-        
-        {isTyping && (
-          <div className="flex justify-start">
-            <div className="flex items-start space-x-3 max-w-3xl">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                <UserCheck className="w-4 h-4 text-white" />
-              </div>
-              <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl px-4 py-3 shadow-sm">
-                <div className="flex items-center space-x-2">
-                  <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+      {/* Chat Container */}
+      <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full">
+        {/* Messages Area */}
+        <div className="flex-1 overflow-y-auto px-4 sm:px-6 lg:px-8 py-6 custom-scrollbar">
+          <div className="space-y-6">
+            {messages.map((message) => (
+              <div
+                key={message.id}
+                className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+              >
+                <div className={`flex items-start space-x-3 max-w-2xl ${message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
+                    message.sender === 'user' 
+                      ? 'bg-gradient-to-br from-blue-500 to-purple-500' 
+                      : 'bg-gradient-to-br from-purple-500 to-pink-500'
+                  }`}>
+                    {message.sender === 'user' ? (
+                      <User className="w-4 h-4 text-white" />
+                    ) : (
+                      <UserCheck className="w-4 h-4 text-white" />
+                    )}
                   </div>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">{t.typing}</span>
+                  
+                  <div className={`flex flex-col ${message.sender === 'user' ? 'items-end' : 'items-start'}`}>
+                    <div className={`px-4 py-3 rounded-2xl ${
+                      message.sender === 'user'
+                        ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
+                        : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white shadow-sm'
+                    }`}>
+                      <div 
+                        className="text-sm leading-relaxed"
+                        dangerouslySetInnerHTML={{ 
+                          __html: message.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
+                        }}
+                      />
+                    </div>
+                    
+                    <div className="flex items-center space-x-2 mt-1 px-2">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">{formatTime(message.timestamp)}</span>
+                      {message.sender === 'user' && (
+                        <CheckCircle className="w-3 h-3 text-blue-500" />
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
+            
+            {isTyping && (
+              <div className="flex justify-start">
+                <div className="flex items-start space-x-3 max-w-2xl">
+                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                    <UserCheck className="w-4 h-4 text-white" />
+                  </div>
+                  <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl px-4 py-3 shadow-sm">
+                    <div className="flex items-center space-x-2">
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                        <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                      </div>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">{t.typing}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            <div ref={messagesEndRef} />
           </div>
-        )}
-        
-        <div ref={messagesEndRef} />
-      </div>
-      </div>
+        </div>
 
-      {/* Quick Questions Container */}
-      <div className="bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700">
-        <div className="max-w-4xl mx-auto px-6 py-4">
+        {/* Quick Questions */}
+        <div className="bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 px-4 sm:px-6 lg:px-8 py-4">
           <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">{t.quickQuestions}</h3>
           <div className="flex flex-wrap gap-2">
             {t.quickButtons.map((button, index) => (
@@ -309,64 +293,60 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
             ))}
           </div>
         </div>
-      </div>
 
-      {/* Input Area Container */}
-      <div className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-        <div className="max-w-4xl mx-auto px-6 py-4">
-          <div className="flex items-end space-x-4">
-          <div className="flex-1 relative">
-            <textarea
-              ref={inputRef}
-              value={inputText}
-              onChange={handleInputChange}
-              onKeyDown={handleKeyPress}
-              placeholder={t.placeholder}
-              className="w-full px-4 py-3 pr-12 border border-gray-300 dark:border-gray-600 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700"
-              style={{ minHeight: '48px', maxHeight: '120px' }}
-              rows={1}
-            />
+        {/* Input Area */}
+        <div className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-end space-x-3">
+            <div className="flex-1 relative">
+              <textarea
+                ref={inputRef}
+                value={inputText}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyPress}
+                placeholder={t.placeholder}
+                className="w-full px-4 py-3 pr-12 border border-gray-300 dark:border-gray-600 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700"
+                style={{ minHeight: '48px', maxHeight: '120px' }}
+                rows={1}
+              />
+              <button
+                onClick={toggleSpeaking}
+                className={`absolute right-3 top-1/2 transform -translate-y-1/2 p-2 rounded-full transition-colors ${
+                  isSpeaking 
+                    ? 'bg-red-100 text-red-600 hover:bg-red-200' 
+                    : 'bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-500'
+                }`}
+              >
+                {isSpeaking ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+              </button>
+            </div>
+            
             <button
-              onClick={toggleSpeaking}
-              className={`absolute right-3 top-1/2 transform -translate-y-1/2 p-2 rounded-full transition-colors ${
-                isSpeaking 
-                  ? 'bg-red-100 text-red-600 hover:bg-red-200' 
+              onClick={toggleRecording}
+              className={`p-3 rounded-full transition-all duration-200 ${
+                isRecording
+                  ? 'bg-red-500 text-white hover:bg-red-600 animate-pulse'
                   : 'bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-500'
               }`}
             >
-              {isSpeaking ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+              {isRecording ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+            </button>
+            
+            <button
+              onClick={() => handleSendMessage()}
+              disabled={!inputText.trim()}
+              className="p-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 disabled:hover:scale-100"
+            >
+              <Send className="w-5 h-5" />
             </button>
           </div>
           
-          <button
-            onClick={toggleRecording}
-            className={`p-3 rounded-full transition-all duration-200 ${
-              isRecording
-                ? 'bg-red-500 text-white hover:bg-red-600 animate-pulse'
-                : 'bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-500'
-            }`}
-          >
-            {isRecording ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
-          </button>
-          
-          <button
-            onClick={() => handleSendMessage()}
-            disabled={!inputText.trim()}
-            className="p-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 disabled:hover:scale-100"
-          >
-            <Send className="w-5 h-5" />
-          </button>
-        </div>
-        </div>
-        
-        {isRecording && (
-          <div className="max-w-4xl mx-auto px-6">
+          {isRecording && (
             <div className="mt-3 flex items-center justify-center space-x-2 text-red-600">
-            <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
-            <span className="text-sm font-medium">{t.recording}</span>
-          </div>
-          </div>
-        )}
+              <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium">{t.recording}</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
