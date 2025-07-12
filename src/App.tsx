@@ -265,7 +265,7 @@ function App() {
               <img 
                 src="https://res.cloudinary.com/doo9fgw4x/image/upload/v1752331776/PFT_zizh77.png" 
                 alt="People First Technologies" 
-                className="h-8 w-auto"
+                className="h-10 w-auto"
               />
             </div>
             
@@ -611,7 +611,7 @@ function App() {
               <img 
                 src="https://res.cloudinary.com/doo9fgw4x/image/upload/v1752331776/PFT_zizh77.png" 
                 alt="People First Technologies" 
-                className="h-8 w-auto cursor-pointer"
+                className="h-10 w-auto cursor-pointer"
                 onClick={() => setCurrentPage('presentation')}
               />
             </div>
