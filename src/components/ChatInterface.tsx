@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Mic, MicOff, Volume2, VolumeX, User, Bot, Clock, CheckCircle, UserCheck, ArrowLeft } from 'lucide-react';
+import { Send, Mic, MicOff, Volume2, VolumeX, User, Bot, Clock, CheckCircle, UserCheck, ArrowLeft, RefreshCw } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface Message {
@@ -32,56 +32,107 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
     }
   }, [isDark]);
 
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      text: language === 'fr' 
-        ? "Bonjour ! Je suis votre Coach Virtuel IA de People First Technologies, basé sur le modèle 5R® du Professeur Cécile Dejoux. Je peux vous aider à améliorer l'engagement de votre équipe à travers les 5 piliers : Rôles, Routines, Règles, Respect et Reconnaissance. Quelle dimension souhaitez-vous explorer ?"
-        : "Hello! I'm your Virtual AI Coach by People First Technologies, based on Professor Cécile Dejoux's 5R® model. I can help you improve your team's engagement through the 5 pillars: Roles, Routines, Rules, Respect and Recognition. Which dimension would you like to explore?",
-      sender: 'bot',
-      timestamp: new Date(Date.now() - 300000)
-    }
-  ]);
-  
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const content = {
     fr: {
-      placeholder: "Posez votre question sur le management, l'engagement d'équipe et la transformation...",
-      send: "Envoyer",
-      recording: "Enregistrement...",
+      welcome: {
+        greeting: "Bonjour !",
+        title: "Que souhaiteriez-vous savoir ?",
+        subtitle: "Posez vos questions sur le management, l'engagement d'équipe et la transformation. Recevez des conseils personnalisés basés sur le modèle 5R®.",
+        placeholder: "Posez votre question sur le management, l'engagement d'équipe..."
+      },
       quickQuestions: "Questions rapides",
       quickButtons: [
-        { text: "Améliorer les Rôles", category: "Rôles" },
-        { text: "Améliorer les Routines", category: "Routines" },
-        { text: "Améliorer les Règles", category: "Règles" },
-        { text: "Améliorer le Respect", category: "Respect" },
-        { text: "Améliorer la Reconnaissance", category: "Reconnaissance" }
+        { 
+          text: "Améliorer les Rôles", 
+          category: "Rôles",
+          icon: "👥",
+          description: "Question rapide"
+        },
+        { 
+          text: "Améliorer les Routines", 
+          category: "Routines",
+          icon: "🔄",
+          description: "Question rapide"
+        },
+        { 
+          text: "Améliorer les Règles", 
+          category: "Règles",
+          icon: "📋",
+          description: "Question rapide"
+        },
+        { 
+          text: "Améliorer le Respect", 
+          category: "Respect",
+          icon: "🤝",
+          description: "Question rapide"
+        },
+        { 
+          text: "Améliorer la Reconnaissance", 
+          category: "Reconnaissance",
+          icon: "🏆",
+          description: "Question rapide"
+        }
       ],
       typing: "Coach IA écrit...",
       online: "En ligne",
-      back: "Retour"
+      back: "Retour",
+      refresh: "Actualiser les suggestions",
+      footer: "Coach Virtuel IA by People First Technologies • Pour un accompagnement personnalisé : contact@peoplefirst-technologies.com"
     },
     en: {
-      placeholder: "Ask your questions about management, team engagement and transformation...",
-      send: "Send",
-      recording: "Recording...",
+      welcome: {
+        greeting: "Hello!",
+        title: "What would you like to know?",
+        subtitle: "Ask your questions about management, team engagement and transformation. Get personalized advice based on the 5R® model.",
+        placeholder: "Ask your question about management, team engagement..."
+      },
       quickQuestions: "Quick questions",
       quickButtons: [
-        { text: "Improve Roles", category: "Roles" },
-        { text: "Improve Routines", category: "Routines" },
-        { text: "Improve Rules", category: "Rules" },
-        { text: "Improve Respect", category: "Respect" },
-        { text: "Improve Recognition", category: "Recognition" }
+        { 
+          text: "Improve Roles", 
+          category: "Roles",
+          icon: "👥",
+          description: "Quick question"
+        },
+        { 
+          text: "Improve Routines", 
+          category: "Routines",
+          icon: "🔄",
+          description: "Quick question"
+        },
+        { 
+          text: "Improve Rules", 
+          category: "Rules",
+          icon: "📋",
+          description: "Quick question"
+        },
+        { 
+          text: "Improve Respect", 
+          category: "Respect",
+          icon: "🤝",
+          description: "Quick question"
+        },
+        { 
+          text: "Improve Recognition", 
+          category: "Recognition",
+          icon: "🏆",
+          description: "Quick question"
+        }
       ],
       typing: "AI Coach is typing...",
       online: "Online",
-      back: "Back"
+      back: "Back",
+      refresh: "Refresh suggestions",
+      footer: "AI Virtual Coach by People First Technologies • For personalized support: contact@peoplefirst-technologies.com"
     }
   };
 
@@ -97,6 +148,8 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
 
   const handleSendMessage = async (text: string = inputText) => {
     if (!text.trim()) return;
+
+    setShowWelcome(false);
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -160,14 +213,6 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
     textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
   };
 
-  const toggleRecording = () => {
-    setIsRecording(!isRecording);
-  };
-
-  const toggleSpeaking = () => {
-    setIsSpeaking(!isSpeaking);
-  };
-
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString(language === 'fr' ? 'fr-FR' : 'en-US', {
       hour: '2-digit',
@@ -176,9 +221,9 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm sticky top-0 z-10">
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
@@ -194,7 +239,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               <div>
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Coach Virtuel IA</h2>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  {language === 'fr' ? 'Basé sur le modèle 5R®' : 'Based on the 5R® model'}
+                  {language === 'fr' ? 'Basé sur le modèle 5R® de Cécile Dejoux' : 'Based on Cécile Dejoux\'s 5R® model'}
                 </p>
               </div>
             </div>
@@ -206,153 +251,159 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
         </div>
       </div>
 
-      {/* Chat Container - Centered and Limited Width */}
-      <div className="flex-1 flex justify-center">
-        <div className="w-full max-w-4xl flex flex-col h-full">
-          {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto px-4 sm:px-6 lg:px-8 py-6 custom-scrollbar">
-            <div className="space-y-6 max-w-3xl mx-auto">
-              {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {showWelcome ? (
+          /* Welcome Screen */
+          <div className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+                {t.welcome.greeting} <span className="gradient-text">Coach Virtuel IA</span>
+              </h1>
+              <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300">
+                {t.welcome.title}
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                {t.welcome.subtitle}
+              </p>
+            </div>
+
+            {/* Quick Action Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-4xl">
+              {t.quickButtons.slice(0, 6).map((button, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleQuickQuestion(button.text)}
+                  className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-lg transition-all duration-300 text-left hover:scale-105"
                 >
-                  <div className={`flex items-start space-x-3 max-w-2xl ${message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                      message.sender === 'user' 
-                        ? 'bg-gradient-to-br from-blue-500 to-purple-500' 
-                        : 'bg-gradient-to-br from-purple-500 to-pink-500'
+                  <div className="flex items-start space-x-4">
+                    <div className="text-2xl">{button.icon}</div>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                        {button.text}
+                      </h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                        {button.description}
+                      </p>
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            {/* Refresh Button */}
+            <button className="flex items-center space-x-2 text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+              <RefreshCw className="w-4 h-4" />
+              <span className="text-sm">{t.refresh}</span>
+            </button>
+          </div>
+        ) : (
+          /* Chat Messages */
+          <div className="space-y-6 mb-8">
+            {messages.map((message) => (
+              <div
+                key={message.id}
+                className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+              >
+                <div className={`flex items-start space-x-3 max-w-2xl ${message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
+                    message.sender === 'user' 
+                      ? 'bg-gradient-to-br from-blue-500 to-purple-500' 
+                      : 'bg-gradient-to-br from-purple-500 to-pink-500'
+                  }`}>
+                    {message.sender === 'user' ? (
+                      <User className="w-5 h-5 text-white" />
+                    ) : (
+                      <UserCheck className="w-5 h-5 text-white" />
+                    )}
+                  </div>
+                  
+                  <div className={`flex flex-col ${message.sender === 'user' ? 'items-end' : 'items-start'}`}>
+                    <div className={`px-4 py-3 rounded-2xl ${
+                      message.sender === 'user'
+                        ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
+                        : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white shadow-sm'
                     }`}>
-                      {message.sender === 'user' ? (
-                        <User className="w-4 h-4 text-white" />
-                      ) : (
-                        <UserCheck className="w-4 h-4 text-white" />
-                      )}
+                      <div 
+                        className="text-sm leading-relaxed"
+                        dangerouslySetInnerHTML={{ 
+                          __html: message.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
+                        }}
+                      />
                     </div>
                     
-                    <div className={`flex flex-col ${message.sender === 'user' ? 'items-end' : 'items-start'}`}>
-                      <div className={`px-4 py-3 rounded-2xl ${
-                        message.sender === 'user'
-                          ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
-                          : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white shadow-sm'
-                      }`}>
-                        <div 
-                          className="text-sm leading-relaxed"
-                          dangerouslySetInnerHTML={{ 
-                            __html: message.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
-                          }}
-                        />
-                      </div>
-                      
-                      <div className="flex items-center space-x-2 mt-1 px-2">
-                        <span className="text-xs text-gray-500 dark:text-gray-400">{formatTime(message.timestamp)}</span>
-                        {message.sender === 'user' && (
-                          <CheckCircle className="w-3 h-3 text-blue-500" />
-                        )}
-                      </div>
+                    <div className="flex items-center space-x-2 mt-1 px-2">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">{formatTime(message.timestamp)}</span>
+                      {message.sender === 'user' && (
+                        <CheckCircle className="w-3 h-3 text-blue-500" />
+                      )}
                     </div>
                   </div>
                 </div>
-              ))}
-              
-              {isTyping && (
-                <div className="flex justify-start">
-                  <div className="flex items-start space-x-3 max-w-2xl">
-                    <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                      <UserCheck className="w-4 h-4 text-white" />
-                    </div>
-                    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl px-4 py-3 shadow-sm">
-                      <div className="flex items-center space-x-2">
-                        <div className="flex space-x-1">
-                          <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce"></div>
-                          <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                          <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                        </div>
-                        <span className="text-sm text-gray-500 dark:text-gray-400">{t.typing}</span>
+              </div>
+            ))}
+            
+            {isTyping && (
+              <div className="flex justify-start">
+                <div className="flex items-start space-x-3 max-w-2xl">
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                    <UserCheck className="w-5 h-5 text-white" />
+                  </div>
+                  <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl px-4 py-3 shadow-sm">
+                    <div className="flex items-center space-x-2">
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                        <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                       </div>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">{t.typing}</span>
                     </div>
                   </div>
                 </div>
-              )}
-              
-              <div ref={messagesEndRef} />
-            </div>
-          </div>
-
-          {/* Quick Questions */}
-          <div className="bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 px-4 sm:px-6 lg:px-8 py-4">
-            <div className="max-w-3xl mx-auto">
-              <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">{t.quickQuestions}</h3>
-              <div className="flex flex-wrap gap-2">
-                {t.quickButtons.map((button, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleQuickQuestion(button.text)}
-                    className="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 text-sm rounded-full transition-colors duration-200 hover:scale-105"
-                  >
-                    {button.text}
-                  </button>
-                ))}
               </div>
-            </div>
+            )}
+            
+            <div ref={messagesEndRef} />
           </div>
+        )}
 
-          {/* Input Area */}
-          <div className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-4 sm:px-6 lg:px-8 py-4">
-            <div className="max-w-3xl mx-auto">
-              <div className="flex items-end space-x-3">
-                <div className="flex-1 relative">
-                  <textarea
-                    ref={inputRef}
-                    value={inputText}
-                    onChange={handleInputChange}
-                    onKeyDown={handleKeyPress}
-                    placeholder={t.placeholder}
-                    className="w-full px-4 py-3 pr-12 border border-gray-300 dark:border-gray-600 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700"
-                    style={{ minHeight: '48px', maxHeight: '120px' }}
-                    rows={1}
-                  />
-                  <button
-                    onClick={toggleSpeaking}
-                    className={`absolute right-3 top-1/2 transform -translate-y-1/2 p-2 rounded-full transition-colors ${
-                      isSpeaking 
-                        ? 'bg-red-100 text-red-600 hover:bg-red-200' 
-                        : 'bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-500'
-                    }`}
-                  >
-                    {isSpeaking ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-                  </button>
-                </div>
-                
-                <button
-                  onClick={toggleRecording}
-                  className={`p-3 rounded-full transition-all duration-200 ${
-                    isRecording
-                      ? 'bg-red-500 text-white hover:bg-red-600 animate-pulse'
-                      : 'bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-500'
-                  }`}
-                >
-                  {isRecording ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
-                </button>
-                
-                <button
-                  onClick={() => handleSendMessage()}
-                  disabled={!inputText.trim()}
-                  className="p-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 disabled:hover:scale-100"
-                >
-                  <Send className="w-5 h-5" />
-                </button>
+        {/* Input Area - Fixed at bottom */}
+        <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 p-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-end space-x-3">
+              <div className="flex-1 relative">
+                <textarea
+                  ref={inputRef}
+                  value={inputText}
+                  onChange={handleInputChange}
+                  onKeyDown={handleKeyPress}
+                  placeholder={t.welcome.placeholder}
+                  className="w-full px-4 py-3 pr-12 border border-gray-300 dark:border-gray-600 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700"
+                  style={{ minHeight: '48px', maxHeight: '120px' }}
+                  rows={1}
+                />
               </div>
               
-              {isRecording && (
-                <div className="mt-3 flex items-center justify-center space-x-2 text-red-600">
-                  <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
-                  <span className="text-sm font-medium">{t.recording}</span>
-                </div>
-              )}
+              <button
+                onClick={() => handleSendMessage()}
+                disabled={!inputText.trim()}
+                className="p-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 disabled:hover:scale-100 shadow-lg"
+              >
+                <Send className="w-5 h-5" />
+              </button>
+            </div>
+            
+            {/* Footer */}
+            <div className="mt-3 text-center">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                {t.footer}
+              </p>
             </div>
           </div>
         </div>
+
+        {/* Spacer for fixed input */}
+        <div className="h-32"></div>
       </div>
     </div>
   );
