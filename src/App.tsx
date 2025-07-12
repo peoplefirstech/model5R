@@ -559,6 +559,100 @@ function App() {
             </div>
           </section>
 
+          {/* Section Disclaimer */}
+          <section id="disclaimer" className="py-20">
+            <div className="text-center mb-16">
+              <h2 className={`text-4xl font-bold ${themeClasses.text} mb-6`}>
+                {language === 'fr' ? 'Disclaimer et Limites' : 'Disclaimer and Limitations'}
+              </h2>
+              <p className={`text-xl ${themeClasses.textSecondary} max-w-3xl mx-auto`}>
+                {language === 'fr'
+                  ? 'Pour une utilisation optimale, il est important de comprendre le cadre et les limites de cet assistant IA'
+                  : 'For optimal use, it is important to understand the framework and limitations of this AI assistant'
+                }
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className={`${themeClasses.glassBg} rounded-2xl p-8 ${themeClasses.border} border hover:border-opacity-40 transition-all duration-300`}>
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center mr-4">
+                    <AlertTriangle className="w-6 h-6 text-yellow-500" />
+                  </div>
+                  <h3 className={`text-xl font-semibold ${themeClasses.text}`}>
+                    {language === 'fr' ? 'Assistant, pas remplaçant' : 'Assistant, not replacement'}
+                  </h3>
+                </div>
+                <p className={`${themeClasses.textSecondary} leading-relaxed`}>
+                  {language === 'fr'
+                    ? 'Le Coach Virtuel IA complète mais ne remplace pas l\'accompagnement humain d\'un expert'
+                    : 'The Virtual AI Coach complements but does not replace human expert guidance'
+                  }
+                </p>
+              </div>
+
+              <div className={`${themeClasses.glassBg} rounded-2xl p-8 ${themeClasses.border} border hover:border-opacity-40 transition-all duration-300`}>
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center mr-4">
+                    <AlertTriangle className="w-6 h-6 text-orange-500" />
+                  </div>
+                  <h3 className={`text-xl font-semibold ${themeClasses.text}`}>
+                    {language === 'fr' ? 'Conseils génériques' : 'Generic advice'}
+                  </h3>
+                </div>
+                <p className={`${themeClasses.textSecondary} leading-relaxed`}>
+                  {language === 'fr'
+                    ? 'Les recommandations sont générales et peuvent nécessiter une adaptation à votre contexte spécifique'
+                    : 'Recommendations are general and may require adaptation to your specific context'
+                  }
+                </p>
+              </div>
+
+              <div className={`${themeClasses.glassBg} rounded-2xl p-8 ${themeClasses.border} border hover:border-opacity-40 transition-all duration-300`}>
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center mr-4">
+                    <XCircle className="w-6 h-6 text-red-500" />
+                  </div>
+                  <h3 className={`text-xl font-semibold ${themeClasses.text}`}>
+                    {language === 'fr' ? 'Pas de diagnostic personnalisé' : 'No personalized diagnosis'}
+                  </h3>
+                </div>
+                <p className={`${themeClasses.textSecondary} leading-relaxed`}>
+                  {language === 'fr'
+                    ? 'Pour un diagnostic approfondi et un plan d\'action sur-mesure, contactez nos experts'
+                    : 'For in-depth diagnosis and customized action plan, contact our experts'
+                  }
+                </p>
+              </div>
+            </div>
+
+            {/* Important notice */}
+            <div className={`bg-orange-50 ${isDarkMode ? 'bg-orange-900/20' : ''} rounded-2xl p-8 ${themeClasses.border} border border-orange-200 ${isDarkMode ? 'border-orange-800' : ''}`}>
+              <div className="flex items-start">
+                <div className="w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                  <AlertTriangle className="w-5 h-5 text-orange-500" />
+                </div>
+                <div>
+                  <h3 className={`text-xl font-semibold mb-4 ${themeClasses.text}`}>
+                    {language === 'fr' ? 'Important à retenir' : 'Important to remember'}
+                  </h3>
+                  <p className={`${themeClasses.textSecondary} leading-relaxed mb-4`}>
+                    {language === 'fr'
+                      ? 'Ce Coach Virtuel IA est un outil d\'aide à la décision basé sur le modèle 5R®. Il fournit des conseils génériques et des bonnes pratiques, mais ne remplace pas l\'expertise humaine d\'un consultant spécialisé.'
+                      : 'This Virtual AI Coach is a decision support tool based on the 5R® model. It provides generic advice and best practices, but does not replace the human expertise of a specialized consultant.'
+                    }
+                  </p>
+                  <p className={`${themeClasses.textSecondary} leading-relaxed`}>
+                    {language === 'fr'
+                      ? 'Pour un diagnostic approfondi, un plan d\'action personnalisé ou une formation complète, nous recommandons fortement de faire appel à nos experts People First Technologies.'
+                      : 'For in-depth diagnosis, personalized action plan or comprehensive training, we strongly recommend contacting our People First Technologies experts.'
+                    }
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* CTA Final optimisé */}
           <section className="py-20">
             <div className={`bg-gradient-to-r from-pft-blue/20 to-purple-600/20 backdrop-blur-sm rounded-3xl p-12 text-center ${themeClasses.border} border`}>
@@ -650,15 +744,15 @@ function App() {
               
               {/* Contact Expert Button */}
               <button
-                onClick={() => window.location.href = 'mailto:contact@peoplefirst-technologies.com?subject=Demande de démo - Coach Virtuel IA 5R®'}
+                onClick={() => setCurrentPage('chat')}
                 className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group ${
                   isDarkMode
                     ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
                     : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
                 }`}
               >
-                <Mail className="w-4 h-4 mr-2" />
-                {language === 'fr' ? 'Demander un expert' : 'Ask an Expert'}
+                <MessageCircle className="w-4 h-4 mr-2" />
+                {language === 'fr' ? 'Essayer le Coach IA' : 'Try AI Coach'}
               </button>
             </div>
           </div>
