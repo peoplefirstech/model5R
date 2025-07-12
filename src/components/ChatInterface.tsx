@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Mic, MicOff, Volume2, VolumeX, User, Bot, Clock, CheckCircle, UserCheck, ArrowLeft, RefreshCw } from 'lucide-react';
+import { Send, Mic, MicOff, Volume2, VolumeX, User, Bot, Clock, CheckCircle, UserCheck, ArrowLeft, RefreshCw, Users, RotateCcw, FileText, Handshake, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface Message {
@@ -54,31 +54,31 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
         { 
           text: "Améliorer les Rôles", 
           category: "Rôles",
-          icon: "👥",
+          icon: Users,
           description: "Question rapide"
         },
         { 
           text: "Améliorer les Routines", 
           category: "Routines",
-          icon: "🔄",
+          icon: RotateCcw,
           description: "Question rapide"
         },
         { 
           text: "Améliorer les Règles", 
           category: "Règles",
-          icon: "📋",
+          icon: FileText,
           description: "Question rapide"
         },
         { 
           text: "Améliorer le Respect", 
           category: "Respect",
-          icon: "🤝",
+          icon: Handshake,
           description: "Question rapide"
         },
         { 
           text: "Améliorer la Reconnaissance", 
           category: "Reconnaissance",
-          icon: "🏆",
+          icon: Award,
           description: "Question rapide"
         }
       ],
@@ -100,31 +100,31 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
         { 
           text: "Improve Roles", 
           category: "Roles",
-          icon: "👥",
+          icon: Users,
           description: "Quick question"
         },
         { 
           text: "Improve Routines", 
           category: "Routines",
-          icon: "🔄",
+          icon: RotateCcw,
           description: "Quick question"
         },
         { 
           text: "Improve Rules", 
           category: "Rules",
-          icon: "📋",
+          icon: FileText,
           description: "Quick question"
         },
         { 
           text: "Improve Respect", 
           category: "Respect",
-          icon: "🤝",
+          icon: Handshake,
           description: "Quick question"
         },
         { 
           text: "Improve Recognition", 
           category: "Recognition",
-          icon: "🏆",
+          icon: Award,
           description: "Quick question"
         }
       ],
@@ -277,7 +277,9 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                   className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-lg transition-all duration-300 text-left hover:scale-105"
                 >
                   <div className="flex items-start space-x-4">
-                    <div className="text-2xl">{button.icon}</div>
+                    <div className="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center group-hover:bg-purple-100 dark:group-hover:bg-purple-900/30 transition-colors">
+                      <button.icon className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400" />
+                    </div>
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                         {button.text}
