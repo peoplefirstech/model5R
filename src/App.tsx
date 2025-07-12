@@ -318,14 +318,10 @@ function App() {
               {/* Contact Expert Button */}
               <button
                 onClick={() => setCurrentPage('contact')}
-                className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group ${
-                  isDarkMode
-                    ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
-                    : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
-                }`}
+                className="inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50"
               >
-                <Mail className="w-4 h-4 mr-2" />
-                {language === 'fr' ? 'Demander un expert' : 'Ask an Expert'}
+                <Mail className="w-4 h-4 mr-2 transition-transform group-hover:scale-110" />
+                Demander un expert
               </button>
             </div>
           </div>
@@ -1028,7 +1024,7 @@ ${formData.firstName} ${formData.lastName}`;
                   }`}
                 >
                   <MessageCircle className="w-4 h-4 mr-2" />
-                  {language === 'fr' ? 'Demander un expert' : 'Ask an Expert'}
+                  {language === 'fr' ? 'Essayer le Coach IA' : 'Try AI Coach'}
                 </button>
               </div>
             </div>
