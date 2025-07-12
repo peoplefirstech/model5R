@@ -141,7 +141,7 @@ export default function Footer({ language, onNavigate }: FooterProps) {
             {/* Legal Links */}
             <div className="flex flex-wrap justify-center md:justify-start items-center space-x-6 text-sm">
               <button 
-                onClick={() => onNavigate('legal')}
+                onClick={() => onNavigate('/mentions-legales')}
                 className="flex items-center text-gray-300 hover:text-purple-300 transition-colors"
               >
                 <FileText className="w-4 h-4 mr-2" />
@@ -149,7 +149,7 @@ export default function Footer({ language, onNavigate }: FooterProps) {
               </button>
               
               <button 
-                onClick={() => onNavigate('privacy')}
+                onClick={() => onNavigate('/politique-confidentialite')}
                 className="flex items-center text-gray-300 hover:text-purple-300 transition-colors"
               >
                 <Shield className="w-4 h-4 mr-2" />
@@ -157,7 +157,7 @@ export default function Footer({ language, onNavigate }: FooterProps) {
               </button>
               
               <button 
-                onClick={() => onNavigate('cookies')}
+                onClick={() => onNavigate('/politique-cookies')}
                 className="flex items-center text-gray-300 hover:text-purple-300 transition-colors"
               >
                 <Cookie className="w-4 h-4 mr-2" />
