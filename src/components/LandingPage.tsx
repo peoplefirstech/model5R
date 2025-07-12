@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  Brain, 
+  UserCheck, 
   Users, 
   Target, 
   Zap, 
@@ -53,7 +53,7 @@ export default function LandingPage() {
         subtitle: "Une approche révolutionnaire qui combine intelligence artificielle et expertise humaine",
         items: [
           {
-            icon: Brain,
+            icon: UserCheck,
             title: "IA Avancée",
             description: "Algorithmes de pointe basés sur le modèle 5R® pour un coaching personnalisé et adaptatif en temps réel."
           },
@@ -162,7 +162,7 @@ export default function LandingPage() {
         subtitle: "A revolutionary approach that combines artificial intelligence and human expertise",
         items: [
           {
-            icon: Brain,
+            icon: UserCheck,
             title: "Advanced AI",
             description: "Cutting-edge algorithms based on the 5R® model for personalized and adaptive real-time coaching."
           },
@@ -261,7 +261,7 @@ export default function LandingPage() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                <Brain className="w-5 h-5 text-white" />
+                <UserCheck className="w-5 h-5 text-white" />
               </div>
               <div>
                 <h1 className="text-lg font-bold text-gray-900">People First Technologies</h1>
@@ -364,7 +364,7 @@ export default function LandingPage() {
                 <div className="relative space-y-6">
                   <div className="flex items-center space-x-3">
                     <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                      <Brain className="w-6 h-6 text-white" />
+                      <UserCheck className="w-6 h-6 text-white" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900">Coach Virtuel IA</h3>
