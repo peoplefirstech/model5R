@@ -359,7 +359,7 @@ function App() {
             
             {/* CTA principal optimisé */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-              <a
+              <button
                 onClick={() => setCurrentPage('chat')}
                 className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-pft-blue to-purple-600 text-white rounded-2xl hover:from-pft-blue/90 hover:to-purple-700 transition-all duration-300 text-lg font-semibold shadow-2xl hover:shadow-blue-500/25 transform hover:scale-105"
               >
