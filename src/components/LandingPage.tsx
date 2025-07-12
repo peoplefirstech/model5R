@@ -50,10 +50,6 @@ export default function LandingPage() {
   const content = {
     fr: {
       nav: {
-        solutions: "Solutions",
-        about: "À propos",
-        contact: "Contact",
-        demo: "Démo",
         askExpert: "Demander un Expert"
       },
       hero: {
@@ -61,8 +57,6 @@ export default function LandingPage() {
         titleHighlight: "Intelligence Artificielle",
         subtitle: "Transformez votre potentiel en performance grâce à notre Coach Virtuel IA basé sur le modèle 5R® de Cécile Dejoux. Une approche scientifique pour un développement humain authentique.",
         cta: "Commencer maintenant",
-        demo: "Voir la démo",
-        watchVideo: "Regarder la vidéo",
         tryChat: "Essayer le chat"
       },
       features: {
@@ -159,10 +153,6 @@ export default function LandingPage() {
     },
     en: {
       nav: {
-        solutions: "Solutions",
-        about: "About",
-        contact: "Contact",
-        demo: "Demo",
         askExpert: "Ask an Expert"
       },
       hero: {
@@ -170,8 +160,6 @@ export default function LandingPage() {
         titleHighlight: "Artificial Intelligence",
         subtitle: "Transform your potential into performance with our AI Virtual Coach based on Cécile Dejoux's 5R® model. A scientific approach for authentic human development.",
         cta: "Get started now",
-        demo: "See demo",
-        watchVideo: "Watch video",
         tryChat: "Try the chat"
       },
       features: {
@@ -287,9 +275,6 @@ export default function LandingPage() {
             </div>
             
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#solutions" className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">{t.nav.solutions}</a>
-              <a href="#about" className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">{t.nav.about}</a>
-              <a href="#contact" className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">{t.nav.contact}</a>
             </div>
             
             <div className="flex items-center space-x-4">
@@ -309,11 +294,11 @@ export default function LandingPage() {
               </button>
               
               <Link
-                to="/chat"
+                to="/#contact"
                 className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center space-x-2"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>{t.nav.demo}</span>
+                <span>Contact</span>
               </Link>
             </div>
           </div>
@@ -355,10 +340,13 @@ export default function LandingPage() {
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
                 
-                <button className="group bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-4 rounded-xl font-semibold text-lg hover:border-purple-300 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-105">
-                  <Play className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                  <span>{t.hero.watchVideo}</span>
-                </button>
+                <a
+                  href="#contact"
+                  className="group bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-4 rounded-xl font-semibold text-lg hover:border-purple-300 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-105"
+                >
+                  <MessageCircle className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                  <span>Nous contacter</span>
+                </a>
               </div>
               
               <div className="flex items-center space-x-6 text-sm text-gray-600 dark:text-gray-400">
