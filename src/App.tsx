@@ -303,6 +303,10 @@ function App() {
               
               {/* Contact Expert Button */}
               <button
+              </button>
+              
+              {/* Contact Expert Button */}
+              <button
                 onClick={() => setCurrentPage('chat')}
                 className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group ${
                   isDarkMode
