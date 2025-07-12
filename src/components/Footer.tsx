@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, Shield, Cookie, FileText, Mail, Phone, MapPin, Linkedin, Twitter, Facebook, UserCheck } from 'lucide-react';
 
