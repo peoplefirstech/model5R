@@ -322,7 +322,7 @@ function App() {
                 }`}
               >
                 <MessageCircle className="w-4 h-4 mr-2" />
-                {language === 'fr' ? 'Essayer le Coach' : 'Try the Coach'}
+                {language === 'fr' ? 'Essayer le Coach IA' : 'Try AI Coach'}
               </button>
             </div>
           </div>
@@ -356,14 +356,14 @@ function App() {
             
             {/* CTA principal optimisé */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-              <button
-                onClick={() => setCurrentPage('chat')}
+              <a
+                href="mailto:contact@peoplefirst-technologies.com?subject=Demande de démo - Coach Virtuel IA 5R®"
                 className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-pft-blue to-purple-600 text-white rounded-2xl hover:from-pft-blue/90 hover:to-purple-700 transition-all duration-300 text-lg font-semibold shadow-2xl hover:shadow-blue-500/25 transform hover:scale-105"
               >
-                <MessageCircle className="w-6 h-6 mr-3" />
-                {language === 'fr' ? 'Essayez le Coach IA' : 'Try the AI Coach'}
+                <Mail className="w-6 h-6 mr-3" />
+                {language === 'fr' ? 'Demander une démo' : 'Request a demo'}
                 <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
             </div>
 
             {/* Preuves sociales */}
@@ -689,7 +689,7 @@ function App() {
                 }`}
               >
                 <MessageCircle className="w-4 h-4 mr-2" />
-                {language === 'fr' ? 'Essayer le Coach' : 'Try the Coach'}
+                {language === 'fr' ? 'Essayer le Coach IA' : 'Try AI Coach'}
               </button>
             </div>
           </div>
