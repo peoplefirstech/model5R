@@ -650,15 +650,15 @@ function App() {
               
               {/* Contact Expert Button */}
               <button
-                onClick={() => setCurrentPage('chat')}
+                onClick={() => window.location.href = 'mailto:contact@peoplefirst-technologies.com?subject=Demande de démo - Coach Virtuel IA 5R®'}
                 className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group ${
                   isDarkMode
                     ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
                     : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
                 }`}
               >
-                <MessageCircle className="w-4 h-4 mr-2" />
-                {language === 'fr' ? 'Essayer le Coach IA' : 'Try AI Coach'}
+                <Mail className="w-4 h-4 mr-2" />
+                {language === 'fr' ? 'Demander un expert' : 'Ask an Expert'}
               </button>
             </div>
           </div>
