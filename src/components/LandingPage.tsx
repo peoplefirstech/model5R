@@ -384,21 +384,36 @@ export default function LandingPage() {
                   <div className="space-y-4">
                     <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
                       <p className="text-sm text-gray-700 dark:text-gray-300">
-                        Bonjour ! Je suis votre Coach Virtuel IA. Posez-moi vos questions sur le management, l'engagement d'équipe et la transformation. Recevez des conseils personnalisés basés sur le modèle 5R®.
+                        {language === 'fr' 
+                          ? "Bonjour ! Je suis votre Coach Virtuel IA. Posez-moi vos questions sur le management, l'engagement d'équipe et la transformation. Recevez des conseils personnalisés basés sur le modèle 5R®."
+                          : "Hello! I'm your AI Virtual Coach. Ask me questions about management, team engagement and transformation. Get personalized advice based on the 5R® model."
+                        }
                       </p>
-                      <span className="text-xs text-gray-500 dark:text-gray-400 mt-2 block">23:51</span>
+                      <span className="text-xs text-gray-500 dark:text-gray-400 mt-2 block">
+                        {language === 'fr' ? '23:51' : '11:51 PM'}
+                      </span>
                     </div>
                     
                     <div className="flex justify-end">
                       <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg p-4 max-w-xs">
-                        <p className="text-sm">Comment améliorer les règles dans mon équipe ?</p>
-                        <span className="text-xs opacity-75 mt-2 block">00:07</span>
+                        <p className="text-sm">
+                          {language === 'fr' 
+                            ? "Comment améliorer les règles dans mon équipe ?"
+                            : "How to improve rules in my team?"
+                          }
+                        </p>
+                        <span className="text-xs opacity-75 mt-2 block">
+                          {language === 'fr' ? '00:07' : '12:07 AM'}
+                        </span>
                       </div>
                     </div>
                     
                     <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
                       <p className="text-sm text-gray-700 dark:text-gray-300">
-                        Pour <strong>Règles</strong>, organisez un atelier collaboratif où l'équipe co-construit...
+                        {language === 'fr' 
+                          ? "Pour **Règles**, organisez un atelier collaboratif où l'équipe co-construit..."
+                          : "For **Rules**, organize a collaborative workshop where the team co-builds..."
+                        }
                       </p>
                     </div>
                   </div>
@@ -407,7 +422,7 @@ export default function LandingPage() {
                     <div className="flex items-center space-x-2">
                       <input
                         type="text"
-                        placeholder="Tapez votre message..."
+                        placeholder={language === 'fr' ? "Tapez votre message..." : "Type your message..."}
                         className="flex-1 px-3 py-2 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
                         disabled
                       />
