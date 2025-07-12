@@ -618,28 +618,17 @@ function App() {
             
             <div className="flex items-center space-x-4">
               {/* Language Switch */}
-              <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
-                <button
-                  onClick={() => setLanguage('fr')}
-                  className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 ${
-                    language === 'fr' 
-                      ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm' 
-                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-                  }`}
-                >
-                  🇫🇷 FR
-                </button>
-                <button
-                  onClick={() => setLanguage('en')}
-                  className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 ${
-                    language === 'en' 
-                      ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm' 
-                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-                  }`}
-                >
-                  🇬🇧 EN
-                </button>
-              </div>
+              <button
+                onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
+                className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+                  isDarkMode
+                    ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
+                    : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
+                }`}
+              >
+                <Globe className="w-4 h-4 mr-2" />
+                {language === 'fr' ? 'FR' : 'EN'}
+              </button>
 
               {/* Theme Toggle */}
               <button
