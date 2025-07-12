@@ -9,7 +9,19 @@ interface Message {
 }
 
 function App() {
-  // ... [previous code remains the same until the Theme Toggle button]
+  const [currentPage, setCurrentPage] = useState<'presentation' | 'chat'>('presentation');
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [language, setLanguage] = useState<'fr' | 'en'>('fr');
+
+  const toggleTheme = () => setIsDarkMode(!isDarkMode);
+
+  return (
+    <div className={isDarkMode ? 'dark' : ''}>
+      <header>
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex justify-between items-center">
+            <div className="flex space-x-4">
+              {/* ... autres boutons éventuels ... */}
 
               <button
                 onClick={toggleTheme}
@@ -46,11 +58,9 @@ function App() {
 
       {/* ... [rest of the code remains the same] ... */}
 
+      {currentPage === 'presentation' ? <PresentationPage /> : <ChatPage />}
     </div>
   );
-
-  return currentPage === 'presentation' ? <PresentationPage /> : <ChatPage />;
 }
 
 export default App;
-```
