@@ -315,17 +315,15 @@ function App() {
               
               {/* Contact Expert Button */}
               <button
-                onClick={() => window.open('mailto:contact@peoplefirst-technologies.com', '_blank')}
+                onClick={() => setCurrentPage('chat')}
                 className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group ${
                   isDarkMode
                     ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
                     : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
                 }`}
               >
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                Contact Expert
+                <MessageCircle className="w-4 h-4 mr-2" />
+                {language === 'fr' ? 'Essayer le Coach' : 'Try the Coach'}
               </button>
             </div>
           </div>
@@ -359,14 +357,14 @@ function App() {
             
             {/* CTA principal optimisé */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-              <button
-                onClick={() => setCurrentPage('chat')}
+              <a
+                href="mailto:contact@peoplefirst-technologies.com?subject=Demande de démo - Coach Virtuel IA 5R®"
                 className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-pft-blue to-purple-600 text-white rounded-2xl hover:from-pft-blue/90 hover:to-purple-700 transition-all duration-300 text-lg font-semibold shadow-2xl hover:shadow-blue-500/25 transform hover:scale-105"
               >
-                <MessageCircle className="w-6 h-6 mr-3" />
-                {language === 'fr' ? 'Essayer le Coach' : 'Try the Coach'}
+                <Mail className="w-6 h-6 mr-3" />
+                {language === 'fr' ? 'Demander une démo' : 'Request a demo'}
                 <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
             </div>
 
             {/* Preuves sociales */}
@@ -593,13 +591,6 @@ function App() {
                   <Mail className="w-5 h-5 mr-3" />
                   {language === 'fr' ? 'Demander une démo' : 'Request a demo'}
                 </a>
-                <button
-                  onClick={() => setCurrentPage('chat')}
-                  className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-purple-500 text-purple-500 rounded-xl hover:bg-purple-500 hover:text-white transition-all duration-300 font-semibold"
-                >
-                  <MessageCircle className="w-5 h-5 mr-3" />
-                  {language === 'fr' ? 'Essayer le Coach' : 'Try the Coach'}
-                </button>
               </div>
             </div>
           </section>
@@ -691,17 +682,15 @@ function App() {
               
               {/* Contact Expert Button */}
               <button
-                onClick={() => window.open('mailto:contact@peoplefirst-technologies.com', '_blank')}
+                onClick={() => setCurrentPage('chat')}
                 className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group ${
                   isDarkMode
                     ? 'border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white hover:bg-gray-800'
                     : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50'
                 }`}
               >
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                Contact Expert
+                <MessageCircle className="w-4 h-4 mr-2" />
+                {language === 'fr' ? 'Essayer le Coach' : 'Try the Coach'}
               </button>
             </div>
           </div>
