@@ -705,7 +705,7 @@ function App() {
               <img 
                 src="https://res.cloudinary.com/doo9fgw4x/image/upload/v1752331776/PFT_zizh77.png" 
                 alt="People First Technologies" 
-                className="h-10 w-auto cursor-pointer"
+                className="h-12 w-auto cursor-pointer"
                 onClick={() => setCurrentPage('presentation')}
               />
             </div>
@@ -739,11 +739,6 @@ function App() {
                   ) : (
                     <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                   )}
-                </svg>
-              </button>
-              
-              {/* Contact Expert Button */}
-              <button
                 onClick={() => setCurrentPage('chat')}
                 className={`inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 group ${
                   isDarkMode
