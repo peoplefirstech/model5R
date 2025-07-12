@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import Footer from './Footer';
 import PreFooter from './PreFooter';
+import ContactForm from './ContactForm';
 
 export default function LandingPage() {
   const [language, setLanguage] = useState<'fr' | 'en'>('fr');
@@ -540,6 +541,9 @@ export default function LandingPage() {
 
       {/* PreFooter */}
       <PreFooter language={language} />
+
+      {/* Contact Form */}
+      <ContactForm language={language} />
 
       {/* Footer */}
       <Footer language={language} />
