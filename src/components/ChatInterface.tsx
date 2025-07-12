@@ -195,8 +195,9 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
         </div>
       </div>
 
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6 custom-scrollbar">
+      {/* Messages Container */}
+      <div className="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-4xl mx-auto px-6 py-4 space-y-6 custom-scrollbar">
         {messages.map((message) => (
           <div
             key={message.id}
@@ -290,26 +291,30 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
         
         <div ref={messagesEndRef} />
       </div>
+      </div>
 
-      {/* Quick Questions */}
-      <div className="px-6 py-4 bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700">
-        <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">{t.quickQuestions}</h3>
-        <div className="flex flex-wrap gap-2">
-          {t.quickButtons.map((button, index) => (
-            <button
-              key={index}
-              onClick={() => handleQuickQuestion(button.text)}
-              className="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 text-sm rounded-full transition-colors duration-200 hover:scale-105"
-            >
-              {button.text}
-            </button>
-          ))}
+      {/* Quick Questions Container */}
+      <div className="bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700">
+        <div className="max-w-4xl mx-auto px-6 py-4">
+          <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">{t.quickQuestions}</h3>
+          <div className="flex flex-wrap gap-2">
+            {t.quickButtons.map((button, index) => (
+              <button
+                key={index}
+                onClick={() => handleQuickQuestion(button.text)}
+                className="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 text-sm rounded-full transition-colors duration-200 hover:scale-105"
+              >
+                {button.text}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Input Area */}
-      <div className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-6 py-4">
-        <div className="flex items-end space-x-4">
+      {/* Input Area Container */}
+      <div className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+        <div className="max-w-4xl mx-auto px-6 py-4">
+          <div className="flex items-end space-x-4">
           <div className="flex-1 relative">
             <textarea
               ref={inputRef}
@@ -352,11 +357,14 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
             <Send className="w-5 h-5" />
           </button>
         </div>
+        </div>
         
         {isRecording && (
-          <div className="mt-3 flex items-center justify-center space-x-2 text-red-600">
+          <div className="max-w-4xl mx-auto px-6">
+            <div className="mt-3 flex items-center justify-center space-x-2 text-red-600">
             <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
             <span className="text-sm font-medium">{t.recording}</span>
+          </div>
           </div>
         )}
       </div>
