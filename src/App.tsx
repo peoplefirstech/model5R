@@ -303,7 +303,7 @@ function App() {
         </div>
       </section>
 
-      <Footer />
+      <Footer language={language} />
     </div>
   );
 
@@ -427,7 +427,7 @@ function App() {
         </div>
       </div>
 
-      <Footer />
+      <Footer language={language} />
     </div>
   );
 
@@ -676,7 +676,7 @@ function App() {
         </div>
       </div>
 
-      <Footer />
+      <Footer language={language} />
     </div>
   );
 
@@ -909,7 +909,7 @@ function App() {
         </div>
       </section>
 
-      <Footer />
+      <Footer language={language} />
     </div>
   );
 
