@@ -453,18 +453,36 @@ export default function LandingPage() {
               const IconComponent = feature.icon;
               return (
                 <div key={index} className="group animate-slideUp" style={{ animationDelay: `${index * 0.15}s` }}>
-                  <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-lg hover:shadow-xl dark:shadow-gray-900/20 transition-all duration-300 h-full border border-gray-100 dark:border-gray-700 text-center group-hover:scale-105 group-hover:-translate-y-1">
+                  <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 lg:p-10 shadow-sm hover:shadow-md dark:shadow-gray-900/10 transition-all duration-500 h-full border border-gray-200/50 dark:border-gray-700/50 text-center group-hover:bg-white dark:group-hover:bg-gray-800 group-hover:border-purple-200/50 dark:group-hover:border-purple-700/50">
                     
-                    <div className="relative w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-all duration-300 shadow-lg">
-                      <IconComponent className="w-8 h-8 text-white" />
+                    {/* Subtle background gradient on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-50/0 via-transparent to-pink-50/0 dark:from-purple-900/0 dark:via-transparent dark:to-pink-900/0 group-hover:from-purple-50/30 dark:group-hover:from-purple-900/20 group-hover:to-pink-50/30 dark:group-hover:to-pink-900/20 rounded-3xl transition-all duration-500"></div>
+                    
+                    <div className="relative">
+                      {/* Icon container with refined design */}
+                      <div className="relative w-20 h-20 mx-auto mb-8">
+                        {/* Background circle with subtle gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 rounded-2xl group-hover:from-purple-200 dark:group-hover:from-purple-800/50 group-hover:to-pink-200 dark:group-hover:to-pink-800/50 transition-all duration-500"></div>
+                        
+                        {/* Icon with gradient */}
+                        <div className="relative w-full h-full flex items-center justify-center">
+                          <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-sm">
+                            <IconComponent className="w-6 h-6 text-white" />
+                          </div>
+                        </div>
+                        
+                        {/* Subtle glow effect */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 rounded-2xl blur-xl transition-all duration-500"></div>
+                      </div>
+                      
+                      <h3 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-300">
+                        {feature.title}
+                      </h3>
+                      
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base lg:text-lg group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300">
+                        {feature.description}
+                      </p>
                     </div>
-                    
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                      {feature.description}
-                    </p>
                   </div>
                 </div>
               );
