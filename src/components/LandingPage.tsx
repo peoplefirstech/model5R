@@ -406,8 +406,8 @@ export default function LandingPage() {
                     <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
                       <p className="text-sm text-gray-700 dark:text-gray-300">
                         {language === 'fr' 
-                          ? "Pour **Règles**, organisez un atelier collaboratif où l'équipe co-construit..."
-                          : "For **Rules**, organize a collaborative workshop where the team co-builds..."
+                          ? "Pour améliorer les **règles**, organisez un atelier collaboratif où l'équipe co-construit..."
+                          : "To improve **rules**, organize a collaborative workshop where the team co-builds..."
                         }
                       </p>
                     </div>
