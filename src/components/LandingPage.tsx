@@ -643,6 +643,132 @@ export default function LandingPage() {
       </section>
       </React.Suspense>
 
+      {/* Disclaimer Section */}
+      <React.Suspense fallback={<div className="h-96 bg-gray-50 dark:bg-gray-800 animate-pulse"></div>}>
+        <section className="relative py-16 bg-gray-50 dark:bg-gray-800">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            {/* Header */}
+            <div className={`text-center mb-12 ${!isMobile ? 'animate-fadeIn' : ''}`}>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                {language === 'fr' ? 'Disclaimer et Limites' : 'Disclaimer and Limitations'}
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                {language === 'fr' 
+                  ? "Pour une utilisation optimale, il est important de comprendre le cadre et les limites de cet assistant IA"
+                  : "For optimal use, it is important to understand the framework and limitations of this AI assistant"
+                }
+              </p>
+            </div>
+            
+            {/* Disclaimer Cards */}
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              {/* Assistant, pas remplaçant */}
+              <div className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: '0.1s' }}>
+                <div className="bg-white dark:bg-gray-700 rounded-2xl p-6 border-2 border-gray-200 dark:border-gray-600 h-full transition-all duration-300 hover:border-yellow-300 dark:hover:border-yellow-500 hover:shadow-lg hover:shadow-yellow-500/10">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-8 h-8 bg-yellow-100 dark:bg-yellow-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-5 h-5 text-yellow-600 dark:text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                        {language === 'fr' ? 'Assistant, pas remplaçant' : 'Assistant, not replacement'}
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                        {language === 'fr' 
+                          ? "Le Coach Virtuel IA complète mais ne remplace pas l'accompagnement humain d'un expert"
+                          : "The AI Virtual Coach complements but does not replace human expert guidance"
+                        }
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Conseils génériques */}
+              <div className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: '0.2s' }}>
+                <div className="bg-white dark:bg-gray-700 rounded-2xl p-6 border-2 border-gray-200 dark:border-gray-600 h-full transition-all duration-300 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg hover:shadow-orange-500/10">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-5 h-5 text-orange-600 dark:text-orange-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                        {language === 'fr' ? 'Conseils génériques' : 'Generic advice'}
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                        {language === 'fr' 
+                          ? "Les recommandations sont générales et peuvent nécessiter une adaptation à votre contexte spécifique"
+                          : "Recommendations are general and may require adaptation to your specific context"
+                        }
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Pas de diagnostic personnalisé */}
+              <div className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: '0.3s' }}>
+                <div className="bg-white dark:bg-gray-700 rounded-2xl p-6 border-2 border-gray-200 dark:border-gray-600 h-full transition-all duration-300 hover:border-red-300 dark:hover:border-red-500 hover:shadow-lg hover:shadow-red-500/10">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-8 h-8 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-5 h-5 text-red-600 dark:text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                        {language === 'fr' ? 'Pas de diagnostic personnalisé' : 'No personalized diagnosis'}
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                        {language === 'fr' 
+                          ? "Pour un diagnostic approfondi et un plan d'action sur-mesure, contactez nos experts"
+                          : "For in-depth diagnosis and customized action plan, contact our experts"
+                        }
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Important à retenir */}
+            <div className={`bg-orange-50 dark:bg-orange-900/20 border-2 border-orange-200 dark:border-orange-800 rounded-2xl p-8 ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: '0.4s' }}>
+              <div className="flex items-start space-x-4">
+                <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                    {language === 'fr' ? 'Important à retenir' : 'Important to remember'}
+                  </h3>
+                  <div className="space-y-4 text-gray-700 dark:text-gray-300">
+                    <p className="leading-relaxed">
+                      {language === 'fr' 
+                        ? "Ce Coach Virtuel IA est un outil d'aide à la décision basé sur le modèle 5R®. Il fournit des conseils génériques et des bonnes pratiques, mais ne remplace pas l'expertise humaine d'un consultant spécialisé."
+                        : "This AI Virtual Coach is a decision support tool based on the 5R® model. It provides generic advice and best practices, but does not replace the human expertise of a specialized consultant."
+                      }
+                    </p>
+                    <p className="leading-relaxed">
+                      {language === 'fr' 
+                        ? "Pour un diagnostic approfondi, un plan d'action personnalisé ou une formation complète, nous recommandons fortement de faire appel à nos experts People First Technologies."
+                        : "For in-depth diagnosis, personalized action plan or complete training, we strongly recommend contacting our People First Technologies experts."
+                      }
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </React.Suspense>
+
       {/* Testimonials Section */}
       <React.Suspense fallback={<div className="h-96 bg-gray-100 dark:bg-gray-900 animate-pulse"></div>}>
         <section className="relative py-12 bg-gradient-to-b from-gray-100/50 to-gray-50 dark:from-gray-800 dark:to-gray-900">
