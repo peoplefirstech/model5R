@@ -21,14 +21,70 @@ import {
   Shield,
   Lightbulb,
   Heart,
-  Sparkles
+  Sparkles,
+  Clock,
+  HeadphonesIcon,
+  Headphones
 } from 'lucide-react';
 import Footer from './Footer';
 import PreFooter from './PreFooter';
 import ContactForm from './ContactForm';
 
+// Hook pour détecter les appareils mobiles
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  return isMobile;
+};
+
+// Composant pour l'animation de frappe
+const TypingAnimation = ({ text, speed = 50, language }: { text: string; speed?: number; language: 'fr' | 'en' }) => {
+  const [displayText, setDisplayText] = useState('');
+  const [showCursor, setShowCursor] = useState(true);
+  
+  useEffect(() => {
+    let i = 0;
+    const timer = setInterval(() => {
+      if (i < text.length) {
+        setDisplayText(text.slice(0, i + 1));
+        i++;
+      } else {
+        clearInterval(timer);
+      }
+    }, speed);
+    
+    return () => clearInterval(timer);
+  }, [text, speed]);
+  
+  useEffect(() => {
+    const cursorTimer = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 500);
+    
+    return () => clearInterval(cursorTimer);
+  }, []);
+  
+  return (
+    <span>
+      {displayText}
+      {showCursor && <span className="animate-pulse">|</span>}
+    </span>
+  );
+};
+
 export default function LandingPage() {
   const [language, setLanguage] = useState<'fr' | 'en'>('fr');
+  const isMobile = useIsMobile();
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('darkMode') === 'true' || 
@@ -57,7 +113,22 @@ export default function LandingPage() {
         titleHighlight: "Intelligence Artificielle",
         subtitle: "Transformez votre potentiel en performance grâce à notre Coach Virtuel IA basé sur le modèle 5R® de Cécile Dejoux. Une approche scientifique pour un développement humain authentique.",
         cta: "Commencer maintenant",
-        tryChat: "Essayer le chat"
+        tryChat: "Essayer le chat",
+        trustIndicators: {
+          users: "10 000+ utilisateurs",
+          satisfaction: "95% de satisfaction",
+          support: "Support 24/7"
+        },
+        certifications: {
+          iso: "ISO 27001",
+          ai: "IA Certifiée",
+          gdpr: "RGPD Conforme"
+        },
+        chatDemo: {
+          greeting: "Bonjour ! Je suis votre Coach Virtuel IA. Posez-moi vos questions sur le management, l'engagement d'équipe et la transformation. Recevez des conseils personnalisés basés sur le modèle 5R®.",
+          userQuestion: "Comment améliorer les règles dans mon équipe ?",
+          response: "Pour améliorer les **règles**, organisez un atelier collaboratif où l'équipe co-construit..."
+        }
       },
       features: {
         title: "Pourquoi choisir notre Coach Virtuel IA ?",
@@ -155,7 +226,22 @@ export default function LandingPage() {
         titleHighlight: "Artificial Intelligence",
         subtitle: "Transform your potential into performance with our AI Virtual Coach based on Cécile Dejoux's 5R® model. A scientific approach for authentic human development.",
         cta: "Get started now",
-        tryChat: "Try the chat"
+        tryChat: "Try the chat",
+        trustIndicators: {
+          users: "10,000+ users",
+          satisfaction: "95% satisfaction",
+          support: "24/7 support"
+        },
+        certifications: {
+          iso: "ISO 27001",
+          ai: "AI Certified",
+          gdpr: "GDPR Compliant"
+        },
+        chatDemo: {
+          greeting: "Hello! I'm your AI Virtual Coach. Ask me questions about management, team engagement and transformation. Get personalized advice based on the 5R® model.",
+          userQuestion: "How to improve rules in my team?",
+          response: "To improve **rules**, organize a collaborative workshop where the team co-builds..."
+        }
       },
       features: {
         title: "Why choose our AI Virtual Coach?",
@@ -301,13 +387,13 @@ export default function LandingPage() {
       {/* Hero Section */}
       <section className="relative pt-20 pb-16 bg-gradient-to-br from-gray-50 via-white to-purple-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/5 dark:bg-pink-500/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '4s' }}></div>
+          <div className={`absolute top-0 left-1/4 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl ${!isMobile ? 'animate-pulse-slow' : ''}`}></div>
+          <div className={`absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/5 dark:bg-pink-500/10 rounded-full blur-3xl ${!isMobile ? 'animate-pulse-slow' : ''}`} style={{ animationDelay: '4s' }}></div>
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8 animate-fadeIn">
+            <div className={`space-y-8 ${!isMobile ? 'animate-fadeIn' : ''}`}>
               <div className="space-y-4">
                 <div className="inline-flex items-center space-x-2 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 px-4 py-2 rounded-full text-sm font-medium">
                   <Sparkles className="w-4 h-4" />
@@ -324,14 +410,53 @@ export default function LandingPage() {
                 </p>
               </div>
               
+              {/* CTA Principal Amélioré */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/chat"
-                  className="group bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-105 shadow-lg hover:shadow-purple-500/25"
+                  className="group bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-5 rounded-xl font-bold text-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 flex items-center justify-center space-x-3 hover:scale-105 shadow-2xl hover:shadow-purple-500/30 ring-2 ring-purple-500/20 hover:ring-purple-500/40"
                 >
                   <span>{t.hero.cta}</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
+              </div>
+              
+              {/* Indicateurs de confiance */}
+              <div className="grid grid-cols-3 gap-4 pt-4">
+                <div className="text-center">
+                  <div className="flex items-center justify-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                    <Users className="w-4 h-4 text-purple-500" />
+                    <span className="font-semibold">{t.hero.trustIndicators.users}</span>
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="flex items-center justify-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                    <Star className="w-4 h-4 text-yellow-500" />
+                    <span className="font-semibold">{t.hero.trustIndicators.satisfaction}</span>
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="flex items-center justify-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                    <Headphones className="w-4 h-4 text-green-500" />
+                    <span className="font-semibold">{t.hero.trustIndicators.support}</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Certifications */}
+              <div className="flex items-center justify-center lg:justify-start space-x-4 pt-2">
+                <div className="flex items-center space-x-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-xs font-medium">
+                  <Shield className="w-3 h-3" />
+                  <span>{t.hero.certifications.iso}</span>
+                </div>
+                <div className="flex items-center space-x-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-medium">
+                  <Zap className="w-3 h-3" />
+                  <span>{t.hero.certifications.ai}</span>
+                </div>
+                <div className="flex items-center space-x-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">
+                  <CheckCircle className="w-3 h-3" />
+                  <span>{t.hero.certifications.gdpr}</span>
+                </div>
               </div>
               
               <div className="flex items-center space-x-6 text-sm text-gray-600 dark:text-gray-400">
@@ -346,10 +471,11 @@ export default function LandingPage() {
               </div>
             </div>
             
-            <div className="relative animate-slideUp">
+            {/* Chat Mockup Interactif */}
+            <div className={`relative ${!isMobile ? 'animate-slideUp' : ''}`}>
               <div className="relative bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-gray-200/50 dark:border-gray-700/50">
-                <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full opacity-10 dark:opacity-20 animate-pulse-slow"></div>
-                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full opacity-10 dark:opacity-20 animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+                <div className={`absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full opacity-10 dark:opacity-20 ${!isMobile ? 'animate-pulse-slow' : ''}`}></div>
+                <div className={`absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full opacity-10 dark:opacity-20 ${!isMobile ? 'animate-pulse-slow' : ''}`} style={{ animationDelay: '1s' }}></div>
                 
                 <div className="relative space-y-6">
                   <div className="flex items-center space-x-3">
@@ -369,10 +495,11 @@ export default function LandingPage() {
                   <div className="space-y-4">
                     <div className="bg-gray-50 dark:bg-gray-700/80 rounded-lg p-4">
                       <p className="text-sm text-gray-700 dark:text-gray-300">
-                        {language === 'fr' 
-                          ? "Bonjour ! Je suis votre Coach Virtuel IA. Posez-moi vos questions sur le management, l'engagement d'équipe et la transformation. Recevez des conseils personnalisés basés sur le modèle 5R®."
-                          : "Hello! I'm your AI Virtual Coach. Ask me questions about management, team engagement and transformation. Get personalized advice based on the 5R® model."
-                        }
+                        <TypingAnimation 
+                          text={t.hero.chatDemo.greeting}
+                          speed={30}
+                          language={language}
+                        />
                       </p>
                       <span className="text-xs text-gray-500 dark:text-gray-400 mt-2 block">
                         {language === 'fr' ? '23:51' : '11:51 PM'}
@@ -382,10 +509,7 @@ export default function LandingPage() {
                     <div className="flex justify-end">
                       <div className="bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-500 dark:to-pink-500 text-white rounded-lg p-4 max-w-xs">
                         <p className="text-sm">
-                          {language === 'fr' 
-                            ? "Comment améliorer les règles dans mon équipe ?"
-                            : "How to improve rules in my team?"
-                          }
+                          {t.hero.chatDemo.userQuestion}
                         </p>
                         <span className="text-xs opacity-75 mt-2 block">
                           {language === 'fr' ? '23:52' : '11:52 PM'}
@@ -397,9 +521,7 @@ export default function LandingPage() {
                       <p 
                         className="text-sm text-gray-700 dark:text-gray-300"
                         dangerouslySetInnerHTML={{
-                          __html: language === 'fr' 
-                            ? "Pour améliorer les **règles**, organisez un atelier collaboratif où l'équipe co-construit...".replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                            : "To improve **rules**, organize a collaborative workshop where the team co-builds...".replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                          __html: t.hero.chatDemo.response.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                         }}
                       />
                     </div>
@@ -426,7 +548,8 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section id="solutions" className="relative py-12 bg-gradient-to-b from-purple-50/30 via-white to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-900">
+      <React.Suspense fallback={<div className="h-96 bg-gray-100 dark:bg-gray-800 animate-pulse"></div>}>
+        <section id="solutions" className="relative py-12 bg-gradient-to-b from-purple-50/30 via-white to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-900">
         {/* Structured Background */}
         <div className="absolute inset-0">
           {/* Smooth transition from hero */}
@@ -435,7 +558,7 @@ export default function LandingPage() {
         
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header with better structure */}
-          <div className="relative text-center mb-12 animate-fadeIn">
+          <div className={`relative text-center mb-12 ${!isMobile ? 'animate-fadeIn' : ''}`}>
             <div className="inline-flex items-center space-x-2 bg-purple-100/80 dark:bg-purple-900/30 backdrop-blur-sm border border-purple-300/50 dark:border-purple-600/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-md">
               <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
               <span>{language === 'fr' ? 'Vos avantages' : 'Your benefits'}</span>
@@ -471,7 +594,7 @@ export default function LandingPage() {
             {t.features.items.map((feature, index) => {
               const IconComponent = feature.icon;
               return (
-                <div key={index} className="group animate-slideUp" style={{ animationDelay: `${index * 0.15}s` }}>
+                <div key={index} className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: `${index * 0.15}s` }}>
                   <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-6 border-2 border-gray-300/80 dark:border-gray-600/80 text-center h-full transition-all duration-300 hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-2xl hover:shadow-purple-500/20 dark:hover:shadow-purple-500/30 group-hover:scale-105 group-hover:-translate-y-2">
                     
                     <div className="relative">
@@ -496,10 +619,12 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      </React.Suspense>
 
 
       {/* 5R Model Section */}
-      <section className="relative py-12 bg-gradient-to-b from-white via-gray-50/50 to-gray-100/50 dark:from-gray-900 dark:via-gray-800/50 dark:to-gray-800 overflow-hidden">
+      <React.Suspense fallback={<div className="h-96 bg-gray-50 dark:bg-gray-800 animate-pulse"></div>}>
+        <section className="relative py-12 bg-gradient-to-b from-white via-gray-50/50 to-gray-100/50 dark:from-gray-900 dark:via-gray-800/50 dark:to-gray-800 overflow-hidden">
         <div className="absolute inset-0">
           {/* Smooth connection from features */}
           <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-white to-transparent dark:from-gray-900 dark:to-transparent"></div>
@@ -507,7 +632,7 @@ export default function LandingPage() {
         
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="relative text-center mb-12 animate-fadeIn">
+          <div className={`relative text-center mb-12 ${!isMobile ? 'animate-fadeIn' : ''}`}>
             <div className="inline-flex items-center space-x-2 bg-purple-100/80 dark:bg-purple-900/30 backdrop-blur-sm border border-purple-300/50 dark:border-purple-600/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-md">
               <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
               <span className="tracking-wide">{language === 'fr' ? 'Méthode scientifique' : 'Scientific method'}</span>
@@ -544,7 +669,7 @@ export default function LandingPage() {
             
             <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             {t.model5r.pillars.map((pillar, index) => (
-              <div key={index} className="group animate-slideUp" style={{ animationDelay: `${index * 0.1}s` }}>
+              <div key={index} className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: `${index * 0.1}s` }}>
                 <div className="relative bg-white dark:bg-gray-700 rounded-2xl p-4 shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-2 border-gray-300/80 dark:border-gray-600/80 group-hover:scale-110 group-hover:-translate-y-3 hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-purple-500/20 dark:hover:shadow-purple-500/30">
                   
                   <div className={`relative w-12 h-12 bg-gradient-to-br ${pillar.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-125 transition-all duration-300 shadow-md mx-auto`}>
@@ -564,16 +689,18 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      </React.Suspense>
 
       {/* Testimonials Section */}
-      <section className="relative py-12 bg-gradient-to-b from-gray-100/50 to-gray-50 dark:from-gray-800 dark:to-gray-900">
+      <React.Suspense fallback={<div className="h-96 bg-gray-100 dark:bg-gray-900 animate-pulse"></div>}>
+        <section className="relative py-12 bg-gradient-to-b from-gray-100/50 to-gray-50 dark:from-gray-800 dark:to-gray-900">
         <div className="absolute inset-0">
           {/* Smooth connection from 5R */}
           <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-gray-100/50 to-transparent dark:from-gray-800 dark:to-transparent"></div>
         </div>
         
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 animate-fadeIn">
+          <div className={`text-center mb-12 ${!isMobile ? 'animate-fadeIn' : ''}`}>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
               {t.testimonials.title}
             </h2>
@@ -586,7 +713,7 @@ export default function LandingPage() {
           <div className="relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-3xl p-6 border-2 border-gray-200/80 dark:border-gray-600/80 shadow-xl">
             <div className="grid md:grid-cols-3 gap-6">
             {t.testimonials.items.map((testimonial, index) => (
-              <div key={index} className="group animate-slideUp" style={{ animationDelay: `${index * 0.1}s` }}>
+              <div key={index} className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: `${index * 0.1}s` }}>
                 <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gray-300/80 dark:border-gray-600/80 h-full hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-purple-500/20 dark:hover:shadow-purple-500/30 group-hover:scale-105 group-hover:-translate-y-2">
                   <div className="flex items-center space-x-1 mb-3">
                     {[...Array(testimonial.rating)].map((_, i) => (
@@ -616,6 +743,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      </React.Suspense>
 
       {/* PreFooter */}
       <PreFooter language={language} />
