@@ -463,12 +463,12 @@ export default function LandingPage() {
               const IconComponent = feature.icon;
               return (
                 <div key={index} className="group animate-slideUp" style={{ animationDelay: `${index * 0.15}s` }}>
-                  <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 lg:p-10 border border-gray-200/50 dark:border-gray-700/50 text-center h-full group-hover:border-purple-300/60 dark:group-hover:border-purple-600/60 transition-all duration-300 group-hover:-translate-y-1">
+                  <div className="relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-8 lg:p-10 border border-gray-300/80 dark:border-gray-600/80 text-center h-full transition-all duration-300">
                     
                     <div className="relative">
                       {/* Structured Icon Design */}
                       <div className="relative w-16 h-16 mx-auto mb-6">
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl border border-purple-100/50 dark:border-purple-800/30"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl border border-purple-200/60 dark:border-purple-700/60"></div>
                         
                         <div className="relative w-full h-full flex items-center justify-center">
                           <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center shadow-sm">
