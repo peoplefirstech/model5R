@@ -404,7 +404,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                   onChange={handleInputChange}
                   onKeyDown={handleKeyPress}
                   placeholder={t.welcome.placeholder}
-                  className="w-full px-4 py-3 pr-12 border border-gray-300 dark:border-gray-600 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700"
+                  className="w-full px-4 py-3 pr-12 border border-gray-300 dark:border-gray-600 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700 scrollbar-hide"
                   style={{ minHeight: '48px', maxHeight: '120px' }}
                   rows={1}
                 />
