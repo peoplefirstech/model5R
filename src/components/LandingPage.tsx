@@ -426,28 +426,53 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section id="solutions" className="py-20 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+      <section id="solutions" className="relative py-24 bg-gradient-to-br from-white via-gray-50 to-purple-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900/30 overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-purple-200/20 dark:bg-purple-500/10 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-pink-200/20 dark:bg-pink-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }}></div>
+        </div>
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 animate-fadeIn">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <div className="relative text-center mb-20 animate-fadeIn">
+            <div className="inline-flex items-center space-x-2 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm border border-white/20 dark:border-gray-700/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-lg">
+              <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+              <span>Pourquoi nous choisir</span>
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
               {t.features.title}
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
               {t.features.subtitle}
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="relative grid md:grid-cols-3 gap-8 lg:gap-12">
             {t.features.items.map((feature, index) => {
               const IconComponent = feature.icon;
               return (
-                <div key={index} className="group animate-slideUp hover-lift" style={{ animationDelay: `${index * 0.1}s` }}>
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 h-full border border-gray-100 dark:border-gray-700 text-center">
-                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div key={index} className="group animate-slideUp" style={{ animationDelay: `${index * 0.15}s` }}>
+                  <div className="relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-3xl p-8 lg:p-10 shadow-xl hover:shadow-2xl transition-all duration-500 h-full border border-white/50 dark:border-gray-700/50 text-center group-hover:scale-105 group-hover:-translate-y-2">
+                    {/* Gradient border effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-pink-500/20 to-orange-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                    
+                    <div className="relative w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg group-hover:shadow-purple-500/25">
                       <IconComponent className="w-8 h-8 text-white" />
+                      
+                      {/* Glow effect */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-400 rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500 -z-10"></div>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">{feature.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{feature.description}</p>
+                    
+                    <h3 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+                      {feature.description}
+                    </p>
+                    
+                    {/* Subtle bottom accent */}
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
                 </div>
               );
@@ -456,39 +481,83 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Transition Section */}
-      <section className="py-12 bg-gradient-to-b from-gray-50 to-purple-50 dark:from-gray-800 dark:to-purple-900">
+      {/* Premium Transition Section */}
+      <section className="relative py-16 bg-gradient-to-br from-purple-50/30 via-pink-50/50 to-purple-100/60 dark:from-purple-900/30 dark:via-pink-900/50 dark:to-purple-800/60 overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-1/4 w-64 h-64 bg-gradient-to-br from-purple-300/30 to-pink-300/30 dark:from-purple-500/20 dark:to-pink-500/20 rounded-full blur-2xl animate-pulse-slow"></div>
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-br from-pink-300/30 to-orange-300/30 dark:from-pink-500/20 dark:to-orange-500/20 rounded-full blur-2xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
+        </div>
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
+          <div className="relative text-center">
+            {/* Decorative elements */}
+            <div className="flex items-center justify-center space-x-4 mb-8">
+              <div className="w-16 h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent"></div>
+              <div className="w-3 h-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
+              <div className="w-24 h-px bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 animate-gradient"></div>
+              <div className="w-3 h-3 bg-gradient-to-br from-pink-500 to-orange-500 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+              <div className="w-16 h-px bg-gradient-to-r from-transparent via-orange-400 to-transparent"></div>
+            </div>
+            
+            {/* Subtle text indicator */}
+            <p className="text-sm font-medium text-purple-600/70 dark:text-purple-400/70 tracking-wider uppercase">
+              Découvrez notre méthode
+            </p>
           </div>
         </div>
       </section>
 
       {/* 5R Model Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900 dark:to-gray-800">
+      <section className="relative py-24 bg-gradient-to-br from-purple-100/60 via-pink-50/80 to-orange-50/60 dark:from-purple-800/60 dark:via-pink-900/80 dark:to-orange-900/60 overflow-hidden">
+        {/* Enhanced background effects */}
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-1/6 w-96 h-96 bg-gradient-to-br from-purple-300/20 to-pink-300/20 dark:from-purple-500/15 dark:to-pink-500/15 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-10 right-1/6 w-80 h-80 bg-gradient-to-br from-pink-300/20 to-orange-300/20 dark:from-pink-500/15 dark:to-orange-500/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-blue-300/10 to-purple-300/10 dark:from-blue-500/10 dark:to-purple-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+        </div>
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 animate-fadeIn">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <div className="relative text-center mb-20 animate-fadeIn">
+            <div className="inline-flex items-center space-x-2 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm border border-white/20 dark:border-gray-700/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-lg">
+              <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
+              <span>Méthode scientifique</span>
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
               {t.model5r.title}
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
               {t.model5r.subtitle}
             </p>
-            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-5xl mx-auto leading-relaxed">
               {t.model5r.description}
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="relative grid md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
             {t.model5r.pillars.map((pillar, index) => (
-              <div key={index} className="group animate-slideUp hover-scale" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 h-full border border-gray-100 dark:border-gray-700">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${pillar.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+              <div key={index} className="group animate-slideUp" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl p-6 lg:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 h-full border border-white/50 dark:border-gray-700/50 group-hover:scale-105 group-hover:-translate-y-3">
+                  {/* Gradient border effect */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${pillar.color} opacity-0 group-hover:opacity-10 rounded-3xl transition-opacity duration-500`}></div>
+                  
+                  <div className={`relative w-16 h-16 bg-gradient-to-br ${pillar.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}>
                     <span className="text-white font-bold text-lg">{pillar.title[0]}</span>
+                    
+                    {/* Glow effect */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${pillar.color} rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500 -z-10`}></div>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">{pillar.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{pillar.description}</p>
+                  
+                  <h3 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm lg:text-base leading-relaxed">
+                    {pillar.description}
+                  </p>
+                  
+                  {/* Bottom accent line */}
+                  <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-gradient-to-r ${pillar.color} rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
                 </div>
               </div>
             ))}
