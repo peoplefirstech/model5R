@@ -42,7 +42,7 @@ export default function ContactForm({ language }: ContactFormProps) {
       ],
       contact: {
         title: "Informations de contact",
-        email: "contact@peoplefirst.tech",
+        email: "info@peoplefirst-technologies.com",
         phone: "+33 1 23 45 67 89",
         address: "123 Avenue de l'Innovation, 75001 Paris, France"
       }
@@ -71,7 +71,7 @@ export default function ContactForm({ language }: ContactFormProps) {
       ],
       contact: {
         title: "Contact information",
-        email: "contact@peoplefirst.tech",
+        email: "info@peoplefirst-technologies.com",
         phone: "+33 1 23 45 67 89",
         address: "123 Innovation Avenue, 75001 Paris, France"
       }

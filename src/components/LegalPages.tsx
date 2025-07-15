@@ -24,7 +24,7 @@ export default function LegalPages({ page, language, onBack }: LegalPagesProps) 
               <p>SIRET : 123 456 789 00012</p>
               <p>TVA intracommunautaire : FR12 123456789</p>
               <p>Téléphone : +33 1 23 45 67 89</p>
-              <p>Email : contact@peoplefirst.tech</p>
+              <p>Email : info@peoplefirst-technologies.com</p>
             `
           },
           {
@@ -72,7 +72,7 @@ export default function LegalPages({ page, language, onBack }: LegalPagesProps) 
               <p>SIRET: 123 456 789 00012</p>
               <p>EU VAT: FR12 123456789</p>
               <p>Phone: +33 1 23 45 67 89</p>
-              <p>Email: contact@peoplefirst.tech</p>
+              <p>Email: info@peoplefirst-technologies.com</p>
             `
           },
           {
@@ -177,6 +177,7 @@ export default function LegalPages({ page, language, onBack }: LegalPagesProps) 
                 <li>Droit de retirer votre consentement</li>
               </ul>
               <p class="mt-4">Pour exercer ces droits, contactez-nous à : contact@peoplefirst.tech</p>
+              <p class="mt-4">Pour exercer ces droits, contactez-nous à : info@peoplefirst-technologies.com</p>
             `
           }
         ]
@@ -250,6 +251,7 @@ export default function LegalPages({ page, language, onBack }: LegalPagesProps) 
                 <li>Right to withdraw consent</li>
               </ul>
               <p class="mt-4">To exercise these rights, contact us at: contact@peoplefirst.tech</p>
+              <p class="mt-4">To exercise these rights, contact us at: info@peoplefirst-technologies.com</p>
             `
           }
         ]
@@ -386,7 +388,7 @@ export default function LegalPages({ page, language, onBack }: LegalPagesProps) 
             title: "Contact",
             content: `
               <p>For any questions regarding our cookie policy, contact us at:</p>
-              <p><strong>Email:</strong> contact@peoplefirst.tech</p>
+              <p><strong>Email:</strong> info@peoplefirst-technologies.com</p>
               <p><strong>Address:</strong> 123 Innovation Avenue, 75001 Paris, France</p>
             `
           }
