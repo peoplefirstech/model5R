@@ -311,7 +311,7 @@ export default function LandingPage() {
               <div className="space-y-4">
                 <div className="inline-flex items-center space-x-2 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 px-4 py-2 rounded-full text-sm font-medium">
                   <Sparkles className="w-4 h-4" />
-                  <span>Modèle 5R® de Cécile Dejoux</span>
+                  <span>{language === 'fr' ? 'Modèle 5R® de Cécile Dejoux' : "Cécile Dejoux's 5R® Model"}</span>
                 </div>
                 
                 <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
@@ -438,7 +438,7 @@ export default function LandingPage() {
           <div className="relative text-center mb-12 animate-fadeIn">
             <div className="inline-flex items-center space-x-2 bg-purple-100/80 dark:bg-purple-900/30 backdrop-blur-sm border border-purple-300/50 dark:border-purple-600/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-md">
               <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
-              <span>Vos avantages</span>
+              <span>{language === 'fr' ? 'Vos avantages' : 'Your benefits'}</span>
             </div>
             
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
@@ -510,7 +510,7 @@ export default function LandingPage() {
           <div className="relative text-center mb-12 animate-fadeIn">
             <div className="inline-flex items-center space-x-2 bg-purple-100/80 dark:bg-purple-900/30 backdrop-blur-sm border border-purple-300/50 dark:border-purple-600/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-md">
               <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
-              <span className="tracking-wide">Méthode scientifique</span>
+              <span className="tracking-wide">{language === 'fr' ? 'Méthode scientifique' : 'Scientific method'}</span>
             </div>
             
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
