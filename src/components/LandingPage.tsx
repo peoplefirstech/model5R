@@ -431,9 +431,13 @@ export default function LandingPage() {
                   <CheckCircle className="w-4 h-4 text-green-500" />
                   <span>{language === 'fr' ? 'Aucune carte requise' : 'No card required'}</span>
                 </div>
-                <div className="flex items-center space-x-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-medium">
-                  <CheckCircle className="w-4 h-4" />
-                  <span>{language === 'fr' ? 'RGPD Conforme' : 'GDPR Compliant'}</span>
+                <div className="flex items-center space-x-2 text-sm text-purple-700 dark:text-purple-300 font-medium">
+                  <div className="w-4 h-4 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center">
+                    <CheckCircle className="w-3 h-3 text-purple-600 dark:text-purple-400" />
+                  </div>
+                  <span className="bg-purple-100 dark:bg-purple-900/30 px-3 py-1 rounded-full">
+                    {language === 'fr' ? 'RGPD Conforme' : 'GDPR Compliant'}
+                  </span>
                 </div>
               </div>
             </div>
