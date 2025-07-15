@@ -421,45 +421,8 @@ export default function LandingPage() {
                 </Link>
               </div>
               
-              {/* Indicateurs de confiance */}
-              <div className="grid grid-cols-3 gap-4 pt-4">
-                <div className="text-center">
-                  <div className="flex items-center justify-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
-                    <Sparkles className="w-4 h-4 text-purple-500" />
-                    <span className="font-semibold">{t.hero.trustIndicators.launch}</span>
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="flex items-center justify-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
-                    <Star className="w-4 h-4 text-yellow-500" />
-                    <span className="font-semibold">{t.hero.trustIndicators.satisfaction}</span>
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="flex items-center justify-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
-                    <Headphones className="w-4 h-4 text-green-500" />
-                    <span className="font-semibold">{t.hero.trustIndicators.support}</span>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Certifications */}
-              <div className="flex items-center justify-center lg:justify-start space-x-4 pt-2">
-                <div className="flex items-center space-x-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-xs font-medium">
-                  <Shield className="w-3 h-3" />
-                  <span>{t.hero.certifications.iso}</span>
-                </div>
-                <div className="flex items-center space-x-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-medium">
-                  <Zap className="w-3 h-3" />
-                  <span>{t.hero.certifications.ai}</span>
-                </div>
-                <div className="flex items-center space-x-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">
-                  <CheckCircle className="w-3 h-3" />
-                  <span>{t.hero.certifications.gdpr}</span>
-                </div>
-              </div>
-              
-              <div className="flex items-center space-x-6 text-sm text-gray-600 dark:text-gray-400">
+              {/* Indicateurs simplifiés */}
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-4 h-4 text-green-500" />
                   <span>{language === 'fr' ? 'Gratuit pendant 14 jours' : 'Free for 14 days'}</span>
@@ -467,6 +430,10 @@ export default function LandingPage() {
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-4 h-4 text-green-500" />
                   <span>{language === 'fr' ? 'Aucune carte requise' : 'No card required'}</span>
+                </div>
+                <div className="flex items-center space-x-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">
+                  <CheckCircle className="w-3 h-3" />
+                  <span>{language === 'fr' ? 'RGPD Conforme' : 'GDPR Compliant'}</span>
                 </div>
               </div>
             </div>
