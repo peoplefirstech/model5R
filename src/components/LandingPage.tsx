@@ -388,7 +388,7 @@ export default function LandingPage() {
                           }
                         </p>
                         <span className="text-xs opacity-75 mt-2 block">
-                      <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 hover:scale-105 mx-auto mt-3">
+                          {language === 'fr' ? '23:52' : '11:52 PM'}
                         </span>
                       </div>
                     </div>
