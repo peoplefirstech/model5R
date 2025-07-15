@@ -135,7 +135,7 @@ export default function ContactForm({ language }: ContactFormProps) {
   }
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-800 dark:to-purple-900">
+    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fadeIn">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -194,7 +194,7 @@ export default function ContactForm({ language }: ContactFormProps) {
             </div>
 
             {/* Quick Stats */}
-            <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl p-8 text-white">
+            <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl p-8 text-white shadow-lg">
               <h4 className="text-lg font-semibold mb-4">
                 {language === 'fr' ? 'Pourquoi nous choisir ?' : 'Why choose us?'}
               </h4>
