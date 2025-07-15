@@ -115,7 +115,7 @@ export default function LandingPage() {
         cta: "Commencer maintenant",
         tryChat: "Essayer le chat",
         trustIndicators: {
-          users: "10 000+ utilisateurs",
+          launch: "Lancement 2024",
           satisfaction: "95% de satisfaction",
           support: "Support 24/7"
         },
@@ -228,7 +228,7 @@ export default function LandingPage() {
         cta: "Get started now",
         tryChat: "Try the chat",
         trustIndicators: {
-          users: "10,000+ users",
+          launch: "Launched 2024",
           satisfaction: "95% satisfaction",
           support: "24/7 support"
         },
@@ -425,8 +425,8 @@ export default function LandingPage() {
               <div className="grid grid-cols-3 gap-4 pt-4">
                 <div className="text-center">
                   <div className="flex items-center justify-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
-                    <Users className="w-4 h-4 text-purple-500" />
-                    <span className="font-semibold">{t.hero.trustIndicators.users}</span>
+                    <Sparkles className="w-4 h-4 text-purple-500" />
+                    <span className="font-semibold">{t.hero.trustIndicators.launch}</span>
                   </div>
                 </div>
                 <div className="text-center">
