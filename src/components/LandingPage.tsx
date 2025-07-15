@@ -342,14 +342,6 @@ export default function LandingPage() {
                   <span>{t.hero.cta}</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
-                
-                <a
-                  href="#contact"
-                  className="group bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-4 rounded-xl font-semibold text-lg hover:border-purple-300 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-105"
-                >
-                  <MessageCircle className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                  <span>{language === 'fr' ? 'Nous contacter' : 'Contact us'}</span>
-                </a>
               </div>
               
               <div className="flex items-center space-x-6 text-sm text-gray-600 dark:text-gray-400">
