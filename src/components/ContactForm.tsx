@@ -41,11 +41,10 @@ export default function ContactForm({ language }: ContactFormProps) {
         "Autre"
       ],
       contact: {
-        title: "Informations de contact",
-        name: "Philippe DITISHEIM",
+        title: "Informations de contact", 
         email: "info@peoplefirst-technologies.com",
         phone: "+33 632 00 06 84",
-        address: "34 RUE MAISONS NEUVES, 13890 MOURIES, France"
+        address: "34 rue Maisons Neuves, 13890 Mouriès, France"
       }
     },
     en: {
@@ -72,7 +71,6 @@ export default function ContactForm({ language }: ContactFormProps) {
       ],
       contact: {
         title: "Contact information",
-        name: "Lalitha SHIVASWAMY",
         email: "lshivaswamy@peoplefirst-technologies.com",
         phone: "+1-860-217-0198",
         address: "550 Reserve Street, Suite 390, Southlake, Texas 76092, USA"
@@ -162,7 +160,7 @@ export default function ContactForm({ language }: ContactFormProps) {
                     <Mail className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900 dark:text-white">{t.contact.name}</p>
+                    <p className="font-medium text-gray-900 dark:text-white">Email</p>
                     <a href={`mailto:${t.contact.email}`} className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
                       {t.contact.email}
                     </a>

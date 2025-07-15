@@ -18,9 +18,9 @@ export default function LegalPages({ page, language, onBack }: LegalPagesProps) 
             title: "Éditeur du site",
             content: `
               <p><strong>People First Technologies</strong></p>
-              <p>Contact France : Philippe DITISHEIM</p>
+              <p>Contact France</p>
               <p>Société par actions simplifiée au capital de 50 000 €</p>
-              <p>Adresse France : 34 RUE MAISONS NEUVES, 13890 MOURIES, France</p>
+              <p>Adresse France : 34 rue Maisons Neuves, 13890 Mouriès, France</p>
               <p>Téléphone France : +33 632 00 06 84</p>
               <p>RCS Paris : 123 456 789</p>
               <p>SIRET : 123 456 789 00012</p>
@@ -67,7 +67,7 @@ export default function LegalPages({ page, language, onBack }: LegalPagesProps) 
             title: "Site Publisher",
             content: `
               <p><strong>People First Technologies</strong></p>
-              <p>USA Contact: Lalitha SHIVASWAMY</p>
+              <p>USA Contact</p>
               <p>Simplified joint-stock company with capital of €50,000</p>
               <p>USA Address: 550 Reserve Street, Suite 390, Southlake, Texas 76092, USA</p>
               <p>USA Phone: +1-860-217-0198</p>
@@ -180,7 +180,7 @@ export default function LegalPages({ page, language, onBack }: LegalPagesProps) 
               </ul>
               <p class="mt-4">Pour exercer ces droits, contactez-nous à : contact@peoplefirst.tech</p>
               <p class="mt-4">Pour exercer ces droits, contactez-nous à : info@peoplefirst-technologies.com</p>
-              <p><strong>Contact France :</strong> Philippe DITISHEIM - +33 632 00 06 84</p>
+              <p><strong>Contact France :</strong> +33 632 00 06 84</p>
             `
           }
         ]
@@ -255,7 +255,7 @@ export default function LegalPages({ page, language, onBack }: LegalPagesProps) 
               </ul>
               <p class="mt-4">To exercise these rights, contact us at: contact@peoplefirst.tech</p>
               <p class="mt-4">To exercise these rights, contact us at: info@peoplefirst-technologies.com</p>
-              <p><strong>USA Contact:</strong> Lalitha SHIVASWAMY - +1-860-217-0198</p>
+              <p><strong>USA Contact:</strong> +1-860-217-0198</p>
             `
           }
         ]
@@ -324,10 +324,10 @@ export default function LegalPages({ page, language, onBack }: LegalPagesProps) 
             title: "Contact",
             content: `
               <p>Pour toute question concernant notre politique de cookies, contactez-nous à :</p>
-              <p><strong>Contact France :</strong> Philippe DITISHEIM</p>
+              <p><strong>Contact France :</strong></p>
               <p><strong>Email :</strong> info@peoplefirst-technologies.com</p>
               <p><strong>Téléphone :</strong> +33 632 00 06 84</p>
-              <p><strong>Adresse :</strong> 34 RUE MAISONS NEUVES, 13890 MOURIES, France</p>
+              <p><strong>Adresse :</strong> 34 rue Maisons Neuves, 13890 Mouriès, France</p>
             `
           }
         ]
@@ -394,7 +394,7 @@ export default function LegalPages({ page, language, onBack }: LegalPagesProps) 
             title: "Contact",
             content: `
               <p>For any questions regarding our cookie policy, contact us at:</p>
-              <p><strong>USA Contact:</strong> Lalitha SHIVASWAMY</p>
+              <p><strong>USA Contact:</strong></p>
               <p><strong>Email:</strong> lshivaswamy@peoplefirst-technologies.com</p>
               <p><strong>Phone:</strong> +1-860-217-0198</p>
               <p><strong>Address:</strong> 550 Reserve Street, Suite 390, Southlake, Texas 76092, USA</p>
