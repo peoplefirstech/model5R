@@ -457,24 +457,21 @@ export default function LandingPage() {
           
           {/* Structured Cards Container */}
           <div className="relative">
-            {/* Container Background for Structure */}
-            <div className="absolute inset-0 bg-white/40 dark:bg-gray-800/20 backdrop-blur-sm rounded-3xl border border-gray-200/30 dark:border-gray-700/30 shadow-xl"></div>
-            
             {/* Cards Grid with proper structure */}
-            <div className="relative grid md:grid-cols-3 gap-8 lg:gap-12 p-8 lg:p-12">
+            <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
             {t.features.items.map((feature, index) => {
               const IconComponent = feature.icon;
               return (
                 <div key={index} className="group animate-slideUp" style={{ animationDelay: `${index * 0.15}s` }}>
-                  <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-8 lg:p-10 border border-gray-200 dark:border-gray-700 text-center h-full group-hover:border-purple-300 dark:group-hover:border-purple-600 transition-all duration-300 group-hover:shadow-lg group-hover:-translate-y-1">
+                  <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 lg:p-10 border border-gray-200/50 dark:border-gray-700/50 text-center h-full group-hover:border-purple-300/60 dark:group-hover:border-purple-600/60 transition-all duration-300 group-hover:-translate-y-1">
                     
                     <div className="relative">
                       {/* Structured Icon Design */}
                       <div className="relative w-16 h-16 mx-auto mb-6">
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 rounded-xl"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl border border-purple-100/50 dark:border-purple-800/30"></div>
                         
                         <div className="relative w-full h-full flex items-center justify-center">
-                          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center shadow-sm">
                             <IconComponent className="w-6 h-6 text-white" />
                           </div>
                         </div>
