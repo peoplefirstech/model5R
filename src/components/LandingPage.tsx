@@ -426,7 +426,7 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section id="solutions" className="relative py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+      <section id="solutions" className="relative py-16 bg-gradient-to-b from-gray-50 via-white to-purple-50/20 dark:from-gray-800 dark:via-gray-900 dark:to-purple-900/20">
         {/* Structured Background */}
         <div className="absolute inset-0">
           {/* Grid Pattern for Structure */}
@@ -436,7 +436,10 @@ export default function LandingPage() {
           }}></div>
           
           {/* Subtle Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/3 via-transparent to-pink-500/3 dark:from-purple-500/8 dark:via-transparent dark:to-pink-500/8"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 dark:from-purple-500/10 dark:via-transparent dark:to-pink-500/10"></div>
+          
+          {/* Transition gradient from hero */}
+          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-purple-50/30 to-transparent dark:from-gray-800/50 dark:to-transparent"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -463,7 +466,7 @@ export default function LandingPage() {
               const IconComponent = feature.icon;
               return (
                 <div key={index} className="group animate-slideUp" style={{ animationDelay: `${index * 0.15}s` }}>
-                  <div className="relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-8 lg:p-10 border border-gray-300/80 dark:border-gray-600/80 text-center h-full transition-all duration-300">
+                  <div className="relative bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl p-8 lg:p-10 border-2 border-gray-200/60 dark:border-gray-600/60 text-center h-full transition-all duration-300 hover:border-purple-300/60 dark:hover:border-purple-500/60 hover:shadow-xl hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20 group-hover:scale-[1.02]">
                     
                     <div className="relative">
                       {/* Structured Icon Design */}
@@ -490,20 +493,23 @@ export default function LandingPage() {
 
 
       {/* 5R Model Section */}
-      <section className="relative py-24 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
+      <section className="relative py-16 bg-gradient-to-b from-purple-50/20 via-white to-gray-50 dark:from-purple-900/20 dark:via-gray-900 dark:to-gray-800 overflow-hidden">
         <div className="absolute inset-0">
           {/* Gradient Mesh Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/3 via-transparent to-pink-500/3 dark:from-purple-500/8 dark:via-transparent dark:to-pink-500/8"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/8 via-transparent to-pink-500/8 dark:from-purple-500/15 dark:via-transparent dark:to-pink-500/15"></div>
           
           {/* Floating Elements */}
-          <div className="absolute top-20 left-1/6 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-20 right-1/6 w-80 h-80 bg-pink-500/5 dark:bg-pink-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }}></div>
+          <div className="absolute top-20 left-1/6 w-96 h-96 bg-purple-500/8 dark:bg-purple-500/15 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-20 right-1/6 w-80 h-80 bg-pink-500/8 dark:bg-pink-500/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }}></div>
           
           {/* Subtle Grid Pattern */}
-          <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]" style={{
+          <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.04]" style={{
             backgroundImage: `radial-gradient(circle at 1px 1px, rgb(139, 92, 246) 1px, transparent 0)`,
             backgroundSize: '32px 32px'
           }}></div>
+          
+          {/* Smooth transition from features section */}
+          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white/80 to-transparent dark:from-gray-900/80 dark:to-transparent"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -552,7 +558,7 @@ export default function LandingPage() {
           <div className="relative grid md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
             {t.model5r.pillars.map((pillar, index) => (
               <div key={index} className="group animate-slideUp" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="relative bg-white dark:bg-gray-700 rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl dark:shadow-gray-900/20 transition-all duration-300 h-full border border-gray-200 dark:border-gray-600 group-hover:scale-105 group-hover:-translate-y-1">
+                <div className="relative bg-white/98 dark:bg-gray-700/98 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl dark:shadow-gray-900/30 transition-all duration-300 h-full border-2 border-gray-200/80 dark:border-gray-600/80 group-hover:scale-105 group-hover:-translate-y-2 hover:border-purple-300/60 dark:hover:border-purple-500/60 hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20">
                   
                   <div className={`relative w-14 h-14 bg-gradient-to-br ${pillar.color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300 shadow-md`}>
                     <span className="text-white font-bold text-lg">{pillar.title[0]}</span>
@@ -572,7 +578,16 @@ export default function LandingPage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className="relative py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+        {/* Smooth transition from 5R section */}
+        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-gray-50/80 to-transparent dark:from-gray-800/80 dark:to-transparent"></div>
+        
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgb(139, 92, 246) 1px, transparent 0)`,
+          backgroundSize: '48px 48px'
+        }}></div>
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-fadeIn">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -586,7 +601,7 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {t.testimonials.items.map((testimonial, index) => (
               <div key={index} className="group animate-slideUp hover-lift" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl dark:shadow-gray-900/20 transition-all duration-300 border border-gray-100 dark:border-gray-700 h-full">
+                <div className="bg-white/98 dark:bg-gray-800/98 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl dark:shadow-gray-900/30 transition-all duration-300 border-2 border-gray-200/60 dark:border-gray-700/60 h-full hover:border-purple-300/60 dark:hover:border-purple-500/60 hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20 group-hover:scale-[1.02]">
                   <div className="flex items-center space-x-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
