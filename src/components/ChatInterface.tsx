@@ -369,12 +369,18 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                         ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
                         : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white shadow-sm'
                     }`}>
-                      <div 
-                        className="text-sm leading-relaxed"
-                        dangerouslySetInnerHTML={{ 
-                          __html: message.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
-                        }}
-                      />
+                      {message.sender === 'user' ? (
+                        <div className="text-sm leading-relaxed">
+                          {message.text}
+                        </div>
+                      ) : (
+                        <div 
+                          className="text-sm leading-relaxed"
+                          dangerouslySetInnerHTML={{ 
+                            __html: message.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
+                          }}
+                        />
+                      )}
                     </div>
                     
                     <div className="flex items-center space-x-2 mt-1 px-2">
