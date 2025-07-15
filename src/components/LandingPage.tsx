@@ -604,68 +604,51 @@ export default function LandingPage() {
 
       {/* 5R Model Section */}
       <React.Suspense fallback={<div className="h-96 bg-gray-50 dark:bg-gray-800 animate-pulse"></div>}>
-        <section className="relative py-12 bg-gradient-to-b from-white via-gray-50/50 to-gray-100/50 dark:from-gray-900 dark:via-gray-800/50 dark:to-gray-800 overflow-hidden">
+        <section className="relative py-20 bg-white dark:from-gray-900 dark:via-gray-800/50 dark:to-gray-800 overflow-hidden">
         <div className="absolute inset-0">
-          {/* Smooth connection from features */}
-          <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-white to-transparent dark:from-gray-900 dark:to-transparent"></div>
+          {/* Subtle background effects */}
+          <div className="absolute top-20 left-1/4 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-pink-500/5 dark:bg-pink-500/10 rounded-full blur-3xl"></div>
         </div>
         
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className={`relative text-center mb-12 ${!isMobile ? 'animate-fadeIn' : ''}`}>
-            <div className="inline-flex items-center space-x-2 bg-purple-100/80 dark:bg-purple-900/30 backdrop-blur-sm border border-purple-300/50 dark:border-purple-600/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-md">
+            <div className="inline-flex items-center space-x-2 bg-purple-100 dark:bg-purple-900/30 backdrop-blur-sm border border-purple-200 dark:border-purple-600/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-sm">
               <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
               <span className="tracking-wide">{language === 'fr' ? 'Méthode scientifique' : 'Scientific method'}</span>
             </div>
             
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
               {t.model5r.title}
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
               {t.model5r.subtitle}
             </p>
-            <p className="text-base text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
               {t.model5r.description}
             </p>
           </div>
           
           {/* Connected 5R Cards */}
-          <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 border-2 border-gray-200/80 dark:border-gray-600/80 shadow-xl">
-            {/* Connection lines for 5R */}
-            <div className="absolute inset-0 opacity-10 dark:opacity-20">
-              <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id="fiveRGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#3b82f6" />
-                    <stop offset="25%" stopColor="#a855f7" />
-                    <stop offset="50%" stopColor="#22c55e" />
-                    <stop offset="75%" stopColor="#f97316" />
-                    <stop offset="100%" stopColor="#eab308" />
-                  </linearGradient>
-                </defs>
-                <line x1="10" y1="50" x2="90" y2="50" stroke="url(#fiveRGradient)" strokeWidth="0.8" />
-              </svg>
-            </div>
-            
-            <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {t.model5r.pillars.map((pillar, index) => (
               <div key={index} className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="relative bg-white dark:bg-gray-700 rounded-2xl p-4 shadow-lg h-full border-2 border-gray-300/80 dark:border-gray-600/80 transition-all duration-500 ease-out hover:shadow-xl hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20 hover:scale-[1.02] hover:-translate-y-1">
+                <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg h-full border border-gray-200 dark:border-gray-700 transition-all duration-500 ease-out hover:shadow-xl hover:border-purple-300 dark:hover:border-purple-500 hover:shadow-purple-500/20 dark:hover:shadow-purple-500/30 hover:scale-[1.05] hover:-translate-y-2">
                   
-                  <div className={`relative w-12 h-12 bg-gradient-to-br ${pillar.color} rounded-xl flex items-center justify-center mb-4 shadow-md mx-auto transition-all duration-500 ease-out`}>
-                    <span className="text-white font-bold text-base">{pillar.title[0]}</span>
+                  <div className={`relative w-16 h-16 bg-gradient-to-br ${pillar.color} rounded-xl flex items-center justify-center mb-6 shadow-lg mx-auto transition-all duration-500 ease-out group-hover:scale-110`}>
+                    <span className="text-white font-bold text-xl">{pillar.title[0]}</span>
                   </div>
                   
-                  <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3 text-center">
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 text-center">
                     {pillar.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-xs leading-relaxed text-center">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed text-center">
                     {pillar.description}
                   </p>
                 </div>
               </div>
             ))}
-            </div>
           </div>
         </div>
       </section>
