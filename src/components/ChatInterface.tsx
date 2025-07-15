@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Mic, MicOff, Volume2, VolumeX, User, Bot, Clock, CheckCircle, UserCheck, ArrowLeft, RefreshCw, Users, RotateCcw, FileText, Handshake, Award } from 'lucide-react';
+import { Send, Mic, MicOff, Volume2, VolumeX, User, Bot, Clock, CheckCircle, UserCheck, ArrowLeft, RefreshCw, Users, RotateCcw, FileText, Handshake, Award, Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface Message {
@@ -87,6 +87,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
       online: "En ligne",
       back: "Retour",
       refresh: "Actualiser les suggestions",
+      newConversation: "Nouvelle conversation",
       footer: "Coach Virtuel IA by People First Technologies • Pour un accompagnement personnalisé : contact@peoplefirst-technologies.com"
     },
     en: {
@@ -134,6 +135,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
       online: "Online",
       back: "Back",
       refresh: "Refresh suggestions",
+      newConversation: "New conversation",
       footer: "AI Virtual Coach by People First Technologies • For personalized support: contact@peoplefirst-technologies.com"
     }
   };
@@ -199,6 +201,13 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
     handleSendMessage(question);
   };
 
+  const handleNewConversation = () => {
+    setShowWelcome(true);
+    setMessages([]);
+    setInputText('');
+    setIsTyping(false);
+  };
+
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -245,11 +254,22 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 </p>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-4">
+              {!showWelcome && (
+                <button
+                  onClick={handleNewConversation}
+                  className="flex items-center space-x-2 px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>{t.newConversation}</span>
+                </button>
+              )}
+              <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-green-500 rounded-full"></div>
               <span className="text-sm text-gray-600 dark:text-gray-400">
                 {language === 'fr' ? 'En ligne' : 'Online'}
               </span>
+              </div>
             </div>
           </div>
         </div>
