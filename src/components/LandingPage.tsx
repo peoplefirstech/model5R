@@ -297,7 +297,7 @@ export default function LandingPage() {
               <div className="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
               
               <Link
-                to="/#contact"
+                to="#contact"
                 className="text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2"
               >
                 <MessageCircle className="w-4 h-4" />
