@@ -426,60 +426,65 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section id="solutions" className="relative py-24 bg-white dark:bg-gray-900 overflow-hidden">
-        {/* Subtle Background Effects */}
+      <section id="solutions" className="relative py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+        {/* Structured Background */}
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-pink-500/5 dark:bg-pink-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }}></div>
+          {/* Grid Pattern for Structure */}
+          <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]" style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgb(139, 92, 246) 1px, transparent 0)`,
+            backgroundSize: '40px 40px'
+          }}></div>
+          
+          {/* Subtle Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/3 via-transparent to-pink-500/3 dark:from-purple-500/8 dark:via-transparent dark:to-pink-500/8"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative text-center mb-20 animate-fadeIn">
-            <div className="inline-flex items-center space-x-2 bg-purple-50 dark:bg-gray-800 border border-purple-200 dark:border-gray-700 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-sm">
+          {/* Header with better structure */}
+          <div className="relative text-center mb-16 animate-fadeIn">
+            <div className="inline-flex items-center space-x-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-purple-200/50 dark:border-purple-700/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-8 shadow-lg">
               <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
               <span>Vos avantages</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8 leading-tight">
               {t.features.title}
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
               {t.features.subtitle}
             </p>
           </div>
           
-          <div className="relative grid md:grid-cols-3 gap-8 lg:gap-12">
+          {/* Structured Cards Container */}
+          <div className="relative">
+            {/* Container Background for Structure */}
+            <div className="absolute inset-0 bg-white/40 dark:bg-gray-800/20 backdrop-blur-sm rounded-3xl border border-gray-200/30 dark:border-gray-700/30 shadow-xl"></div>
+            
+            {/* Cards Grid with proper structure */}
+            <div className="relative grid md:grid-cols-3 gap-8 lg:gap-12 p-8 lg:p-12">
             {t.features.items.map((feature, index) => {
               const IconComponent = feature.icon;
               return (
                 <div key={index} className="group animate-slideUp" style={{ animationDelay: `${index * 0.15}s` }}>
-                  <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 lg:p-10 shadow-sm hover:shadow-md dark:shadow-gray-900/10 transition-all duration-500 h-full border border-gray-200/50 dark:border-gray-700/50 text-center group-hover:bg-white dark:group-hover:bg-gray-800 group-hover:border-purple-200/50 dark:group-hover:border-purple-700/50">
-                    
-                    {/* Subtle background gradient on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-50/0 via-transparent to-pink-50/0 dark:from-purple-900/0 dark:via-transparent dark:to-pink-900/0 group-hover:from-purple-50/30 dark:group-hover:from-purple-900/20 group-hover:to-pink-50/30 dark:group-hover:to-pink-900/20 rounded-3xl transition-all duration-500"></div>
+                  <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-8 lg:p-10 border border-gray-200 dark:border-gray-700 text-center h-full group-hover:border-purple-300 dark:group-hover:border-purple-600 transition-all duration-300 group-hover:shadow-lg group-hover:-translate-y-1">
                     
                     <div className="relative">
-                      {/* Icon container with refined design */}
-                      <div className="relative w-20 h-20 mx-auto mb-8">
-                        {/* Background circle with subtle gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 rounded-2xl group-hover:from-purple-200 dark:group-hover:from-purple-800/50 group-hover:to-pink-200 dark:group-hover:to-pink-800/50 transition-all duration-500"></div>
+                      {/* Structured Icon Design */}
+                      <div className="relative w-16 h-16 mx-auto mb-6">
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 rounded-xl"></div>
                         
-                        {/* Icon with gradient */}
                         <div className="relative w-full h-full flex items-center justify-center">
-                          <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-sm">
+                          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
                             <IconComponent className="w-6 h-6 text-white" />
                           </div>
                         </div>
-                        
-                        {/* Subtle glow effect */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 rounded-2xl blur-xl transition-all duration-500"></div>
                       </div>
                       
-                      <h3 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-300">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                         {feature.title}
                       </h3>
                       
-                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base lg:text-lg group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300">
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                         {feature.description}
                       </p>
                     </div>
@@ -487,6 +492,7 @@ export default function LandingPage() {
                 </div>
               );
             })}
+            </div>
           </div>
         </div>
       </section>
