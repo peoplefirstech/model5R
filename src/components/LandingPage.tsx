@@ -604,28 +604,28 @@ export default function LandingPage() {
 
       {/* 5R Model Section */}
       <React.Suspense fallback={<div className="h-96 bg-gray-50 dark:bg-gray-800 animate-pulse"></div>}>
-        <section className="relative py-20 bg-white dark:from-gray-900 dark:via-gray-800/50 dark:to-gray-800 overflow-hidden">
+        <section className="relative py-20 bg-gray-50 dark:bg-gray-50 overflow-hidden">
         <div className="absolute inset-0">
           {/* Subtle background effects */}
-          <div className="absolute top-20 left-1/4 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-pink-500/5 dark:bg-pink-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-20 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-pink-500/5 rounded-full blur-3xl"></div>
         </div>
         
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className={`relative text-center mb-12 ${!isMobile ? 'animate-fadeIn' : ''}`}>
-            <div className="inline-flex items-center space-x-2 bg-purple-100 dark:bg-purple-900/30 backdrop-blur-sm border border-purple-200 dark:border-purple-600/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-sm">
+            <div className="inline-flex items-center space-x-2 bg-purple-100 backdrop-blur-sm border border-purple-200 text-purple-700 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-sm">
               <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
               <span className="tracking-wide">{language === 'fr' ? 'Méthode scientifique' : 'Scientific method'}</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               {t.model5r.title}
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
               {t.model5r.subtitle}
             </p>
-            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
               {t.model5r.description}
             </p>
           </div>
@@ -634,16 +634,16 @@ export default function LandingPage() {
           <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {t.model5r.pillars.map((pillar, index) => (
               <div key={index} className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg h-full border border-gray-200 dark:border-gray-700 transition-all duration-500 ease-out hover:shadow-xl hover:border-purple-300 dark:hover:border-purple-500 hover:shadow-purple-500/20 dark:hover:shadow-purple-500/30 hover:scale-[1.05] hover:-translate-y-2">
+                <div className="relative bg-gray-800 rounded-2xl p-6 shadow-lg h-full border border-gray-700 transition-all duration-500 ease-out hover:shadow-xl hover:border-purple-500 hover:shadow-purple-500/30 hover:scale-[1.05] hover:-translate-y-2">
                   
                   <div className={`relative w-16 h-16 bg-gradient-to-br ${pillar.color} rounded-xl flex items-center justify-center mb-6 shadow-lg mx-auto transition-all duration-500 ease-out group-hover:scale-110`}>
                     <span className="text-white font-bold text-xl">{pillar.title[0]}</span>
                   </div>
                   
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 text-center">
+                  <h3 className="text-lg font-bold text-white mb-4 text-center">
                     {pillar.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed text-center">
+                  <p className="text-gray-300 text-sm leading-relaxed text-center">
                     {pillar.description}
                   </p>
                 </div>
