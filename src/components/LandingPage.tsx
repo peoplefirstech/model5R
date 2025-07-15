@@ -437,7 +437,7 @@ export default function LandingPage() {
           <div className="relative text-center mb-20 animate-fadeIn">
             <div className="inline-flex items-center space-x-2 bg-purple-50 dark:bg-gray-800 border border-purple-200 dark:border-gray-700 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-sm">
               <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
-              <span>Pourquoi nous choisir</span>
+              <span>Nos avantages</span>
             </div>
             
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
