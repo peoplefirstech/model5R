@@ -448,8 +448,8 @@ export default function LandingPage() {
             
             {/* Chat Mockup Interactif */}
             <div className={`relative ${!isMobile ? 'animate-slideUp' : ''}`}>
-              {/* Bulle décorative animée en bas */}
-              <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-br from-purple-400/30 to-pink-400/30 rounded-full blur-xl animate-float"></div>
+              {/* Bulle décorative animée en bas - exacte comme la capture */}
+              <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-gradient-to-br from-blue-400/40 via-purple-500/50 to-purple-600/60 rounded-full blur-2xl animate-float"></div>
               
               <div className="relative bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-gray-200/50 dark:border-gray-700/50">
                 
