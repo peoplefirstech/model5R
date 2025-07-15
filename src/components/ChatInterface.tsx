@@ -44,7 +44,8 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   const content = {
     fr: {
       welcome: {
-        greeting: "Bonjour Philippe !",
+        greeting: "Bonjour",
+        name: "Philippe",
         title: "Que souhaiteriez-vous savoir ?",
         subtitle: "Posez vos questions sur le management, l'engagement d'équipe et la transformation. Recevez des conseils personnalisés basés sur le modèle 5R®.",
         placeholder: "Posez votre question sur le management, l'engagement d'équipe..."
@@ -90,7 +91,8 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
     },
     en: {
       welcome: {
-        greeting: "Hello Philippe!",
+        greeting: "Hello",
+        name: "Philippe",
         title: "What would you like to know?",
         subtitle: "Ask your questions about management, team engagement and transformation. Get personalized advice based on the 5R® model.",
         placeholder: "Ask your question about management, team engagement..."
@@ -260,7 +262,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
           <div className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
-                {t.welcome.greeting} <span className="gradient-text">Coach Virtuel IA</span>
+                {t.welcome.greeting} <span className="gradient-text">{t.welcome.name}</span> !
               </h1>
               <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300">
                 {t.welcome.title}
