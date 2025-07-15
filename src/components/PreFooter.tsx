@@ -14,26 +14,6 @@ export default function PreFooter({ language }: PreFooterProps) {
         button: "Commencer maintenant",
         buttonSecondary: "Découvrir nos solutions"
       },
-      features: {
-        title: "Pourquoi choisir notre Coach Virtuel IA ?",
-        items: [
-          {
-            icon: Brain,
-            title: "Intelligence Artificielle Avancée",
-            description: "Algorithmes de pointe pour un coaching personnalisé et adaptatif"
-          },
-          {
-            icon: Target,
-            title: "Résultats Mesurables",
-            description: "Suivi précis de vos progrès avec des métriques détaillées"
-          },
-          {
-            icon: Users,
-            title: "Approche Humaine",
-            description: "L'IA au service de l'humain pour un développement authentique"
-          }
-        ]
-      }
     },
     en: {
       cta: {
@@ -42,26 +22,6 @@ export default function PreFooter({ language }: PreFooterProps) {
         button: "Get started now",
         buttonSecondary: "Discover our solutions"
       },
-      features: {
-        title: "Why choose our AI Virtual Coach?",
-        items: [
-          {
-            icon: Brain,
-            title: "Advanced Artificial Intelligence",
-            description: "Cutting-edge algorithms for personalized and adaptive coaching"
-          },
-          {
-            icon: Target,
-            title: "Measurable Results",
-            description: "Precise tracking of your progress with detailed metrics"
-          },
-          {
-            icon: Users,
-            title: "Human Approach",
-            description: "AI serving humanity for authentic development"
-          }
-        ]
-      }
     }
   };
 
@@ -78,36 +38,6 @@ export default function PreFooter({ language }: PreFooterProps) {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         
-        {/* Features Section */}
-        <div className="mb-20">
-          <h3 className="text-2xl md:text-3xl font-bold text-white text-center mb-12">
-            {t.features.title}
-          </h3>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {t.features.items.map((feature, index) => {
-              const IconComponent = feature.icon;
-              return (
-                <div key={index} className="group">
-                  <div className="bg-white/5 dark:bg-white/3 backdrop-blur-sm border border-white/10 dark:border-white/5 rounded-2xl p-8 h-full hover:bg-white/10 dark:hover:bg-white/5 transition-all duration-300 hover:transform hover:scale-105">
-                    <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                      <IconComponent className="w-7 h-7 text-white" />
-                    </div>
-                    
-                    <h4 className="text-xl font-semibold text-white mb-4">
-                      {feature.title}
-                    </h4>
-                    
-                    <p className="text-gray-300 dark:text-gray-400 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
         {/* CTA Section */}
         <div className="text-center">
           <div className="max-w-4xl mx-auto">

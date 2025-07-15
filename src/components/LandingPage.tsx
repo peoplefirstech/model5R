@@ -65,23 +65,18 @@ export default function LandingPage() {
         items: [
           {
             icon: UserCheck,
-            title: "IA Avancée",
-            description: "Algorithmes de pointe basés sur le modèle 5R® pour un coaching personnalisé et adaptatif en temps réel."
-          },
-          {
-            icon: Users,
-            title: "Approche Humaine",
-            description: "L'intelligence artificielle au service du développement humain, préservant l'authenticité des relations."
+            title: "Intelligence Artificielle Avancée",
+            description: "Algorithmes de pointe pour un coaching personnalisé et adaptatif"
           },
           {
             icon: Target,
             title: "Résultats Mesurables",
-            description: "Suivi précis de vos progrès avec des métriques détaillées et des recommandations personnalisées."
+            description: "Suivi précis de vos progrès avec des métriques détaillées"
           },
           {
-            icon: Zap,
-            title: "Disponibilité 24/7",
-            description: "Votre coach personnel disponible à tout moment pour vous accompagner dans votre développement."
+            icon: Users,
+            title: "Approche Humaine",
+            description: "L'IA au service de l'humain pour un développement authentique"
           }
         ]
       },
@@ -168,23 +163,18 @@ export default function LandingPage() {
         items: [
           {
             icon: UserCheck,
-            title: "Advanced AI",
-            description: "Cutting-edge algorithms based on the 5R® model for personalized and adaptive real-time coaching."
-          },
-          {
-            icon: Users,
-            title: "Human Approach",
-            description: "Artificial intelligence serving human development, preserving the authenticity of relationships."
+            title: "Advanced Artificial Intelligence",
+            description: "Cutting-edge algorithms for personalized and adaptive coaching"
           },
           {
             icon: Target,
             title: "Measurable Results",
-            description: "Precise tracking of your progress with detailed metrics and personalized recommendations."
+            description: "Precise tracking of your progress with detailed metrics"
           },
           {
-            icon: Zap,
-            title: "24/7 Availability",
-            description: "Your personal coach available at any time to support you in your development."
+            icon: Users,
+            title: "Human Approach",
+            description: "AI serving humanity for authentic development"
           }
         ]
       },
@@ -447,7 +437,7 @@ export default function LandingPage() {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {t.features.items.map((feature, index) => {
               const IconComponent = feature.icon;
               return (
