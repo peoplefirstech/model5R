@@ -31,7 +31,8 @@ import {
   Copy,
   ThumbsUp,
   ThumbsDown,
-  RotateCw
+  RotateCw,
+  ArrowRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
