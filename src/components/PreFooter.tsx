@@ -14,12 +14,6 @@ export default function PreFooter({ language }: PreFooterProps) {
         button: "Commencer maintenant",
         buttonSecondary: "Découvrir nos solutions"
       },
-      stats: [
-        { number: "10K+", label: "Professionnels formés", icon: Users },
-        { number: "95%", label: "Taux de satisfaction", icon: Award },
-        { number: "300%", label: "Amélioration moyenne", icon: TrendingUp },
-        { number: "24/7", label: "Support disponible", icon: Zap }
-      ],
       features: {
         title: "Pourquoi choisir notre Coach Virtuel IA ?",
         items: [
@@ -48,12 +42,6 @@ export default function PreFooter({ language }: PreFooterProps) {
         button: "Get started now",
         buttonSecondary: "Discover our solutions"
       },
-      stats: [
-        { number: "10K+", label: "Professionals trained", icon: Users },
-        { number: "95%", label: "Satisfaction rate", icon: Award },
-        { number: "300%", label: "Average improvement", icon: TrendingUp },
-        { number: "24/7", label: "Support available", icon: Zap }
-      ],
       features: {
         title: "Why choose our AI Virtual Coach?",
         items: [
@@ -90,26 +78,6 @@ export default function PreFooter({ language }: PreFooterProps) {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         
-        {/* Stats Section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
-          {t.stats.map((stat, index) => {
-            const IconComponent = stat.icon;
-            return (
-              <div key={index} className="text-center group">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <IconComponent className="w-8 h-8 text-white" />
-                </div>
-                <div className="text-3xl md:text-4xl font-bold text-white mb-2 gradient-text">
-                  {stat.number}
-                </div>
-                <div className="text-gray-300 dark:text-gray-400 text-sm md:text-base">
-                  {stat.label}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
         {/* Features Section */}
         <div className="mb-20">
           <h3 className="text-2xl md:text-3xl font-bold text-white text-center mb-12">
