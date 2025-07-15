@@ -372,6 +372,14 @@ export default function LandingPage() {
               {/* Séparateur visuel */}
               <div className="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
               
+              {/* Statut en ligne */}
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-sm text-gray-600 dark:text-gray-400">
+                  {language === 'fr' ? 'En ligne' : 'Online'}
+                </span>
+              </div>
+              
               <a
                 href="#contact"
                 className="text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2"
