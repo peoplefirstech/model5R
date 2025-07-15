@@ -595,11 +595,11 @@ export default function LandingPage() {
               const IconComponent = feature.icon;
               return (
                 <div key={index} className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: `${index * 0.15}s` }}>
-                  <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-6 border-2 border-gray-300/80 dark:border-gray-600/80 text-center h-full transition-all duration-300 hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-2xl hover:shadow-purple-500/20 dark:hover:shadow-purple-500/30 group-hover:scale-105 group-hover:-translate-y-2">
+                  <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-6 border-2 border-gray-300/80 dark:border-gray-600/80 text-center h-full transition-all duration-500 ease-out hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-xl hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20 group-hover:scale-[1.02] group-hover:-translate-y-1">
                     
                     <div className="relative">
                       {/* Structured Icon Design */}
-                      <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg transition-all duration-500 ease-out">
                         <IconComponent className="w-8 h-8 text-white" />
                       </div>
                       
