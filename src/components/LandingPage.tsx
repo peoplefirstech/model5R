@@ -295,7 +295,7 @@ export default function LandingPage() {
               
               <Link
                 to="/#contact"
-                className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center space-x-2"
+                className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 px-4 py-2 rounded-lg font-medium transition-colors duration-300 flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Contact</span>
