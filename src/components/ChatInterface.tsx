@@ -44,7 +44,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   const content = {
     fr: {
       welcome: {
-        greeting: "Bonjour !",
+        greeting: "Bonjour Philippe !",
         title: "Que souhaiteriez-vous savoir ?",
         subtitle: "Posez vos questions sur le management, l'engagement d'équipe et la transformation. Recevez des conseils personnalisés basés sur le modèle 5R®.",
         placeholder: "Posez votre question sur le management, l'engagement d'équipe..."
@@ -90,7 +90,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
     },
     en: {
       welcome: {
-        greeting: "Hello!",
+        greeting: "Hello Philippe!",
         title: "What would you like to know?",
         subtitle: "Ask your questions about management, team engagement and transformation. Get personalized advice based on the 5R® model.",
         placeholder: "Ask your question about management, team engagement..."
