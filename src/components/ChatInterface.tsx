@@ -25,8 +25,7 @@ import {
   MoreHorizontal,
   Zap,
   Sparkles,
-  Brain,
-  Settings,
+  MessageCircle,
   Download,
   Copy,
   ThumbsUp,
@@ -322,19 +321,14 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               <div className="flex items-center space-x-4">
                 <div className="relative">
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-500 via-purple-600 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/25">
-                    <Brain className="w-6 h-6 text-white" />
+                    <MessageCircle className="w-6 h-6 text-white" />
                   </div>
-                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-800 animate-pulse"></div>
                 </div>
                 
                 <div>
                   <h1 className="text-lg font-semibold text-gray-900 dark:text-white">Coach Virtuel IA</h1>
-                  <div className="flex items-center space-x-2">
+                  <div>
                     <span className="text-sm text-gray-500 dark:text-gray-400">Basé sur le modèle 5R®</span>
-                    <div className="flex items-center space-x-1">
-                      <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-                      <span className="text-xs text-green-600 dark:text-green-400 font-medium">En ligne</span>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -344,16 +338,12 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               {!showWelcome && (
                 <button
                   onClick={handleNewConversation}
-                  className="flex items-center space-x-2 px-4 py-2.5 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-xl transition-all duration-200"
+                  className="group flex items-center space-x-2 px-4 py-2.5 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-xl transition-all duration-200"
                 >
-                  <Plus className="w-4 h-4" />
+                  <Plus className="w-4 h-4 group-hover:rotate-90 transition-transform duration-200" />
                   <span>{t.newConversation}</span>
                 </button>
               )}
-              
-              <button className="p-2.5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-xl transition-all duration-200">
-                <Settings className="w-5 h-5" />
-              </button>
             </div>
           </div>
         </div>
@@ -367,7 +357,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
             <div className="text-center space-y-6 max-w-3xl">
               <div className="relative">
                 <div className="w-20 h-20 bg-gradient-to-br from-purple-500 via-purple-600 to-pink-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-purple-500/25">
-                  <Brain className="w-10 h-10 text-white" />
+                  <MessageCircle className="w-10 h-10 text-white" />
                 </div>
                 <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-3 border-white dark:border-gray-900 animate-pulse"></div>
               </div>
@@ -442,7 +432,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                       {message.sender === 'user' ? (
                         <User className="w-5 h-5 text-white" />
                       ) : (
-                        <Brain className="w-5 h-5 text-white" />
+                        <MessageCircle className="w-5 h-5 text-white" />
                       )}
                     </div>
                     
@@ -494,7 +484,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 <div className="flex justify-start">
                   <div className="flex items-start space-x-4 max-w-3xl">
                     <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/25">
-                      <Brain className="w-5 h-5 text-white" />
+                      <MessageCircle className="w-5 h-5 text-white" />
                     </div>
                     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-3xl px-6 py-4 shadow-lg">
                       <div className="flex items-center space-x-3">
@@ -555,7 +545,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
             {/* Attachment Button */}
             <button
               onClick={toggleAttachments}
-              className={`p-3 rounded-2xl transition-all duration-200 ${
+              className={`p-3 rounded-2xl transition-all duration-200 flex-shrink-0 ${
                 showAttachments 
                   ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400' 
                   : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700/50'
@@ -572,7 +562,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 onChange={handleInputChange}
                 onKeyDown={handleKeyPress}
                 placeholder={t.welcome.placeholder}
-                className="w-full px-6 py-4 pr-16 border border-gray-300 dark:border-gray-600 rounded-3xl resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700 shadow-sm scrollbar-hide"
+                className="w-full px-6 py-4 pr-20 border border-gray-300 dark:border-gray-600 rounded-3xl resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700 shadow-sm scrollbar-hide"
                 style={{ minHeight: '56px', maxHeight: '120px' }}
                 rows={1}
               />
@@ -580,7 +570,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               {/* Voice Input Button */}
               <button
                 onClick={toggleRecording}
-                className={`absolute right-4 top-1/2 transform -translate-y-1/2 p-2 rounded-xl transition-all duration-200 ${
+                className={`absolute right-6 top-1/2 transform -translate-y-1/2 p-2 rounded-xl transition-all duration-200 ${
                   isRecording 
                     ? 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 animate-pulse' 
                     : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
@@ -594,7 +584,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
             <button
               onClick={() => handleSendMessage()}
               disabled={!inputText.trim()}
-              className="p-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 disabled:hover:scale-100 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40"
+              className="p-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 disabled:hover:scale-100 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 flex-shrink-0"
             >
               <Send className="w-5 h-5" />
             </button>
