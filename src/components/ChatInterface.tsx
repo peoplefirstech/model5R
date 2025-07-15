@@ -268,9 +268,17 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               </div>
               <div>
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Coach Virtuel IA</h2>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  {language === 'fr' ? 'Basé sur le modèle 5R® de Cécile Dejoux' : 'Based on Cécile Dejoux\'s 5R® model'}
-                </p>
+                <div className="flex items-center space-x-2">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    {language === 'fr' ? 'Basé sur le modèle 5R® de Cécile Dejoux' : 'Based on Cécile Dejoux\'s 5R® model'}
+                  </p>
+                  <div className="flex items-center space-x-1">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                      {language === 'fr' ? 'En ligne' : 'Online'}
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="flex items-center space-x-4">
@@ -283,12 +291,6 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                   <span>{t.newConversation}</span>
                 </button>
               )}
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  {language === 'fr' ? 'En ligne' : 'Online'}
-                </span>
-              </div>
             </div>
           </div>
         </div>
