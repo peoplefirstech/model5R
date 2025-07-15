@@ -470,7 +470,7 @@ export default function LandingPage() {
                       <div className="relative w-16 h-16 mx-auto mb-6">
                         <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl border border-purple-200/60 dark:border-purple-700/60"></div>
                         
-                        <div className="relative w-full h-full flex items-center justify-center">
+                            <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-md group-hover:from-purple-600 group-hover:to-pink-600">
                           <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center shadow-sm">
                             <IconComponent className="w-6 h-6 text-white" />
                           </div>
