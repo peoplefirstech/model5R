@@ -152,11 +152,6 @@ export default function PreFooter({ language }: PreFooterProps) {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button className="group bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center space-x-2 hover:scale-105 shadow-lg hover:shadow-purple-500/25">
-                <span>{t.cta.button}</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
-              
               <button className="group bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300 flex items-center space-x-2 hover:scale-105">
                 <span>{t.cta.buttonSecondary}</span>
               </button>
