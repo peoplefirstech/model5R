@@ -467,12 +467,8 @@ export default function LandingPage() {
                     
                     <div className="relative">
                       {/* Structured Icon Design */}
-                      <div className="relative w-16 h-16 mx-auto mb-6">
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl border border-purple-200/60 dark:border-purple-700/60"></div>
-                        
-                        <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 hover:scale-105 mx-auto mt-3">
-                            <IconComponent className="w-6 h-6 text-white" />
-                          </div>
+                      <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-6 shadow-lg hover:scale-105 transition-transform duration-300">
+                        <IconComponent className="w-8 h-8 text-white" />
                       </div>
                       
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
