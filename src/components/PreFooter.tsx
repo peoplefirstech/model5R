@@ -152,9 +152,14 @@ export default function PreFooter({ language }: PreFooterProps) {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button className="group bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300 flex items-center space-x-2 hover:scale-105">
+              <a 
+                href="https://www.peoplefirst-technologies.com/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300 flex items-center space-x-2 hover:scale-105"
+              >
                 <span>{t.cta.buttonSecondary}</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
