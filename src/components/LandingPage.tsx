@@ -299,10 +299,10 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-20 pb-16 bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900 overflow-hidden">
+      <section className="relative pt-20 pb-16 bg-gradient-to-br from-gray-50 via-white to-purple-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-300/20 dark:bg-purple-500/30 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-300/20 dark:bg-pink-500/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/20 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/10 dark:bg-pink-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -347,9 +347,9 @@ export default function LandingPage() {
             </div>
             
             <div className="relative animate-slideUp">
-              <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 border border-gray-100 dark:border-gray-700">
-                <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full opacity-20 animate-pulse-slow"></div>
-                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full opacity-20 animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+              <div className="relative bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-gray-200/50 dark:border-gray-700/50">
+                <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full opacity-10 dark:opacity-20 animate-pulse-slow"></div>
+                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full opacity-10 dark:opacity-20 animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
                 
                 <div className="relative space-y-6">
                   <div className="flex items-center space-x-3">
@@ -367,7 +367,7 @@ export default function LandingPage() {
                   </div>
                   
                   <div className="space-y-4">
-                    <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                    <div className="bg-gray-50 dark:bg-gray-700/80 rounded-lg p-4">
                       <p className="text-sm text-gray-700 dark:text-gray-300">
                         {language === 'fr' 
                           ? "Bonjour ! Je suis votre Coach Virtuel IA. Posez-moi vos questions sur le management, l'engagement d'équipe et la transformation. Recevez des conseils personnalisés basés sur le modèle 5R®."
@@ -380,7 +380,7 @@ export default function LandingPage() {
                     </div>
                     
                     <div className="flex justify-end">
-                      <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg p-4 max-w-xs">
+                      <div className="bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-500 dark:to-pink-500 text-white rounded-lg p-4 max-w-xs">
                         <p className="text-sm">
                           {language === 'fr' 
                             ? "Comment améliorer les règles dans mon équipe ?"
@@ -393,7 +393,7 @@ export default function LandingPage() {
                       </div>
                     </div>
                     
-                    <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                    <div className="bg-gray-50 dark:bg-gray-700/80 rounded-lg p-4">
                       <p 
                         className="text-sm text-gray-700 dark:text-gray-300"
                         dangerouslySetInnerHTML={{
@@ -426,16 +426,16 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section id="solutions" className="relative py-24 bg-gradient-to-br from-white via-gray-50 to-purple-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900/30 overflow-hidden">
-        {/* Background Effects */}
+      <section id="solutions" className="relative py-24 bg-white dark:bg-gray-900 overflow-hidden">
+        {/* Subtle Background Effects */}
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-purple-200/20 dark:bg-purple-500/10 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-pink-200/20 dark:bg-pink-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }}></div>
+          <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-pink-500/5 dark:bg-pink-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }}></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative text-center mb-20 animate-fadeIn">
-            <div className="inline-flex items-center space-x-2 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm border border-white/20 dark:border-gray-700/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-lg">
+            <div className="inline-flex items-center space-x-2 bg-purple-50 dark:bg-gray-800 border border-purple-200 dark:border-gray-700 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-sm">
               <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
               <span>Pourquoi nous choisir</span>
             </div>
@@ -453,26 +453,18 @@ export default function LandingPage() {
               const IconComponent = feature.icon;
               return (
                 <div key={index} className="group animate-slideUp" style={{ animationDelay: `${index * 0.15}s` }}>
-                  <div className="relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-3xl p-8 lg:p-10 shadow-xl hover:shadow-2xl transition-all duration-500 h-full border border-white/50 dark:border-gray-700/50 text-center group-hover:scale-105 group-hover:-translate-y-2">
-                    {/* Gradient border effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-pink-500/20 to-orange-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                  <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-lg hover:shadow-xl dark:shadow-gray-900/20 transition-all duration-300 h-full border border-gray-100 dark:border-gray-700 text-center group-hover:scale-105 group-hover:-translate-y-1">
                     
-                    <div className="relative w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg group-hover:shadow-purple-500/25">
+                    <div className="relative w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-all duration-300 shadow-lg">
                       <IconComponent className="w-8 h-8 text-white" />
-                      
-                      {/* Glow effect */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-400 rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500 -z-10"></div>
                     </div>
                     
-                    <h3 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                       {feature.description}
                     </p>
-                    
-                    {/* Subtle bottom accent */}
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
                 </div>
               );
@@ -481,27 +473,24 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Premium Transition Section */}
-      <section className="relative py-16 bg-gradient-to-br from-purple-50/30 via-pink-50/50 to-purple-100/60 dark:from-purple-900/30 dark:via-pink-900/50 dark:to-purple-800/60 overflow-hidden">
-        {/* Animated background elements */}
+      {/* Elegant Transition Section */}
+      <section className="relative py-12 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-64 h-64 bg-gradient-to-br from-purple-300/30 to-pink-300/30 dark:from-purple-500/20 dark:to-pink-500/20 rounded-full blur-2xl animate-pulse-slow"></div>
-          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-br from-pink-300/30 to-orange-300/30 dark:from-pink-500/20 dark:to-orange-500/20 rounded-full blur-2xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-0 left-1/4 w-64 h-64 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-2xl animate-pulse-slow"></div>
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-pink-500/5 dark:bg-pink-500/10 rounded-full blur-2xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative text-center">
-            {/* Decorative elements */}
             <div className="flex items-center justify-center space-x-4 mb-8">
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent"></div>
+              <div className="w-16 h-px bg-gradient-to-r from-transparent via-purple-400 dark:via-purple-500 to-transparent"></div>
               <div className="w-3 h-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
-              <div className="w-24 h-px bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 animate-gradient"></div>
-              <div className="w-3 h-3 bg-gradient-to-br from-pink-500 to-orange-500 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-orange-400 to-transparent"></div>
+              <div className="w-24 h-px bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500"></div>
+              <div className="w-3 h-3 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+              <div className="w-16 h-px bg-gradient-to-r from-transparent via-purple-400 dark:via-purple-500 to-transparent"></div>
             </div>
             
-            {/* Subtle text indicator */}
-            <p className="text-sm font-medium text-purple-600/70 dark:text-purple-400/70 tracking-wider uppercase">
+            <p className="text-sm font-medium text-purple-600 dark:text-purple-400 tracking-wider uppercase">
               Découvrez notre méthode
             </p>
           </div>
@@ -509,17 +498,15 @@ export default function LandingPage() {
       </section>
 
       {/* 5R Model Section */}
-      <section className="relative py-24 bg-gradient-to-br from-purple-100/60 via-pink-50/80 to-orange-50/60 dark:from-purple-800/60 dark:via-pink-900/80 dark:to-orange-900/60 overflow-hidden">
-        {/* Enhanced background effects */}
+      <section className="relative py-24 bg-gray-50 dark:bg-gray-800 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-1/6 w-96 h-96 bg-gradient-to-br from-purple-300/20 to-pink-300/20 dark:from-purple-500/15 dark:to-pink-500/15 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-10 right-1/6 w-80 h-80 bg-gradient-to-br from-pink-300/20 to-orange-300/20 dark:from-pink-500/15 dark:to-orange-500/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-blue-300/10 to-purple-300/10 dark:from-blue-500/10 dark:to-purple-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-10 left-1/6 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-10 right-1/6 w-80 h-80 bg-pink-500/5 dark:bg-pink-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }}></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative text-center mb-20 animate-fadeIn">
-            <div className="inline-flex items-center space-x-2 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm border border-white/20 dark:border-gray-700/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-lg">
+            <div className="inline-flex items-center space-x-2 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-sm">
               <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
               <span>Méthode scientifique</span>
             </div>
@@ -538,26 +525,18 @@ export default function LandingPage() {
           <div className="relative grid md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
             {t.model5r.pillars.map((pillar, index) => (
               <div key={index} className="group animate-slideUp" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl p-6 lg:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 h-full border border-white/50 dark:border-gray-700/50 group-hover:scale-105 group-hover:-translate-y-3">
-                  {/* Gradient border effect */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${pillar.color} opacity-0 group-hover:opacity-10 rounded-3xl transition-opacity duration-500`}></div>
+                <div className="relative bg-white dark:bg-gray-700 rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl dark:shadow-gray-900/20 transition-all duration-300 h-full border border-gray-200 dark:border-gray-600 group-hover:scale-105 group-hover:-translate-y-1">
                   
-                  <div className={`relative w-16 h-16 bg-gradient-to-br ${pillar.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}>
+                  <div className={`relative w-14 h-14 bg-gradient-to-br ${pillar.color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300 shadow-md`}>
                     <span className="text-white font-bold text-lg">{pillar.title[0]}</span>
-                    
-                    {/* Glow effect */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${pillar.color} rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500 -z-10`}></div>
                   </div>
                   
-                  <h3 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                     {pillar.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm lg:text-base leading-relaxed">
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                     {pillar.description}
                   </p>
-                  
-                  {/* Bottom accent line */}
-                  <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-gradient-to-r ${pillar.color} rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
                 </div>
               </div>
             ))}
@@ -580,7 +559,7 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {t.testimonials.items.map((testimonial, index) => (
               <div key={index} className="group animate-slideUp hover-lift" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 h-full">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl dark:shadow-gray-900/20 transition-all duration-300 border border-gray-100 dark:border-gray-700 h-full">
                   <div className="flex items-center space-x-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
