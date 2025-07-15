@@ -426,59 +426,65 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section id="solutions" className="relative py-16 bg-gradient-to-b from-gray-50 via-white to-purple-50/20 dark:from-gray-800 dark:via-gray-900 dark:to-purple-900/20">
+      <section id="solutions" className="relative py-12 bg-gradient-to-b from-purple-50/30 via-white to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-900">
         {/* Structured Background */}
         <div className="absolute inset-0">
-          {/* Grid Pattern for Structure */}
-          <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]" style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgb(139, 92, 246) 1px, transparent 0)`,
-            backgroundSize: '40px 40px'
-          }}></div>
-          
-          {/* Subtle Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 dark:from-purple-500/10 dark:via-transparent dark:to-pink-500/10"></div>
-          
-          {/* Transition gradient from hero */}
-          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-purple-50/30 to-transparent dark:from-gray-800/50 dark:to-transparent"></div>
+          {/* Smooth transition from hero */}
+          <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-purple-50/50 to-transparent dark:from-gray-800/80 dark:to-transparent"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header with better structure */}
-          <div className="relative text-center mb-16 animate-fadeIn">
-            <div className="inline-flex items-center space-x-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-purple-200/50 dark:border-purple-700/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-8 shadow-lg">
+          <div className="relative text-center mb-12 animate-fadeIn">
+            <div className="inline-flex items-center space-x-2 bg-purple-100/80 dark:bg-purple-900/30 backdrop-blur-sm border border-purple-300/50 dark:border-purple-600/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-md">
               <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
               <span>Vos avantages</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8 leading-tight">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
               {t.features.title}
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
               {t.features.subtitle}
             </p>
           </div>
           
-          {/* Structured Cards Container */}
-          <div className="relative">
-            {/* Cards Grid with proper structure */}
-            <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+          {/* Connected Cards Container */}
+          <div className="relative bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-3xl p-8 border-2 border-gray-200/80 dark:border-gray-600/80 shadow-xl">
+            {/* Connecting lines background */}
+            <div className="absolute inset-0 opacity-10 dark:opacity-20">
+              <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#a855f7" />
+                    <stop offset="50%" stopColor="#ec4899" />
+                    <stop offset="100%" stopColor="#f97316" />
+                  </linearGradient>
+                </defs>
+                <line x1="16.5" y1="50" x2="50" y2="50" stroke="url(#connectionGradient)" strokeWidth="0.5" />
+                <line x1="50" y1="50" x2="83.5" y2="50" stroke="url(#connectionGradient)" strokeWidth="0.5" />
+              </svg>
+            </div>
+            
+            {/* Cards Grid with connection */}
+            <div className="relative grid md:grid-cols-3 gap-6">
             {t.features.items.map((feature, index) => {
               const IconComponent = feature.icon;
               return (
                 <div key={index} className="group animate-slideUp" style={{ animationDelay: `${index * 0.15}s` }}>
-                  <div className="relative bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl p-8 lg:p-10 border-2 border-gray-200/60 dark:border-gray-600/60 text-center h-full transition-all duration-300 hover:border-purple-300/60 dark:hover:border-purple-500/60 hover:shadow-xl hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20 group-hover:scale-[1.02]">
+                  <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-6 border-2 border-gray-300/80 dark:border-gray-600/80 text-center h-full transition-all duration-300 hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-2xl hover:shadow-purple-500/20 dark:hover:shadow-purple-500/30 group-hover:scale-105 group-hover:-translate-y-2">
                     
                     <div className="relative">
                       {/* Structured Icon Design */}
-                      <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-6 shadow-lg hover:scale-105 transition-transform duration-300">
+                      <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
                         <IconComponent className="w-8 h-8 text-white" />
                       </div>
                       
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
                         {feature.title}
                       </h3>
                       
-                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                         {feature.description}
                       </p>
                     </div>
@@ -493,122 +499,102 @@ export default function LandingPage() {
 
 
       {/* 5R Model Section */}
-      <section className="relative py-16 bg-gradient-to-b from-purple-50/20 via-white to-gray-50 dark:from-purple-900/20 dark:via-gray-900 dark:to-gray-800 overflow-hidden">
+      <section className="relative py-12 bg-gradient-to-b from-white via-gray-50/50 to-gray-100/50 dark:from-gray-900 dark:via-gray-800/50 dark:to-gray-800 overflow-hidden">
         <div className="absolute inset-0">
-          {/* Gradient Mesh Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/8 via-transparent to-pink-500/8 dark:from-purple-500/15 dark:via-transparent dark:to-pink-500/15"></div>
-          
-          {/* Floating Elements */}
-          <div className="absolute top-20 left-1/6 w-96 h-96 bg-purple-500/8 dark:bg-purple-500/15 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-20 right-1/6 w-80 h-80 bg-pink-500/8 dark:bg-pink-500/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }}></div>
-          
-          {/* Subtle Grid Pattern */}
-          <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.04]" style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgb(139, 92, 246) 1px, transparent 0)`,
-            backgroundSize: '32px 32px'
-          }}></div>
-          
-          {/* Smooth transition from features section */}
-          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white/80 to-transparent dark:from-gray-900/80 dark:to-transparent"></div>
+          {/* Smooth connection from features */}
+          <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-white to-transparent dark:from-gray-900 dark:to-transparent"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Elegant Section Divider */}
-          <div className="flex items-center justify-center mb-16">
-            <div className="flex items-center space-x-6">
-              {/* Left ornament */}
-              <div className="flex items-center space-x-2">
-                <div className="w-16 h-px bg-gradient-to-r from-transparent to-purple-300 dark:to-purple-500"></div>
-                <div className="w-2 h-2 bg-gradient-to-br from-purple-400 to-pink-400 dark:from-purple-500 dark:to-pink-500 rounded-full animate-pulse"></div>
-                <div className="w-8 h-px bg-gradient-to-r from-purple-400 to-pink-400 dark:from-purple-500 dark:to-pink-500"></div>
-              </div>
-              
-              {/* Center diamond */}
-              <div className="relative">
-                <div className="w-4 h-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-sm rotate-45 animate-pulse-slow"></div>
-                <div className="absolute inset-0 w-4 h-4 bg-gradient-to-br from-purple-400 to-pink-400 rounded-sm rotate-45 animate-pulse-slow opacity-50" style={{ animationDelay: '1s' }}></div>
-              </div>
-              
-              {/* Right ornament */}
-              <div className="flex items-center space-x-2">
-                <div className="w-8 h-px bg-gradient-to-r from-pink-400 to-purple-400 dark:from-pink-500 dark:to-purple-500"></div>
-                <div className="w-2 h-2 bg-gradient-to-br from-pink-400 to-purple-400 dark:from-pink-500 dark:to-purple-500 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-                <div className="w-16 h-px bg-gradient-to-r from-pink-300 to-transparent dark:from-pink-500 dark:to-transparent"></div>
-              </div>
-            </div>
-          </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="relative text-center mb-20 animate-fadeIn">
-            <div className="inline-flex items-center space-x-2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-purple-200/50 dark:border-purple-700/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-8 shadow-lg">
+          <div className="relative text-center mb-12 animate-fadeIn">
+            <div className="inline-flex items-center space-x-2 bg-purple-100/80 dark:bg-purple-900/30 backdrop-blur-sm border border-purple-300/50 dark:border-purple-600/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-md">
               <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
               <span className="tracking-wide">Méthode scientifique</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
               {t.model5r.title}
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 max-w-3xl mx-auto leading-relaxed">
               {t.model5r.subtitle}
             </p>
-            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-5xl mx-auto leading-relaxed">
+            <p className="text-base text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
               {t.model5r.description}
             </p>
           </div>
           
-          <div className="relative grid md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
+          {/* Connected 5R Cards */}
+          <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 border-2 border-gray-200/80 dark:border-gray-600/80 shadow-xl">
+            {/* Connection lines for 5R */}
+            <div className="absolute inset-0 opacity-10 dark:opacity-20">
+              <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="fiveRGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#3b82f6" />
+                    <stop offset="25%" stopColor="#a855f7" />
+                    <stop offset="50%" stopColor="#22c55e" />
+                    <stop offset="75%" stopColor="#f97316" />
+                    <stop offset="100%" stopColor="#eab308" />
+                  </linearGradient>
+                </defs>
+                <line x1="10" y1="50" x2="90" y2="50" stroke="url(#fiveRGradient)" strokeWidth="0.8" />
+              </svg>
+            </div>
+            
+            <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             {t.model5r.pillars.map((pillar, index) => (
               <div key={index} className="group animate-slideUp" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="relative bg-white/98 dark:bg-gray-700/98 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl dark:shadow-gray-900/30 transition-all duration-300 h-full border-2 border-gray-200/80 dark:border-gray-600/80 group-hover:scale-105 group-hover:-translate-y-2 hover:border-purple-300/60 dark:hover:border-purple-500/60 hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20">
+                <div className="relative bg-white dark:bg-gray-700 rounded-2xl p-4 shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-2 border-gray-300/80 dark:border-gray-600/80 group-hover:scale-110 group-hover:-translate-y-3 hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-purple-500/20 dark:hover:shadow-purple-500/30">
                   
-                  <div className={`relative w-14 h-14 bg-gradient-to-br ${pillar.color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300 shadow-md`}>
-                    <span className="text-white font-bold text-lg">{pillar.title[0]}</span>
+                  <div className={`relative w-12 h-12 bg-gradient-to-br ${pillar.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-125 transition-all duration-300 shadow-md mx-auto`}>
+                    <span className="text-white font-bold text-base">{pillar.title[0]}</span>
                   </div>
                   
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                  <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3 text-center">
                     {pillar.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  <p className="text-gray-600 dark:text-gray-400 text-xs leading-relaxed text-center">
                     {pillar.description}
                   </p>
                 </div>
               </div>
             ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="relative py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
-        {/* Smooth transition from 5R section */}
-        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-gray-50/80 to-transparent dark:from-gray-800/80 dark:to-transparent"></div>
+      <section className="relative py-12 bg-gradient-to-b from-gray-100/50 to-gray-50 dark:from-gray-800 dark:to-gray-900">
+        <div className="absolute inset-0">
+          {/* Smooth connection from 5R */}
+          <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-gray-100/50 to-transparent dark:from-gray-800 dark:to-transparent"></div>
+        </div>
         
-        {/* Subtle background pattern */}
-        <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgb(139, 92, 246) 1px, transparent 0)`,
-          backgroundSize: '48px 48px'
-        }}></div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 animate-fadeIn">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 animate-fadeIn">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
               {t.testimonials.title}
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               {t.testimonials.subtitle}
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          {/* Connected testimonials container */}
+          <div className="relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-3xl p-6 border-2 border-gray-200/80 dark:border-gray-600/80 shadow-xl">
+            <div className="grid md:grid-cols-3 gap-6">
             {t.testimonials.items.map((testimonial, index) => (
-              <div key={index} className="group animate-slideUp hover-lift" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="bg-white/98 dark:bg-gray-800/98 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl dark:shadow-gray-900/30 transition-all duration-300 border-2 border-gray-200/60 dark:border-gray-700/60 h-full hover:border-purple-300/60 dark:hover:border-purple-500/60 hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20 group-hover:scale-[1.02]">
-                  <div className="flex items-center space-x-1 mb-4">
+              <div key={index} className="group animate-slideUp" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gray-300/80 dark:border-gray-600/80 h-full hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-purple-500/20 dark:hover:shadow-purple-500/30 group-hover:scale-105 group-hover:-translate-y-2">
+                  <div className="flex items-center space-x-1 mb-3">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                     ))}
                   </div>
                   
-                  <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed italic">
+                  <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed italic text-sm">
                     "{testimonial.content}"
                   </p>
                   
@@ -626,6 +612,7 @@ export default function LandingPage() {
                 </div>
               </div>
             ))}
+            </div>
           </div>
         </div>
       </section>
