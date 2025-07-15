@@ -360,10 +360,10 @@ export default function LandingPage() {
                       <h3 className="font-semibold text-gray-900 dark:text-white">Coach Virtuel IA</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400">Basé sur le modèle 5R®</p>
                     </div>
-                    <div className="ml-auto flex items-center space-x-1">
+                  </div>
+                  <div className="absolute top-4 right-4 flex items-center space-x-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-xs text-gray-500 dark:text-gray-400 ml-6">En ligne</span>
-                    </div>
+                      <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">En ligne</span>
                   </div>
                   
                   <div className="space-y-4">
