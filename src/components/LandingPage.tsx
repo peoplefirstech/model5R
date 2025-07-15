@@ -362,7 +362,7 @@ export default function LandingPage() {
                     </div>
                     <div className="ml-auto flex items-center space-x-1">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-xs text-gray-500 dark:text-gray-400">En ligne</span>
+                      <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">En ligne</span>
                     </div>
                   </div>
                   
