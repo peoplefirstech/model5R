@@ -166,9 +166,65 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
     setInputText('');
     setIsTyping(true);
 
-    // Simulate AI response
+    // Generate contextual AI response based on the question
     setTimeout(() => {
-      const responses = {
+      const getContextualResponse = (question: string, lang: 'fr' | 'en') => {
+        const lowerQuestion = question.toLowerCase();
+        
+        if (lang === 'fr') {
+          if (lowerQuestion.includes('rôle') || lowerQuestion.includes('role')) {
+            return "Pour améliorer les **Rôles**, organisez un atelier collaboratif où l'équipe co-construit les définitions de poste. Définissez ensemble les responsabilités, les objectifs et les indicateurs de performance. Clarifiez qui fait quoi, quand et comment. Cela favorise l'appropriation et la clarté des missions de chacun.";
+          }
+          if (lowerQuestion.includes('routine') || lowerQuestion.includes('rituel')) {
+            return "Concernant les **Routines**, établissez des rituels d'équipe réguliers : réunions hebdomadaires, points de synchronisation, célébrations des succès. Créez un rythme prévisible avec des moments dédiés au partage d'informations. La régularité crée un cadre sécurisant et renforce la cohésion.";
+          }
+          if (lowerQuestion.includes('règle') || lowerQuestion.includes('regle')) {
+            return "Pour les **Règles**, impliquez l'équipe dans l'élaboration de la charte de fonctionnement. Définissez ensemble les valeurs, les comportements attendus et les processus de décision. Établissez des normes claires sur la communication, les délais et la qualité. L'adhésion est plus forte quand chacun participe à leur création.";
+          }
+          if (lowerQuestion.includes('respect')) {
+            return "Le **Respect** se cultive par l'écoute active, la reconnaissance des différences et la valorisation des contributions de chacun. Instaurez des moments d'échange et de feedback constructif. Encouragez la bienveillance et la tolérance. Créez un environnement où chacun se sent en sécurité pour s'exprimer.";
+          }
+          if (lowerQuestion.includes('reconnaissance') || lowerQuestion.includes('reconaissance')) {
+            return "La **Reconnaissance** passe par la célébration des réussites, individuelles et collectives. Mettez en place un système de feedback positif régulier et valorisez les efforts autant que les résultats. Organisez des moments de célébration et de remerciements. Reconnaissez publiquement les contributions exceptionnelles.";
+          }
+          // Réponse générale
+          return "Basé sur le modèle 5R® de Cécile Dejoux, je peux vous aider à améliorer votre management en travaillant sur les **Rôles** (clarification des responsabilités), les **Routines** (rituels d'équipe), les **Règles** (cadre de fonctionnement), le **Respect** (climat de confiance) et la **Reconnaissance** (valorisation des contributions). Pouvez-vous préciser sur quel aspect vous souhaitez vous concentrer ?";
+        } else {
+          if (lowerQuestion.includes('role')) {
+            return "To improve **Roles**, organize a collaborative workshop where the team co-builds job definitions. Define responsibilities, objectives and performance indicators together. Clarify who does what, when and how. This promotes ownership and clarity of everyone's missions.";
+          }
+          if (lowerQuestion.includes('routine') || lowerQuestion.includes('ritual')) {
+            return "Regarding **Routines**, establish regular team rituals: weekly meetings, synchronization points, success celebrations. Create a predictable rhythm with dedicated moments for information sharing. Regularity creates a secure framework and strengthens cohesion.";
+          }
+          if (lowerQuestion.includes('rule')) {
+            return "For **Rules**, involve the team in developing the operating charter. Define values, expected behaviors and decision-making processes together. Establish clear standards for communication, deadlines and quality. Adherence is stronger when everyone participates in their creation.";
+          }
+          if (lowerQuestion.includes('respect')) {
+            return "**Respect** is cultivated through active listening, recognition of differences and valuing everyone's contributions. Establish moments for exchange and constructive feedback. Encourage kindness and tolerance. Create an environment where everyone feels safe to express themselves.";
+          }
+          if (lowerQuestion.includes('recognition')) {
+            return "**Recognition** involves celebrating successes, both individual and collective. Implement a regular positive feedback system and value efforts as much as results. Organize celebration and appreciation moments. Publicly acknowledge exceptional contributions.";
+          }
+          // General response
+          return "Based on Cécile Dejoux's 5R® model, I can help you improve your management by working on **Roles** (clarifying responsibilities), **Routines** (team rituals), **Rules** (operating framework), **Respect** (climate of trust) and **Recognition** (valuing contributions). Can you specify which aspect you'd like to focus on?";
+        }
+      };
+
+      const botMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: getContextualResponse(userMessage.text, language),
+        sender: 'bot',
+        timestamp: new Date()
+      };
+
+      setMessages(prev => [...prev, botMessage]);
+      setIsTyping(false);
+    }, 2000);
+  };
+
+  const handleQuickQuestion = (question: string) => {
+    handleSendMessage(question);
+  };
         fr: [
           "Pour **Rôles**, organisez un atelier collaboratif où l'équipe co-construit les définitions de poste. Définissez ensemble les responsabilités, les objectifs et les indicateurs de performance. Cela favorise l'appropriation et la clarté des missions.",
           "Concernant les **Routines**, établissez des rituels d'équipe réguliers : réunions hebdomadaires, points de synchronisation, célébrations des succès. La régularité crée un cadre sécurisant et renforce la cohésion.",
