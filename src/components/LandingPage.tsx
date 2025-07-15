@@ -714,7 +714,7 @@ export default function LandingPage() {
             <div className="grid md:grid-cols-3 gap-6">
             {t.testimonials.items.map((testimonial, index) => (
               <div key={index} className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gray-300/80 dark:border-gray-600/80 h-full hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-purple-500/20 dark:hover:shadow-purple-500/30 group-hover:scale-105 group-hover:-translate-y-2">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-2 border-gray-300/80 dark:border-gray-600/80 h-full">
                   <div className="flex items-center space-x-1 mb-3">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />

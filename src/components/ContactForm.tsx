@@ -161,7 +161,7 @@ export default function ContactForm({ language }: ContactFormProps) {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900 dark:text-white">Email</p>
-                    <a href={`mailto:${t.contact.email}`} className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
+                    <a href={`mailto:${t.contact.email}`} className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
                       {t.contact.email}
                     </a>
                   </div>
@@ -173,7 +173,7 @@ export default function ContactForm({ language }: ContactFormProps) {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900 dark:text-white">{language === 'fr' ? 'Téléphone' : 'Phone'}</p>
-                    <a href={`tel:${t.contact.phone}`} className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
+                    <a href={`tel:${t.contact.phone}`} className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
                       {t.contact.phone}
                     </a>
                   </div>
