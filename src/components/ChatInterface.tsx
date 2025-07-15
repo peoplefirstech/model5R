@@ -225,37 +225,6 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   const handleQuickQuestion = (question: string) => {
     handleSendMessage(question);
   };
-        fr: [
-          "Pour **Rôles**, organisez un atelier collaboratif où l'équipe co-construit les définitions de poste. Définissez ensemble les responsabilités, les objectifs et les indicateurs de performance. Cela favorise l'appropriation et la clarté des missions.",
-          "Concernant les **Routines**, établissez des rituels d'équipe réguliers : réunions hebdomadaires, points de synchronisation, célébrations des succès. La régularité crée un cadre sécurisant et renforce la cohésion.",
-          "Pour les **Règles**, impliquez l'équipe dans l'élaboration de la charte de fonctionnement. Définissez ensemble les valeurs, les comportements attendus et les processus de décision. L'adhésion est plus forte quand chacun participe.",
-          "Le **Respect** se cultive par l'écoute active, la reconnaissance des différences et la valorisation des contributions de chacun. Instaurez des moments d'échange et de feedback constructif.",
-          "La **Reconnaissance** passe par la célébration des réussites, individuelles et collectives. Mettez en place un système de feedback positif régulier et valorisez les efforts autant que les résultats."
-        ],
-        en: [
-          "For **Roles**, organize a collaborative workshop where the team co-builds job definitions. Define responsibilities, objectives and performance indicators together. This promotes ownership and clarity of missions.",
-          "Regarding **Routines**, establish regular team rituals: weekly meetings, synchronization points, success celebrations. Regularity creates a secure framework and strengthens cohesion.",
-          "For **Rules**, involve the team in developing the operating charter. Define values, expected behaviors and decision-making processes together. Adherence is stronger when everyone participates.",
-          "**Respect** is cultivated through active listening, recognition of differences and valuing everyone's contributions. Establish moments for exchange and constructive feedback.",
-          "**Recognition** involves celebrating successes, both individual and collective. Implement a regular positive feedback system and value efforts as much as results."
-        ]
-      };
-
-      const botMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: responses[language][Math.floor(Math.random() * responses[language].length)],
-        sender: 'bot',
-        timestamp: new Date()
-      };
-
-      setMessages(prev => [...prev, botMessage]);
-      setIsTyping(false);
-    }, 2000);
-  };
-
-  const handleQuickQuestion = (question: string) => {
-    handleSendMessage(question);
-  };
 
   const handleNewConversation = () => {
     setShowWelcome(true);
@@ -321,10 +290,10 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 </button>
               )}
               <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span className="text-sm text-gray-600 dark:text-gray-400">
-                {language === 'fr' ? 'En ligne' : 'Online'}
-              </span>
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-gray-600 dark:text-gray-400">
+                  {language === 'fr' ? 'En ligne' : 'Online'}
+                </span>
               </div>
             </div>
           </div>
@@ -467,10 +436,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               </div>
               
               <button
-                onClick={() => {
-                  setShowWelcome(true);
-                  setMessages([]);
-                }}
+                onClick={() => handleSendMessage()}
                 disabled={!inputText.trim()}
                 className="p-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 disabled:hover:scale-100 shadow-lg"
               >
