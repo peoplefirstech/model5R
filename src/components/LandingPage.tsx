@@ -473,26 +473,73 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Elegant Transition Section */}
-      <section className="relative py-12 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
+      {/* Premium Transition Section */}
+      <section className="relative py-20 bg-gradient-to-b from-white via-gray-50/50 to-gray-50 dark:from-gray-900 dark:via-gray-850 dark:to-gray-800 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-64 h-64 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-2xl animate-pulse-slow"></div>
-          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-pink-500/5 dark:bg-pink-500/10 rounded-full blur-2xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
+          {/* Gradient Mesh Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/3 via-transparent to-pink-500/3 dark:from-purple-500/8 dark:via-transparent dark:to-pink-500/8"></div>
+          
+          {/* Floating Elements */}
+          <div className="absolute top-1/4 left-1/6 w-32 h-32 bg-gradient-to-br from-purple-400/10 to-pink-400/10 dark:from-purple-400/20 dark:to-pink-400/20 rounded-full blur-xl animate-float"></div>
+          <div className="absolute bottom-1/4 right-1/6 w-40 h-40 bg-gradient-to-br from-pink-400/10 to-purple-400/10 dark:from-pink-400/20 dark:to-purple-400/20 rounded-full blur-xl animate-float" style={{ animationDelay: '3s' }}></div>
+          
+          {/* Subtle Grid Pattern */}
+          <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]" style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgb(139, 92, 246) 1px, transparent 0)`,
+            backgroundSize: '24px 24px'
+          }}></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative text-center">
-            <div className="flex items-center justify-center space-x-4 mb-8">
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-purple-400 dark:via-purple-500 to-transparent"></div>
-              <div className="w-3 h-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
-              <div className="w-24 h-px bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500"></div>
-              <div className="w-3 h-3 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-purple-400 dark:via-purple-500 to-transparent"></div>
+          <div className="relative">
+            {/* Elegant Divider */}
+            <div className="flex items-center justify-center mb-12">
+              <div className="flex items-center space-x-6">
+                {/* Left ornament */}
+                <div className="flex items-center space-x-2">
+                  <div className="w-12 h-px bg-gradient-to-r from-transparent to-purple-300 dark:to-purple-500"></div>
+                  <div className="w-2 h-2 bg-gradient-to-br from-purple-400 to-pink-400 dark:from-purple-500 dark:to-pink-500 rounded-full animate-pulse"></div>
+                  <div className="w-8 h-px bg-gradient-to-r from-purple-400 to-pink-400 dark:from-purple-500 dark:to-pink-500"></div>
+                </div>
+                
+                {/* Center diamond */}
+                <div className="relative">
+                  <div className="w-4 h-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-sm rotate-45 animate-pulse-slow"></div>
+                  <div className="absolute inset-0 w-4 h-4 bg-gradient-to-br from-purple-400 to-pink-400 rounded-sm rotate-45 animate-pulse-slow opacity-50" style={{ animationDelay: '1s' }}></div>
+                </div>
+                
+                {/* Right ornament */}
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-px bg-gradient-to-r from-pink-400 to-purple-400 dark:from-pink-500 dark:to-purple-500"></div>
+                  <div className="w-2 h-2 bg-gradient-to-br from-pink-400 to-purple-400 dark:from-pink-500 dark:to-purple-500 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                  <div className="w-12 h-px bg-gradient-to-r from-pink-300 to-transparent dark:from-pink-500 dark:to-transparent"></div>
+                </div>
+              </div>
             </div>
             
-            <p className="text-sm font-medium text-purple-600 dark:text-purple-400 tracking-wider uppercase">
-              Découvrez notre méthode
-            </p>
+            {/* Transition Content */}
+            <div className="text-center space-y-6">
+              <div className="inline-flex items-center space-x-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-purple-200/50 dark:border-purple-700/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium shadow-sm">
+                <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
+                <span className="tracking-wide">Méthode scientifique</span>
+              </div>
+              
+              <div className="max-w-2xl mx-auto">
+                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                  {language === 'fr' 
+                    ? "Découvrez la méthode révolutionnaire qui transforme les équipes"
+                    : "Discover the revolutionary method that transforms teams"
+                  }
+                </p>
+              </div>
+              
+              {/* Subtle Arrow Indicator */}
+              <div className="flex justify-center pt-4">
+                <div className="w-6 h-6 border-2 border-purple-300 dark:border-purple-600 rounded-full flex items-center justify-center animate-bounce">
+                  <div className="w-2 h-2 bg-purple-500 dark:bg-purple-400 rounded-full"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
