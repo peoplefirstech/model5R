@@ -670,9 +670,9 @@ export default function LandingPage() {
             <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             {t.model5r.pillars.map((pillar, index) => (
               <div key={index} className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="relative bg-white dark:bg-gray-700 rounded-2xl p-4 shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-2 border-gray-300/80 dark:border-gray-600/80 group-hover:scale-110 group-hover:-translate-y-3 hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-purple-500/20 dark:hover:shadow-purple-500/30">
+                <div className="relative bg-white dark:bg-gray-700 rounded-2xl p-4 shadow-lg h-full border-2 border-gray-300/80 dark:border-gray-600/80 transition-all duration-500 ease-out hover:shadow-xl hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20 hover:scale-[1.02] hover:-translate-y-1">
                   
-                  <div className={`relative w-12 h-12 bg-gradient-to-br ${pillar.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-125 transition-all duration-300 shadow-md mx-auto`}>
+                  <div className={`relative w-12 h-12 bg-gradient-to-br ${pillar.color} rounded-xl flex items-center justify-center mb-4 shadow-md mx-auto transition-all duration-500 ease-out`}>
                     <span className="text-white font-bold text-base">{pillar.title[0]}</span>
                   </div>
                   
