@@ -172,7 +172,7 @@ export default function ContactForm({ language }: ContactFormProps) {
                     <Phone className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900 dark:text-white">Téléphone</p>
+                    <p className="font-medium text-gray-900 dark:text-white">{language === 'fr' ? 'Téléphone' : 'Phone'}</p>
                     <a href={`tel:${t.contact.phone}`} className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
                       {t.contact.phone}
                     </a>
@@ -184,7 +184,7 @@ export default function ContactForm({ language }: ContactFormProps) {
                     <MapPin className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900 dark:text-white">Adresse</p>
+                    <p className="font-medium text-gray-900 dark:text-white">{language === 'fr' ? 'Adresse' : 'Address'}</p>
                     <p className="text-gray-600 dark:text-gray-300">
                       {t.contact.address}
                     </p>
