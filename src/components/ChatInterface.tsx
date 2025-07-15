@@ -88,7 +88,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
       back: "Retour",
       refresh: "Actualiser les suggestions",
       newConversation: "Nouvelle conversation",
-      footer: "Coach Virtuel IA by People First Technologies • Contact France : Philippe DITISHEIM (+33 632 00 06 84) • info@peoplefirst-technologies.com"
+      footer: "Coach Virtuel IA by People First Technologies • France : +33 632 00 06 84 • info@peoplefirst-technologies.com"
     },
     en: {
       welcome: {
@@ -136,7 +136,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
       back: "Back",
       refresh: "Refresh suggestions",
       newConversation: "New conversation",
-      footer: "AI Virtual Coach by People First Technologies • USA Contact: Lalitha SHIVASWAMY (+1-860-217-0198) • lshivaswamy@peoplefirst-technologies.com"
+      footer: "AI Virtual Coach by People First Technologies • USA : +1-860-217-0198 • lshivaswamy@peoplefirst-technologies.com"
     }
   };
 

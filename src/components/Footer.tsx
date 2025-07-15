@@ -19,7 +19,6 @@ export default function Footer({ language }: FooterProps) {
       tagline: "Transformons ensemble votre potentiel en performance",
       description: "People First Technologies révolutionne le coaching avec l'intelligence artificielle pour créer des expériences d'apprentissage personnalisées et impactantes.",
       contact: "Contact",
-      name: "Philippe DITISHEIM",
       email: "info@peoplefirst-technologies.com",
       phone: "+33 632 00 06 84",
       address: "34 RUE MAISONS NEUVES, 13890 MOURIES, France",
@@ -33,7 +32,6 @@ export default function Footer({ language }: FooterProps) {
       tagline: "Transform your potential into performance together",
       description: "People First Technologies revolutionizes coaching with artificial intelligence to create personalized and impactful learning experiences.",
       contact: "Contact",
-      name: "Lalitha SHIVASWAMY",
       email: "lshivaswamy@peoplefirst-technologies.com",
       phone: "+1-860-217-0198",
       address: "550 Reserve Street, Suite 390, Southlake, Texas 76092, USA",
@@ -94,10 +92,6 @@ export default function Footer({ language }: FooterProps) {
             <h4 className="text-lg font-semibold text-white">{t.contact}</h4>
             
             <div className="space-y-3">
-              <div className="text-gray-300">
-                <p className="font-medium text-purple-200 mb-1">{t.name}</p>
-              </div>
-              
               <a href={`mailto:${t.email}`} className="flex items-center text-gray-300 hover:text-purple-300 transition-colors">
                 <Mail className="w-4 h-4 mr-3 text-purple-400" />
                 <span className="text-sm">{t.email}</span>
