@@ -449,8 +449,6 @@ export default function LandingPage() {
             {/* Chat Mockup Interactif */}
             <div className={`relative ${!isMobile ? 'animate-slideUp' : ''}`}>
               <div className="relative bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-gray-200/50 dark:border-gray-700/50">
-                <div className={`absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full opacity-10 dark:opacity-20 ${!isMobile ? 'animate-pulse-slow' : ''}`}></div>
-                <div className={`absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full opacity-10 dark:opacity-20 ${!isMobile ? 'animate-pulse-slow' : ''}`} style={{ animationDelay: '1s' }}></div>
                 
                 <div className="relative space-y-6">
                   <div className="flex items-center space-x-3">
@@ -459,12 +457,16 @@ export default function LandingPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 dark:text-white">Coach Virtuel IA</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Basé sur le modèle 5R®</p>
+                      <div className="flex items-center space-x-3">
+                        <p className="text-sm text-gray-600 dark:text-gray-400">Basé sur le modèle 5R®</p>
+                        <div className="flex items-center space-x-1">
+                          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                          <span className="text-xs text-gray-500 dark:text-gray-400">
+                            {language === 'fr' ? 'En ligne' : 'Online'}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="absolute top-4 right-4 flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">En ligne</span>
                   </div>
                   
                   <div className="space-y-4">
