@@ -280,7 +280,7 @@ export default function LandingPage() {
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
-                className="flex items-center space-x-1 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                className="flex items-center space-x-1 text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors p-2 rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
               >
                 <Globe className="w-4 h-4" />
                 <span className="text-sm font-medium">{language.toUpperCase()}</span>
@@ -288,14 +288,17 @@ export default function LandingPage() {
               
               <button
                 onClick={() => setIsDark(!isDark)}
-                className="p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                className="p-2 text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
               >
                 {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
               </button>
               
+              {/* Séparateur visuel */}
+              <div className="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
+              
               <Link
                 to="/#contact"
-                className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 px-4 py-2 rounded-lg font-medium transition-colors duration-300 flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 dark:from-purple-500/20 dark:to-pink-500/20 border border-purple-200 dark:border-purple-700 text-purple-700 dark:text-purple-300 hover:from-purple-500/20 hover:to-pink-500/20 dark:hover:from-purple-500/30 dark:hover:to-pink-500/30 hover:border-purple-300 dark:hover:border-purple-600 px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Contact</span>
