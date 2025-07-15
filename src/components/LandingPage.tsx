@@ -422,17 +422,17 @@ export default function LandingPage() {
               </div>
               
               {/* Indicateurs simplifiés */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                <div className="flex items-center space-x-2">
+              <div className="flex flex-col sm:flex-row items-start justify-start gap-6 pt-6">
+                <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
                   <CheckCircle className="w-4 h-4 text-green-500" />
                   <span>{language === 'fr' ? 'Gratuit pendant 14 jours' : 'Free for 14 days'}</span>
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
                   <CheckCircle className="w-4 h-4 text-green-500" />
                   <span>{language === 'fr' ? 'Aucune carte requise' : 'No card required'}</span>
                 </div>
-                <div className="flex items-center space-x-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">
-                  <CheckCircle className="w-3 h-3" />
+                <div className="flex items-center space-x-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-medium">
+                  <CheckCircle className="w-4 h-4" />
                   <span>{language === 'fr' ? 'RGPD Conforme' : 'GDPR Compliant'}</span>
                 </div>
               </div>
