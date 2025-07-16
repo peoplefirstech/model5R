@@ -369,7 +369,7 @@ export default function LandingPage() {
               </div>
               <div>
                 <h1 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 dark:text-white leading-tight">People First Technologies</h1>
-                <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 leading-tight">Coach Virtuel IA</p>
+                <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 leading-tight">Management coaching</p>
               </div>
             </div>
             
