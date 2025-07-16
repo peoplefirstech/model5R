@@ -876,7 +876,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
           
           {/* Footer */}
           <div className="mt-3 text-center">
-            <p className="text-[10px] sm:text-xs text-gray-300 dark:text-gray-600 opacity-40">
+            <p className="text-[9px] sm:text-[10px] text-gray-400/50 dark:text-gray-500/40">
               {t.footer}
             </p>
           </div>
