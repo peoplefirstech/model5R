@@ -244,31 +244,94 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
             text: "How to define clear rules?", 
             category: "Rules",
             icon: FileText,
+            description: "Operating framework"
+          },
+          { 
+            text: "How to cultivate respect?", 
+            category: "Respect",
+            icon: Handshake,
+            description: "Trust environment"
+          },
+        ],
+        // Group 2 - Communication & Management
+        [
+          {
+            text: "How to value contributions?",
+            category: "Recognition",
+            icon: Award,
+            description: "Success celebration"
+          },
+          {
             text: "Digital transformation strategies", 
             category: "Transformation",
             icon: Zap,
             description: "Change management"
           },
           {
-        // Group 4 - Management & Optimization
+            text: "How to strengthen communication?",
             category: "Communication",
             icon: MessageCircle,
+            description: "Effective channels and feedback"
+          },
+          {
             text: "How to manage conflicts?",
             category: "Conflicts",
             icon: Shield,
             description: "Mediation and resolution"
           }
         ],
+        // Group 3 - Innovation & Performance
+        [
+          {
             text: "How to develop autonomy?",
             category: "Autonomy",
             icon: UserCheck,
             description: "Empowerment and delegation"
+          },
+          {
+            text: "How to set motivating objectives?",
             category: "Objectives",
             icon: Target,
+            description: "SMART method and tracking"
+          },
+          {
+            text: "How to stimulate innovation?",
+            category: "Innovation",
+            icon: Lightbulb,
+            description: "Creative encouragement"
+          },
+          {
+            text: "How to measure team engagement?",
+            category: "Engagement",
+            icon: CheckCircle,
+            description: "Indicators and surveys"
+          }
+        ],
+        // Group 4 - Leadership & Optimization
+        [
+          {
+            text: "How to foster learning?",
+            category: "Learning",
+            icon: TrendingUp,
+            description: "Continuous training"
+          },
+          {
+            text: "How to optimize decisions?",
+            category: "Decision",
+            icon: Zap,
+            description: "Collaborative processes"
+          },
+          {
             text: "How to balance work and well-being?",
             category: "Well-being",
             icon: Heart,
             description: "Stress management"
+          },
+          {
+            text: "How to anticipate and manage change?",
+            category: "Change",
+            icon: RefreshCw,
+            description: "Change communication"
           }
         ]
       ],
