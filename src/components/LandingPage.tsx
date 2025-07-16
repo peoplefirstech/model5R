@@ -597,11 +597,11 @@ export default function LandingPage() {
 
       {/* 5R Model Section */}
       <React.Suspense fallback={<div className="h-96 bg-gray-50 dark:bg-gray-800 animate-pulse"></div>}>
-        <section className="relative py-20 bg-gray-50 dark:bg-gray-50 overflow-hidden">
+        <section className="relative py-20 bg-gray-50 dark:bg-gray-900 overflow-hidden">
         <div className="absolute inset-0">
           {/* Subtle background effects */}
-          <div className="absolute top-20 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-pink-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute top-20 left-1/4 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-pink-500/5 dark:bg-pink-500/10 rounded-full blur-3xl"></div>
         </div>
         
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -612,13 +612,13 @@ export default function LandingPage() {
               <span className="tracking-wide">{language === 'fr' ? 'Méthode scientifique' : 'Scientific method'}</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
               {t.model5r.title}
             </h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
               {t.model5r.subtitle}
             </p>
-            <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
               {t.model5r.description}
             </p>
           </div>
@@ -627,7 +627,7 @@ export default function LandingPage() {
           <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {t.model5r.pillars.map((pillar, index) => (
               <div key={index} className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="relative bg-white/90 dark:bg-white/5 backdrop-blur-sm rounded-3xl p-6 shadow-lg h-full border border-gray-200/50 dark:border-white/10 transition-all duration-300 ease-out hover:shadow-xl hover:border-purple-300/60 dark:hover:border-purple-400/60 hover:-translate-y-1">
+                <div className="relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-3xl p-6 shadow-lg h-full border border-gray-200/50 dark:border-gray-700/50 transition-all duration-300 ease-out hover:shadow-xl hover:border-purple-300/60 dark:hover:border-purple-400/60 hover:-translate-y-1">
                   
                   {/* Premium Icon Container */}
                   <div className="relative mb-4">
