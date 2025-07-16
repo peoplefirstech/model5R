@@ -398,7 +398,7 @@ export default function LandingPage() {
               <div className="space-y-4">
                 <div className="inline-flex items-center space-x-2 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 px-4 py-2 rounded-full text-sm font-medium">
                   <Sparkles className="w-4 h-4" />
-                  <span>{language === 'fr' ? 'Modèle 5R® de Cécile Dejoux' : 'Cécile Dejoux\'s 5R® Model'}</span>
+                  <span className="tracking-wide">{language === 'fr' ? 'Modèle 5R® de Cécile Dejoux' : 'Cécile Dejoux\'s 5R® Model'}</span>
                 </div>
                 
                 <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
@@ -532,9 +532,9 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header with better structure */}
           <div className={`relative text-center mb-12 ${!isMobile ? 'animate-fadeIn' : ''}`}>
-            <div className="inline-flex items-center space-x-2 bg-purple-100/80 dark:bg-purple-900/30 backdrop-blur-sm border border-purple-300/50 dark:border-purple-600/50 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-md">
+            <div className="inline-flex items-center space-x-2 bg-purple-100 dark:bg-purple-900/50 border border-purple-200 dark:border-purple-700 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-sm">
               <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
-              <span>{language === 'fr' ? 'Vos avantages' : 'Your benefits'}</span>
+              <span className="tracking-wide">{language === 'fr' ? 'Vos avantages' : 'Your benefits'}</span>
             </div>
             
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
@@ -607,7 +607,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className={`relative text-center mb-12 ${!isMobile ? 'animate-fadeIn' : ''}`}>
-            <div className="inline-flex items-center space-x-2 bg-purple-100 backdrop-blur-sm border border-purple-200 text-purple-700 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-sm">
+            <div className="inline-flex items-center space-x-2 bg-purple-100 dark:bg-purple-900/50 border border-purple-200 dark:border-purple-700 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-sm">
               <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
               <span className="tracking-wide">{language === 'fr' ? 'Méthode scientifique' : 'Scientific method'}</span>
             </div>
@@ -669,9 +669,9 @@ export default function LandingPage() {
             
             {/* Header */}
             <div className={`text-center mb-12 ${!isMobile ? 'animate-fadeIn' : ''}`}>
-              <div className="inline-flex items-center space-x-2 bg-blue-100/80 dark:bg-blue-900/30 backdrop-blur-sm border border-blue-200/50 dark:border-blue-600/50 text-blue-700 dark:text-blue-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-sm">
+              <div className="inline-flex items-center space-x-2 bg-blue-100 dark:bg-blue-900/50 border border-blue-200 dark:border-blue-700 text-blue-700 dark:text-blue-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-sm">
                 <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                <span>{language === 'fr' ? 'Utilisation optimale' : 'Optimal usage'}</span>
+                <span className="tracking-wide">{language === 'fr' ? 'Utilisation optimale' : 'Optimal usage'}</span>
               </div>
               
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
