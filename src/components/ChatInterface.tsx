@@ -636,21 +636,22 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                   <button
                     key={index}
                     onClick={() => handleQuickQuestion(button.text)}
-                    className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl sm:rounded-2xl p-3 sm:p-4 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-xl hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20 transition-all duration-300 text-left hover:scale-[1.02] hover:-translate-y-1"
+                    className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl sm:rounded-2xl p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-750 transition-all duration-200 text-left"
                   >
                     <div className="flex items-start space-x-3 sm:space-x-4">
                       <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-xl flex items-center justify-center group-hover:from-purple-100 group-hover:to-purple-200 dark:group-hover:from-purple-900/50 dark:group-hover:to-purple-800/50 transition-all duration-300 flex-shrink-0">
-                        <button.icon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300" />
+                        <button.icon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-200" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300 mb-1 text-xs sm:text-sm">
+                        <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-200 mb-1 text-xs sm:text-sm">
                           {button.text}
                         </h4>
                         <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2">
                           {button.description}
                         </p>
                       </div>
-                      <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 group-hover:text-purple-500 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
+                      <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 group-hover:text-purple-500 transition-colors duration-200 flex-shrink-0" />
                     </div>
                   </button>
                 ))}
