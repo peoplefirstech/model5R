@@ -866,13 +866,13 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
           />
           
           {/* Redesigned Input Container */}
-          <div className="relative bg-white dark:bg-gray-700 rounded-3xl border-2 border-gray-200 dark:border-gray-600 focus-within:border-purple-500 dark:focus-within:border-purple-400 transition-all duration-300 shadow-xl focus-within:shadow-2xl focus-within:shadow-purple-500/20 hover:shadow-xl hover:border-gray-300 dark:hover:border-gray-500">
+          <div className="relative bg-white dark:bg-gray-700 rounded-3xl border-2 border-gray-200 dark:border-gray-600 focus-within:border-purple-500 dark:focus-within:border-purple-400 transition-all duration-300 shadow-xl focus-within:shadow-2xl focus-within:shadow-purple-500/20">
             <div className="flex items-center p-3 min-h-[56px]">
               {/* Left Actions */}
               <div className="flex items-center space-x-2 pl-1">
                 <button
                   onClick={toggleAttachments}
-                  className={`p-2.5 rounded-xl transition-all duration-200 active:scale-95 ${
+                  className={`p-2.5 rounded-xl transition-colors duration-200 ${
                     showAttachments 
                       ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400' 
                       : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
@@ -889,7 +889,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 onChange={handleInputChange}
                 onKeyDown={handleKeyPress}
                 placeholder={t.welcome.placeholder}
-                className="flex-1 px-4 py-3 bg-transparent resize-none focus:outline-none text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 scrollbar-hide text-sm font-normal leading-relaxed"
+                className="flex-1 px-4 py-3 bg-transparent resize-none focus:outline-none text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 scrollbar-hide text-sm font-normal leading-relaxed transition-none"
                 style={{ minHeight: '40px', maxHeight: '120px' }}
                 rows={1}
               />
@@ -898,7 +898,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               <div className="flex items-center space-x-2 pr-1">
                 <button
                   onClick={toggleRecording}
-                  className={`p-2.5 rounded-xl transition-all duration-200 active:scale-95 ${
+                  className={`p-2.5 rounded-xl transition-colors duration-200 ${
                     isRecording 
                       ? 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 animate-pulse' 
                       : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
@@ -910,7 +910,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 <button
                   onClick={() => handleSendMessage()}
                   disabled={!inputText.trim()}
-                  className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 disabled:hover:scale-100 active:scale-95 shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 p-3"
+                  className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/40 disabled:hover:shadow-lg p-3"
                 >
                   <Send className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform duration-200" />
                 </button>
