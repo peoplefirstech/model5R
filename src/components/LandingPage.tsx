@@ -625,26 +625,21 @@ export default function LandingPage() {
           <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {t.model5r.pillars.map((pillar, index) => (
               <div key={index} className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="relative bg-white/90 dark:bg-white/5 backdrop-blur-sm rounded-3xl p-8 shadow-xl h-full border-2 border-gray-200/50 dark:border-white/10 transition-all duration-500 ease-out hover:shadow-2xl hover:border-purple-300 dark:hover:border-purple-400 hover:shadow-purple-500/20 dark:hover:shadow-purple-500/30 hover:scale-[1.03] hover:-translate-y-3 group-hover:bg-white dark:group-hover:bg-white/10">
+                <div className="relative bg-white/90 dark:bg-white/5 backdrop-blur-sm rounded-3xl p-6 shadow-lg h-full border border-gray-200/50 dark:border-white/10 transition-all duration-300 ease-out hover:shadow-xl hover:border-purple-300/60 dark:hover:border-purple-400/60 hover:-translate-y-1">
                   
                   {/* Premium Icon Container */}
-                  <div className="relative mb-6">
-                    <div className={`w-20 h-20 bg-gradient-to-br ${pillar.color} rounded-2xl flex items-center justify-center mx-auto shadow-2xl transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-3 ring-4 ring-white/20 dark:ring-white/10`}>
-                      <span className="text-white font-bold text-2xl tracking-wide">{pillar.title[0]}</span>
+                  <div className="relative mb-4">
+                    <div className={`w-16 h-16 bg-gradient-to-br ${pillar.color} rounded-xl flex items-center justify-center mx-auto shadow-lg transition-all duration-300 ease-out`}>
+                      <span className="text-white font-bold text-xl">{pillar.title[0]}</span>
                     </div>
-                    {/* Subtle glow effect */}
-                    <div className={`absolute inset-0 w-20 h-20 bg-gradient-to-br ${pillar.color} rounded-2xl mx-auto opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500`}></div>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3 text-center">
                     {pillar.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed text-center group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed text-center px-2">
                     {pillar.description}
                   </p>
-                  
-                  {/* Premium bottom accent */}
-                  <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r ${pillar.color} rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out`}></div>
                 </div>
               </div>
             ))}
