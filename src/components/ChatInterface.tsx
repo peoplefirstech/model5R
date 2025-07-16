@@ -700,7 +700,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                   }`}>
                     <div className={`w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center flex-shrink-0 shadow-lg ${
                       message.sender === 'user' 
-                        ? 'bg-gradient-to-br from-blue-600 to-blue-700 shadow-blue-500/30 rounded-full' 
+                        ? 'bg-gradient-to-br from-blue-600 to-blue-700 shadow-blue-500/30 rounded-2xl' 
                         : 'bg-gradient-to-br from-purple-500 to-pink-600 shadow-purple-500/30 rounded-2xl'
                     }`}>
                       {message.sender === 'user' ? (
