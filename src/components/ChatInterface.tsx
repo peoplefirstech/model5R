@@ -244,142 +244,31 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
             text: "How to define clear rules?", 
             category: "Rules",
             icon: FileText,
-            description: "Operating framework"
-          },
-          { 
-            text: "How to cultivate respect?", 
-            category: "Respect",
-            icon: Handshake,
-            description: "Trust environment"
-          },
-          { 
-            text: "How to value contributions?", 
-            category: "Recognition",
-            icon: Award,
-            description: "Success celebration"
-          },
-          { 
             text: "Digital transformation strategies", 
             category: "Transformation",
             icon: Zap,
             description: "Change management"
-          }
-        ],
-        // Group 2 - Communication & Management
-        [
+          },
           {
-            text: "How to strengthen team communication?",
+        // Group 4 - Management & Optimization
             category: "Communication",
             icon: MessageCircle,
-            description: "Channels and feedback creation"
-          },
-          {
-            text: "How to manage conflicts effectively?",
+            text: "How to manage conflicts?",
             category: "Conflicts",
             icon: Shield,
-            description: "Mediation and proactive resolution"
-          },
-          {
-            text: "How to develop employee autonomy?",
+            description: "Mediation and resolution"
+          }
+        ],
+            text: "How to develop autonomy?",
             category: "Autonomy",
             icon: UserCheck,
             description: "Empowerment and delegation"
-          },
-          {
-            text: "How to set motivating objectives?",
             category: "Objectives",
             icon: Target,
-            description: "SMART method and regular follow-up"
-          },
-          {
-            text: "How to establish a feedback culture?",
-            category: "Feedback",
-            icon: RefreshCw,
-            description: "Continuous constructive feedback"
-          },
-          {
-            text: "How to support new employee onboarding?",
-            category: "Onboarding",
-            icon: User,
-            description: "Integration and mentoring"
-          }
-        ],
-        // Group 3 - Innovation & Performance
-        [
-          {
-            text: "How to stimulate innovation?",
-            category: "Innovation",
-            icon: Lightbulb,
-            description: "Encouraging experimentation"
-          },
-          {
-            text: "How to promote continuous learning?",
-            category: "Learning",
-            icon: TrendingUp,
-            description: "Training plan and resources"
-          },
-          {
-            text: "How to value diversity and inclusion?",
-            category: "Diversity",
-            icon: Heart,
-            description: "Awareness and equal practices"
-          },
-          {
-            text: "How to measure team engagement?",
-            category: "Engagement",
-            icon: CheckCircle,
-            description: "Indicators and regular surveys"
-          },
-          {
-            text: "How to optimize decision-making?",
-            category: "Decision",
-            icon: Zap,
-            description: "Collaborative processes"
-          },
-          {
-            text: "How to balance workload and well-being?",
+            text: "How to balance work and well-being?",
             category: "Well-being",
-            icon: Clock,
-            description: "Stress management and flexibility"
-          }
-        ],
-        // Group 4 - Leadership & Optimization
-        [
-          {
-            text: "How to encourage remote team spirit?",
-            category: "Remote",
-            icon: Users,
-            description: "Virtual tools and online rituals"
-          },
-          {
-            text: "How to manage individual performance?",
-            category: "Performance",
-            icon: Target,
-            description: "Interviews and personalized KPIs"
-          },
-          {
-            text: "How to strengthen mutual trust?",
-            category: "Trust",
-            icon: Handshake,
-            description: "Transparency and consistency"
-          },
-          {
-            text: "How to anticipate and manage change?",
-            category: "Change",
-            icon: RefreshCw,
-            description: "Communication and participation"
-          },
-          {
-            text: "How to promote distributed leadership?",
-            category: "Leadership",
-            icon: Award,
-            description: "Encouraging initiatives"
-          },
-          {
-            text: "How to optimize meetings?",
-            category: "Meetings",
-            icon: MessageCircle,
-            description: "Clear agenda and participative facilitation"
+            icon: Heart,
+            description: "Stress management"
           }
         ]
       ],
