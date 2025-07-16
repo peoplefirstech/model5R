@@ -619,7 +619,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                   <Sparkles className="w-5 h-5 text-purple-500" />
                   <span>{t.quickQuestions}</span>
                   <span className="text-xs sm:text-sm font-normal text-gray-500 dark:text-gray-400">
-                    ({currentSuggestionGroup + 1}/{t.quickButtonsGroups.length})
+                    ({currentSuggestionGroup + 1}/6)
                   </span>
                 </h3>
                 <button 
