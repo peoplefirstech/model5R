@@ -307,7 +307,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
             description: "Indicators and surveys"
           }
         ],
-        // Group 4 - Leadership & Optimization
+        // Group 4 - Management & Optimization
         [
           {
             text: "How to foster learning?",
