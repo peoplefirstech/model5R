@@ -598,8 +598,8 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
             <div className="text-center space-y-4 max-w-4xl mx-auto px-4">
               {/* Badge de statut premium */}
               <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 border border-purple-200 dark:border-purple-700 text-purple-700 dark:text-purple-300 px-4 py-2 rounded-full text-sm font-medium shadow-sm">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span>{language === 'fr' ? 'Coach IA disponible' : 'AI Coach available'}</span>
+                <Sparkles className="w-4 h-4" />
+                <span>{language === 'fr' ? 'Modèle 5R® de Cécile Dejoux' : 'Cécile Dejoux\'s 5R® Model'}</span>
               </div>
               
               {/* Titre principal plus impactant */}
