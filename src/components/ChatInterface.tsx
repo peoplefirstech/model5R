@@ -695,7 +695,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 >
                   <div className={`flex items-start space-x-3 sm:space-x-4 ${
                     message.sender === 'user' 
-                     ? 'flex-row-reverse space-x-reverse space-x-4 sm:space-x-5 max-w-2xl' 
+                     ? 'flex-row-reverse space-x-reverse space-x-3 max-w-2xl' 
                      : 'space-x-3 max-w-4xl'
                   }`}>
                     <div className={`w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center flex-shrink-0 shadow-lg ${
