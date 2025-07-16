@@ -517,7 +517,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   return (
     <div className="h-screen bg-gray-50 dark:bg-gray-900 flex flex-col overflow-hidden pb-safe">
       {/* Premium Header */}
-      <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-gray-700/80 sticky top-0 z-50 shadow-xl pt-safe">
+      <div className="fixed top-0 left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-gray-700/80 z-50 shadow-xl pt-safe">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-2 sm:py-3">
           <div className="flex justify-between items-center min-h-[48px] sm:h-14">
             <div className="flex items-center space-x-4">
