@@ -97,7 +97,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
         greeting: "Bonjour",
         name: "Philippe",
         title: "Comment puis-je vous aider aujourd'hui ?",
-        placeholder: "Posez votre question sur le management, l'engagement d'équipe..."
+        placeholder: "Posez votre question..."
       },
       quickQuestions: "Suggestions",
       quickButtonsGroups: [
@@ -222,7 +222,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
         greeting: "Hello",
         name: "Philippe",
         title: "How can I help you today?",
-        placeholder: "Ask your question about management, team engagement..."
+        placeholder: "Ask your question..."
       },
       quickQuestions: "Suggestions",
       quickButtonsGroups: [
@@ -845,7 +845,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 onChange={handleInputChange}
                 onKeyDown={handleKeyPress}
                 placeholder={t.welcome.placeholder}
-                className="flex-1 px-4 py-3 bg-transparent resize-none focus:outline-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 scrollbar-hide text-base"
+                className="flex-1 px-4 py-3 bg-transparent resize-none focus:outline-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 scrollbar-hide text-sm"
                 style={{ minHeight: '40px', maxHeight: '120px' }}
                 rows={1}
               />
