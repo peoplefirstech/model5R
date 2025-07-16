@@ -502,7 +502,7 @@ export default function LandingPage() {
                     </div>
                     <div>
                       <h3 className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white">Coach Virtuel IA</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Basé sur le modèle 5R®</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Management & RH</p>
                     </div>
                     
                     {/* Statut En ligne - Position absolue à droite */}
