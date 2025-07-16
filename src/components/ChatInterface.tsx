@@ -323,7 +323,6 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                   <div className="w-14 h-14 bg-gradient-to-br from-purple-500 via-purple-600 to-pink-600 rounded-2xl flex items-center justify-center shadow-xl shadow-purple-500/25 ring-2 ring-white dark:ring-gray-800">
                     <MessageCircle className="w-7 h-7 text-white" />
                   </div>
-                  <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white dark:border-gray-900 animate-pulse"></div>
                 </div>
                 
                 <div>
@@ -346,12 +345,9 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               
               <div className="w-px h-8 bg-gray-300 dark:bg-gray-600"></div>
               
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  {language === 'fr' ? 'Actif' : 'Active'}
-                </span>
-              </div>
+              <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                {language === 'fr' ? 'Actif' : 'Active'}
+              </span>
             </div>
           </div>
         </div>
@@ -367,7 +363,6 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 <div className="w-20 h-20 bg-gradient-to-br from-purple-500 via-purple-600 to-pink-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-purple-500/25">
                   <MessageCircle className="w-10 h-10 text-white" />
                 </div>
-                <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-3 border-white dark:border-gray-900 animate-pulse"></div>
               </div>
               
               <div className="space-y-4">
