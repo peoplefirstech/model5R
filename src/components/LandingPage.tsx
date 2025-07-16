@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import MobileNavigation from './MobileNavigation';
+import PullToRefresh from './PullToRefresh';
+import { useHapticFeedback } from './HapticFeedback';
 import { 
   UserCheck, 
   Users, 
@@ -85,6 +88,7 @@ const TypingAnimation = ({ text, speed = 50, language }: { text: string; speed?:
 export default function LandingPage() {
   const [language, setLanguage] = useState<'fr' | 'en'>('fr');
   const isMobile = useIsMobile();
+  const { triggerLight, triggerMedium, triggerSelection } = useHapticFeedback();
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('darkMode') === 'true' || 
@@ -102,6 +106,23 @@ export default function LandingPage() {
       localStorage.setItem('darkMode', 'false');
     }
   }, [isDark]);
+
+  const handleRefresh = async () => {
+    triggerMedium();
+    // Simulate refresh delay
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    triggerSelection();
+  };
+
+  const handleLanguageChange = () => {
+    triggerLight();
+    setLanguage(language === 'fr' ? 'en' : 'fr');
+  };
+
+  const handleThemeChange = () => {
+    triggerLight();
+    setIsDark(!isDark);
+  };
 
   const content = {
     fr: {
@@ -337,45 +358,46 @@ export default function LandingPage() {
   const t = content[language];
 
   return (
-    <div className="min-h-screen">
+    <PullToRefresh onRefresh={handleRefresh} language={language}>
+      <div className="min-h-screen pb-20 md:pb-0">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-gray-700/80 shadow-lg">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-gray-700/80 shadow-lg safe-top">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 sm:h-20">
+          <div className="flex justify-between items-center h-14 sm:h-16 md:h-20">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-white dark:ring-gray-900">
                 <UserCheck className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white leading-tight">People First Technologies</h1>
-                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium leading-tight">Coach Virtuel IA</p>
+                <h1 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 dark:text-white leading-tight">People First Technologies</h1>
+                <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 leading-tight">Coach Virtuel IA</p>
               </div>
             </div>
             
-            <div className="flex items-center space-x-2 sm:space-x-6">
+            <div className="hidden md:flex items-center space-x-6">
               <button
-                onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
+                onClick={handleLanguageChange}
                 className="flex items-center space-x-1 sm:space-x-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 px-2 sm:px-3 py-2 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 font-medium"
               >
-                <Globe className="w-4 h-4 sm:w-5 sm:h-5" />
-                <span className="text-xs sm:text-sm font-semibold">{language.toUpperCase()}</span>
+                <Globe className="w-5 h-5" />
+                <span className="text-sm font-semibold">{language.toUpperCase()}</span>
               </button>
               
               <button
-                onClick={() => setIsDark(!isDark)}
+                onClick={handleThemeChange}
                 className="p-2 sm:p-3 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20"
               >
-                {isDark ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}
+                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
               
-              <div className="hidden sm:block w-px h-8 bg-gray-300 dark:bg-gray-600"></div>
+              <div className="w-px h-8 bg-gray-300 dark:bg-gray-600"></div>
               
               <a
                 href="#contact"
-                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white px-2 sm:px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center space-x-1 sm:space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-600"
+                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-600"
               >
-                <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-                <span className="hidden sm:inline">Contact</span>
+                <MessageCircle className="w-5 h-5" />
+                <span>Contact</span>
               </a>
             </div>
           </div>
@@ -412,6 +434,7 @@ export default function LandingPage() {
               <div className="flex flex-col gap-4">
                 <Link
                   to="/chat"
+                  onClick={() => triggerMedium()}
                   className="group bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-bold text-lg sm:text-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 flex items-center justify-center space-x-3 hover:scale-105 shadow-2xl hover:shadow-purple-500/30 ring-2 ring-purple-500/20 hover:ring-purple-500/40"
                 >
                   <span>{t.hero.cta}</span>
@@ -855,6 +878,15 @@ export default function LandingPage() {
 
       {/* Footer */}
       <Footer language={language} />
+      
+      {/* Mobile Navigation */}
+      <MobileNavigation 
+        language={language}
+        isDark={isDark}
+        onLanguageChange={handleLanguageChange}
+        onThemeChange={handleThemeChange}
+      />
     </div>
+    </PullToRefresh>
   );
 }

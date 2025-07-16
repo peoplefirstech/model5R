@@ -6,6 +6,25 @@
 @tailwind components;
 @tailwind utilities;
 
+/* iOS Safe Area Support */
+@supports (padding: max(0px)) {
+  .safe-top {
+    padding-top: max(env(safe-area-inset-top), 1rem);
+  }
+  
+  .safe-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+  }
+  
+  .pb-safe {
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+  
+  .pt-safe {
+    padding-top: max(env(safe-area-inset-top), 0px);
+  }
+}
+
 @layer base {
   * {
     font-family: 'Epilogue', system-ui, -apple-system, sans-serif;
@@ -140,6 +159,37 @@ input:focus, button:focus {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  
+  /* Mobile-specific optimizations */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+  
+  .active\:scale-95:active {
+    transform: scale(0.95);
+  }
+  
+  .active\:scale-98:active {
+    transform: scale(0.98);
+  }
+  
+  /* iOS momentum scrolling */
+  .momentum-scroll {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent text selection on buttons */
+  .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Better tap highlighting */
+  .tap-highlight-transparent {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 /* Hide scrollbar for textarea */
@@ -150,4 +200,38 @@ input:focus, button:focus {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;  /* Safari and Chrome */
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  /* Larger touch targets */
+  button, a, input, textarea {
+    min-height: 44px;
+  }
+  
+  /* Prevent zoom on input focus */
+  input, textarea, select {
+    font-size: 16px;
+  }
+  
+  /* Better mobile scrolling */
+  .mobile-scroll {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+}
+
+/* Android-specific optimizations */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 1) {
+  .android-shadow {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* iOS-specific optimizations */
+@supports (-webkit-appearance: none) {
+  .ios-blur {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
 }

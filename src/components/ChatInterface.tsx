@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+import LoadingStates from './LoadingStates';
+import { useHapticFeedback } from './HapticFeedback';
 import { 
   Send, 
   Mic, 
@@ -54,6 +56,7 @@ interface ChatInterfaceProps {
 }
 
 export default function ChatInterface({ language }: ChatInterfaceProps) {
+  const { triggerLight, triggerMedium, triggerSuccess, triggerSelection } = useHapticFeedback();
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('darkMode') === 'true' || 
@@ -448,6 +451,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   const handleSendMessage = async (text: string = inputText) => {
     if (!text.trim()) return;
 
+    triggerLight();
     setShowWelcome(false);
 
     const userMessage: Message = {
@@ -512,10 +516,12 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   };
 
   const handleQuickQuestion = (question: string) => {
+    triggerSelection();
     handleSendMessage(question);
   };
 
   const handleNewConversation = () => {
+    triggerMedium();
     setShowWelcome(true);
     setMessages([]);
     setInputText('');
@@ -523,12 +529,14 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   };
 
   const handleRefreshSuggestions = () => {
+    triggerLight();
     setCurrentSuggestionGroup((prev) => (prev + 1) % t.quickButtonsGroups.length);
   };
   
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
+      triggerLight();
       handleSendMessage();
     }
   };
@@ -550,32 +558,39 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   };
 
   const toggleRecording = () => {
+    triggerMedium();
     setIsRecording(!isRecording);
   };
 
   const toggleAttachments = () => {
+    triggerLight();
     setShowAttachments(!showAttachments);
     setShowEmojiPicker(false);
   };
 
   const handleImageUpload = () => {
+    triggerSelection();
     imageInputRef.current?.click();
   };
 
   const handleDocumentUpload = () => {
+    triggerSelection();
     fileInputRef.current?.click();
   };
 
   const handleAudioUpload = () => {
+    triggerSelection();
     audioInputRef.current?.click();
   };
 
   const handleEmojiClick = () => {
+    triggerLight();
     setShowEmojiPicker(!showEmojiPicker);
     setShowAttachments(false);
   };
 
   const insertEmoji = (emoji: string) => {
+    triggerSelection();
     setInputText(prev => prev + emoji);
     setShowEmojiPicker(false);
     inputRef.current?.focus();
@@ -593,15 +608,16 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   };
 
   return (
-    <div className="h-screen bg-gray-50 dark:bg-gray-900 flex flex-col overflow-hidden">
+    <div className="h-screen bg-gray-50 dark:bg-gray-900 flex flex-col overflow-hidden pb-safe">
       {/* Premium Header */}
-      <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-gray-700/80 sticky top-0 z-50 shadow-xl">
+      <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-gray-700/80 sticky top-0 z-50 shadow-xl safe-top">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-2 sm:py-3">
           <div className="flex justify-between items-center h-12 sm:h-14">
             <div className="flex items-center space-x-4">
               <Link
                 to="/"
-                className="group flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-900/20 hover:shadow-lg"
+                onClick={() => triggerLight()}
+                className="group flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-900/20 hover:shadow-lg active:scale-95"
               >
                 <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-x-2 transition-transform duration-300" />
               </Link>
@@ -615,27 +631,27 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 
                 <div>
                   <h1 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white leading-tight">Coach Virtuel IA</h1>
-                  <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-tight font-medium">Basé sur le modèle 5R®</p>
+                  <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 leading-tight">Basé sur le modèle 5R®</p>
                 </div>
               </div>
             </div>
             
-            <div className="flex items-center space-x-2 sm:space-x-3">
+            <div className="flex items-center space-x-3">
               {!showWelcome && (
                 <button
                   onClick={handleNewConversation}
-                  className="group flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 bg-gray-100 dark:bg-gray-700 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105"
+                  className="group flex items-center space-x-2 px-3 sm:px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 bg-gray-100 dark:bg-gray-700 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
                 >
-                  <Plus className="w-3 h-3 sm:w-4 sm:h-4 group-hover:rotate-180 transition-transform duration-300" />
-                  <span className="hidden sm:inline">{t.newConversation}</span>
+                  <Plus className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
+                  <span className="hidden md:inline">{t.newConversation}</span>
                 </button>
               )}
               
-              <div className="hidden sm:block w-px h-8 bg-gray-300 dark:bg-gray-600"></div>
+              <div className="hidden md:block w-px h-8 bg-gray-300 dark:bg-gray-600"></div>
               
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400 hidden sm:inline">
                   {language === 'fr' ? 'En ligne' : 'Online'}
                 </span>
               </div>
@@ -779,23 +795,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               ))}
               
               {isTyping && (
-                <div className="flex justify-start">
-                  <div className="flex items-start space-x-4 max-w-3xl">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/25">
-                      <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                    </div>
-                    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-3xl px-4 sm:px-6 py-3 sm:py-4 shadow-lg">
-                      <div className="flex items-center space-x-3">
-                        <div className="flex space-x-1">
-                          <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce"></div>
-                          <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                          <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                        </div>
-                        <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-medium">{t.typing}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <LoadingStates type="typing" language={language} />
               )}
               
               <div ref={messagesEndRef} />
@@ -805,47 +805,47 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
       </div>
 
       {/* Premium Input Area */}
-      <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl border-t border-gray-200/50 dark:border-gray-700/50 p-3 sm:p-4 flex-shrink-0">
+      <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl border-t border-gray-200/50 dark:border-gray-700/50 p-3 sm:p-4 flex-shrink-0 pb-safe">
         <div className="max-w-5xl mx-auto">
           {/* Attachment Menu */}
           {showAttachments && (
-            <div className="mb-2 sm:mb-3 p-2 sm:p-3 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-200 dark:border-gray-600">
-              <div className="grid grid-cols-4 gap-2 sm:gap-3">
+            <div className="mb-3 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-200 dark:border-gray-600">
+              <div className="grid grid-cols-4 gap-3">
                 <button 
                   onClick={handleImageUpload}
-                  className="flex flex-col items-center space-y-1 p-1.5 sm:p-2 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors"
+                  className="flex flex-col items-center space-y-1 p-3 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-all duration-200 active:scale-95"
                 >
-                  <div className="w-6 h-6 sm:w-8 sm:h-8 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
-                    <Image className="w-3 h-3 sm:w-5 sm:h-5 text-blue-600 dark:text-blue-400" />
+                  <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
+                    <Image className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
-                  <span className="text-xs text-gray-600 dark:text-gray-400 hidden sm:block">Image</span>
+                  <span className="text-xs text-gray-600 dark:text-gray-400">Image</span>
                 </button>
                 <button 
                   onClick={handleDocumentUpload}
-                  className="flex flex-col items-center space-y-1 p-1.5 sm:p-2 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors"
+                  className="flex flex-col items-center space-y-1 p-3 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-all duration-200 active:scale-95"
                 >
-                  <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center">
-                    <File className="w-3 h-3 sm:w-5 sm:h-5 text-green-600 dark:text-green-400" />
+                  <div className="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center">
+                    <File className="w-5 h-5 text-green-600 dark:text-green-400" />
                   </div>
-                  <span className="text-xs text-gray-600 dark:text-gray-400 hidden sm:block">Document</span>
+                  <span className="text-xs text-gray-600 dark:text-gray-400">Document</span>
                 </button>
                 <button 
                   onClick={handleAudioUpload}
-                  className="flex flex-col items-center space-y-1 p-1.5 sm:p-2 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors"
+                  className="flex flex-col items-center space-y-1 p-3 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-all duration-200 active:scale-95"
                 >
-                  <div className="w-6 h-6 sm:w-8 sm:h-8 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center">
-                    <Mic className="w-3 h-3 sm:w-5 sm:h-5 text-purple-600 dark:text-purple-400" />
+                  <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center">
+                    <Mic className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                   </div>
-                  <span className="text-xs text-gray-600 dark:text-gray-400 hidden sm:block">Audio</span>
+                  <span className="text-xs text-gray-600 dark:text-gray-400">Audio</span>
                 </button>
                 <button 
                   onClick={handleEmojiClick}
-                  className="flex flex-col items-center space-y-1 p-1.5 sm:p-2 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors"
+                  className="flex flex-col items-center space-y-1 p-3 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-all duration-200 active:scale-95"
                 >
-                  <div className="w-6 h-6 sm:w-8 sm:h-8 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center">
-                    <Smile className="w-3 h-3 sm:w-5 sm:h-5 text-orange-600 dark:text-orange-400" />
+                  <div className="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center">
+                    <Smile className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                   </div>
-                  <span className="text-xs text-gray-600 dark:text-gray-400 hidden sm:block">Emoji</span>
+                  <span className="text-xs text-gray-600 dark:text-gray-400">Emoji</span>
                 </button>
               </div>
             </div>
@@ -853,14 +853,14 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
           
           {/* Emoji Picker */}
           {showEmojiPicker && (
-            <div className="mb-2 sm:mb-3 p-2 sm:p-3 bg-white dark:bg-gray-700 rounded-2xl border border-gray-200 dark:border-gray-600 shadow-lg">
-              <div className="grid grid-cols-8 gap-1 sm:gap-2">
+            <div className="mb-3 p-3 bg-white dark:bg-gray-700 rounded-2xl border border-gray-200 dark:border-gray-600 shadow-lg">
+              <div className="grid grid-cols-8 gap-2">
                 {['😊', '😃', '😄', '😁', '😎', '😭', '😤', '❤️', 
                   '😂', '😢', '😠', '😖', '👍', '😮', '😋', '😉'].map((emoji, index) => (
                   <button
                     key={index}
                     onClick={() => insertEmoji(emoji)}
-                    className="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center text-base sm:text-xl hover:bg-gray-100 dark:hover:bg-gray-600 rounded-lg transition-colors"
+                    className="w-10 h-10 flex items-center justify-center text-xl hover:bg-gray-100 dark:hover:bg-gray-600 rounded-lg transition-all duration-200 active:scale-95"
                   >
                     {emoji}
                   </button>
@@ -893,19 +893,19 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
           />
           
           {/* Redesigned Input Container */}
-          <div className="relative bg-white dark:bg-gray-700 rounded-2xl sm:rounded-3xl border-2 border-gray-200 dark:border-gray-600 focus-within:border-purple-500 dark:focus-within:border-purple-400 transition-all duration-300 shadow-lg focus-within:shadow-xl focus-within:shadow-purple-500/10">
-            <div className="flex items-center p-1.5 sm:p-2">
+          <div className="relative bg-white dark:bg-gray-700 rounded-3xl border-2 border-gray-200 dark:border-gray-600 focus-within:border-purple-500 dark:focus-within:border-purple-400 transition-all duration-300 shadow-lg focus-within:shadow-xl focus-within:shadow-purple-500/10">
+            <div className="flex items-center p-2">
               {/* Left Actions */}
-              <div className="flex items-center space-x-1 pl-1 sm:pl-2">
+              <div className="flex items-center space-x-1 pl-2">
                 <button
                   onClick={toggleAttachments}
-                  className={`p-2 rounded-xl transition-all duration-200 ${
+                  className={`p-2 rounded-xl transition-all duration-200 active:scale-95 ${
                     showAttachments 
                       ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400' 
                       : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
                   }`}
                 >
-                  <Paperclip className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <Paperclip className="w-5 h-5" />
                 </button>
               </div>
               
@@ -916,37 +916,37 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 onChange={handleInputChange}
                 onKeyDown={handleKeyPress}
                 placeholder={t.welcome.placeholder}
-                className="flex-1 px-2 sm:px-4 py-2 sm:py-3 bg-transparent resize-none focus:outline-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 scrollbar-hide text-sm sm:text-base"
+                className="flex-1 px-4 py-3 bg-transparent resize-none focus:outline-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 scrollbar-hide text-base"
                 style={{ minHeight: '40px', maxHeight: '120px' }}
                 rows={1}
               />
               
               {/* Right Actions */}
-              <div className="flex items-center space-x-1 pr-1 sm:pr-2">
+              <div className="flex items-center space-x-1 pr-2">
                 <button
                   onClick={toggleRecording}
-                  className={`p-2 rounded-xl transition-all duration-200 ${
+                  className={`p-2 rounded-xl transition-all duration-200 active:scale-95 ${
                     isRecording 
                       ? 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 animate-pulse' 
                       : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
                   }`}
                 >
-                  {isRecording ? <MicOff className="w-4 h-4 sm:w-5 sm:h-5" /> : <Mic className="w-4 h-4 sm:w-5 sm:h-5" />}
+                  {isRecording ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
                 </button>
                 
                 <button
                   onClick={() => handleSendMessage()}
                   disabled={!inputText.trim()}
-                  className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 disabled:hover:scale-100 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 p-2 sm:p-2.5"
+                  className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 disabled:hover:scale-100 active:scale-95 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 p-2.5"
                 >
-                  <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <Send className="w-5 h-5" />
                 </button>
               </div>
             </div>
           </div>
           
           {/* Footer */}
-          <div className="mt-2 sm:mt-3 text-center">
+          <div className="mt-3 text-center">
             <p className="text-xs text-gray-500 dark:text-gray-400">
               {t.footer}
             </p>
