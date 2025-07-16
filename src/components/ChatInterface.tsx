@@ -370,6 +370,13 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
 
     setMessages(prev => [...prev, userMessage]);
     setInputText('');
+    
+    // Reset textarea height after sending
+    if (inputRef.current) {
+      inputRef.current.style.height = 'auto';
+      inputRef.current.style.height = '40px';
+    }
+    
     setIsTyping(true);
 
     // Generate contextual AI response based on the specific question
@@ -882,7 +889,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 onChange={handleInputChange}
                 onKeyDown={handleKeyPress}
                 placeholder={t.welcome.placeholder}
-                className="flex-1 px-4 py-3 bg-transparent resize-none focus:outline-none text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 scrollbar-hide text-sm font-normal leading-relaxed flex items-center"
+                className="flex-1 px-4 py-3 bg-transparent resize-none focus:outline-none text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 scrollbar-hide text-sm font-normal leading-relaxed"
                 style={{ minHeight: '40px', maxHeight: '120px' }}
                 rows={1}
               />
