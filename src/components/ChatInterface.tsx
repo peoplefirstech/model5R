@@ -590,10 +590,10 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col max-w-5xl mx-auto w-full px-4 sm:px-6 overflow-hidden">
+      <div className="flex-1 flex flex-col max-w-5xl mx-auto w-full px-4 sm:px-6 overflow-hidden pt-16 sm:pt-20">
         {showWelcome ? (
           /* Premium Welcome Screen */
-          <div className="flex-1 flex flex-col items-center justify-center py-4 sm:py-6 space-y-4 sm:space-y-6 overflow-y-auto">
+          <div className="flex-1 flex flex-col items-center justify-center py-4 sm:py-6 space-y-4 sm:space-y-6 overflow-y-auto -mt-16 sm:-mt-20">
             <div className="text-center space-y-3 max-w-3xl">
               
               <div className="space-y-3">
