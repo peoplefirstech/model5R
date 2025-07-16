@@ -695,16 +695,16 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 >
                   <div className={`flex items-start space-x-3 sm:space-x-4 ${
                     message.sender === 'user' 
-                     ? 'flex-row-reverse space-x-reverse space-x-6 sm:space-x-8 max-w-2xl' 
+                     ? 'flex-row-reverse space-x-reverse space-x-3 max-w-2xl' 
                      : 'space-x-3 max-w-4xl'
                   }`}>
-                    <div className={`w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center flex-shrink-0 shadow-lg ${
+                    <div className={`w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center flex-shrink-0 shadow-lg ${
                       message.sender === 'user' 
-                        ? 'bg-gradient-to-br from-blue-600 to-blue-700 shadow-blue-500/30 rounded-2xl' 
+                        ? 'bg-gradient-to-br from-blue-500 to-blue-600 shadow-blue-500/25 rounded-full ring-2 ring-white dark:ring-gray-800' 
                         : 'bg-gradient-to-br from-purple-500 to-pink-600 shadow-purple-500/30 rounded-2xl'
                     }`}>
                       {message.sender === 'user' ? (
-                        <User className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                        <User className="w-4 h-4 sm:w-5 sm:h-5 text-white drop-shadow-sm" />
                       ) : (
                         <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                       )}
@@ -713,11 +713,11 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                     <div className={`flex flex-col ${message.sender === 'user' ? 'items-end' : 'items-start'}`}>
                       <div className={`px-4 sm:px-5 py-3 sm:py-4 shadow-lg ${
                         message.sender === 'user'
-                          ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-3xl shadow-blue-500/25'
+                          ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-2xl rounded-br-md shadow-blue-500/30 ring-1 ring-blue-400/20'
                           : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white rounded-3xl rounded-bl-lg shadow-gray-500/15'
-                      } ${message.sender === 'user' ? 'max-w-sm sm:max-w-md' : 'max-w-full'}`}>
+                      } ${message.sender === 'user' ? 'max-w-xs sm:max-w-sm' : 'max-w-full'}`}>
                         {message.sender === 'user' ? (
-                          <div className="text-sm sm:text-base leading-relaxed font-medium">
+                          <div className="text-sm sm:text-base leading-relaxed font-medium text-white/95">
                             {message.text}
                           </div>
                         ) : (
@@ -731,11 +731,11 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                       </div>
                       
                       <div className={`flex items-center mt-2 px-2 ${message.sender === 'user' ? 'flex-row-reverse space-x-reverse space-x-3' : 'space-x-3'}`}>
-                        <span className="text-xs text-gray-500 dark:text-gray-400">{formatTime(message.timestamp)}</span>
+                        <span className="text-xs text-gray-400 dark:text-gray-500 font-medium">{formatTime(message.timestamp)}</span>
                         {message.sender === 'user' && (
-                          <div className="flex items-center space-x-1">
-                            <CheckCircle className="w-3 h-3 text-blue-500" />
-                            <span className="text-xs text-gray-400">{language === 'fr' ? 'Envoyé' : 'Sent'}</span>
+                          <div className="flex items-center space-x-1.5">
+                            <CheckCircle className="w-3.5 h-3.5 text-blue-500 drop-shadow-sm" />
+                            <span className="text-xs text-gray-400 font-medium">{language === 'fr' ? 'Envoyé' : 'Sent'}</span>
                           </div>
                         )}
                         {message.sender === 'bot' && (
