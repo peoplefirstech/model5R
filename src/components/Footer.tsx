@@ -197,7 +197,7 @@ export default function Footer({ language }: FooterProps) {
             {/* Copyright */}
             <div className="text-center lg:text-right">
               <p className="text-gray-400 dark:text-gray-500 text-xs sm:text-sm font-medium">
-                © 2024 People First Technologies. {t.rights}
+                © 2025 People First Technologies. {t.rights}
               </p>
             </div>
           </div>
