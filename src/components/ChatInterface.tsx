@@ -593,67 +593,94 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
       <div className="flex-1 flex flex-col max-w-5xl mx-auto w-full px-4 sm:px-6 overflow-hidden pt-16 sm:pt-20">
         {showWelcome ? (
           /* Premium Welcome Screen */
-          <div className="flex-1 flex flex-col items-center justify-center py-4 sm:py-6 space-y-4 sm:space-y-6 overflow-y-auto -mt-16 sm:-mt-20">
-            <div className="text-center space-y-3 max-w-3xl">
+          <div className="flex-1 flex flex-col py-6 sm:py-8 space-y-6 sm:space-y-8 overflow-y-auto">
+            {/* Hero Section - Plus compact et impactant */}
+            <div className="text-center space-y-4 max-w-4xl mx-auto px-4">
+              {/* Badge de statut premium */}
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 border border-purple-200 dark:border-purple-700 text-purple-700 dark:text-purple-300 px-4 py-2 rounded-full text-sm font-medium shadow-sm">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span>{language === 'fr' ? 'Coach IA disponible' : 'AI Coach available'}</span>
+              </div>
               
+              {/* Titre principal plus impactant */}
               <div className="space-y-3">
-                <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
                   {t.welcome.greeting} <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{t.welcome.name}</span>
                 </h1>
-                <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-700 dark:text-gray-300">
+                <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
                   {t.welcome.title}
                 </h2>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {language === 'fr' 
-                    ? "Posez-moi vos questions sur le modèle 5R® ou demandez des conseils personnalisés."
-                    : "Ask me questions about the 5R® model or request personalized advice."
-                  }
-                </p>
               </div>
+              
+              {/* Description avec meilleur contraste */}
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl mx-auto">
+                {language === 'fr' 
+                  ? "Posez-moi vos questions sur le modèle 5R® ou demandez des conseils personnalisés pour améliorer votre management."
+                  : "Ask me questions about the 5R® model or request personalized advice to improve your management."
+                }
+              </p>
             </div>
 
-            {/* Premium Suggestion Cards */}
-            <div className="w-full max-w-4xl">
-              <div className="flex items-center justify-between mb-3 sm:mb-4">
+            {/* Section suggestions optimisée */}
+            <div className="w-full max-w-5xl mx-auto px-4">
+              {/* Header des suggestions amélioré */}
+              <div className="flex items-center justify-between mb-4 sm:mb-6">
                 <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
                   <Sparkles className="w-5 h-5 text-purple-500" />
                   <span>{t.quickQuestions}</span>
-                  <span className="text-xs sm:text-sm font-normal text-gray-500 dark:text-gray-400">
+                  <span className="text-xs sm:text-sm font-normal text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full">
                     ({currentSuggestionGroup + 1}/6)
                   </span>
                 </h3>
                 <button 
                   onClick={handleRefreshSuggestions}
-                  className="flex items-center space-x-1 sm:space-x-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors hover:bg-purple-50 dark:hover:bg-purple-900/20 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg"
+                  className="flex items-center space-x-1 sm:space-x-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-200 hover:bg-purple-50 dark:hover:bg-purple-900/20 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600 hover:scale-105 active:scale-95"
                 >
                   <RefreshCw className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span className="hidden sm:inline">{t.refresh}</span>
                 </button>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+              {/* Grille de suggestions optimisée */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {currentButtons.map((button, index) => (
                   <button
                     key={index}
                     onClick={() => handleQuickQuestion(button.text)}
-                    className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl sm:rounded-2xl p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-750 transition-all duration-200 text-left"
+                    className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl sm:rounded-2xl p-4 sm:p-5 hover:bg-gray-50 dark:hover:bg-gray-750 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-lg hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20 transition-all duration-300 text-left hover:scale-[1.02] active:scale-[0.98]"
                   >
-                    <div className="flex items-start space-x-3 sm:space-x-4">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-xl flex items-center justify-center group-hover:from-purple-100 group-hover:to-purple-200 dark:group-hover:from-purple-900/50 dark:group-hover:to-purple-800/50 transition-all duration-300 flex-shrink-0">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-xl flex items-center justify-center group-hover:from-purple-100 group-hover:to-purple-200 dark:group-hover:from-purple-900/50 dark:group-hover:to-purple-800/50 transition-all duration-300 flex-shrink-0 shadow-sm group-hover:shadow-md">
                         <button.icon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-200" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-200 mb-1 text-xs sm:text-sm">
+                        <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-200 mb-2 text-sm sm:text-base">
                           {button.text}
                         </h4>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2">
+                        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
                           {button.description}
                         </p>
                       </div>
-                      <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 group-hover:text-purple-500 transition-colors duration-200 flex-shrink-0" />
+                      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-purple-500 group-hover:translate-x-1 transition-all duration-200 flex-shrink-0" />
                     </div>
                   </button>
                 ))}
+              </div>
+              
+              {/* Indicateur de progression visuel */}
+              <div className="flex justify-center mt-6">
+                <div className="flex space-x-2">
+                  {Array.from({ length: t.quickButtonsGroups.length }).map((_, index) => (
+                    <div
+                      key={index}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        index === currentSuggestionGroup
+                          ? 'bg-purple-500 w-6'
+                          : 'bg-gray-300 dark:bg-gray-600'
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -734,11 +761,11 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
       </div>
 
       {/* Premium Input Area */}
-      <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl border-t border-gray-200/50 dark:border-gray-700/50 p-3 sm:p-4 flex-shrink-0 pb-safe">
+      <div className="bg-white/98 dark:bg-gray-800/98 backdrop-blur-xl border-t border-gray-200/80 dark:border-gray-700/80 p-4 sm:p-6 flex-shrink-0 pb-safe shadow-2xl shadow-gray-900/5 dark:shadow-black/20">
         <div className="max-w-5xl mx-auto">
           {/* Attachment Menu */}
           {showAttachments && (
-            <div className="mb-3 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-200 dark:border-gray-600">
+            <div className="mb-4 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-200 dark:border-gray-600 shadow-sm">
               <div className="grid grid-cols-4 gap-3">
                 <button 
                   onClick={handleImageUpload}
@@ -822,13 +849,13 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
           />
           
           {/* Redesigned Input Container */}
-          <div className="relative bg-white dark:bg-gray-700 rounded-3xl border-2 border-gray-200 dark:border-gray-600 focus-within:border-purple-500 dark:focus-within:border-purple-400 transition-all duration-300 shadow-lg focus-within:shadow-xl focus-within:shadow-purple-500/10">
-            <div className="flex items-center p-2">
+          <div className="relative bg-white dark:bg-gray-700 rounded-3xl border-2 border-gray-200 dark:border-gray-600 focus-within:border-purple-500 dark:focus-within:border-purple-400 transition-all duration-300 shadow-xl focus-within:shadow-2xl focus-within:shadow-purple-500/20 hover:shadow-xl hover:border-gray-300 dark:hover:border-gray-500">
+            <div className="flex items-center p-3">
               {/* Left Actions */}
-              <div className="flex items-center space-x-1 pl-2">
+              <div className="flex items-center space-x-2 pl-1">
                 <button
                   onClick={toggleAttachments}
-                  className={`p-2 rounded-xl transition-all duration-200 active:scale-95 ${
+                  className={`p-2.5 rounded-xl transition-all duration-200 active:scale-95 ${
                     showAttachments 
                       ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400' 
                       : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
@@ -845,16 +872,16 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 onChange={handleInputChange}
                 onKeyDown={handleKeyPress}
                 placeholder={t.welcome.placeholder}
-                className="flex-1 px-4 py-3 bg-transparent resize-none focus:outline-none text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 scrollbar-hide text-sm"
+                className="flex-1 px-4 py-3 bg-transparent resize-none focus:outline-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 scrollbar-hide text-base font-medium"
                 style={{ minHeight: '40px', maxHeight: '120px' }}
                 rows={1}
               />
               
               {/* Right Actions */}
-              <div className="flex items-center space-x-1 pr-2">
+              <div className="flex items-center space-x-2 pr-1">
                 <button
                   onClick={toggleRecording}
-                  className={`p-2 rounded-xl transition-all duration-200 active:scale-95 ${
+                  className={`p-2.5 rounded-xl transition-all duration-200 active:scale-95 ${
                     isRecording 
                       ? 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 animate-pulse' 
                       : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
@@ -866,17 +893,17 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 <button
                   onClick={() => handleSendMessage()}
                   disabled={!inputText.trim()}
-                  className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 disabled:hover:scale-100 active:scale-95 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 p-2.5"
+                  className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 disabled:hover:scale-100 active:scale-95 shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 p-3"
                 >
-                  <Send className="w-5 h-5" />
+                  <Send className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform duration-200" />
                 </button>
               </div>
             </div>
           </div>
           
           {/* Footer */}
-          <div className="mt-3 text-center">
-            <p className="text-[9px] sm:text-[10px] text-gray-400/50 dark:text-gray-500/40">
+          <div className="mt-4 text-center">
+            <p className="text-[10px] sm:text-xs text-gray-400/60 dark:text-gray-500/50">
               {t.footer}
             </p>
           </div>
