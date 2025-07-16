@@ -818,10 +818,12 @@ export default function LandingPage() {
             {t.testimonials.items.map((testimonial, index) => (
               <div key={index} className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: `${index * 0.1}s` }}>
                 <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-2 border-gray-300/80 dark:border-gray-600/80 h-full">
-                  <div className="flex items-center space-x-1 mb-3">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
+                  {/* Badge premium au lieu des étoiles */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">
+                      <CheckCircle className="w-3 h-3" />
+                      <span>{language === 'fr' ? 'Témoignage vérifié' : 'Verified testimonial'}</span>
+                    </div>
                   </div>
                   
                   <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed italic text-sm">
