@@ -657,14 +657,16 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                     triggerLight();
                     setIsDark(!isDark);
                   }}
-                  className="p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 active:scale-95"
+                  className="flex items-center justify-center p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 active:scale-95 min-h-[40px] min-w-[40px]"
                 >
                   {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
                 </button>
                 
+                <div className="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
+                
                 <Link
                   to="/"
-                  className="p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 active:scale-95"
+                  className="flex items-center justify-center p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 active:scale-95 min-h-[40px] min-w-[40px]"
                 >
                   <Home className="w-4 h-4" />
                 </Link>

@@ -405,22 +405,26 @@ export default function LandingPage() {
             <div className="md:hidden flex items-center space-x-2">
               <button
                 onClick={handleLanguageChange}
-                className="flex items-center space-x-1 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 px-2 py-2 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 font-medium"
+                className="flex items-center justify-center space-x-1 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 px-3 py-2 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 font-medium min-h-[40px]"
               >
                 <Globe className="w-4 h-4" />
                 <span className="text-xs font-semibold">{language.toUpperCase()}</span>
               </button>
               
+              <div className="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
+              
               <button
                 onClick={handleThemeChange}
-                className="p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20"
+                className="flex items-center justify-center p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 min-h-[40px] min-w-[40px]"
               >
                 {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
               </button>
               
+              <div className="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
+              
               <a
                 href="#contact"
-                className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 p-2 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20"
+                className="flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 p-2 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 min-h-[40px] min-w-[40px]"
               >
                 <MessageCircle className="w-4 h-4" />
               </a>
