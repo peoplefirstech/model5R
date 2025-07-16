@@ -307,38 +307,36 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
       {/* Premium Header */}
-      <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50 shadow-sm">
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50 shadow-lg">
         <div className="max-w-5xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between h-12">
             <div className="flex items-center space-x-4">
               <Link
                 to="/"
-                className="group p-2.5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700/50"
+                className="group flex items-center justify-center w-10 h-10 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
               >
-                <ArrowLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform duration-200" />
+                <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-200" />
               </Link>
               
-              <div className="flex items-center space-x-4">
-                <div className="relative">
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 via-purple-600 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/25">
+              <div className="flex items-center space-x-3">
+                <div className="relative flex-shrink-0">
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 via-purple-600 to-pink-600 rounded-xl flex items-center justify-center shadow-md">
                     <MessageCircle className="w-6 h-6 text-white" />
                   </div>
                 </div>
                 
                 <div>
-                  <h1 className="text-lg font-semibold text-gray-900 dark:text-white">Coach Virtuel IA</h1>
-                  <div>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">Basé sur le modèle 5R®</span>
-                  </div>
+                  <h1 className="text-lg font-semibold text-gray-900 dark:text-white leading-tight">Coach Virtuel IA</h1>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 leading-tight">Basé sur le modèle 5R®</p>
                 </div>
               </div>
             </div>
             
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center">
               {!showWelcome && (
                 <button
                   onClick={handleNewConversation}
-                  className="group flex items-center space-x-2 px-4 py-2.5 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-xl transition-all duration-200"
+                  className="group flex items-center space-x-2 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg transition-all duration-200 h-9"
                 >
                   <Plus className="w-4 h-4 group-hover:rotate-90 transition-transform duration-200" />
                   <span>{t.newConversation}</span>
