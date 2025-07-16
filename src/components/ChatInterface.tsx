@@ -545,7 +545,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 
                 <div>
                   <h1 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white leading-tight">Coach Virtuel IA</h1>
-                  <p className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-500 leading-tight">Basé sur le modèle 5R®</p>
+                  <p className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-500 leading-tight">Management & RH</p>
                 </div>
               </div>
             </div>
