@@ -593,28 +593,28 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
+    <div className="h-screen bg-gray-50 dark:bg-gray-900 flex flex-col overflow-hidden">
       {/* Premium Header */}
       <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-gray-700/80 sticky top-0 z-50 shadow-xl">
-        <div className="max-w-5xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center h-16">
+        <div className="max-w-5xl mx-auto px-6 py-3">
+          <div className="flex justify-between items-center h-14">
             <div className="flex items-center space-x-4">
               <Link
                 to="/"
-                className="group flex items-center justify-center w-12 h-12 text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-900/20 hover:shadow-lg"
+                className="group flex items-center justify-center w-10 h-10 text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-900/20 hover:shadow-lg"
               >
-                <ArrowLeft className="w-6 h-6 group-hover:-translate-x-2 transition-transform duration-300" />
+                <ArrowLeft className="w-5 h-5 group-hover:-translate-x-2 transition-transform duration-300" />
               </Link>
               
               <div className="flex items-center space-x-4">
                 <div className="relative">
-                  <div className="w-14 h-14 bg-gradient-to-br from-purple-500 via-purple-600 to-pink-600 rounded-2xl flex items-center justify-center shadow-xl shadow-purple-500/25 ring-2 ring-white dark:ring-gray-800">
-                    <MessageCircle className="w-7 h-7 text-white" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 via-purple-600 to-pink-600 rounded-2xl flex items-center justify-center shadow-xl shadow-purple-500/25 ring-2 ring-white dark:ring-gray-800">
+                    <MessageCircle className="w-6 h-6 text-white" />
                   </div>
                 </div>
                 
                 <div>
-                  <h1 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">Coach Virtuel IA</h1>
+                  <h1 className="text-lg font-bold text-gray-900 dark:text-white leading-tight">Coach Virtuel IA</h1>
                   <p className="text-sm text-gray-600 dark:text-gray-400 leading-tight font-medium">Basé sur le modèle 5R®</p>
                 </div>
               </div>
@@ -624,9 +624,9 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               {!showWelcome && (
                 <button
                   onClick={handleNewConversation}
-                  className="group flex items-center space-x-3 px-6 py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 bg-gray-100 dark:bg-gray-700 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105"
+                  className="group flex items-center space-x-2 px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 bg-gray-100 dark:bg-gray-700 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105"
                 >
-                  <Plus className="w-5 h-5 group-hover:rotate-180 transition-transform duration-300" />
+                  <Plus className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
                   <span>{t.newConversation}</span>
                 </button>
               )}
@@ -645,13 +645,13 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col max-w-5xl mx-auto w-full px-6">
+      <div className="flex-1 flex flex-col max-w-5xl mx-auto w-full px-6 overflow-hidden">
         {showWelcome ? (
           /* Premium Welcome Screen */
-          <div className="flex-1 flex flex-col items-center justify-center py-12 space-y-8">
-            <div className="text-center space-y-4 max-w-3xl">
+          <div className="flex-1 flex flex-col items-center justify-center py-6 space-y-6 overflow-y-auto">
+            <div className="text-center space-y-3 max-w-3xl">
               
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
                   {t.welcome.greeting} <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{t.welcome.name}</span>
                 </h1>
@@ -669,7 +669,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
 
             {/* Premium Suggestion Cards */}
             <div className="w-full max-w-4xl">
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
                   <Sparkles className="w-5 h-5 text-purple-500" />
                   <span>{t.quickQuestions}</span>
@@ -686,26 +686,26 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 </button>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {currentButtons.map((button, index) => (
                   <button
                     key={index}
                     onClick={() => handleQuickQuestion(button.text)}
-                    className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-xl hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20 transition-all duration-300 text-left hover:scale-[1.02] hover:-translate-y-1"
+                    className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-4 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-xl hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20 transition-all duration-300 text-left hover:scale-[1.02] hover:-translate-y-1"
                   >
                     <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-xl flex items-center justify-center group-hover:from-purple-100 group-hover:to-purple-200 dark:group-hover:from-purple-900/50 dark:group-hover:to-purple-800/50 transition-all duration-300">
-                        <button.icon className="w-6 h-6 text-gray-600 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300" />
+                      <div className="w-10 h-10 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-xl flex items-center justify-center group-hover:from-purple-100 group-hover:to-purple-200 dark:group-hover:from-purple-900/50 dark:group-hover:to-purple-800/50 transition-all duration-300">
+                        <button.icon className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300 mb-1">
+                        <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300 mb-1 text-sm">
                           {button.text}
                         </h4>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                        <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
                           {button.description}
                         </p>
                       </div>
-                      <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-purple-500 group-hover:translate-x-1 transition-all duration-300" />
+                      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-purple-500 group-hover:translate-x-1 transition-all duration-300" />
                     </div>
                   </button>
                 ))}
@@ -714,7 +714,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
           </div>
         ) : (
           /* Premium Chat Messages */
-          <div className="flex-1 py-8">
+          <div className="flex-1 py-4 overflow-y-auto">
             <div className="space-y-8">
               {messages.map((message) => (
                 <div
@@ -805,44 +805,44 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
       </div>
 
       {/* Premium Input Area */}
-      <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl border-t border-gray-200/50 dark:border-gray-700/50 p-6">
+      <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl border-t border-gray-200/50 dark:border-gray-700/50 p-4 flex-shrink-0">
         <div className="max-w-5xl mx-auto">
           {/* Attachment Menu */}
           {showAttachments && (
-            <div className="mb-4 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-200 dark:border-gray-600">
+            <div className="mb-3 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-200 dark:border-gray-600">
               <div className="grid grid-cols-4 gap-3">
                 <button 
                   onClick={handleImageUpload}
-                  className="flex flex-col items-center space-y-2 p-3 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors"
+                  className="flex flex-col items-center space-y-1 p-2 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors"
                 >
-                  <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
+                  <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
                     <Image className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <span className="text-xs text-gray-600 dark:text-gray-400">Image</span>
                 </button>
                 <button 
                   onClick={handleDocumentUpload}
-                  className="flex flex-col items-center space-y-2 p-3 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors"
+                  className="flex flex-col items-center space-y-1 p-2 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors"
                 >
-                  <div className="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center">
+                  <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center">
                     <File className="w-5 h-5 text-green-600 dark:text-green-400" />
                   </div>
                   <span className="text-xs text-gray-600 dark:text-gray-400">Document</span>
                 </button>
                 <button 
                   onClick={handleAudioUpload}
-                  className="flex flex-col items-center space-y-2 p-3 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors"
+                  className="flex flex-col items-center space-y-1 p-2 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors"
                 >
-                  <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center">
+                  <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center">
                     <Mic className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                   </div>
                   <span className="text-xs text-gray-600 dark:text-gray-400">Audio</span>
                 </button>
                 <button 
                   onClick={handleEmojiClick}
-                  className="flex flex-col items-center space-y-2 p-3 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors"
+                  className="flex flex-col items-center space-y-1 p-2 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors"
                 >
-                  <div className="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center">
+                  <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center">
                     <Smile className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                   </div>
                   <span className="text-xs text-gray-600 dark:text-gray-400">Emoji</span>
@@ -853,14 +853,14 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
           
           {/* Emoji Picker */}
           {showEmojiPicker && (
-            <div className="mb-4 p-4 bg-white dark:bg-gray-700 rounded-2xl border border-gray-200 dark:border-gray-600 shadow-lg">
+            <div className="mb-3 p-3 bg-white dark:bg-gray-700 rounded-2xl border border-gray-200 dark:border-gray-600 shadow-lg">
               <div className="grid grid-cols-8 gap-2">
                 {['😊', '😃', '😄', '😁', '😎', '😭', '😤', '❤️', 
                   '😂', '😢', '😠', '😖', '👍', '😮', '😋', '😉'].map((emoji, index) => (
                   <button
                     key={index}
                     onClick={() => insertEmoji(emoji)}
-                    className="w-10 h-10 flex items-center justify-center text-2xl hover:bg-gray-100 dark:hover:bg-gray-600 rounded-lg transition-colors"
+                    className="w-8 h-8 flex items-center justify-center text-xl hover:bg-gray-100 dark:hover:bg-gray-600 rounded-lg transition-colors"
                   >
                     {emoji}
                   </button>
@@ -946,7 +946,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
           </div>
           
           {/* Footer */}
-          <div className="mt-4 text-center">
+          <div className="mt-3 text-center">
             <p className="text-xs text-gray-500 dark:text-gray-400">
               {t.footer}
             </p>
