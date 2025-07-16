@@ -358,9 +358,8 @@ export default function LandingPage() {
   const t = content[language];
 
   return (
-    <PullToRefresh onRefresh={handleRefresh} language={language}>
-      <div className="min-h-screen pb-20 md:pb-0">
-      {/* Navigation */}
+    <div className="min-h-screen pb-20 md:pb-0">
+      {/* Navigation - Outside PullToRefresh for proper fixed positioning */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-gray-700/80 shadow-lg pt-safe">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center min-h-[56px] sm:h-16 md:h-20">
@@ -433,6 +432,7 @@ export default function LandingPage() {
         </div>
       </nav>
 
+      <PullToRefresh onRefresh={handleRefresh} language={language}>
       {/* Hero Section */}
       <section className="relative pt-16 sm:pt-20 pb-8 sm:pb-16 bg-gradient-to-br from-gray-50 via-white to-purple-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 overflow-hidden">
         <div className="absolute inset-0">
@@ -915,7 +915,7 @@ export default function LandingPage() {
         onLanguageChange={handleLanguageChange}
         onThemeChange={handleThemeChange}
       />
+      </PullToRefresh>
     </div>
-    </PullToRefresh>
   );
 }
