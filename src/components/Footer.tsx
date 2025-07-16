@@ -70,7 +70,7 @@ export default function Footer({ language }: FooterProps) {
                 <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight">
                   People First Technologies
                 </h3>
-                <p className="text-purple-300 text-xs sm:text-sm font-medium">Coach Virtuel IA • Modèle 5R®</p>
+                <p className="text-purple-300 text-xs sm:text-sm font-medium">Management coaching • Modèle 5R®</p>
               </div>
             </div>
             
