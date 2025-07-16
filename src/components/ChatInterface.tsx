@@ -599,7 +599,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               {/* Badge de statut premium */}
               <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 border border-purple-200 dark:border-purple-700 text-purple-700 dark:text-purple-300 px-4 py-2 rounded-full text-sm font-medium shadow-sm">
                 <Sparkles className="w-4 h-4" />
-                <span>{language === 'fr' ? 'Modèle 5R® de Cécile Dejoux' : 'Cécile Dejoux\'s 5R® Model'}</span>
+                <span>{language === 'fr' ? 'Modèle 5R®' : '5R® Model'}</span>
               </div>
               
               {/* Titre principal plus impactant */}
