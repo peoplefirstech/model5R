@@ -634,7 +634,13 @@ export default function LandingPage() {
                     </div>
                   </div>
                   
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3 text-center">
+                  <h3 className={`text-lg font-bold text-gray-900 dark:text-white mb-3 text-center transition-all duration-300 ${
+                    index === 0 ? 'group-hover:text-blue-600' :
+                    index === 1 ? 'group-hover:text-purple-600' :
+                    index === 2 ? 'group-hover:text-green-600' :
+                    index === 3 ? 'group-hover:text-orange-600' :
+                    'group-hover:text-yellow-600'
+                  }`}>
                     {pillar.title}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed text-center px-2">
