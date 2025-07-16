@@ -345,9 +345,12 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               
               <div className="w-px h-8 bg-gray-300 dark:bg-gray-600"></div>
               
-              <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                {language === 'fr' ? 'Actif' : 'Active'}
-              </span>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                  {language === 'fr' ? 'En ligne' : 'Online'}
+                </span>
+              </div>
             </div>
           </div>
         </div>
