@@ -547,7 +547,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               {!showWelcome && (
                 <button
                   onClick={handleNewConversation}
-                  className="group flex items-center space-x-2 px-3 sm:px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 bg-gray-100 dark:bg-gray-700 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
+                  className="group flex items-center space-x-2 px-3 sm:px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 bg-gray-100 dark:bg-gray-700 rounded-xl transition-all duration-500 ease-out shadow-md hover:shadow-xl hover:shadow-purple-500/25 hover:-translate-y-0.5 active:translate-y-0"
                 >
                   <Plus className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
                   <span className="hidden md:inline">{t.newConversation}</span>
