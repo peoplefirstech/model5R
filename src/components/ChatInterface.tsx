@@ -72,6 +72,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   const [isTyping, setIsTyping] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
   const [showAttachments, setShowAttachments] = useState(false);
+  const [currentSuggestionGroup, setCurrentSuggestionGroup] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -85,43 +86,162 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
         placeholder: "Posez votre question sur le management, l'engagement d'équipe..."
       },
       quickQuestions: "Suggestions",
-      quickButtons: [
-        { 
-          text: "Comment améliorer les rôles dans mon équipe ?", 
-          category: "Rôles",
-          icon: Users,
-          description: "Clarification des responsabilités"
+      quickButtonsGroups: [
+        // Groupe 1 - Original (5R®)
+        [
+          { 
+            text: "Comment améliorer les rôles dans mon équipe ?", 
+            category: "Rôles",
+            icon: Users,
+            description: "Clarification des responsabilités"
+          },
+          { 
+            text: "Quelles routines mettre en place ?", 
+            category: "Routines",
+            icon: RotateCcw,
+            description: "Processus et rituels efficaces"
+          },
+          { 
+            text: "Comment définir des règles claires ?", 
+            category: "Règles",
+            icon: FileText,
+            description: "Cadre de fonctionnement"
+          },
+          { 
+            text: "Comment cultiver le respect ?", 
+            category: "Respect",
+            icon: Handshake,
+            description: "Environnement de confiance"
+          },
+          { 
+            text: "Comment valoriser les contributions ?", 
+            category: "Reconnaissance",
+            icon: Award,
+            description: "Célébration des succès"
+          },
+          { 
+            text: "Stratégies de transformation digitale", 
+            category: "Transformation",
+            icon: Zap,
+            description: "Accompagnement du changement"
+          }
+        ],
+        // Groupe 2 - Communication & Gestion
+        [
+          {
+            text: "Comment renforcer la communication dans mon équipe ?",
+            category: "Communication",
+            icon: MessageCircle,
+            description: "Création de canaux et de feedback"
+          },
+          {
+            text: "Comment gérer les conflits efficacement ?",
+            category: "Conflits",
+            icon: Shield,
+            description: "Médiation et résolution proactive"
+          },
+          {
+            text: "Comment développer l'autonomie des collaborateurs ?",
+            category: "Autonomie",
+            icon: UserCheck,
+            description: "Responsabilisation et délégation"
+          },
+          {
+            text: "Comment fixer des objectifs motivants ?",
+            category: "Objectifs",
+            icon: Target,
+            description: "Méthode SMART et suivi régulier"
+          },
+          {
+            text: "Comment instaurer une culture de feedback ?",
+            category: "Feedback",
+            icon: RefreshCw,
+            description: "Retours constructifs en continu"
+          },
+          {
+            text: "Comment accompagner l'onboarding des nouveaux ?",
+            category: "Onboarding",
+            icon: User,
+            description: "Intégration et mentoring"
+          }
+        ],
+        // Groupe 3 - Innovation & Performance
+          {
+            text: "Comment stimuler l'innovation ?",
+            category: "Innovation",
+            icon: Lightbulb,
+            description: "Encouragement à l'expérimentation"
         },
-        { 
-          text: "Quelles routines mettre en place ?", 
-          category: "Routines",
-          icon: RotateCcw,
-          description: "Processus et rituels efficaces"
+          {
+            text: "Comment favoriser l'apprentissage continu ?",
+            category: "Apprentissage",
+            icon: TrendingUp,
+            description: "Plan de formation et ressources"
         },
-        { 
-          text: "Comment définir des règles claires ?", 
-          category: "Règles",
-          icon: FileText,
-          description: "Cadre de fonctionnement"
+          {
+            text: "Comment valoriser la diversité et l'inclusion ?",
+            category: "Diversité",
+            icon: Heart,
+            description: "Sensibilisation et pratiques égalitaires"
         },
-        { 
-          text: "Comment cultiver le respect ?", 
-          category: "Respect",
-          icon: Handshake,
-          description: "Environnement de confiance"
+          {
+            text: "Comment mesurer l'engagement de l'équipe ?",
+            category: "Engagement",
+            icon: CheckCircle,
+            description: "Indicateurs et sondages réguliers"
         },
-        { 
-          text: "Comment valoriser les contributions ?", 
-          category: "Reconnaissance",
-          icon: Award,
-          description: "Célébration des succès"
+          {
+            text: "Comment optimiser la prise de décision ?",
+            category: "Décision",
+            icon: Zap,
+            description: "Processus collaboratifs"
         },
-        { 
-          text: "Stratégies de transformation digitale", 
-          category: "Transformation",
-          icon: Zap,
-          description: "Accompagnement du changement"
+          {
+            text: "Comment équilibrer charge de travail et bien-être ?",
+            category: "Bien-être",
+            icon: Clock,
+            description: "Gestion du stress et flexibilité"
         }
+        ],
+        // Groupe 4 - Leadership & Optimisation
+        [
+          {
+            text: "Comment encourager l'esprit d'équipe à distance ?",
+            category: "Remote",
+            icon: Users,
+            description: "Outils virtuels et rituels online"
+          },
+          {
+            text: "Comment piloter la performance individuelle ?",
+            category: "Performance",
+            icon: Target,
+            description: "Entretiens et KPI personnalisés"
+          },
+          {
+            text: "Comment renforcer la confiance mutuelle ?",
+            category: "Confiance",
+            icon: Handshake,
+            description: "Transparence et cohérence"
+          },
+          {
+            text: "Comment anticiper et gérer le changement ?",
+            category: "Changement",
+            icon: RefreshCw,
+            description: "Communication et participation"
+          },
+          {
+            text: "Comment promouvoir le leadership distribué ?",
+            category: "Leadership",
+            icon: Award,
+            description: "Encouragement des initiatives"
+          },
+          {
+            text: "Comment optimiser les réunions ?",
+            category: "Réunions",
+            icon: MessageCircle,
+            description: "Agenda clair et animation participative"
+          }
+        ]
       ],
       typing: "Coach IA écrit...",
       online: "En ligne",
@@ -139,43 +259,162 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
         placeholder: "Ask your question about management, team engagement..."
       },
       quickQuestions: "Suggestions",
-      quickButtons: [
-        { 
-          text: "How to improve roles in my team?", 
-          category: "Roles",
-          icon: Users,
-          description: "Responsibility clarification"
+      quickButtonsGroups: [
+        // Group 1 - Original (5R®)
+        [
+          { 
+            text: "How to improve roles in my team?", 
+            category: "Roles",
+            icon: Users,
+            description: "Responsibility clarification"
+          },
+          { 
+            text: "What routines should I implement?", 
+            category: "Routines",
+            icon: RotateCcw,
+            description: "Effective processes and rituals"
+          },
+          { 
+            text: "How to define clear rules?", 
+            category: "Rules",
+            icon: FileText,
+            description: "Operating framework"
+          },
+          { 
+            text: "How to cultivate respect?", 
+            category: "Respect",
+            icon: Handshake,
+            description: "Trust environment"
+          },
+          { 
+            text: "How to value contributions?", 
+            category: "Recognition",
+            icon: Award,
+            description: "Success celebration"
+          },
+          { 
+            text: "Digital transformation strategies", 
+            category: "Transformation",
+            icon: Zap,
+            description: "Change management"
+          }
+        ],
+        // Group 2 - Communication & Management
+        [
+          {
+            text: "How to strengthen team communication?",
+            category: "Communication",
+            icon: MessageCircle,
+            description: "Channels and feedback creation"
+          },
+          {
+            text: "How to manage conflicts effectively?",
+            category: "Conflicts",
+            icon: Shield,
+            description: "Mediation and proactive resolution"
+          },
+          {
+            text: "How to develop employee autonomy?",
+            category: "Autonomy",
+            icon: UserCheck,
+            description: "Empowerment and delegation"
+          },
+          {
+            text: "How to set motivating objectives?",
+            category: "Objectives",
+            icon: Target,
+            description: "SMART method and regular follow-up"
+          },
+          {
+            text: "How to establish a feedback culture?",
+            category: "Feedback",
+            icon: RefreshCw,
+            description: "Continuous constructive feedback"
+          },
+          {
+            text: "How to support new employee onboarding?",
+            category: "Onboarding",
+            icon: User,
+            description: "Integration and mentoring"
+          }
+        ],
+        // Group 3 - Innovation & Performance
+          {
+            text: "How to stimulate innovation?",
+            category: "Innovation",
+            icon: Lightbulb,
+            description: "Encouraging experimentation"
         },
-        { 
-          text: "What routines should I implement?", 
-          category: "Routines",
-          icon: RotateCcw,
-          description: "Effective processes and rituals"
+          {
+            text: "How to promote continuous learning?",
+            category: "Learning",
+            icon: TrendingUp,
+            description: "Training plan and resources"
         },
-        { 
-          text: "How to define clear rules?", 
-          category: "Rules",
-          icon: FileText,
-          description: "Operating framework"
+          {
+            text: "How to value diversity and inclusion?",
+            category: "Diversity",
+            icon: Heart,
+            description: "Awareness and equal practices"
         },
-        { 
-          text: "How to cultivate respect?", 
-          category: "Respect",
-          icon: Handshake,
-          description: "Trust environment"
+          {
+            text: "How to measure team engagement?",
+            category: "Engagement",
+            icon: CheckCircle,
+            description: "Indicators and regular surveys"
         },
-        { 
-          text: "How to value contributions?", 
-          category: "Recognition",
-          icon: Award,
-          description: "Success celebration"
+          {
+            text: "How to optimize decision-making?",
+            category: "Decision",
+            icon: Zap,
+            description: "Collaborative processes"
         },
-        { 
-          text: "Digital transformation strategies", 
-          category: "Transformation",
-          icon: Zap,
-          description: "Change management"
+          {
+            text: "How to balance workload and well-being?",
+            category: "Well-being",
+            icon: Clock,
+            description: "Stress management and flexibility"
         }
+        ],
+        // Group 4 - Leadership & Optimization
+        [
+          {
+            text: "How to encourage remote team spirit?",
+            category: "Remote",
+            icon: Users,
+            description: "Virtual tools and online rituals"
+          },
+          {
+            text: "How to manage individual performance?",
+            category: "Performance",
+            icon: Target,
+            description: "Interviews and personalized KPIs"
+          },
+          {
+            text: "How to strengthen mutual trust?",
+            category: "Trust",
+            icon: Handshake,
+            description: "Transparency and consistency"
+          },
+          {
+            text: "How to anticipate and manage change?",
+            category: "Change",
+            icon: RefreshCw,
+            description: "Communication and participation"
+          },
+          {
+            text: "How to promote distributed leadership?",
+            category: "Leadership",
+            icon: Award,
+            description: "Encouraging initiatives"
+          },
+          {
+            text: "How to optimize meetings?",
+            category: "Meetings",
+            icon: MessageCircle,
+            description: "Clear agenda and participative facilitation"
+          }
+        ]
       ],
       typing: "AI Coach is typing...",
       online: "Online",
@@ -187,6 +426,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   };
 
   const t = content[language];
+  const currentButtons = t.quickButtonsGroups[currentSuggestionGroup];
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -273,6 +513,9 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
     setIsTyping(false);
   };
 
+  const handleRefreshSuggestions = () => {
+    setCurrentSuggestionGroup((prev) => (prev + 1) % t.quickButtonsGroups.length);
+  };
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -387,15 +630,21 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
                   <Sparkles className="w-5 h-5 text-purple-500" />
                   <span>{t.quickQuestions}</span>
+                  <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                    ({currentSuggestionGroup + 1}/{t.quickButtonsGroups.length})
+                  </span>
                 </h3>
-                <button className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+                <button 
+                  onClick={handleRefreshSuggestions}
+                  className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors hover:bg-purple-50 dark:hover:bg-purple-900/20 px-3 py-2 rounded-lg"
+                >
                   <RefreshCw className="w-4 h-4" />
                   <span>{t.refresh}</span>
                 </button>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {t.quickButtons.map((button, index) => (
+                {currentButtons.map((button, index) => (
                   <button
                     key={index}
                     onClick={() => handleQuickQuestion(button.text)}
