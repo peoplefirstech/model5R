@@ -711,20 +711,20 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                     </div>
                     
                     <div className={`flex flex-col ${message.sender === 'user' ? 'items-end' : 'items-start'}`}>
-                      <div className={`px-5 sm:px-6 py-4 sm:py-5 shadow-xl ${
+                      <div className={`px-4 sm:px-5 py-3 sm:py-4 shadow-lg ${
                         message.sender === 'user'
-                          ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-2xl rounded-br-md shadow-blue-500/30 ring-1 ring-blue-400/20 max-w-xs sm:max-w-sm'
-                          : 'bg-gradient-to-r from-blue-500 via-purple-500 to-purple-600 text-white rounded-3xl rounded-bl-lg shadow-purple-500/40 ring-1 ring-purple-400/30 max-w-4xl'
-                      }`}>
+                          ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-2xl rounded-br-md shadow-blue-500/30 ring-1 ring-blue-400/20'
+                          : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white rounded-3xl rounded-bl-lg shadow-gray-500/15'
+                      } ${message.sender === 'user' ? 'max-w-xs sm:max-w-sm' : 'max-w-full'}`}>
                         {message.sender === 'user' ? (
                           <div className="text-sm sm:text-base leading-relaxed font-medium text-white/95">
                             {message.text}
                           </div>
                         ) : (
                           <div 
-                            className="text-sm sm:text-base leading-relaxed text-white/95 font-medium"
+                            className="text-sm sm:text-base leading-relaxed"
                             dangerouslySetInnerHTML={{ 
-                              __html: message.text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-white">$1</strong>') 
+                              __html: message.text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-purple-600 dark:text-purple-400">$1</strong>') 
                             }}
                           />
                         )}
