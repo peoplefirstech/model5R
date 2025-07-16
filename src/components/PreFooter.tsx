@@ -36,25 +36,25 @@ export default function PreFooter({ language }: PreFooterProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 dark:from-gray-950/50 to-transparent"></div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
         
         {/* CTA Section */}
         <div className="text-center">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight">
               {t.cta.title}
             </h2>
             
-            <p className="text-xl text-gray-300 mb-10 leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-10 leading-relaxed">
               {t.cta.subtitle}
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col gap-4 justify-center items-center">
               <a 
                 href="https://www.peoplefirst-technologies.com/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300 flex items-center space-x-2 hover:scale-105"
+                className="group bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300 flex items-center space-x-2 hover:scale-105"
               >
                 <span>{t.cta.buttonSecondary}</span>
               </a>
@@ -63,9 +63,9 @@ export default function PreFooter({ language }: PreFooterProps) {
         </div>
 
         {/* Decorative Elements */}
-        <div className="absolute top-10 left-10 w-20 h-20 border border-purple-500/30 rounded-full animate-float"></div>
-        <div className="absolute bottom-10 right-10 w-16 h-16 border border-pink-500/30 rounded-full animate-float" style={{ animationDelay: '3s' }}></div>
-        <div className="absolute top-1/2 left-5 w-12 h-12 border border-purple-400/20 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
+        <div className="hidden sm:block absolute top-10 left-10 w-20 h-20 border border-purple-500/30 rounded-full animate-float"></div>
+        <div className="hidden sm:block absolute bottom-10 right-10 w-16 h-16 border border-pink-500/30 rounded-full animate-float" style={{ animationDelay: '3s' }}></div>
+        <div className="hidden sm:block absolute top-1/2 left-5 w-12 h-12 border border-purple-400/20 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
       </div>
     </section>
   );
