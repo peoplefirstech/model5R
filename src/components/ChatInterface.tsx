@@ -38,7 +38,10 @@ import {
   Target,
   Lightbulb,
   TrendingUp,
-  Heart
+  Heart,
+  Moon,
+  Sun,
+  Home
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -646,6 +649,26 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                   <span className="hidden md:inline">{t.newConversation}</span>
                 </button>
               )}
+              
+              {/* Mobile Controls */}
+              <div className="md:hidden flex items-center space-x-2">
+                <button
+                  onClick={() => {
+                    triggerLight();
+                    setIsDark(!isDark);
+                  }}
+                  className="p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20"
+                >
+                  {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                </button>
+                
+                <Link
+                  to="/"
+                  className="p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20"
+                >
+                  <Home className="w-4 h-4" />
+                </Link>
+              </div>
               
               <div className="hidden md:block w-px h-8 bg-gray-300 dark:bg-gray-600"></div>
               
