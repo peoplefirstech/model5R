@@ -130,7 +130,7 @@ export default function LandingPage() {
         askExpert: "Demander un Expert"
       },
       hero: {
-        title: "Révolutionnez votre coaching avec l'",
+        title: "Révolutionnez votre management avec l'",
         titleHighlight: "Intelligence Artificielle",
         subtitle: "Transformez votre potentiel en performance grâce à notre Coach Virtuel IA basé sur le modèle 5R® de Cécile Dejoux. Une approche scientifique pour un développement humain authentique.",
         cta: "Commencer ma session",
@@ -175,7 +175,7 @@ export default function LandingPage() {
       model5r: {
         title: "Le Modèle 5R® de Cécile Dejoux",
         subtitle: "Une méthode scientifiquement prouvée pour l'engagement et la performance",
-        description: "Notre Coach Virtuel IA s'appuie sur le modèle révolutionnaire 5R® développé par le Professeur Cécile Dejoux, une référence mondiale en management et transformation digitale.",
+        description: "Notre Coach Virtuel IA s'appuie sur le modèle révolutionnaire 5R® développé par Cécile Dejoux, une référence mondiale en management et transformation digitale.",
         description: "Notre Coach Virtuel IA s'appuie sur le modèle 5R® développé par Cécile Dejoux, une référence internationale en management et transformation digitale.",
         pillars: [
           {
@@ -244,7 +244,7 @@ export default function LandingPage() {
         askExpert: "Ask an Expert"
       },
       hero: {
-        title: "Revolutionize your coaching with ",
+        title: "Revolutionize your management with ",
         titleHighlight: "Artificial Intelligence",
         subtitle: "Transform your potential into performance with our AI Virtual Coach based on Cécile Dejoux's 5R® model.",
         cta: "Start my session",
