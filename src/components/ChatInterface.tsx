@@ -367,7 +367,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               
               <div className="space-y-4">
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
-                  {t.welcome.greeting} <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{t.welcome.name}</span> !
+                  {t.welcome.greeting} <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{t.welcome.name}</span>
                 </h1>
                 <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300">
                   {t.welcome.title}
