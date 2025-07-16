@@ -659,7 +659,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
           </div>
         ) : (
           /* Premium Chat Messages */
-          <div className="flex-1 py-2 sm:py-4 overflow-y-auto">
+          <div className="flex-1 py-2 sm:py-4 overflow-y-auto scrollbar-hide">
             <div className="space-y-8">
               {messages.map((message) => (
                 <div
