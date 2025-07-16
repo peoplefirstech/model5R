@@ -713,8 +713,8 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                     <div className={`flex flex-col ${message.sender === 'user' ? 'items-end' : 'items-start'}`}>
                       <div className={`px-4 sm:px-5 py-3 sm:py-4 shadow-lg ${
                         message.sender === 'user'
-                          ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-3xl shadow-blue-500/30 ring-1 ring-blue-400/20'
-                          : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white rounded-3xl shadow-gray-500/15'
+                          ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-2xl shadow-blue-500/30 ring-1 ring-blue-400/20'
+                          : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white rounded-2xl shadow-gray-500/15'
                       } ${message.sender === 'user' ? 'max-w-xs sm:max-w-md' : 'max-w-full'}`}>
                         {message.sender === 'user' ? (
                           <div className="text-sm sm:text-base leading-relaxed font-medium text-white/95">
@@ -860,7 +860,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
           
           {/* Redesigned Input Container */}
           <div className="relative bg-white dark:bg-gray-700 rounded-3xl border-2 border-gray-200 dark:border-gray-600 focus-within:border-purple-500 dark:focus-within:border-purple-400 transition-all duration-300 shadow-xl focus-within:shadow-2xl focus-within:shadow-purple-500/20 hover:shadow-xl hover:border-gray-300 dark:hover:border-gray-500">
-            <div className="flex items-center p-3">
+            <div className="flex items-center p-3 min-h-[56px]">
               {/* Left Actions */}
               <div className="flex items-center space-x-2 pl-1">
                 <button
@@ -882,7 +882,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 onChange={handleInputChange}
                 onKeyDown={handleKeyPress}
                 placeholder={t.welcome.placeholder}
-                className="flex-1 px-4 py-3 bg-transparent resize-none focus:outline-none text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 scrollbar-hide text-sm font-normal"
+                className="flex-1 px-4 py-3 bg-transparent resize-none focus:outline-none text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 scrollbar-hide text-sm font-normal leading-relaxed flex items-center"
                 style={{ minHeight: '40px', maxHeight: '120px' }}
                 rows={1}
               />
