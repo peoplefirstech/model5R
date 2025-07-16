@@ -524,7 +524,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               <Link
                 to="/"
                 onClick={() => triggerLight()}
-                className="group flex items-center space-x-2 px-3 sm:px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white dark:hover:bg-gray-600 bg-gray-100 dark:bg-gray-700 rounded-xl transition-all duration-300 ease-out shadow-sm hover:shadow-md border border-transparent hover:border-gray-200 dark:hover:border-gray-500"
+                className="group flex items-center space-x-2 px-3 sm:px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-750 bg-gray-100 dark:bg-gray-700 rounded-xl transition-all duration-200 ease-out"
               >
                 <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-x-2 transition-transform duration-300" />
               </Link>
