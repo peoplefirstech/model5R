@@ -244,9 +244,9 @@ export default function LandingPage() {
         askExpert: "Ask an Expert"
       },
       hero: {
-        title: "Revolutionize your management with ",
+        title: "Transform your management with ",
         titleHighlight: "Artificial Intelligence",
-        subtitle: "Transform your potential into performance with our AI Virtual Coach based on Cécile Dejoux's 5R® model.",
+        subtitle: "Unlock your performance potential with our AI Virtual Coach based on Cécile Dejoux's 5R® model.",
         cta: "Start my session",
         tryChat: "Try the chat",
         trustIndicators: {
