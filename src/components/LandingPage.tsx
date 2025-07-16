@@ -464,10 +464,10 @@ export default function LandingPage() {
                 <Link
                   to="/chat"
                   onClick={() => triggerMedium()}
-                  className="group bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-bold text-lg sm:text-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 flex items-center justify-center space-x-3 hover:scale-105 shadow-2xl hover:shadow-purple-500/30 ring-2 ring-purple-500/20 hover:ring-purple-500/40"
+                  className="group relative bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-bold text-lg sm:text-xl transition-all duration-500 ease-out flex items-center justify-center space-x-3 shadow-2xl shadow-purple-500/25 ring-2 ring-purple-500/20 hover:shadow-3xl hover:shadow-purple-500/40 hover:ring-purple-500/50 hover:-translate-y-1 overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-purple-700 before:to-pink-700 before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100"
                 >
-                  <span>{t.hero.cta}</span>
-                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                  <span className="relative z-10">{t.hero.cta}</span>
+                  <ArrowRight className="relative z-10 w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-2 transition-transform duration-500 ease-out" />
                 </Link>
               </div>
               

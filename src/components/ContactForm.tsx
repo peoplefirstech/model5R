@@ -344,7 +344,7 @@ export default function ContactForm({ language }: ContactFormProps) {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 sm:py-4 px-6 rounded-lg font-semibold text-base sm:text-lg hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-105 disabled:hover:scale-100 shadow-lg hover:shadow-purple-500/25"
+                  className="w-full relative bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 sm:py-4 px-6 rounded-lg font-semibold text-base sm:text-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-500 ease-out flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl hover:shadow-purple-500/30 hover:-translate-y-0.5 disabled:hover:translate-y-0 overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-purple-600 before:to-pink-600 before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100 disabled:hover:before:opacity-0"
                 >
                   {isSubmitting ? (
                     <>

@@ -54,7 +54,7 @@ export default function PreFooter({ language }: PreFooterProps) {
                 href="https://www.peoplefirst-technologies.com/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300 flex items-center space-x-2 hover:scale-105"
+                className="group relative bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg transition-all duration-500 ease-out flex items-center space-x-2 hover:bg-white/20 dark:hover:bg-white/15 hover:border-white/40 dark:hover:border-white/30 hover:-translate-y-1 hover:shadow-2xl hover:shadow-white/10"
               >
                 <span>{t.cta.buttonSecondary}</span>
               </a>
