@@ -155,6 +155,7 @@ export default function LandingPage() {
         title: "Le Modèle 5R® de Cécile Dejoux",
         subtitle: "Une méthode scientifiquement prouvée pour l'engagement et la performance",
         description: "Notre Coach Virtuel IA s'appuie sur le modèle révolutionnaire 5R® développé par le Professeur Cécile Dejoux, une référence mondiale en management et transformation digitale.",
+        description: "Notre Coach Virtuel IA s'appuie sur le modèle 5R® développé par Cécile Dejoux, une référence internationale en management et transformation digitale.",
         pillars: [
           {
             title: "Rôles",
@@ -268,6 +269,7 @@ export default function LandingPage() {
         title: "Cécile Dejoux's 5R® Model",
         subtitle: "A scientifically proven method for engagement and performance",
         description: "Our AI Virtual Coach is based on the revolutionary 5R® model developed by Professor Cécile Dejoux, a global reference in management and digital transformation.",
+        description: "Our AI Virtual Coach is based on the 5R® model developed by Cécile Dejoux, an international reference in management and digital transformation.",
         pillars: [
           {
             title: "Roles",
