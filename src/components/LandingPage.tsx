@@ -207,7 +207,7 @@ export default function LandingPage() {
       },
       testimonials: {
         title: "Ce que disent nos utilisateurs",
-        subtitle: "Des milliers de professionnels ont déjà transformé leur approche du coaching",
+        subtitle: "De nombreux professionnels ont déjà transformé leur approche du management",
         items: [
           {
             name: "Marie Dubois",
