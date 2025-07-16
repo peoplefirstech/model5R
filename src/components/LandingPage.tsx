@@ -754,7 +754,9 @@ export default function LandingPage() {
             
             {/* Call to Action Premium */}
             <div className={`relative bg-gradient-to-br from-slate-50 to-blue-50/50 dark:from-gray-800/50 dark:to-blue-900/20 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-3xl p-10 shadow-xl ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: '0.4s' }}>
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500 rounded-t-3xl"></div>
+              {/* Subtle gradient accent - much more premium */}
+              <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-blue-500/30 via-purple-500/30 to-emerald-500/30"></div>
+              <div className="absolute top-0 left-8 w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"></div>
               
               <div className="flex items-start space-x-4">
                 <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/25">
