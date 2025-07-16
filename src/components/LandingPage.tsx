@@ -754,7 +754,6 @@ export default function LandingPage() {
             
             {/* Call to Action Premium */}
             <div className={`relative bg-gradient-to-br from-slate-50 to-blue-50/50 dark:from-gray-800/50 dark:to-blue-900/20 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-3xl p-10 shadow-xl ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: '0.4s' }}>
-            <div className={`relative bg-gradient-to-br from-slate-50 to-blue-50/50 dark:from-gray-800/50 dark:to-blue-900/20 backdrop-blur-sm border border-gray-300/60 dark:border-gray-600/60 rounded-3xl p-10 shadow-xl ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: '0.4s' }}>
               <div className="flex items-start space-x-4">
                 <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/25">
                   <Sparkles className="w-7 h-7 text-white" />
