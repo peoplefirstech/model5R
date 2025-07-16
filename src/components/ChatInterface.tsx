@@ -31,7 +31,12 @@ import {
   ThumbsUp,
   ThumbsDown,
   RotateCw,
-  ArrowRight
+  ArrowRight,
+  Shield,
+  Target,
+  Lightbulb,
+  TrendingUp,
+  Heart
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -340,42 +345,43 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
           }
         ],
         // Group 3 - Innovation & Performance
+        [
           {
             text: "How to stimulate innovation?",
             category: "Innovation",
             icon: Lightbulb,
             description: "Encouraging experimentation"
-        },
+          },
           {
             text: "How to promote continuous learning?",
             category: "Learning",
             icon: TrendingUp,
             description: "Training plan and resources"
-        },
+          },
           {
             text: "How to value diversity and inclusion?",
             category: "Diversity",
             icon: Heart,
             description: "Awareness and equal practices"
-        },
+          },
           {
             text: "How to measure team engagement?",
             category: "Engagement",
             icon: CheckCircle,
             description: "Indicators and regular surveys"
-        },
+          },
           {
             text: "How to optimize decision-making?",
             category: "Decision",
             icon: Zap,
             description: "Collaborative processes"
-        },
+          },
           {
             text: "How to balance workload and well-being?",
             category: "Well-being",
             icon: Clock,
             description: "Stress management and flexibility"
-        }
+          }
         ],
         // Group 4 - Leadership & Optimization
         [
@@ -517,6 +523,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   const handleRefreshSuggestions = () => {
     setCurrentSuggestionGroup((prev) => (prev + 1) % t.quickButtonsGroups.length);
   };
+  
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
