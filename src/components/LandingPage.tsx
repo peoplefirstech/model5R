@@ -130,7 +130,7 @@ export default function LandingPage() {
         askExpert: "Demander un Expert"
       },
       hero: {
-        title: "Révolutionnez votre management avec l'",
+        title: "Transformez votre management avec l'",
         titleHighlight: "Intelligence Artificielle",
         subtitle: "Transformez votre potentiel en performance grâce à notre Coach Virtuel IA basé sur le modèle 5R® de Cécile Dejoux. Une approche scientifique pour un développement humain authentique.",
         cta: "Commencer ma session",
