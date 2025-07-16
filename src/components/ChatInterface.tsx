@@ -307,41 +307,51 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
       {/* Premium Header */}
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50 shadow-lg">
+      <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-gray-700/80 sticky top-0 z-50 shadow-xl">
         <div className="max-w-5xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between h-12">
+          <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
               <Link
                 to="/"
-                className="group flex items-center justify-center w-10 h-10 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="group flex items-center justify-center w-12 h-12 text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-900/20 hover:shadow-lg"
               >
-                <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-200" />
+                <ArrowLeft className="w-6 h-6 group-hover:-translate-x-2 transition-transform duration-300" />
               </Link>
               
-              <div className="flex items-center space-x-3">
-                <div className="relative flex-shrink-0">
-                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 via-purple-600 to-pink-600 rounded-xl flex items-center justify-center shadow-md">
-                    <MessageCircle className="w-6 h-6 text-white" />
+              <div className="flex items-center space-x-4">
+                <div className="relative">
+                  <div className="w-14 h-14 bg-gradient-to-br from-purple-500 via-purple-600 to-pink-600 rounded-2xl flex items-center justify-center shadow-xl shadow-purple-500/25 ring-2 ring-white dark:ring-gray-800">
+                    <MessageCircle className="w-7 h-7 text-white" />
                   </div>
+                  <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white dark:border-gray-900 animate-pulse"></div>
                 </div>
                 
                 <div>
-                  <h1 className="text-lg font-semibold text-gray-900 dark:text-white leading-tight">Coach Virtuel IA</h1>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 leading-tight">Basé sur le modèle 5R®</p>
+                  <h1 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">Coach Virtuel IA</h1>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-tight font-medium">Basé sur le modèle 5R®</p>
                 </div>
               </div>
             </div>
             
-            <div className="flex items-center">
+            <div className="flex items-center space-x-3">
               {!showWelcome && (
                 <button
                   onClick={handleNewConversation}
-                  className="group flex items-center space-x-2 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg transition-all duration-200 h-9"
+                  className="group flex items-center space-x-3 px-6 py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 bg-gray-100 dark:bg-gray-700 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105"
                 >
-                  <Plus className="w-4 h-4 group-hover:rotate-90 transition-transform duration-200" />
+                  <Plus className="w-5 h-5 group-hover:rotate-180 transition-transform duration-300" />
                   <span>{t.newConversation}</span>
                 </button>
               )}
+              
+              <div className="w-px h-8 bg-gray-300 dark:bg-gray-600"></div>
+              
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                  {language === 'fr' ? 'Actif' : 'Active'}
+                </span>
+              </div>
             </div>
           </div>
         </div>
