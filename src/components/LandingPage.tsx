@@ -656,38 +656,47 @@ export default function LandingPage() {
 
       {/* Disclaimer Section */}
       <React.Suspense fallback={<div className="h-96 bg-gray-50 dark:bg-gray-800 animate-pulse"></div>}>
-        <section className="relative py-16 bg-gray-50 dark:bg-gray-800">
+        <section className="relative py-20 bg-gradient-to-br from-slate-50 via-white to-purple-50/20 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900/20">
+          {/* Background Effects */}
+          <div className="absolute inset-0">
+            <div className="absolute top-20 left-1/4 w-96 h-96 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl"></div>
+          </div>
+          
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             
             {/* Header */}
             <div className={`text-center mb-12 ${!isMobile ? 'animate-fadeIn' : ''}`}>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                {language === 'fr' ? 'Disclaimer et Limites' : 'Disclaimer and Limitations'}
+              <div className="inline-flex items-center space-x-2 bg-blue-100/80 dark:bg-blue-900/30 backdrop-blur-sm border border-blue-200/50 dark:border-blue-600/50 text-blue-700 dark:text-blue-300 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-sm">
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                <span>{language === 'fr' ? 'Utilisation optimale' : 'Optimal usage'}</span>
+              </div>
+              
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+                {language === 'fr' ? 'Comprendre votre Coach IA' : 'Understanding your AI Coach'}
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
                 {language === 'fr' 
-                  ? "Pour une utilisation optimale, il est important de comprendre le cadre et les limites de cet assistant IA"
-                  : "For optimal use, it is important to understand the framework and limitations of this AI assistant"
+                  ? "Découvrez comment tirer le meilleur parti de votre Coach Virtuel IA pour une expérience optimale"
+                  : "Discover how to get the most out of your AI Virtual Coach for an optimal experience"
                 }
               </p>
             </div>
             
-            {/* Disclaimer Cards */}
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {/* Modern Info Cards */}
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
               {/* Assistant, pas remplaçant */}
               <div className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: '0.1s' }}>
-                <div className="bg-white dark:bg-gray-700 rounded-2xl p-6 border-2 border-gray-200 dark:border-gray-600 h-full transition-all duration-300 hover:border-yellow-300 dark:hover:border-yellow-500 hover:shadow-lg hover:shadow-yellow-500/10">
+                <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 dark:border-gray-700/50 h-full transition-all duration-300 hover:border-blue-300/60 dark:hover:border-blue-500/60 hover:shadow-xl hover:shadow-blue-500/10 dark:hover:shadow-blue-500/20 hover:-translate-y-1 group">
                   <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-yellow-100 dark:bg-yellow-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                      <svg className="w-5 h-5 text-yellow-600 dark:text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                      </svg>
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
+                      <Shield className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                         {language === 'fr' ? 'Assistant, pas remplaçant' : 'Assistant, not replacement'}
                       </h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                         {language === 'fr' 
                           ? "Le Coach Virtuel IA complète mais ne remplace pas l'accompagnement humain d'un expert"
                           : "The AI Virtual Coach complements but does not replace human expert guidance"
@@ -700,18 +709,16 @@ export default function LandingPage() {
               
               {/* Conseils génériques */}
               <div className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: '0.2s' }}>
-                <div className="bg-white dark:bg-gray-700 rounded-2xl p-6 border-2 border-gray-200 dark:border-gray-600 h-full transition-all duration-300 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg hover:shadow-orange-500/10">
+                <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 dark:border-gray-700/50 h-full transition-all duration-300 hover:border-purple-300/60 dark:hover:border-purple-500/60 hover:shadow-xl hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20 hover:-translate-y-1 group">
                   <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                      <svg className="w-5 h-5 text-orange-600 dark:text-orange-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                      </svg>
+                    <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900/30 dark:to-purple-800/30 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-purple-500/25 transition-all duration-300">
+                      <Users className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
                         {language === 'fr' ? 'Conseils génériques' : 'Generic advice'}
                       </h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                         {language === 'fr' 
                           ? "Les recommandations sont générales et peuvent nécessiter une adaptation à votre contexte spécifique"
                           : "Recommendations are general and may require adaptation to your specific context"
@@ -724,18 +731,16 @@ export default function LandingPage() {
               
               {/* Pas de diagnostic personnalisé */}
               <div className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: '0.3s' }}>
-                <div className="bg-white dark:bg-gray-700 rounded-2xl p-6 border-2 border-gray-200 dark:border-gray-600 h-full transition-all duration-300 hover:border-red-300 dark:hover:border-red-500 hover:shadow-lg hover:shadow-red-500/10">
+                <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 dark:border-gray-700/50 h-full transition-all duration-300 hover:border-emerald-300/60 dark:hover:border-emerald-500/60 hover:shadow-xl hover:shadow-emerald-500/10 dark:hover:shadow-emerald-500/20 hover:-translate-y-1 group">
                   <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                      <svg className="w-5 h-5 text-red-600 dark:text-red-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                      </svg>
+                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-100 to-emerald-200 dark:from-emerald-900/30 dark:to-emerald-800/30 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-emerald-500/25 transition-all duration-300">
+                      <Lightbulb className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                        {language === 'fr' ? 'Pas de diagnostic personnalisé' : 'No personalized diagnosis'}
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
+                        {language === 'fr' ? 'Expertise approfondie disponible' : 'In-depth expertise available'}
                       </h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                         {language === 'fr' 
                           ? "Pour un diagnostic approfondi et un plan d'action sur-mesure, contactez nos experts"
                           : "For in-depth diagnosis and customized action plan, contact our experts"
@@ -747,31 +752,40 @@ export default function LandingPage() {
               </div>
             </div>
             
-            {/* Important à retenir */}
-            <div className={`bg-orange-50 dark:bg-orange-900/20 border-2 border-orange-200 dark:border-orange-800 rounded-2xl p-8 ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: '0.4s' }}>
+            {/* Call to Action Premium */}
+            <div className={`relative bg-gradient-to-br from-slate-50 to-blue-50/50 dark:from-gray-800/50 dark:to-blue-900/20 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-3xl p-10 shadow-xl ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: '0.4s' }}>
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500 rounded-t-3xl"></div>
+              
               <div className="flex items-start space-x-4">
-                <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                  </svg>
+                <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/25">
+                  <Sparkles className="w-7 h-7 text-white" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                    {language === 'fr' ? 'Important à retenir' : 'Important to remember'}
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                    {language === 'fr' ? 'Maximisez votre expérience' : 'Maximize your experience'}
                   </h3>
                   <div className="space-y-4 text-gray-700 dark:text-gray-300">
-                    <p className="leading-relaxed">
+                    <p className="text-lg leading-relaxed">
                       {language === 'fr' 
-                        ? "Ce Coach Virtuel IA est un outil d'aide à la décision basé sur le modèle 5R®. Il fournit des conseils génériques et des bonnes pratiques, mais ne remplace pas l'expertise humaine d'un consultant spécialisé."
-                        : "This AI Virtual Coach is a decision support tool based on the 5R® model. It provides generic advice and best practices, but does not replace the human expertise of a specialized consultant."
+                        ? "Notre Coach Virtuel IA, basé sur le modèle 5R® de Cécile Dejoux, vous accompagne avec des conseils personnalisés et des bonnes pratiques éprouvées."
+                        : "Our AI Virtual Coach, based on Cécile Dejoux's 5R® model, guides you with personalized advice and proven best practices."
                       }
                     </p>
-                    <p className="leading-relaxed">
+                    <p className="text-lg leading-relaxed">
                       {language === 'fr' 
-                        ? "Pour un diagnostic approfondi, un plan d'action personnalisé ou une formation complète, nous recommandons fortement de faire appel à nos experts People First Technologies."
-                        : "For in-depth diagnosis, personalized action plan or complete training, we strongly recommend contacting our People First Technologies experts."
+                        ? "Pour aller plus loin avec un accompagnement personnalisé, nos experts People First Technologies sont à votre disposition."
+                        : "To go further with personalized support, our People First Technologies experts are at your disposal."
                       }
                     </p>
+                    <div className="pt-4">
+                      <a 
+                        href="#contact" 
+                        className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/25"
+                      >
+                        <span>{language === 'fr' ? 'Parler à un expert' : 'Talk to an expert'}</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
