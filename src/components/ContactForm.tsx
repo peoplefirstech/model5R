@@ -20,7 +20,7 @@ export default function ContactForm({ language }: ContactFormProps) {
   const content = {
     fr: {
       title: "Contactez-nous",
-      subtitle: "Prêt à transformer votre approche du coaching ? Parlons de vos besoins.",
+      subtitle: "Prêt à transformer votre approche du management? Parlons de vos besoins.",
       form: {
         name: "Nom complet",
         email: "Email professionnel",
@@ -49,7 +49,7 @@ export default function ContactForm({ language }: ContactFormProps) {
     },
     en: {
       title: "Contact Us",
-      subtitle: "Ready to transform your coaching approach? Let's discuss your needs.",
+      subtitle: "Ready to transform your management approach? Let's discuss your needs.",
       form: {
         name: "Full name",
         email: "Professional email",
