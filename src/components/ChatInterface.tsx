@@ -78,8 +78,12 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   const [showWelcome, setShowWelcome] = useState(true);
   const [showAttachments, setShowAttachments] = useState(false);
   const [currentSuggestionGroup, setCurrentSuggestionGroup] = useState(0);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const imageInputRef = useRef<HTMLInputElement>(null);
+  const audioInputRef = useRef<HTMLInputElement>(null);
 
   const content = {
     fr: {
@@ -551,6 +555,41 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
 
   const toggleAttachments = () => {
     setShowAttachments(!showAttachments);
+    setShowEmojiPicker(false);
+  };
+
+  const handleImageUpload = () => {
+    imageInputRef.current?.click();
+  };
+
+  const handleDocumentUpload = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleAudioUpload = () => {
+    audioInputRef.current?.click();
+  };
+
+  const handleEmojiClick = () => {
+    setShowEmojiPicker(!showEmojiPicker);
+    setShowAttachments(false);
+  };
+
+  const insertEmoji = (emoji: string) => {
+    setInputText(prev => prev + emoji);
+    setShowEmojiPicker(false);
+    inputRef.current?.focus();
+  };
+
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>, type: string) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      // Simulation - on affiche juste le nom du fichier sélectionné
+      console.log(`${type} sélectionné:`, file.name);
+      // Ici on pourrait ajouter une notification ou un aperçu
+    }
+    // Reset l'input pour permettre de sélectionner le même fichier à nouveau
+    event.target.value = '';
   };
 
   return (
@@ -772,25 +811,37 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
           {showAttachments && (
             <div className="mb-4 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-200 dark:border-gray-600">
               <div className="grid grid-cols-4 gap-3">
-                <button className="flex flex-col items-center space-y-2 p-3 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors">
+                <button 
+                  onClick={handleImageUpload}
+                  className="flex flex-col items-center space-y-2 p-3 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors"
+                >
                   <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
                     <Image className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <span className="text-xs text-gray-600 dark:text-gray-400">Image</span>
                 </button>
-                <button className="flex flex-col items-center space-y-2 p-3 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors">
+                <button 
+                  onClick={handleDocumentUpload}
+                  className="flex flex-col items-center space-y-2 p-3 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors"
+                >
                   <div className="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center">
                     <File className="w-5 h-5 text-green-600 dark:text-green-400" />
                   </div>
                   <span className="text-xs text-gray-600 dark:text-gray-400">Document</span>
                 </button>
-                <button className="flex flex-col items-center space-y-2 p-3 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors">
+                <button 
+                  onClick={handleAudioUpload}
+                  className="flex flex-col items-center space-y-2 p-3 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors"
+                >
                   <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center">
                     <Mic className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                   </div>
                   <span className="text-xs text-gray-600 dark:text-gray-400">Audio</span>
                 </button>
-                <button className="flex flex-col items-center space-y-2 p-3 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors">
+                <button 
+                  onClick={handleEmojiClick}
+                  className="flex flex-col items-center space-y-2 p-3 hover:bg-white dark:hover:bg-gray-600 rounded-xl transition-colors"
+                >
                   <div className="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center">
                     <Smile className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                   </div>
@@ -799,6 +850,47 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               </div>
             </div>
           )}
+          
+          {/* Emoji Picker */}
+          {showEmojiPicker && (
+            <div className="mb-4 p-4 bg-white dark:bg-gray-700 rounded-2xl border border-gray-200 dark:border-gray-600 shadow-lg">
+              <div className="grid grid-cols-8 gap-2">
+                {['😊', '😃', '😄', '😁', '😎', '😭', '😤', '❤️', 
+                  '😂', '😢', '😠', '😖', '👍', '😮', '😋', '😉'].map((emoji, index) => (
+                  <button
+                    key={index}
+                    onClick={() => insertEmoji(emoji)}
+                    className="w-10 h-10 flex items-center justify-center text-2xl hover:bg-gray-100 dark:hover:bg-gray-600 rounded-lg transition-colors"
+                  >
+                    {emoji}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {/* Hidden File Inputs */}
+          <input
+            ref={imageInputRef}
+            type="file"
+            accept="image/*"
+            onChange={(e) => handleFileSelect(e, 'Image')}
+            className="hidden"
+          />
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".pdf,.doc,.docx,.txt,.xlsx,.pptx"
+            onChange={(e) => handleFileSelect(e, 'Document')}
+            className="hidden"
+          />
+          <input
+            ref={audioInputRef}
+            type="file"
+            accept="audio/*"
+            onChange={(e) => handleFileSelect(e, 'Audio')}
+            className="hidden"
+          />
           
           {/* Redesigned Input Container */}
           <div className="relative bg-white dark:bg-gray-700 rounded-3xl border-2 border-gray-200 dark:border-gray-600 focus-within:border-purple-500 dark:focus-within:border-purple-400 transition-all duration-300 shadow-lg focus-within:shadow-xl focus-within:shadow-purple-500/10">
