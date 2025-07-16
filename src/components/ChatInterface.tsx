@@ -127,35 +127,38 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
             icon: Handshake,
             description: "Environnement de confiance"
           },
-          { 
-            text: "Comment valoriser les contributions ?", 
-            category: "Reconnaissance",
-            icon: Award,
-            description: "Célébration des succès"
-          },
-          { 
-            text: "Stratégies de transformation digitale", 
-            category: "Transformation",
-            icon: Zap,
-            description: "Accompagnement du changement"
-          }
         ],
         // Groupe 2 - Communication & Gestion
         [
           {
-            text: "Comment renforcer la communication dans mon équipe ?",
+            text: "Comment valoriser les contributions ?",
+            category: "Reconnaissance",
+            icon: Award,
+            description: "Célébration des succès"
+          },
+          {
+            text: "Stratégies de transformation digitale",
+            category: "Transformation",
+            icon: Zap,
+            description: "Accompagnement du changement"
+          },
+          {
+            text: "Comment renforcer la communication ?",
             category: "Communication",
             icon: MessageCircle,
-            description: "Création de canaux et de feedback"
+            description: "Canaux et feedback efficaces"
           },
           {
-            text: "Comment gérer les conflits efficacement ?",
+            text: "Comment gérer les conflits ?",
             category: "Conflits",
             icon: Shield,
-            description: "Médiation et résolution proactive"
-          },
+            description: "Médiation et résolution"
+          }
+        ],
+        // Groupe 3 - Innovation & Performance
+        [
           {
-            text: "Comment développer l'autonomie des collaborateurs ?",
+            text: "Comment développer l'autonomie ?",
             category: "Autonomie",
             icon: UserCheck,
             description: "Responsabilisation et délégation"
@@ -164,97 +167,46 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
             text: "Comment fixer des objectifs motivants ?",
             category: "Objectifs",
             icon: Target,
-            description: "Méthode SMART et suivi régulier"
+            description: "Méthode SMART et suivi"
           },
-          {
-            text: "Comment instaurer une culture de feedback ?",
-            category: "Feedback",
-            icon: RefreshCw,
-            description: "Retours constructifs en continu"
-          },
-          {
-            text: "Comment accompagner l'onboarding des nouveaux ?",
-            category: "Onboarding",
-            icon: User,
-            description: "Intégration et mentoring"
-          }
-        ],
-        // Groupe 3 - Innovation & Performance
-        [
           {
             text: "Comment stimuler l'innovation ?",
             category: "Innovation",
             icon: Lightbulb,
-            description: "Encouragement à l'expérimentation"
-          },
-          {
-            text: "Comment favoriser l'apprentissage continu ?",
-            category: "Apprentissage",
-            icon: TrendingUp,
-            description: "Plan de formation et ressources"
-          },
-          {
-            text: "Comment valoriser la diversité et l'inclusion ?",
-            category: "Diversité",
-            icon: Heart,
-            description: "Sensibilisation et pratiques égalitaires"
+            description: "Encouragement créatif"
           },
           {
             text: "Comment mesurer l'engagement de l'équipe ?",
             category: "Engagement",
             icon: CheckCircle,
-            description: "Indicateurs et sondages réguliers"
-          },
-          {
-            text: "Comment optimiser la prise de décision ?",
-            category: "Décision",
-            icon: Zap,
-            description: "Processus collaboratifs"
-          },
-          {
-            text: "Comment équilibrer charge de travail et bien-être ?",
-            category: "Bien-être",
-            icon: Clock,
-            description: "Gestion du stress et flexibilité"
+            description: "Indicateurs et sondages"
           }
         ],
         // Groupe 4 - Leadership & Optimisation
         [
           {
-            text: "Comment encourager l'esprit d'équipe à distance ?",
-            category: "Remote",
-            icon: Users,
-            description: "Outils virtuels et rituels online"
+            text: "Comment favoriser l'apprentissage ?",
+            category: "Apprentissage",
+            icon: TrendingUp,
+            description: "Formation continue"
           },
           {
-            text: "Comment piloter la performance individuelle ?",
-            category: "Performance",
-            icon: Target,
-            description: "Entretiens et KPI personnalisés"
+            text: "Comment optimiser les décisions ?",
+            category: "Décision",
+            icon: Zap,
+            description: "Processus collaboratifs"
           },
           {
-            text: "Comment renforcer la confiance mutuelle ?",
-            category: "Confiance",
-            icon: Handshake,
-            description: "Transparence et cohérence"
+            text: "Comment équilibrer travail et bien-être ?",
+            category: "Bien-être",
+            icon: Clock,
+            description: "Gestion du stress"
           },
           {
             text: "Comment anticiper et gérer le changement ?",
             category: "Changement",
             icon: RefreshCw,
-            description: "Communication et participation"
-          },
-          {
-            text: "Comment promouvoir le leadership distribué ?",
-            category: "Leadership",
-            icon: Award,
-            description: "Encouragement des initiatives"
-          },
-          {
-            text: "Comment optimiser les réunions ?",
-            category: "Réunions",
-            icon: MessageCircle,
-            description: "Agenda clair et animation participative"
+            description: "Communication du changement"
           }
         ]
       ],
