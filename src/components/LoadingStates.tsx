@@ -24,77 +24,6 @@ export default function LoadingStates({ type, language }: LoadingStatesProps) {
 
   const t = content[language];
 
-  const getLoadingContent = () => {
-    switch (type) {
-      case 'typing':
-        return {
-          icon: MessageCircle,
-          text: t.typing,
-          animation: 'bounce',
-          color: 'purple'
-        };
-      case 'thinking':
-        return {
-          icon: Sparkles,
-          text: t.thinking,
-          animation: 'pulse',
-          color: 'blue'
-        };
-      case 'processing':
-        return {
-          icon: Zap,
-          text: t.processing,
-          animation: 'spin',
-          color: 'green'
-        };
-      case 'sending':
-        return {
-          icon: MessageCircle,
-          text: t.sending,
-          animation: 'ping',
-          color: 'orange'
-        };
-      default:
-        return {
-          icon: MessageCircle,
-          text: t.typing,
-          animation: 'bounce',
-          color: 'purple'
-        };
-    }
-  };
-
-  const { icon: IconComponent, text, animation, color } = getLoadingContent();
-
-  const getColorClasses = (color: string) => {
-    switch (color) {
-      case 'purple':
-        return 'text-purple-500 bg-purple-100 dark:bg-purple-900/30';
-      case 'blue':
-        return 'text-blue-500 bg-blue-100 dark:bg-blue-900/30';
-      case 'green':
-        return 'text-green-500 bg-green-100 dark:bg-green-900/30';
-      case 'orange':
-        return 'text-orange-500 bg-orange-100 dark:bg-orange-900/30';
-      default:
-        return 'text-purple-500 bg-purple-100 dark:bg-purple-900/30';
-    }
-  };
-
-  const getAnimationClass = (animation: string) => {
-    switch (animation) {
-      case 'bounce':
-        return 'animate-bounce';
-      case 'pulse':
-        return 'animate-pulse';
-      case 'spin':
-        return 'animate-spin';
-      case 'ping':
-        return 'animate-ping';
-      default:
-        return 'animate-bounce';
-    }
-  };
 
   return (
     <div className="flex justify-start">
@@ -103,21 +32,16 @@ export default function LoadingStates({ type, language }: LoadingStatesProps) {
           <MessageCircle className="w-5 h-5 text-white" />
         </div>
         <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-3xl px-6 py-4 shadow-lg">
-          <div className="flex items-center space-x-3">
-            {/* Animated Dots */}
-            <div className="flex space-x-1">
-              <div className={`w-2 h-2 bg-${color}-500 rounded-full animate-bounce`}></div>
-              <div className={`w-2 h-2 bg-${color}-500 rounded-full animate-bounce`} style={{ animationDelay: '0.1s' }}></div>
-              <div className={`w-2 h-2 bg-${color}-500 rounded-full animate-bounce`} style={{ animationDelay: '0.2s' }}></div>
+          <div className="flex items-center space-x-4">
+            {/* Premium Typing Animation */}
+            <div className="flex items-center space-x-1">
+              <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full animate-pulse"></div>
+              <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+              <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
             </div>
             
-            {/* Icon */}
-            <div className={`w-6 h-6 rounded-lg flex items-center justify-center ${getColorClasses(color)}`}>
-              <IconComponent className={`w-4 h-4 ${getAnimationClass(animation)}`} />
-            </div>
-            
-            {/* Text */}
-            <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">{text}</span>
+            {/* Subtle Text */}
+            <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">{t.typing}</span>
           </div>
         </div>
       </div>
