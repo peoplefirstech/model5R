@@ -714,7 +714,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                       <div className={`px-4 sm:px-5 py-3 sm:py-4 shadow-lg ${
                         message.sender === 'user'
                           ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-3xl rounded-br-lg shadow-blue-500/30 ring-1 ring-blue-400/20'
-                          : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white rounded-3xl rounded-bl-lg shadow-gray-500/15'
+                          : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white rounded-3xl shadow-gray-500/15'
                       } ${message.sender === 'user' ? 'max-w-xs sm:max-w-md' : 'max-w-full'}`}>
                         {message.sender === 'user' ? (
                           <div className="text-sm sm:text-base leading-relaxed font-medium text-white/95">
