@@ -693,11 +693,15 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                   key={message.id}
                   className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div className={`flex items-start space-x-4 max-w-3xl ${message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
+                  <div className={`flex items-start space-x-3 sm:space-x-4 ${
+                    message.sender === 'user' 
+                      ? 'flex-row-reverse space-x-reverse max-w-2xl' 
+                      : 'max-w-4xl'
+                  }`}>
                     <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg ${
                       message.sender === 'user' 
-                        ? 'bg-gradient-to-br from-blue-500 to-purple-600 shadow-blue-500/25' 
-                        : 'bg-gradient-to-br from-purple-500 to-pink-600 shadow-purple-500/25'
+                        ? 'bg-gradient-to-br from-blue-600 to-blue-700 shadow-blue-500/30' 
+                        : 'bg-gradient-to-br from-purple-500 to-pink-600 shadow-purple-500/30'
                     }`}>
                       {message.sender === 'user' ? (
                         <User className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
@@ -707,18 +711,18 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                     </div>
                     
                     <div className={`flex flex-col ${message.sender === 'user' ? 'items-end' : 'items-start'}`}>
-                      <div className={`px-4 sm:px-6 py-3 sm:py-4 rounded-3xl shadow-sm ${
+                      <div className={`px-4 sm:px-5 py-3 sm:py-4 shadow-lg ${
                         message.sender === 'user'
-                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-blue-500/20'
-                          : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white shadow-lg'
-                      }`}>
+                          ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-3xl rounded-br-lg shadow-blue-500/25'
+                          : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white rounded-3xl rounded-bl-lg shadow-gray-500/15'
+                      } ${message.sender === 'user' ? 'max-w-sm sm:max-w-md' : 'max-w-full'}`}>
                         {message.sender === 'user' ? (
-                          <div className="text-xs sm:text-sm leading-relaxed font-medium">
+                          <div className="text-sm sm:text-base leading-relaxed font-medium">
                             {message.text}
                           </div>
                         ) : (
                           <div 
-                            className="text-xs sm:text-sm leading-relaxed"
+                            className="text-sm sm:text-base leading-relaxed"
                             dangerouslySetInnerHTML={{ 
                               __html: message.text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-purple-600 dark:text-purple-400">$1</strong>') 
                             }}
@@ -726,21 +730,27 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                         )}
                       </div>
                       
-                      <div className={`flex items-center space-x-2 sm:space-x-3 mt-1 sm:mt-2 px-2 ${message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                        <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">{formatTime(message.timestamp)}</span>
+                      <div className={`flex items-center space-x-3 mt-2 px-2 ${message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
+                        <span className="text-xs text-gray-500 dark:text-gray-400">{formatTime(message.timestamp)}</span>
                         {message.sender === 'user' && (
-                          <CheckCircle className="w-3 h-3 text-blue-500" />
+                          <div className="flex items-center space-x-1">
+                            <CheckCircle className="w-3 h-3 text-blue-500" />
+                            <span className="text-xs text-gray-400">{language === 'fr' ? 'Envoyé' : 'Sent'}</span>
+                          </div>
                         )}
                         {message.sender === 'bot' && (
-                          <div className="hidden sm:flex items-center space-x-2">
-                            <button className="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded transition-colors">
-                              <Copy className="w-3 h-3" />
+                          <div className="flex items-center space-x-2">
+                            <button className="group p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-all duration-200 active:scale-95">
+                              <Copy className="w-4 h-4" />
                             </button>
-                            <button className="p-1 text-gray-400 hover:text-green-500 rounded transition-colors">
-                              <ThumbsUp className="w-3 h-3" />
+                            <button className="group p-2 text-gray-400 hover:text-green-500 hover:bg-green-50 dark:hover:bg-green-900/20 rounded-lg transition-all duration-200 active:scale-95">
+                              <ThumbsUp className="w-4 h-4" />
                             </button>
-                            <button className="p-1 text-gray-400 hover:text-red-500 rounded transition-colors">
-                              <ThumbsDown className="w-3 h-3" />
+                            <button className="group p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all duration-200 active:scale-95">
+                              <ThumbsDown className="w-4 h-4" />
+                            </button>
+                            <button className="group p-2 text-gray-400 hover:text-purple-500 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg transition-all duration-200 active:scale-95">
+                              <RotateCw className="w-4 h-4" />
                             </button>
                           </div>
                         )}
