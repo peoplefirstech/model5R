@@ -215,7 +215,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
       back: "Retour",
       refresh: "Actualiser les suggestions",
       newConversation: "Nouvelle conversation",
-      footer: "Coach Virtuel IA by People First Technologies • Modèle 5R® de Cécile Dejoux"
+      footer: "Coach Virtuel IA by People First Technologies • Modèle 5R®"
     },
     en: {
       welcome: {
@@ -340,7 +340,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
       back: "Back",
       refresh: "Refresh suggestions",
       newConversation: "New conversation",
-      footer: "AI Virtual Coach by People First Technologies • Cécile Dejoux's 5R® Model"
+      footer: "AI Virtual Coach by People First Technologies • 5R® Model"
     }
   };
 
@@ -876,7 +876,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
           
           {/* Footer */}
           <div className="mt-3 text-center">
-            <p className="text-xs text-gray-500 dark:text-gray-400">
+            <p className="text-xs text-gray-400 dark:text-gray-500 opacity-60">
               {t.footer}
             </p>
           </div>
