@@ -7,24 +7,6 @@ interface LoadingStatesProps {
 }
 
 export default function LoadingStates({ type, language }: LoadingStatesProps) {
-  const content = {
-    fr: {
-      typing: "Coach IA écrit...",
-      thinking: "Coach IA réfléchit...",
-      processing: "Traitement en cours...",
-      sending: "Envoi du message..."
-    },
-    en: {
-      typing: "AI Coach is typing...",
-      thinking: "AI Coach is thinking...",
-      processing: "Processing...",
-      sending: "Sending message..."
-    }
-  };
-
-  const t = content[language];
-
-
   return (
     <div className="flex justify-start">
       <div className="flex items-start space-x-4 max-w-3xl">
@@ -32,16 +14,13 @@ export default function LoadingStates({ type, language }: LoadingStatesProps) {
           <MessageCircle className="w-5 h-5 text-white" />
         </div>
         <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-3xl px-6 py-4 shadow-lg">
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center justify-center">
             {/* Premium Typing Animation */}
             <div className="flex items-center space-x-1">
               <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full animate-pulse"></div>
               <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
               <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
             </div>
-            
-            {/* Subtle Text */}
-            <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">{t.typing}</span>
           </div>
         </div>
       </div>
