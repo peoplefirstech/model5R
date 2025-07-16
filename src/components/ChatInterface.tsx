@@ -847,7 +847,8 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
             <button
               onClick={() => handleSendMessage()}
               disabled={!inputText.trim()}
-              className="h-14 px-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 disabled:hover:scale-100 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 flex-shrink-0 flex items-center justify-center"
+              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 disabled:hover:scale-100 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 flex-shrink-0 flex items-center justify-center px-4"
+              style={{ height: '56px', minHeight: '56px' }}
             >
               <Send className="w-5 h-5" />
             </button>
