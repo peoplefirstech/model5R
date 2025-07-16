@@ -455,7 +455,7 @@ export default function LandingPage() {
                 </h1>
                 
                 <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-                  Transformez votre potentiel en performance grâce à notre Coach Virtuel IA basé sur le modèle 5R® de Cécile Dejoux.
+                  Libérez votre potentiel en performance grâce à notre Coach Virtuel IA basé sur le modèle 5R® de Cécile Dejoux.
                 </p>
               </div>
               
