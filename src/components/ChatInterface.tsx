@@ -700,7 +700,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                       </div>
                       
                       <div className={`flex items-center space-x-2 sm:space-x-3 mt-1 sm:mt-2 px-2 ${message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                        <span className="text-xs text-gray-500 dark:text-gray-400 mr-2">{formatTime(message.timestamp)}</span>
+                        <span className="text-xs text-gray-500 dark:text-gray-400">{formatTime(message.timestamp)}</span>
                         {message.sender === 'user' && (
                           <CheckCircle className="w-3 h-3 text-blue-500" />
                         )}
