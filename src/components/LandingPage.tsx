@@ -146,7 +146,7 @@ export default function LandingPage() {
           gdpr: "RGPD Conforme"
         },
         chatDemo: {
-          greeting: "Bonjour ! Je suis votre Coach Virtuel IA. Posez-moi vos questions sur le management, l'engagement d'équipe et la transformation. Recevez des conseils personnalisés basés sur le modèle 5R®.",
+          greeting: "Bonjour ! Je suis votre Coach Virtuel IA. Posez-moi vos questions sur le management, l'engagement d'équipe et la transformation.",
           userQuestion: "Comment améliorer les règles dans mon équipe ?",
           response: "Pour améliorer les **règles**, organisez un atelier collaboratif où l'équipe co-construit..."
         }
