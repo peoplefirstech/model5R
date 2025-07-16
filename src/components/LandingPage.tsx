@@ -687,7 +687,7 @@ export default function LandingPage() {
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               {/* Assistant, pas remplaçant */}
               <div className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: '0.1s' }}>
-                <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 dark:border-gray-700/50 h-full transition-all duration-300 hover:border-blue-300/60 dark:hover:border-blue-500/60 hover:shadow-xl hover:shadow-blue-500/10 dark:hover:shadow-blue-500/20 hover:-translate-y-1 group">
+                <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-300/60 dark:border-gray-600/60 h-full transition-all duration-300 hover:border-blue-400/80 dark:hover:border-blue-500/80 hover:shadow-xl hover:shadow-blue-500/10 dark:hover:shadow-blue-500/20 hover:-translate-y-1 group">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
                       <Shield className="w-6 h-6 text-blue-600 dark:text-blue-400" />
@@ -709,7 +709,7 @@ export default function LandingPage() {
               
               {/* Conseils génériques */}
               <div className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: '0.2s' }}>
-                <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 dark:border-gray-700/50 h-full transition-all duration-300 hover:border-purple-300/60 dark:hover:border-purple-500/60 hover:shadow-xl hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20 hover:-translate-y-1 group">
+                <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-300/60 dark:border-gray-600/60 h-full transition-all duration-300 hover:border-purple-400/80 dark:hover:border-purple-500/80 hover:shadow-xl hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20 hover:-translate-y-1 group">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900/30 dark:to-purple-800/30 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-purple-500/25 transition-all duration-300">
                       <Users className="w-6 h-6 text-purple-600 dark:text-purple-400" />
@@ -731,7 +731,7 @@ export default function LandingPage() {
               
               {/* Pas de diagnostic personnalisé */}
               <div className={`group ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: '0.3s' }}>
-                <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 dark:border-gray-700/50 h-full transition-all duration-300 hover:border-emerald-300/60 dark:hover:border-emerald-500/60 hover:shadow-xl hover:shadow-emerald-500/10 dark:hover:shadow-emerald-500/20 hover:-translate-y-1 group">
+                <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-300/60 dark:border-gray-600/60 h-full transition-all duration-300 hover:border-emerald-400/80 dark:hover:border-emerald-500/80 hover:shadow-xl hover:shadow-emerald-500/10 dark:hover:shadow-emerald-500/20 hover:-translate-y-1 group">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-emerald-100 to-emerald-200 dark:from-emerald-900/30 dark:to-emerald-800/30 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-emerald-500/25 transition-all duration-300">
                       <Lightbulb className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
@@ -754,6 +754,7 @@ export default function LandingPage() {
             
             {/* Call to Action Premium */}
             <div className={`relative bg-gradient-to-br from-slate-50 to-blue-50/50 dark:from-gray-800/50 dark:to-blue-900/20 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-3xl p-10 shadow-xl ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: '0.4s' }}>
+            <div className={`relative bg-gradient-to-br from-slate-50 to-blue-50/50 dark:from-gray-800/50 dark:to-blue-900/20 backdrop-blur-sm border border-gray-300/60 dark:border-gray-600/60 rounded-3xl p-10 shadow-xl ${!isMobile ? 'animate-slideUp' : ''}`} style={{ animationDelay: '0.4s' }}>
               <div className="flex items-start space-x-4">
                 <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/25">
                   <Sparkles className="w-7 h-7 text-white" />
