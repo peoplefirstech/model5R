@@ -166,42 +166,43 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
           }
         ],
         // Groupe 3 - Innovation & Performance
+        [
           {
             text: "Comment stimuler l'innovation ?",
             category: "Innovation",
             icon: Lightbulb,
             description: "Encouragement à l'expérimentation"
-        },
+          },
           {
             text: "Comment favoriser l'apprentissage continu ?",
             category: "Apprentissage",
             icon: TrendingUp,
             description: "Plan de formation et ressources"
-        },
+          },
           {
             text: "Comment valoriser la diversité et l'inclusion ?",
             category: "Diversité",
             icon: Heart,
             description: "Sensibilisation et pratiques égalitaires"
-        },
+          },
           {
             text: "Comment mesurer l'engagement de l'équipe ?",
             category: "Engagement",
             icon: CheckCircle,
             description: "Indicateurs et sondages réguliers"
-        },
+          },
           {
             text: "Comment optimiser la prise de décision ?",
             category: "Décision",
             icon: Zap,
             description: "Processus collaboratifs"
-        },
+          },
           {
             text: "Comment équilibrer charge de travail et bien-être ?",
             category: "Bien-être",
             icon: Clock,
             description: "Gestion du stress et flexibilité"
-        }
+          }
         ],
         // Groupe 4 - Leadership & Optimisation
         [
