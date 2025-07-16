@@ -87,7 +87,6 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
         greeting: "Bonjour",
         name: "Philippe",
         title: "Comment puis-je vous aider aujourd'hui ?",
-        subtitle: "Je suis votre Coach Virtuel IA spécialisé dans le management et l'engagement d'équipe. Posez-moi vos questions sur le modèle 5R® ou demandez des conseils personnalisés.",
         placeholder: "Posez votre question sur le management, l'engagement d'équipe..."
       },
       quickQuestions: "Suggestions",
@@ -261,7 +260,6 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
         greeting: "Hello",
         name: "Philippe",
         title: "How can I help you today?",
-        subtitle: "I'm your AI Virtual Coach specialized in management and team engagement. Ask me questions about the 5R® model or request personalized advice.",
         placeholder: "Ask your question about management, team engagement..."
       },
       quickQuestions: "Suggestions",
@@ -612,22 +610,20 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
         {showWelcome ? (
           /* Premium Welcome Screen */
           <div className="flex-1 flex flex-col items-center justify-center py-12 space-y-8">
-            <div className="text-center space-y-6 max-w-3xl">
-              <div className="relative">
-                <div className="w-20 h-20 bg-gradient-to-br from-purple-500 via-purple-600 to-pink-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-purple-500/25">
-                  <MessageCircle className="w-10 h-10 text-white" />
-                </div>
-              </div>
+            <div className="text-center space-y-4 max-w-3xl">
               
               <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
                   {t.welcome.greeting} <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{t.welcome.name}</span>
                 </h1>
-                <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300">
+                <h2 className="text-xl md:text-2xl font-semibold text-gray-700 dark:text-gray-300">
                   {t.welcome.title}
                 </h2>
-                <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {t.welcome.subtitle}
+                <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                  {language === 'fr' 
+                    ? "Posez-moi vos questions sur le modèle 5R® ou demandez des conseils personnalisés."
+                    : "Ask me questions about the 5R® model or request personalized advice."
+                  }
                 </p>
               </div>
             </div>
