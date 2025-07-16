@@ -804,54 +804,57 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
             </div>
           )}
           
-          <div className="flex items-end space-x-4">
-            {/* Attachment Button */}
-            <button
-              onClick={toggleAttachments}
-              className={`p-3 rounded-2xl transition-all duration-200 flex-shrink-0 ${
-                showAttachments 
-                  ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400' 
-                  : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700/50'
-              }`}
-            >
-              <Paperclip className="w-5 h-5" />
-            </button>
-            
-            {/* Input Container */}
-            <div className="flex-1 relative">
+          {/* Redesigned Input Container */}
+          <div className="relative bg-white dark:bg-gray-700 rounded-3xl border-2 border-gray-200 dark:border-gray-600 focus-within:border-purple-500 dark:focus-within:border-purple-400 transition-all duration-300 shadow-lg focus-within:shadow-xl focus-within:shadow-purple-500/10">
+            <div className="flex items-center p-2">
+              {/* Left Actions */}
+              <div className="flex items-center space-x-1 pl-2">
+                <button
+                  onClick={toggleAttachments}
+                  className={`p-2 rounded-xl transition-all duration-200 ${
+                    showAttachments 
+                      ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400' 
+                      : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
+                  }`}
+                >
+                  <Paperclip className="w-5 h-5" />
+                </button>
+              </div>
+              
+              {/* Input Field */}
               <textarea
                 ref={inputRef}
                 value={inputText}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyPress}
                 placeholder={t.welcome.placeholder}
-                className="w-full px-6 py-4 pr-20 border border-gray-300 dark:border-gray-600 rounded-3xl resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700 shadow-sm scrollbar-hide"
-                style={{ minHeight: '56px', maxHeight: '120px' }}
+                className="flex-1 px-4 py-3 bg-transparent resize-none focus:outline-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 scrollbar-hide"
+                style={{ minHeight: '48px', maxHeight: '120px' }}
                 rows={1}
               />
               
-              {/* Voice Input Button */}
-              <button
-                onClick={toggleRecording}
-                className={`absolute right-6 top-1/2 transform -translate-y-1/2 p-2 rounded-xl transition-all duration-200 ${
-                  isRecording 
-                    ? 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 animate-pulse' 
-                    : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
-                }`}
-              >
-                {isRecording ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
-              </button>
+              {/* Right Actions */}
+              <div className="flex items-center space-x-1 pr-2">
+                <button
+                  onClick={toggleRecording}
+                  className={`p-2 rounded-xl transition-all duration-200 ${
+                    isRecording 
+                      ? 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 animate-pulse' 
+                      : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
+                  }`}
+                >
+                  {isRecording ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+                </button>
+                
+                <button
+                  onClick={() => handleSendMessage()}
+                  disabled={!inputText.trim()}
+                  className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 disabled:hover:scale-100 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 p-2.5"
+                >
+                  <Send className="w-5 h-5" />
+                </button>
+              </div>
             </div>
-            
-            {/* Send Button */}
-            <button
-              onClick={() => handleSendMessage()}
-              disabled={!inputText.trim()}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 disabled:hover:scale-100 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 flex-shrink-0 flex items-center justify-center px-4"
-              style={{ height: '56px', minHeight: '56px' }}
-            >
-              <Send className="w-5 h-5" />
-            </button>
           </div>
           
           {/* Footer */}
