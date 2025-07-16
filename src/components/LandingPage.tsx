@@ -224,7 +224,7 @@ export default function LandingPage() {
       hero: {
         title: "Revolutionize your coaching with ",
         titleHighlight: "Artificial Intelligence",
-        subtitle: "Transform your potential into performance with our AI Virtual Coach based on Cécile Dejoux's 5R® model. A scientific approach for authentic human development.",
+        subtitle: "Transform your potential into performance with our AI Virtual Coach based on Cécile Dejoux's 5R® model.",
         cta: "Start my session",
         tryChat: "Try the chat",
         trustIndicators: {
@@ -405,7 +405,7 @@ export default function LandingPage() {
                 </h1>
                 
                 <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-                  {t.hero.subtitle}
+                  Transformez votre potentiel en performance grâce à notre Coach Virtuel IA basé sur le modèle 5R® de Cécile Dejoux.
                 </p>
               </div>
               
