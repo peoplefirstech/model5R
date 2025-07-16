@@ -361,9 +361,9 @@ export default function LandingPage() {
     <PullToRefresh onRefresh={handleRefresh} language={language}>
       <div className="min-h-screen pb-20 md:pb-0">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-gray-700/80 shadow-lg safe-top">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-gray-700/80 shadow-lg pt-safe">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-14 sm:h-16 md:h-20">
+          <div className="flex justify-between items-center min-h-[56px] sm:h-16 md:h-20">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-white dark:ring-gray-900">
                 <UserCheck className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
@@ -398,6 +398,31 @@ export default function LandingPage() {
               >
                 <MessageCircle className="w-5 h-5" />
                 <span>Contact</span>
+              </a>
+            </div>
+            
+            {/* Mobile Controls */}
+            <div className="md:hidden flex items-center space-x-2">
+              <button
+                onClick={handleLanguageChange}
+                className="flex items-center space-x-1 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 px-2 py-2 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 font-medium"
+              >
+                <Globe className="w-4 h-4" />
+                <span className="text-xs font-semibold">{language.toUpperCase()}</span>
+              </button>
+              
+              <button
+                onClick={handleThemeChange}
+                className="p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20"
+              >
+                {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </button>
+              
+              <a
+                href="#contact"
+                className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 p-2 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20"
+              >
+                <MessageCircle className="w-4 h-4" />
               </a>
             </div>
           </div>

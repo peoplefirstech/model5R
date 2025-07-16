@@ -613,9 +613,9 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
   return (
     <div className="h-screen bg-gray-50 dark:bg-gray-900 flex flex-col overflow-hidden pb-safe">
       {/* Premium Header */}
-      <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-gray-700/80 sticky top-0 z-50 shadow-xl safe-top">
+      <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-gray-700/80 sticky top-0 z-50 shadow-xl pt-safe">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-2 sm:py-3">
-          <div className="flex justify-between items-center h-12 sm:h-14">
+          <div className="flex justify-between items-center min-h-[48px] sm:h-14">
             <div className="flex items-center space-x-4">
               <Link
                 to="/"
@@ -651,20 +651,20 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
               )}
               
               {/* Mobile Controls */}
-              <div className="md:hidden flex items-center space-x-2">
+              <div className="md:hidden flex items-center space-x-1">
                 <button
                   onClick={() => {
                     triggerLight();
                     setIsDark(!isDark);
                   }}
-                  className="p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20"
+                  className="p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 active:scale-95"
                 >
                   {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
                 </button>
                 
                 <Link
                   to="/"
-                  className="p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20"
+                  className="p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 active:scale-95"
                 >
                   <Home className="w-4 h-4" />
                 </Link>
