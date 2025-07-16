@@ -695,13 +695,13 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                 >
                   <div className={`flex items-start space-x-3 sm:space-x-4 ${
                     message.sender === 'user' 
-                     ? 'flex-row-reverse space-x-reverse space-x-3 max-w-2xl' 
+                     ? 'flex-row-reverse space-x-reverse space-x-3 sm:space-x-reverse sm:space-x-4 max-w-2xl' 
                      : 'space-x-3 max-w-4xl'
                   }`}>
                     <div className={`w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center flex-shrink-0 shadow-lg ${
                       message.sender === 'user' 
-                        ? 'bg-gradient-to-br from-blue-500 to-blue-600 shadow-blue-500/25 rounded-full ring-2 ring-white dark:ring-gray-800' 
-                        : 'bg-gradient-to-br from-purple-500 to-pink-600 shadow-purple-500/30 rounded-2xl'
+                        ? 'bg-gradient-to-br from-blue-500 to-blue-600 shadow-blue-500/25 rounded-2xl ring-2 ring-white dark:ring-gray-800' 
+                        : 'bg-gradient-to-br from-purple-500 to-pink-600 shadow-purple-500/30 rounded-2xl ring-2 ring-white dark:ring-gray-800'
                     }`}>
                       {message.sender === 'user' ? (
                         <User className="w-4 h-4 sm:w-5 sm:h-5 text-white drop-shadow-sm" />
@@ -713,9 +713,9 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
                     <div className={`flex flex-col ${message.sender === 'user' ? 'items-end' : 'items-start'}`}>
                       <div className={`px-4 sm:px-5 py-3 sm:py-4 shadow-lg ${
                         message.sender === 'user'
-                          ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-2xl rounded-br-md shadow-blue-500/30 ring-1 ring-blue-400/20'
+                          ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-3xl rounded-br-lg shadow-blue-500/30 ring-1 ring-blue-400/20'
                           : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white rounded-3xl rounded-bl-lg shadow-gray-500/15'
-                      } ${message.sender === 'user' ? 'max-w-xs sm:max-w-sm' : 'max-w-full'}`}>
+                      } ${message.sender === 'user' ? 'max-w-xs sm:max-w-md' : 'max-w-full'}`}>
                         {message.sender === 'user' ? (
                           <div className="text-sm sm:text-base leading-relaxed font-medium text-white/95">
                             {message.text}
