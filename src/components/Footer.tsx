@@ -65,7 +65,6 @@ export default function Footer({ language }: FooterProps) {
                 <div className="w-14 h-14 bg-gradient-to-br from-purple-500 via-purple-600 to-pink-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-purple-500/25 ring-2 ring-white/10">
                   <UserCheck className="w-7 h-7 text-white" />
                 </div>
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-900 animate-pulse"></div>
               </div>
               <div>
                 <h3 className="text-2xl font-bold text-white leading-tight">
