@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
+import { supabase, isSupabaseAvailable } from '../lib/supabase';
 import { User } from '@supabase/supabase-js';
 import { Loader2 } from 'lucide-react';
 
@@ -16,6 +16,12 @@ export default function ProtectedRoute({ children, language }: ProtectedRoutePro
   useEffect(() => {
     // Check current session
     const checkUser = async () => {
+      if (!isSupabaseAvailable()) {
+        setUser(null);
+        setLoading(false);
+        return;
+      }
+      
       const { data: { session } } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
       setLoading(false);

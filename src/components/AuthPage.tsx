@@ -184,6 +184,18 @@ export default function AuthPage({ language }: AuthPageProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Check if Supabase is configured
+    if (!supabase) {
+      setMessage({ 
+        type: 'error', 
+        text: language === 'fr' 
+          ? 'Service d\'authentification non configuré. Veuillez contacter l\'administrateur.' 
+          : 'Authentication service not configured. Please contact administrator.'
+      });
+      return;
+    }
+    
     if (!validateForm()) return;
 
     setLoading(true);
