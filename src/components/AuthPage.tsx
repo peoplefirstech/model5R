@@ -286,7 +286,7 @@ export default function AuthPage({ language }: AuthPageProps) {
               </Link>
               
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-slate-600 to-slate-700 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-white dark:ring-gray-900">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-white dark:ring-gray-900">
                   <UserCheck className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
                 <div>
@@ -329,7 +329,7 @@ export default function AuthPage({ language }: AuthPageProps) {
                   const IconComponent = feature.icon;
                   return (
                     <div key={index} className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-slate-600 to-slate-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                      <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-purple-500/25">
                         <IconComponent className="w-6 h-6 text-white" />
                       </div>
                       <div>
@@ -348,7 +348,7 @@ export default function AuthPage({ language }: AuthPageProps) {
               {/* Freemium Badge */}
               <div className="bg-gradient-to-r from-slate-50 to-gray-50 dark:from-slate-900/20 dark:to-gray-900/20 border border-slate-200 dark:border-slate-700 rounded-2xl p-6">
                 <div className="flex items-center space-x-3 mb-3">
-                  <div className="w-8 h-8 bg-gradient-to-r from-slate-600 to-slate-700 rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
                     <Sparkles className="w-4 h-4 text-white" />
                   </div>
                   <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -367,7 +367,7 @@ export default function AuthPage({ language }: AuthPageProps) {
                 
                 {/* Form Header */}
                 <div className="text-center mb-8">
-                  <div className="w-16 h-16 bg-gradient-to-br from-slate-600 to-slate-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-purple-500/25">
                     <UserCheck className="w-8 h-8 text-white" />
                   </div>
                   <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
@@ -408,7 +408,7 @@ export default function AuthPage({ language }: AuthPageProps) {
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                         placeholder={t.email}
                         required
                       />
@@ -427,7 +427,7 @@ export default function AuthPage({ language }: AuthPageProps) {
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full pl-10 pr-12 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                        className="w-full pl-10 pr-12 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                         placeholder={t.password}
                         required
                       />
@@ -454,7 +454,7 @@ export default function AuthPage({ language }: AuthPageProps) {
                           id="confirmPassword"
                           value={confirmPassword}
                           onChange={(e) => setConfirmPassword(e.target.value)}
-                          className="w-full pl-10 pr-12 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                          className="w-full pl-10 pr-12 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                           placeholder={t.confirmPassword}
                           required
                         />
@@ -473,7 +473,7 @@ export default function AuthPage({ language }: AuthPageProps) {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-gradient-to-r from-slate-600 to-slate-700 text-white py-3 px-6 rounded-xl font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:from-slate-700 hover:to-slate-800 hover:shadow-xl hover:shadow-slate-500/25 hover:-translate-y-0.5 disabled:hover:translate-y-0"
+                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 px-6 rounded-xl font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:from-purple-700 hover:to-pink-700 hover:shadow-xl hover:shadow-purple-500/25 hover:-translate-y-0.5 disabled:hover:translate-y-0"
                   >
                     {loading ? t.loading : (isLogin ? t.loginButton : t.signupButton)}
                   </button>
@@ -506,7 +506,7 @@ export default function AuthPage({ language }: AuthPageProps) {
                           window.location.href = '/chat';
                         }, 100);
                       }}
-                      className="mt-4 w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-3 px-6 rounded-xl font-semibold text-lg transition-all duration-300 hover:from-emerald-600 hover:to-teal-600 hover:shadow-xl hover:shadow-emerald-500/25 hover:-translate-y-0.5 flex items-center justify-center space-x-2"
+                      className="mt-4 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-6 rounded-xl font-semibold text-lg transition-all duration-300 hover:from-purple-600 hover:to-pink-600 hover:shadow-xl hover:shadow-purple-500/25 hover:-translate-y-0.5 flex items-center justify-center space-x-2 border-2 border-purple-300/30"
                     >
                       <Zap className="w-5 h-5" />
                       <span>
@@ -535,7 +535,7 @@ export default function AuthPage({ language }: AuthPageProps) {
                         setPassword('');
                         setConfirmPassword('');
                       }}
-                      className="text-slate-600 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 font-semibold transition-colors"
+                      className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-semibold transition-colors"
                     >
                       {isLogin ? t.signupLink : t.loginLink}
                     </button>
