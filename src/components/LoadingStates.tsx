@@ -10,7 +10,7 @@ export default function LoadingStates({ type, language }: LoadingStatesProps) {
   return (
     <div className="flex justify-start">
       <div className="flex items-start space-x-4 max-w-3xl">
-        <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/25">
+        <div className="w-10 h-10 bg-gradient-to-br from-slate-700 to-gray-800 rounded-2xl flex items-center justify-center shadow-lg shadow-slate-500/25">
           <MessageCircle className="w-5 h-5 text-white" />
         </div>
         <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-3xl px-6 py-4 shadow-lg">
