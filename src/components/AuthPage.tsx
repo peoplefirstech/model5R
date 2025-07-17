@@ -191,7 +191,7 @@ export default function AuthPage({ language }: AuthPageProps) {
     setMessage(null);
 
     try {
-      // Check if Supabase is properly configured - MUST be first check
+      // Check if Supabase is properly configured FIRST - bypass all Supabase calls if not available
       if (!isSupabaseAvailable()) {
         // Demo mode - simulate authentication
         if (isLogin) {
@@ -212,7 +212,6 @@ export default function AuthPage({ language }: AuthPageProps) {
             }));
             
             setTimeout(() => navigate('/chat'), 1500);
-            setLoading(false);
             return;
           } else {
             setMessage({ 
@@ -221,7 +220,6 @@ export default function AuthPage({ language }: AuthPageProps) {
                 ? 'Mode démo actif. Utilisez philippe@gmail.com / pft2025# pour vous connecter.' 
                 : 'Demo mode active. Use philippe@gmail.com / pft2025# to login.'
             });
-            setLoading(false);
             return;
           }
         } else {
@@ -232,12 +230,11 @@ export default function AuthPage({ language }: AuthPageProps) {
               ? 'Mode démo actif. Seule la connexion avec philippe@gmail.com / pft2025# est disponible.' 
               : 'Demo mode active. Only login with philippe@gmail.com / pft2025# is available.'
           });
-          setLoading(false);
           return;
         }
       }
       
-      // Normal Supabase authentication - only reached if Supabase is available
+      // Normal Supabase authentication - this code is ONLY reached if Supabase is properly configured
       if (isLogin) {
         const { data, error } = await supabase.auth.signInWithPassword({
           email,
