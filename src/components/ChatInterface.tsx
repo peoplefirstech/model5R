@@ -220,7 +220,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
     en: {
       welcome: {
         greeting: "Hello",
-        name: "Philippe",
+        name: "Philippe", 
         title: "How can I help you today?",
         placeholder: "Ask your question..."
       },
@@ -229,25 +229,25 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
         // Group 1 - Original (5R®)
         [
           { 
-            text: "How to improve roles in my team?", 
+            text: "How to improve roles in my team?",
             category: "Roles",
             icon: Users,
             description: "Responsibility clarification"
           },
           { 
-            text: "What routines should I implement?", 
+            text: "What routines should I implement?",
             category: "Routines",
             icon: RotateCcw,
             description: "Effective processes and rituals"
           },
           { 
-            text: "How to define clear rules?", 
+            text: "How to define clear rules?",
             category: "Rules",
             icon: FileText,
             description: "Operating framework"
           },
           { 
-            text: "How to cultivate respect?", 
+            text: "How to cultivate respect?",
             category: "Respect",
             icon: Handshake,
             description: "Trust environment"
@@ -262,7 +262,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
             description: "Success celebration"
           },
           {
-            text: "Digital transformation strategies", 
+            text: "Digital transformation strategies",
             category: "Transformation",
             icon: Zap,
             description: "Change management"
@@ -336,7 +336,7 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
         ]
       ],
       typing: "AI Coach is typing...",
-      online: "Online",
+      online: "Online", 
       back: "Back",
       refresh: "Refresh suggestions",
       newConversation: "New conversation",
@@ -395,6 +395,26 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
             return "Pour améliorer le **respect**, cultivez l'écoute active, la reconnaissance des différences et la valorisation des contributions de chacun. Instaurez des moments d'échange et de feedback constructif.";
           } else if (lowerQuestion.includes('reconnaissance')) {
             return "Pour améliorer la **reconnaissance**, célébrez les réussites, individuelles et collectives. Mettez en place un système de feedback positif régulier et valorisez les efforts autant que les résultats.";
+          } else if (lowerQuestion.includes('communication')) {
+            return "Pour améliorer la **communication**, établissez des canaux clairs et réguliers. Favorisez l'écoute active, le feedback constructif et la transparence. Organisez des réunions structurées et encouragez les échanges informels.";
+          } else if (lowerQuestion.includes('conflit')) {
+            return "Pour gérer les **conflits**, adoptez une approche de médiation neutre. Écoutez toutes les parties, identifiez les causes profondes et recherchez des solutions gagnant-gagnant. La prévention par une communication ouverte est essentielle.";
+          } else if (lowerQuestion.includes('autonomie')) {
+            return "Pour développer l'**autonomie**, déléguez progressivement avec un cadre clair. Fixez des objectifs précis, donnez les moyens nécessaires et instaurez un suivi régulier sans micro-management.";
+          } else if (lowerQuestion.includes('objectif')) {
+            return "Pour fixer des **objectifs** motivants, utilisez la méthode SMART (Spécifique, Mesurable, Atteignable, Réaliste, Temporel). Impliquez l'équipe dans leur définition et assurez un suivi régulier.";
+          } else if (lowerQuestion.includes('innovation')) {
+            return "Pour stimuler l'**innovation**, créez un environnement psychologiquement sûr où l'erreur est acceptée. Encouragez la créativité, allouez du temps pour l'expérimentation et valorisez les initiatives.";
+          } else if (lowerQuestion.includes('engagement')) {
+            return "Pour mesurer l'**engagement**, utilisez des sondages réguliers, observez les comportements (participation, initiative) et analysez les indicateurs RH (turnover, absentéisme). L'écoute directe reste essentielle.";
+          } else if (lowerQuestion.includes('apprentissage')) {
+            return "Pour favoriser l'**apprentissage**, créez une culture de formation continue. Encouragez le partage de connaissances, organisez des sessions de retour d'expérience et soutenez le développement personnel.";
+          } else if (lowerQuestion.includes('décision')) {
+            return "Pour optimiser les **décisions**, impliquez les parties prenantes concernées, collectez des données factuelles et utilisez des méthodes structurées. Communiquez clairement les décisions prises et leurs raisons.";
+          } else if (lowerQuestion.includes('bien-être')) {
+            return "Pour équilibrer travail et **bien-être**, promouvez la flexibilité, respectez les temps de repos et encouragez la déconnexion. Soyez attentif aux signes de stress et soutenez vos équipes.";
+          } else if (lowerQuestion.includes('changement')) {
+            return "Pour gérer le **changement**, communiquez la vision clairement, impliquez les équipes dans le processus et accompagnez la transition. Anticipez les résistances et célébrez les progrès.";
           } else {
             return "Pour améliorer votre équipe selon le modèle 5R®, il est important de travailler sur les 5 piliers : les rôles, les routines, les règles, le respect et la reconnaissance. Pouvez-vous préciser sur quel aspect vous souhaitez vous concentrer ?";
           }
@@ -409,6 +429,28 @@ export default function ChatInterface({ language }: ChatInterfaceProps) {
             return "To improve **respect**, cultivate active listening, recognition of differences and valuing everyone's contributions. Establish moments for exchange and constructive feedback.";
           } else if (lowerQuestion.includes('recognition')) {
             return "To improve **recognition**, celebrate successes, both individual and collective. Implement a regular positive feedback system and value efforts as much as results.";
+          } else if (lowerQuestion.includes('communication')) {
+            return "To improve **communication**, establish clear and regular channels. Foster active listening, constructive feedback and transparency. Organize structured meetings and encourage informal exchanges.";
+          } else if (lowerQuestion.includes('conflict')) {
+            return "To manage **conflicts**, adopt a neutral mediation approach. Listen to all parties, identify root causes and seek win-win solutions. Prevention through open communication is essential.";
+          } else if (lowerQuestion.includes('autonomy')) {
+            return "To develop **autonomy**, delegate progressively with a clear framework. Set precise objectives, provide necessary resources and establish regular follow-up without micro-management.";
+          } else if (lowerQuestion.includes('objective')) {
+            return "To set motivating **objectives**, use the SMART method (Specific, Measurable, Achievable, Realistic, Time-bound). Involve the team in their definition and ensure regular follow-up.";
+          } else if (lowerQuestion.includes('innovation')) {
+            return "To stimulate **innovation**, create a psychologically safe environment where mistakes are accepted. Encourage creativity, allocate time for experimentation and value initiatives.";
+          } else if (lowerQuestion.includes('engagement')) {
+            return "To measure **engagement**, use regular surveys, observe behaviors (participation, initiative) and analyze HR indicators (turnover, absenteeism). Direct listening remains essential.";
+          } else if (lowerQuestion.includes('learning')) {
+            return "To foster **learning**, create a continuous training culture. Encourage knowledge sharing, organize experience feedback sessions and support personal development.";
+          } else if (lowerQuestion.includes('decision')) {
+            return "To optimize **decisions**, involve relevant stakeholders, collect factual data and use structured methods. Clearly communicate decisions made and their reasons.";
+          } else if (lowerQuestion.includes('well-being') || lowerQuestion.includes('balance')) {
+            return "To balance work and **well-being**, promote flexibility, respect rest times and encourage disconnection. Be attentive to stress signs and support your teams.";
+          } else if (lowerQuestion.includes('change')) {
+            return "To manage **change**, communicate the vision clearly, involve teams in the process and support the transition. Anticipate resistance and celebrate progress.";
+          } else if (lowerQuestion.includes('transformation')) {
+            return "For **digital transformation**, start with a clear strategy aligned with business objectives. Train teams, adapt processes gradually and maintain open communication throughout the transformation.";
           } else {
             return "To improve your team according to the 5R® model, it's important to work on the 5 pillars: roles, routines, rules, respect and recognition. Can you specify which aspect you'd like to focus on?";
           }
