@@ -17,7 +17,6 @@ import {
   Globe,
   Sun,
   Moon,
-  Zap
 } from 'lucide-react';
 
 interface AuthPageProps {
