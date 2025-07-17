@@ -368,7 +368,7 @@ export default function LandingPage({ language, setLanguage }: LandingPageProps)
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center min-h-[56px] sm:h-16 md:h-20">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-white dark:ring-gray-900">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-slate-600 to-slate-700 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-white dark:ring-gray-900">
                 <UserCheck className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
               <div>
