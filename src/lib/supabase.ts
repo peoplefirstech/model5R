@@ -6,12 +6,14 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
 // Check if we have valid Supabase configuration
 const isSupabaseConfigured = supabaseUrl && 
   supabaseAnonKey && 
-  supabaseUrl !== 'your_supabase_project_url' && 
+  supabaseUrl !== 'your_supabase_project_url' &&
+  supabaseUrl !== 'https://your-project.supabase.co' &&
   supabaseAnonKey !== 'your_supabase_anon_key' &&
+  supabaseAnonKey !== 'your_anon_key_here' &&
   supabaseUrl.includes('supabase.co')
 
 if (!isSupabaseConfigured) {
-  console.warn('Supabase is not properly configured. Please update your .env file with valid Supabase credentials.')
+  console.warn('⚠️ Supabase is not properly configured. Please update your .env file with valid Supabase credentials from your project dashboard.')
 }
 
 // Create client with fallback for development
@@ -20,7 +22,6 @@ export const supabase = isSupabaseConfigured
   : null
 
 // Helper function to check if Supabase is available
-export const isSupabaseAvailable = () => isSupabaseConfigured && supabase !== null
 
 // Types pour l'authentification
 export interface User {
