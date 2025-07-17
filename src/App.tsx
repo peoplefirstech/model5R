@@ -38,10 +38,6 @@ function App() {
             <ChatInterface language={language} />
           </ProtectedRoute>
         } />
-          <ProtectedRoute language={language}>
-            <ChatInterface language={language} />
-          </ProtectedRoute>
-        } />
       </Routes>
     </div>
   );
