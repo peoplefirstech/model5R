@@ -517,20 +517,24 @@ export default function AuthPage({ language }: AuthPageProps) {
                   <p className="text-gray-600 dark:text-gray-300">
                     {isLogin ? t.switchToSignup : t.switchToLogin}{' '}
                     {isLogin ? (
-                      <Link
-                        to="/chat"
+                      <button
                         onClick={() => {
-                          // Set demo user immediately before navigation
+                          console.log('Setting demo user...');
                           localStorage.setItem('demo_user', JSON.stringify({
                             id: 'demo-user-id',
                             email: 'philippe@gmail.com',
                             created_at: new Date().toISOString()
                           }));
+                          console.log('Demo user set, navigating to chat...');
+                          // Force a small delay to ensure localStorage is set
+                          setTimeout(() => {
+                            window.location.href = '/chat';
+                          }, 100);
                         }}
                         className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-semibold transition-colors"
                       >
                         {language === 'fr' ? 'Accès direct à la démo' : 'Direct demo access'}
-                      </Link>
+                      </button>
                     ) : (
                       <button
                         onClick={() => {
