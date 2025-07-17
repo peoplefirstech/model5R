@@ -518,7 +518,15 @@ export default function AuthPage({ language }: AuthPageProps) {
                     {isLogin ? t.switchToSignup : t.switchToLogin}{' '}
                     {isLogin ? (
                       <Link
-                        to="/demo-login"
+                        to="/chat"
+                        onClick={() => {
+                          // Set demo user immediately before navigation
+                          localStorage.setItem('demo_user', JSON.stringify({
+                            id: 'demo-user-id',
+                            email: 'philippe@gmail.com',
+                            created_at: new Date().toISOString()
+                          }));
+                        }}
                         className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-semibold transition-colors"
                       >
                         {language === 'fr' ? 'Accès direct à la démo' : 'Direct demo access'}
