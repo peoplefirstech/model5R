@@ -23,7 +23,7 @@ export default function DemoLoginBypass({ language }: DemoLoginBypassProps) {
     // Redirect to chat after a short delay for visual feedback
     const timer = setTimeout(() => {
       navigate('/chat', { replace: true });
-    }, 1500);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, [navigate]);

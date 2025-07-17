@@ -16,14 +16,16 @@ export default function ProtectedRoute({ children, language }: ProtectedRoutePro
   useEffect(() => {
     // Check current session
     const checkUser = async () => {
+      // Check for demo user in localStorage first
+      const demoUser = localStorage.getItem('demo_user');
+      if (demoUser) {
+        setUser(JSON.parse(demoUser));
+        setLoading(false);
+        return;
+      }
+      
       if (!isSupabaseAvailable()) {
-        // Check for demo user in localStorage
-        const demoUser = localStorage.getItem('demo_user');
-        if (demoUser) {
-          setUser(JSON.parse(demoUser));
-        } else {
-          setUser(null);
-        }
+        setUser(null);
         setLoading(false);
         return;
       }
