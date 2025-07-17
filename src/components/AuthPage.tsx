@@ -516,18 +516,27 @@ export default function AuthPage({ language }: AuthPageProps) {
                 <div className="mt-8 text-center">
                   <p className="text-gray-600 dark:text-gray-300">
                     {isLogin ? t.switchToSignup : t.switchToLogin}{' '}
-                    <button
-                      onClick={() => {
-                        setIsLogin(!isLogin);
-                        setMessage(null);
-                        setEmail('');
-                        setPassword('');
-                        setConfirmPassword('');
-                      }}
-                      className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-semibold transition-colors"
-                    >
-                      {isLogin ? t.signupLink : t.loginLink}
-                    </button>
+                    {isLogin ? (
+                      <Link
+                        to="/demo-login"
+                        className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-semibold transition-colors"
+                      >
+                        {language === 'fr' ? 'Accès direct à la démo' : 'Direct demo access'}
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          setIsLogin(!isLogin);
+                          setMessage(null);
+                          setEmail('');
+                          setPassword('');
+                          setConfirmPassword('');
+                        }}
+                        className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-semibold transition-colors"
+                      >
+                        {t.loginLink}
+                      </button>
+                    )}
                   </p>
                 </div>
               </div>
