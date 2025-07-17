@@ -185,23 +185,56 @@ export default function AuthPage({ language }: AuthPageProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Check if Supabase is properly configured
-    if (!supabase || !isSupabaseAvailable()) {
-      setMessage({ 
-        type: 'error', 
-        text: language === 'fr' 
-          ? 'Service d\'authentification non configuré. Veuillez configurer Supabase dans le fichier .env avec vos vraies clés de projet.' 
-          : 'Authentication service not configured. Please configure Supabase in .env file with your actual project keys.'
-      });
-      return;
-    }
-    
     if (!validateForm()) return;
 
     setLoading(true);
     setMessage(null);
 
     try {
+      // Check if Supabase is properly configured
+      if (!supabase || !isSupabaseAvailable()) {
+        // Demo mode - simulate authentication
+        if (isLogin) {
+          // Check demo credentials
+          if (email === 'philippe@gmail.com' && password === 'pft2025#') {
+            setMessage({ 
+              type: 'success', 
+              text: language === 'fr' 
+                ? 'Connexion démo réussie ! Redirection...' 
+                : 'Demo login successful! Redirecting...'
+            });
+            
+            // Simulate user session in localStorage for demo
+            localStorage.setItem('demo_user', JSON.stringify({
+              id: 'demo-user-id',
+              email: 'philippe@gmail.com',
+              created_at: new Date().toISOString()
+            }));
+            
+            setTimeout(() => navigate('/chat'), 1500);
+            return;
+          } else {
+            setMessage({ 
+              type: 'error', 
+              text: language === 'fr' 
+                ? 'Mode démo actif. Utilisez philippe@gmail.com / pft2025# pour vous connecter.' 
+                : 'Demo mode active. Use philippe@gmail.com / pft2025# to login.'
+            });
+            return;
+          }
+        } else {
+          // Signup not available in demo mode
+          setMessage({ 
+            type: 'error', 
+            text: language === 'fr' 
+              ? 'Mode démo actif. Seule la connexion avec philippe@gmail.com / pft2025# est disponible.' 
+              : 'Demo mode active. Only login with philippe@gmail.com / pft2025# is available.'
+          });
+          return;
+        }
+      }
+      
+      // Normal Supabase authentication
       if (isLogin) {
         const { data, error } = await supabase.auth.signInWithPassword({
           email,

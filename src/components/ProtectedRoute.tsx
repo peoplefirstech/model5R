@@ -17,7 +17,13 @@ export default function ProtectedRoute({ children, language }: ProtectedRoutePro
     // Check current session
     const checkUser = async () => {
       if (!isSupabaseAvailable()) {
-        setUser(null);
+        // Check for demo user in localStorage
+        const demoUser = localStorage.getItem('demo_user');
+        if (demoUser) {
+          setUser(JSON.parse(demoUser));
+        } else {
+          setUser(null);
+        }
         setLoading(false);
         return;
       }
