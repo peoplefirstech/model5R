@@ -22,6 +22,7 @@ export const supabase = isSupabaseConfigured
   : null
 
 // Helper function to check if Supabase is available
+export const isSupabaseAvailable = () => isSupabaseConfigured
 
 // Types pour l'authentification
 export interface User {
