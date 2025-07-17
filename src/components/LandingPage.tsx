@@ -85,8 +85,12 @@ const TypingAnimation = ({ text, speed = 50, language }: { text: string; speed?:
   );
 };
 
-export default function LandingPage() {
-  const [language, setLanguage] = useState<'fr' | 'en'>('fr');
+interface LandingPageProps {
+  language: 'fr' | 'en';
+  setLanguage: (language: 'fr' | 'en') => void;
+}
+
+export default function LandingPage({ language, setLanguage }: LandingPageProps) {
   const isMobile = useIsMobile();
   const { triggerLight, triggerMedium, triggerSelection } = useHapticFeedback();
   const [isDark, setIsDark] = useState(() => {
