@@ -224,7 +224,19 @@ export default function AuthPage({ language }: AuthPageProps) {
         setTimeout(() => setIsLogin(true), 2000);
       }
     } catch (error: any) {
-      setMessage({ type: 'error', text: error.message });
+      console.error('Authentication error:', error);
+      
+      // Handle specific error types
+      if (error.message === 'Failed to fetch' || error.name === 'TypeError') {
+        setMessage({ 
+          type: 'error', 
+          text: language === 'fr' 
+            ? 'Impossible de se connecter au service d\'authentification. Vérifiez votre configuration Supabase dans le fichier .env et redémarrez le serveur.'
+            : 'Unable to connect to authentication service. Please check your Supabase configuration in .env file and restart the server.'
+        });
+      } else {
+        setMessage({ type: 'error', text: error.message });
+      }
     } finally {
       setLoading(false);
     }
