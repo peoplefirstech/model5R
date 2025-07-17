@@ -816,36 +816,10 @@ export default function LandingPage() {
                   <div className="space-y-3 sm:space-y-4 text-gray-700 dark:text-gray-300">
                     <p className="text-base sm:text-lg leading-relaxed">
                       {language === 'fr' 
-                       <p className="text-base sm:text-lg leading-relaxed">
-  {language === 'fr' ? (
-    <>
-      Notre Coach Virtuel IA, basé sur le modèle 5R® de{" "}
-      <a
-        href="https://www.ceciledejoux.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-600 underline hover:text-blue-800"
-      >
-        Cécile Dejoux
-      </a>
-      , vous accompagne avec des conseils personnalisés et des bonnes pratiques éprouvées.
-    </>
-  ) : (
-    <>
-      Our AI Virtual Coach, based on{" "}
-      <a
-        href="https://www.ceciledejoux.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-600 underline hover:text-blue-800"
-      >
-        Cécile Dejoux
-      </a>
-      's 5R® model, guides you with personalized advice and proven best practices.
-    </>
-  )}
-</p>
-              
+                        ? "Notre Coach Virtuel IA, basé sur le modèle 5R® de Cécile Dejoux, vous accompagne avec des conseils personnalisés et des bonnes pratiques éprouvées."
+                        : "Our AI Virtual Coach, based on Cécile Dejoux's 5R® model, guides you with personalized advice and proven best practices."
+                      }
+                    </p>
                     <p className="text-base sm:text-lg leading-relaxed">
                       {language === 'fr' 
                         ? "Pour aller plus loin avec un accompagnement personnalisé, nos experts People First Technologies sont à votre disposition."
