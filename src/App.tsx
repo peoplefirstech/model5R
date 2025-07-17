@@ -5,8 +5,6 @@ import LegalPages from './components/LegalPages';
 import ChatInterface from './components/ChatInterface';
 import AuthPage from './components/AuthPage';
 import ProtectedRoute from './components/ProtectedRoute';
-import AuthPage from './components/AuthPage';
-import ProtectedRoute from './components/ProtectedRoute';
 import './index.css';
 
 function App() {
