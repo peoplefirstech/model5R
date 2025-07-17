@@ -529,15 +529,29 @@ export default function AuthPage({ language }: AuthPageProps) {
                     {isLogin ? t.switchToSignup : t.switchToLogin}{' '}
                     <button
                       onClick={() => {
-                        setIsLogin(!isLogin);
-                        setMessage(null);
-                        setEmail('');
-                        setPassword('');
-                        setConfirmPassword('');
+                        if (isLogin) {
+                          // Au lieu de basculer vers signup, aller directement à la démo
+                          console.log('Setting demo user...');
+                          localStorage.setItem('demo_user', JSON.stringify({
+                            id: 'demo-user-id',
+                            email: 'philippe@gmail.com',
+                            created_at: new Date().toISOString()
+                          }));
+                          console.log('Demo user set, navigating to chat...');
+                          setTimeout(() => {
+                            navigate('/chat');
+                          }, 100);
+                        } else {
+                          setIsLogin(!isLogin);
+                          setMessage(null);
+                          setEmail('');
+                          setPassword('');
+                          setConfirmPassword('');
+                        }
                       }}
                       className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-semibold transition-colors"
                     >
-                      {isLogin ? t.signupLink : t.loginLink}
+                      {isLogin ? "Accès direct à la démo" : t.loginLink}
                     </button>
                   </p>
                 </div>
