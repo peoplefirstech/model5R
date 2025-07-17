@@ -16,7 +16,8 @@ import {
   Users,
   Globe,
   Sun,
-  Moon
+  Moon,
+  Zap
 } from 'lucide-react';
 
 interface AuthPageProps {
@@ -480,6 +481,38 @@ export default function AuthPage({ language }: AuthPageProps) {
                   </button>
                 </form>
 
+                {/* Demo Bypass Button - Only show if Supabase is not configured */}
+                {!isSupabaseAvailable() && (
+                  <div className="mt-6">
+                    <div className="relative">
+                      <div className="absolute inset-0 flex items-center">
+                        <div className="w-full border-t border-gray-300 dark:border-gray-600" />
+                      </div>
+                      <div className="relative flex justify-center text-sm">
+                        <span className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+                          {language === 'fr' ? 'ou' : 'or'}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <Link
+                      to="/demo-login"
+                      className="mt-4 w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white py-3 px-6 rounded-xl font-semibold text-lg transition-all duration-300 hover:from-green-600 hover:to-emerald-600 hover:shadow-xl hover:shadow-green-500/25 hover:-translate-y-0.5 flex items-center justify-center space-x-2"
+                    >
+                      <Zap className="w-5 h-5" />
+                      <span>
+                        {language === 'fr' ? 'Accès Direct (Démo)' : 'Direct Access (Demo)'}
+                      </span>
+                    </Link>
+                    
+                    <p className="mt-2 text-xs text-center text-gray-500 dark:text-gray-400">
+                      {language === 'fr' 
+                        ? 'Contourne l\'authentification pour les démonstrations'
+                        : 'Bypasses authentication for demonstrations'
+                      }
+                    </p>
+                  </div>
+                )}
                 {/* Switch Form */}
                 <div className="mt-8 text-center">
                   <p className="text-gray-600 dark:text-gray-300">
