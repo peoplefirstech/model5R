@@ -191,8 +191,8 @@ export default function AuthPage({ language }: AuthPageProps) {
     setMessage(null);
 
     try {
-      // Check if Supabase is properly configured
-      if (!supabase || !isSupabaseAvailable()) {
+      // Check if Supabase is properly configured - MUST be first check
+      if (!isSupabaseAvailable()) {
         // Demo mode - simulate authentication
         if (isLogin) {
           // Check demo credentials
@@ -212,6 +212,7 @@ export default function AuthPage({ language }: AuthPageProps) {
             }));
             
             setTimeout(() => navigate('/chat'), 1500);
+            setLoading(false);
             return;
           } else {
             setMessage({ 
@@ -220,6 +221,7 @@ export default function AuthPage({ language }: AuthPageProps) {
                 ? 'Mode démo actif. Utilisez philippe@gmail.com / pft2025# pour vous connecter.' 
                 : 'Demo mode active. Use philippe@gmail.com / pft2025# to login.'
             });
+            setLoading(false);
             return;
           }
         } else {
@@ -230,11 +232,12 @@ export default function AuthPage({ language }: AuthPageProps) {
               ? 'Mode démo actif. Seule la connexion avec philippe@gmail.com / pft2025# est disponible.' 
               : 'Demo mode active. Only login with philippe@gmail.com / pft2025# is available.'
           });
+          setLoading(false);
           return;
         }
       }
       
-      // Normal Supabase authentication
+      // Normal Supabase authentication - only reached if Supabase is available
       if (isLogin) {
         const { data, error } = await supabase.auth.signInWithPassword({
           email,
@@ -259,17 +262,12 @@ export default function AuthPage({ language }: AuthPageProps) {
     } catch (error: any) {
       console.error('Authentication error:', error);
       
-      // Handle specific error types
-      if (error.message === 'Failed to fetch' || error.name === 'TypeError') {
-        setMessage({ 
-          type: 'error', 
-          text: language === 'fr' 
-            ? 'Impossible de se connecter au service d\'authentification. Vérifiez votre configuration Supabase dans le fichier .env et redémarrez le serveur.'
-            : 'Unable to connect to authentication service. Please check your Supabase configuration in .env file and restart the server.'
-        });
-      } else {
-        setMessage({ type: 'error', text: error.message });
-      }
+      setMessage({ 
+        type: 'error', 
+        text: language === 'fr' 
+          ? 'Erreur d\'authentification. Vérifiez vos identifiants.' 
+          : 'Authentication error. Please check your credentials.'
+      });
     } finally {
       setLoading(false);
     }
