@@ -191,8 +191,9 @@ export default function AuthPage({ language }: AuthPageProps) {
     setMessage(null);
 
     try {
-      // Check if Supabase is properly configured FIRST - bypass all Supabase calls if not available
-      if (!isSupabaseAvailable()) {
+      // ALWAYS check demo mode first, regardless of Supabase configuration
+      if (!isSupabaseAvailable() || !supabaseUrl || !supabaseAnonKey || 
+          supabaseUrl.includes('your_supabase') || supabaseAnonKey.includes('your_supabase')) {
         // Demo mode - simulate authentication
         if (isLogin) {
           // Check demo credentials
@@ -234,7 +235,7 @@ export default function AuthPage({ language }: AuthPageProps) {
         }
       }
       
-      // Normal Supabase authentication - this code is ONLY reached if Supabase is properly configured
+      // This code should never be reached if Supabase is not configured
       if (isLogin) {
         const { data, error } = await supabase.auth.signInWithPassword({
           email,

@@ -30,7 +30,14 @@ if (!isSupabaseConfigured) {
 // Create client with fallback for development
 export const supabase = isSupabaseConfigured 
   ? createClient(supabaseUrl, supabaseAnonKey)
-  : null
+  : {
+      auth: {
+        signInWithPassword: () => Promise.reject(new Error('Supabase not configured - use demo mode')),
+        signUp: () => Promise.reject(new Error('Supabase not configured - use demo mode')),
+        getSession: () => Promise.resolve({ data: { session: null }, error: null }),
+        onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } })
+      }
+    }
 
 // Helper function to check if Supabase is available
 export const isSupabaseAvailable = () => isSupabaseConfigured
