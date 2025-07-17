@@ -368,7 +368,7 @@ export default function LandingPage({ language, setLanguage }: LandingPageProps)
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center min-h-[56px] sm:h-16 md:h-20">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-white dark:ring-gray-900">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-slate-600 to-slate-700 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-white dark:ring-gray-900">
                 <UserCheck className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
               <div>
@@ -466,7 +466,7 @@ export default function LandingPage({ language, setLanguage }: LandingPageProps)
               {/* CTA Principal Amélioré */}
               <div className="flex flex-col gap-4">
                 <Link
-                  to="/chat"
+                  to="/auth"
                   onClick={() => triggerMedium()}
                   className="group relative bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-bold text-lg sm:text-xl transition-all duration-500 ease-out flex items-center justify-center space-x-3 shadow-2xl shadow-purple-500/25 ring-2 ring-purple-500/20 hover:shadow-3xl hover:shadow-purple-500/40 hover:ring-purple-500/50 hover:-translate-y-1 overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-purple-700 before:to-pink-700 before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100"
                 >
